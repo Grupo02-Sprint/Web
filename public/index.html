@@ -11,14 +11,74 @@
 
 <body>
 
-    <nav onclick="exibir_nav()">
-        <span class="menu">
-            <img src="./icons/menu.png" alt="menu-nav-mobile" class>
-        </span>
+    <nav>
+        <div class="links">
+
+        </div>
+
+        <div class="cadastro-login">
+
+        </div>
 
     </nav>
 
+    <span class="menu" onclick="exibir_nav()">
+        <img src="./icons/menu-white.png" alt="menu-nav-mobile" id="icon-menu">
+    </span>
 
+    <span class="tema" onclick="mudar_tema()">
+        <img src="./icons/tema.png" alt="icone-mudar-tema" id="icon-tema">
+    </span>
+
+    <div id="opcoes-mobile">
+        <a href="./index.html" class="opcao">
+            <img src="./icons/home.png" altaaa="menu-opt-home" id="home-icon">
+        </a>
+
+        <span class="opcao" onclick="dashboard()">
+            <img src="./icons/dashboard.png" altaaa="menu-opt-dashboard" id="dash-icon">
+        </span>
+
+        <a href="https://chat.whatsapp.com/L1mdIQ6TA3BC4mLAn5ZuxA" class="opcao">
+            <img src="./icons/faq.png" altaaa="menu-opt-faq" id="faq-icon">
+        </a>
+    </div>
+
+    <section id="section-one-ref">
+        a
+        <div class="container">
+            <div class="caixa-apresentacao">
+                <h2 id="titulo-section-one">NOC</h2>
+                <p id="frase-section-one">Nosso Centro de Operações de Rede é a solução para seus problemas</p>
+                <a href="#section-two-ref" class="a-redirecionar">O que somos?</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="section-two-ref">
+        <div class="container">
+            <div class="caixa-apresentacao">
+                <h2 id="titulo-section-two">O que somos?</h2>
+                <p id="frase-section-two">Monitorando sua máquina maximizamos desempenho para minimizar prejuízos.</p>
+                <a href="./cadastro.html" class="a-redirecionar">Cadastre-se para mais informações</a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="links-1">
+            <h2>Cadastro</h2>
+            <a href="./cadastro.html">Cadastre-se</a>
+            <a href="./login.html">Já possui uma conta?</a>
+        </div>
+        <div class="links-2">
+            <h2></h2>
+        </div>
+        <div class="links-3">
+            <h2>Suporte</h2>
+            <a href="auvodesckblablabalbal">Abrir chamado</a>
+        </div>
+    </footer>
 
 
 
@@ -27,8 +87,66 @@
 </html>
 
 <script>
+    var contador = 0;
+    var contador_tema = 0;
     function exibir_nav() {
+        var menu = document.getElementById("opcoes-mobile");
 
 
+        if (contador == 0) {
+            menu.style.display = "flex";
+            contador++;
+        } else {
+            menu.style.display = "none";
+            contador = 0;
+        }
+
+    }
+
+    function dashboard() {
+        alert("Site indisponível no momento");
+    }
+
+    function mudar_tema() {
+        var body = document.body;
+        var section = document.getElementById("section-one-ref");
+        var titulo_one = document.getElementById("titulo-section-one");
+        var titulo_two = document.getElementById("titulo-section-two");
+        var frase_one = document.getElementById("frase-section-one");
+        var frase_two = document.getElementById("frase-section-two");
+        var menu = document.getElementById("icon-menu");
+        var menu_opt = document.getElementById("opcoes-mobile");
+        var home_icon = document.getElementById("home-icon");
+        var dash_icon = document.getElementById("dash-icon");
+        var faq_icon = document.getElementById("faq-icon");
+        var tema = document.getElementById("icon-tema");
+
+        if (contador_tema == 0) {
+            body.style.backgroundColor = "whitesmoke";
+            section.style.color = 'whitesmoke';
+            titulo_one.style.color = "black";
+            titulo_two.style.color = "black";
+            frase_one.style.color = "black";
+            frase_two.style.color = "black";
+            menu.src = './icons/menu.png';
+            menu_opt.style.backgroundColor = 'whitesmoke';
+            home_icon.src = './icons/botao-de-inicio.png';
+            dash_icon.src = './icons/dashboard-icon.png';
+            faq_icon.src = './icons/faq-icon.png';
+            contador_tema++;
+        } else {
+            body.style.backgroundColor = "#303030";
+            section.style.color = '#303030';
+            titulo_one.style.color = "whitesmoke";
+            titulo_two.style.color = "whitesmoke";
+            frase_one.style.color = "whitesmoke";
+            frase_two.style.color = "whitesmoke";
+            menu.src = './icons/menu-white.png';
+            menu_opt.style.backgroundColor = '#303030';
+            home_icon.src = './icons/home.png';
+            dash_icon.src = './icons/dashboard.png';
+            faq_icon.src = './icons/faq.png';
+            contador_tema = 0;
+        }
     }
 </script>
