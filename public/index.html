@@ -7,42 +7,55 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/index.css">
     <title>Pagina inicial</title>
+
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
 </head>
 
 <body>
 
-    <nav>
-        <div class="links">
-
-        </div>
-
-        <div class="cadastro-login">
-
-        </div>
+    <nav class="nav-desktop">
 
     </nav>
-
-    <span class="menu" onclick="exibir_nav()">
-        <img src="./icons/menu-white.png" alt="menu-nav-mobile" id="icon-menu">
-    </span>
 
     <span class="tema" onclick="mudar_tema()">
         <img src="./icons/tema.png" alt="icone-mudar-tema" id="icon-tema">
     </span>
 
-    <div id="opcoes-mobile">
-        <a href="./index.html" class="opcao">
-            <img src="./icons/home.png" altaaa="menu-opt-home" id="home-icon">
-        </a>
-
-        <span class="opcao" onclick="dashboard()">
-            <img src="./icons/dashboard.png" altaaa="menu-opt-dashboard" id="dash-icon">
-        </span>
-
-        <a href="https://chat.whatsapp.com/L1mdIQ6TA3BC4mLAn5ZuxA" class="opcao">
-            <img src="./icons/faq.png" altaaa="menu-opt-faq" id="faq-icon">
-        </a>
+    <div class="meio" id="aaa">
+        <div class="botao">
+            <span onclick="souLindo()" class="material-symbols-outlined" id="menu-icon">
+                menu
+            </span>
+        </div>
     </div>
+    <nav id="niel">
+        <div class="esquerda" id="na-onde">
+            <a href="./index.html">
+
+                <span class="material-symbols-outlined" id="home-icon">
+                    home
+                </span>
+            </a>
+            <span onclick="dashboard()" class="material-symbols-outlined" id="dash-icon">
+                bar_chart
+            </span>
+        </div>
+
+        <div class="direita" id="na-onde-oq">
+            <a href="https://chat.whatsapp.com/L1mdIQ6TA3BC4mLAn5ZuxA">
+                <span class="material-symbols-outlined" id="faq-icon">
+                    contact_support
+                </span>
+            </a>
+            <a href="./login.html">
+                <span class="material-symbols-outlined" id="user-icon">
+                    person
+                </span>
+            </a>
+        </div>
+    </nav>
+
 
     <section id="section-one-ref">
         a
@@ -85,23 +98,46 @@
 </body>
 
 </html>
-
 <script>
-    var contador = 0;
-    var contador_tema = 0;
-    function exibir_nav() {
-        var menu = document.getElementById("opcoes-mobile");
+    var esquerda = document.getElementById('na-onde').style
+    var direita = document.getElementById('na-onde-oq').style
+    var mein = document.getElementById('aaa').style
+    var nave = document.getElementById('niel').style
 
+    var contador = 0
 
+    function souLindo() {
         if (contador == 0) {
-            menu.style.display = "flex";
-            contador++;
+
+            esquerda.bottom = "0%"
+            direita.bottom = "0%"
+
+
+            contador++
+            danielLindoDmais()
+
         } else {
-            menu.style.display = "none";
-            contador = 0;
+
+            esquerda.bottom = "-130%"
+            direita.bottom = "-60%"
+
+            contador = 0
+            danielLindoDmais()
         }
 
     }
+
+    function danielLindoDmais() {
+        if (contador == 1) {
+            nave.bottom = "0"
+
+        } else {
+            nave.bottom = "-80%"
+
+        }
+    }
+
+    var contador_tema = 0;
 
     function dashboard() {
         alert("Site indisponível no momento");
@@ -109,44 +145,70 @@
 
     function mudar_tema() {
         var body = document.body;
+
+        // Section
         var section = document.getElementById("section-one-ref");
         var titulo_one = document.getElementById("titulo-section-one");
         var titulo_two = document.getElementById("titulo-section-two");
         var frase_one = document.getElementById("frase-section-one");
         var frase_two = document.getElementById("frase-section-two");
-        var menu = document.getElementById("icon-menu");
-        var menu_opt = document.getElementById("opcoes-mobile");
+
+        // Menu
+        var caixa_menu = document.getElementById("aaa");
+        var menu_opt_esquerda = document.getElementById("na-onde");
+        var menu_opt_direita = document.getElementById("na-onde-oq");
+
+        var menu = document.getElementById("menu-icon");
         var home_icon = document.getElementById("home-icon");
         var dash_icon = document.getElementById("dash-icon");
         var faq_icon = document.getElementById("faq-icon");
-        var tema = document.getElementById("icon-tema");
+        var user_icon = document.getElementById("user-icon");
+
+        // Tema
+        // var tema = document.getElementById("icon-tema");
 
         if (contador_tema == 0) {
+
             body.style.backgroundColor = "whitesmoke";
+
             section.style.color = 'whitesmoke';
             titulo_one.style.color = "black";
             titulo_two.style.color = "black";
             frase_one.style.color = "black";
             frase_two.style.color = "black";
-            menu.src = './icons/menu.png';
-            menu_opt.style.backgroundColor = 'whitesmoke';
-            home_icon.src = './icons/botao-de-inicio.png';
-            dash_icon.src = './icons/dashboard-icon.png';
-            faq_icon.src = './icons/faq-icon.png';
+
+            caixa_menu.style.backgroundColor = "#303030";
+            menu_opt_esquerda.style.backgroundColor = "#303030";
+            menu_opt_direita.style.backgroundColor = "#303030";
+
+            menu.style.color = "#f5f5f5";
+            home_icon.style.color = "#f5f5f5"
+            dash_icon.style.color = "#f5f5f5"
+            faq_icon.style.color = "#f5f5f5"
+            user_icon.style.color = "#f5f5f5"
+
             contador_tema++;
         } else {
+
             body.style.backgroundColor = "#303030";
+
             section.style.color = '#303030';
-            titulo_one.style.color = "whitesmoke";
-            titulo_two.style.color = "whitesmoke";
+            titulo_one.style.color = "#ece1c3";
+            titulo_two.style.color = "#ece1c3";
             frase_one.style.color = "whitesmoke";
             frase_two.style.color = "whitesmoke";
-            menu.src = './icons/menu-white.png';
-            menu_opt.style.backgroundColor = '#303030';
-            home_icon.src = './icons/home.png';
-            dash_icon.src = './icons/dashboard.png';
-            faq_icon.src = './icons/faq.png';
+
+            caixa_menu.style.backgroundColor = "#ece1c3";
+            menu_opt_esquerda.style.backgroundColor = "#ece1c3";
+            menu_opt_direita.style.backgroundColor = "#ece1c3";
+
+            menu.style.color = "#303030";
+            home_icon.style.color = "#303030"
+            dash_icon.style.color = "#303030"
+            faq_icon.style.color = "#303030"
+            user_icon.style.color = "#303030"
             contador_tema = 0;
+
         }
     }
 </script>

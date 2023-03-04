@@ -18,66 +18,205 @@ body {
 
 }
 
+.tema {
+    display: none;
+}
+
+.meio {
+    display: none;
+}
+
 nav {
+    display: none;
+}
+
+
+
+
+
+.nav-desktop {
     width: 100%;
-    height: 70px;
+    height: 120px;
     display: flex;
+    position: fixed;
+    top: 0;
 }
 
 
 
-/* nav .menu .menu-nav-mobile {
+
+
+#section-one-ref {
     width: 100%;
-    height: 50px;
-} */
+    height: 700px;
+    display: block;
+    /* background-color: #303030; */
+    /* border: 1px solid red; */
+    color: #303030;
+}
 
-nav .links {
-    width: 40%;
-    height: 70px;
+#section-one-ref .container {
+    width: 50%;
+    height: 140px;
     display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 300px 0 0 3px;
 
-    border: 2px solid red;
+    /* border: 2px solid purple; */
 }
 
-nav .cadastro-login {
-    width: 30%;
-    height: 70px;
+#section-one-ref .container .caixa-apresentacao {
+    width: 100%;
+    height: 120px;
+    align-items: center;
+    justify-content: center;
+    /* border: 2px solid yellow; */
 
-    border: 2px solid red;
+}
+
+#section-one-ref .container .caixa-apresentacao h2 {
+    color: #ece1c3;
+    margin: 8px;
+    /* font-family: 'Ubuntu'; */
+}
+
+#section-one-ref .container .caixa-apresentacao p {
+    color: white;
+    margin: 4px;
+    font-size: 17px;
+}
+
+#section-one-ref .container .caixa-apresentacao .a-redirecionar {
+    width: 20%;
+    height: 20px;
+    text-decoration: none;
+    color: #6295e7;
+    /* background-color: #ece1c3; */
+    /* border-bottom: 1px solid #8ebdb6; */
+    border-radius: 7px;
+    margin-left: 5px;
+}
+
+#section-two-ref {
+    width: 100%;
+    height: 700px;
+    display: block;
+}
+
+#section-two-ref .container {
+    width: 50%;
+    height: 140px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 700px 0 0 3px;
+
+    /* border: 2px solid purple; */
+}
+
+#section-two-ref .container .caixa-apresentacao {
+    width: 100%;
+    height: 130px;
+    align-items: center;
+    justify-content: center;
+    /* border: 2px solid yellow; */
+
+}
+
+#section-two-ref .container .caixa-apresentacao h2 {
+    color: #ece1c3;
+    margin: 6px;
+    /* font-family: 'Ubuntu'; */
+}
+
+#section-two-ref .container .caixa-apresentacao p {
+    color: white;
+    margin: 2px;
+    font-size: 17px;
+}
+
+#section-two-ref .container .caixa-apresentacao .a-redirecionar {
+    width: 20%;
+    height: 20px;
+    text-decoration: none;
+    color: #6295e7;
+    /* background-color: #ece1c3; */
+    /* border-bottom: 1px solid #8ebdb6; */
+    /* margin-left: 2px; */
 }
 
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Footer */
+
+.footer {
+    /* font-family: ; */
+    bottom: 0px;
+    width: 100%;
+    height: 200px;
+    background-color: #ece1c3;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-top: 2px solid #195e63;
+    /* box-shadow: 2px 2px 2px 2px #8AB4F8; */
+}
+
+.footer .links-1 {
+    width: 100%;
+    height: 40px;
+    display: flex;
+    flex-direction: column;
+    margin-left: 6px;
+
+}
+
+.footer .links-1 h2 {
+    font-family: 'Satisfy';
+}
+
+.footer .links-2 {
+    width: 100%;
+    height: 40px;
+    display: flex;
+    flex-direction: column;
+}
+
+.footer .links-3 {
+    width: 100%;
+    height: 40px;
+    display: flex;
+    flex-direction: column;
+    margin-left: 6px;
+}
+
+.footer .links-3 h2 {
+    font-family: 'Satisfy';
+}
 
 @media only screen and (max-width: 600px) {
-    nav {
-        display: none;
-    }
-
-    .menu {
-        width: 12%;
-        height: 30px;
-        cursor: pointer;
-        border-radius: 40px;
-        margin: 10px 0 0 22px;
-        position: fixed;
-        z-index: 10000000;
-
-
-    }
-
-    .menu #icon-menu {
-        width: 100%;
-        height: 35px;
-    }
-
     .tema {
-        width: 10%;
+        width: 8%;
         height: 30px;
         cursor: pointer;
-        margin: 10px 0 0 310px;
-        position: fixed;
+        display: flex;
+        margin: 13px 0 0 515px;
+        position: static;
         z-index: 10000000;
     }
 
@@ -86,30 +225,69 @@ nav .cadastro-login {
         height: 35px;
     }
 
-    #opcoes-mobile {
-        background-color: #303030;
-        width: 13%;
-        height: 180px;
-        display: none;
-        flex-direction: column;
-        margin: 49px 0 0 19px;
-        border: 2px solid #195e63;
-        border-radius: 15px;
-        transition: all 0.7s;
-        position: fixed;
-    }
-
-    #opcoes-mobile .opcao {
-        margin: 13px 5px 7px;
-        width: 75%;
-        height: 36px;
-        /* border: 1px solid red; */
-    }
-
-    #opcoes-mobile .opcao #home-icon, #dash-icon, #faq-icon {
+    nav {
         width: 100%;
-        height: 36px;
+        height: 7vh;
+        background-color: #ece1c3;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: fixed;
+        bottom: -90%;
+        transition: all 0.3s;
     }
+
+    nav .esquerda,
+    nav .direita {
+        width: 40%;
+        height: 7vh;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        position: relative;
+
+    }
+
+    nav .esquerda {
+        bottom: -130%;
+        border-radius: 10px 0 0 0;
+
+    }
+
+    nav .direita {
+        bottom: -70%;
+    }
+
+    .meio {
+        width: 20%;
+        height: 7vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #ece1c3;
+        border-radius: 10px 10px 0 0;
+        transition: all 1s;
+        position: fixed;
+        bottom: 0;
+        left: 40%;
+        z-index: 20;
+    }
+
+
+    nav span {
+        font-size: 8vw !important;
+        color: #303030;
+        cursor: pointer;
+    }
+
+    .meio span {
+        font-size: 8vw !important;
+        color: #303030;
+        cursor: pointer;
+    }
+
+
+    /* COMENTA AS COISAS */
 
     nav .links {
         display: none;
@@ -149,7 +327,7 @@ nav .cadastro-login {
     }
 
     #section-one-ref .container .caixa-apresentacao h2 {
-        color: whitesmoke;
+        color: #ece1c3;
         margin: 8px;
         /* font-family: 'Ubuntu'; */
     }
@@ -157,14 +335,14 @@ nav .cadastro-login {
     #section-one-ref .container .caixa-apresentacao p {
         color: white;
         margin: 4px;
-        font-size: 13px;
+        font-size: 17px;
     }
 
     #section-one-ref .container .caixa-apresentacao .a-redirecionar {
         width: 20%;
         height: 20px;
         text-decoration: none;
-        color: #8AB4F8;
+        color: #6295e7;
         /* background-color: #ece1c3; */
         /* border-bottom: 1px solid #8ebdb6; */
         border-radius: 7px;
@@ -198,7 +376,7 @@ nav .cadastro-login {
     }
 
     #section-two-ref .container .caixa-apresentacao h2 {
-        color: whitesmoke;
+        color: #ece1c3;
         margin: 6px;
         /* font-family: 'Ubuntu'; */
     }
@@ -206,63 +384,24 @@ nav .cadastro-login {
     #section-two-ref .container .caixa-apresentacao p {
         color: white;
         margin: 2px;
-        font-size: 13px;
+        font-size: 17px;
     }
 
     #section-two-ref .container .caixa-apresentacao .a-redirecionar {
         width: 20%;
         height: 20px;
         text-decoration: none;
-        color: #8AB4F8;
+        color: #6295e7;
         /* background-color: #ece1c3; */
         /* border-bottom: 1px solid #8ebdb6; */
         /* margin-left: 2px; */
     }
 
     .footer {
-        font-family: ;
-        bottom: 0px;
-        width: 100%;
-        height: 200px;
-        background-color: #ece1c3;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        border-top: 2px solid #195e63;
-        /* box-shadow: 2px 2px 2px 2px #8AB4F8; */
+        display: none;
     }
 
-    .footer .links-1 {
-        width: 100%;
-        height: 40px;
-        display: flex;
-        flex-direction: column;
-        margin-left: 6px;
-        
-    }
-    
-    .footer .links-1 h2{
-        font-family: 'Satisfy';
-    }
 
-    .footer .links-2 {
-        width: 100%;
-        height: 40px;
-        display: flex;
-        flex-direction: column;
-    }
-    
-    .footer .links-3 {
-        width: 100%;
-        height: 40px;
-        display: flex;
-        flex-direction: column;
-        margin-left: 6px;
-    }
-    
-    .footer .links-3 h2{
-        font-family: 'Satisfy';
-    }
 }
 
 
