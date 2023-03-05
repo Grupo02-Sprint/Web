@@ -1,0 +1,137 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans&family=Roboto:wght@900&display=swap');
+@media only screen and (max-width: 600px){
+.container0{
+    font-family: 'Roboto', sans-serif;
+    display: flex;
+    margin-left: 2vh;
+    margin-top: 5vh;
+}
+
+.container1{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.container1 h1{
+    margin-bottom: 0px;
+    font-family: 'Roboto', sans-serif;
+}
+
+.container1 h2{
+    font-family: 'IBM Plex Sans', sans-serif;
+    color: gray;
+    margin-top: 10px;
+    margin-bottom: 50px;
+}
+
+.container2{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.container2 p{
+    font-family: 'IBM Plex Sans', sans-serif;
+    color: gray;
+    font-size: 12px;
+}
+
+.container2 input{
+    margin-bottom: 20px;
+    height: 25px;
+    width: 300px;
+    border-radius: 15px;
+    border-color: aqua;
+}
+
+.container2 button{
+    height: 30px;
+    width: 300px;
+    border-radius: 15px;
+    background-color: aqua;
+    color: white;
+    border: none;
+}
+.caixa{
+    background-color: none;
+}
+}
+
+@media only screen and (min-width: 600px){
+body{
+    margin: 0px;
+    background-color: #ECE1C3;
+}
+.tudo{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    margin: 0px;
+    background-color: #ECE1C3;
+}
+
+.container0{
+    font-family: 'Roboto', sans-serif;
+    display: flex;
+    margin-left: 2vh;
+    margin-top: 5vh;
+    justify-content: end;
+}
+
+.container1{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.container1 h1{
+    margin-bottom: 0px;
+    font-family: 'Roboto', sans-serif;
+}
+
+.container1 h2{
+    font-family: 'IBM Plex Sans', sans-serif;
+    color: white;
+    margin-top: 10px;
+    margin-bottom: 50px;
+}
+
+.container2{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.container2 p{
+    font-family: 'IBM Plex Sans', sans-serif;
+    color: white;
+    font-size: 12px;
+}
+
+.container2 input{
+    margin-bottom: 20px;
+    height: 30px;
+    width: 300px;
+    border-radius: 15px;
+    border: none;
+}
+
+.container2 button{
+    height: 30px;
+    width: 300px;
+    border-radius: 15px;
+    margin-top: 20px;
+    background-color: #0CC0DF;
+    color: white;
+    border: none;
+}
+
+.caixa{
+    height: 500px;
+    width: 400px;
+    background-color: #3E838C;
+    border-radius: 25px;
+
+}
+}
