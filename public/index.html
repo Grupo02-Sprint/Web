@@ -16,29 +16,30 @@
 
     <nav class="nav-desktop">
         <a href="./index.html">
-            <h1>MAXsolutions</h1>
+            <img src="icons/Logo-nome-site.png" alt="Logo-nome-site">
         </a>
         <div class="container">
             <ul>
-                <li><a href="dashboard.html">Dashboard</a></li>
-                <li><a href="cadastro.html">Cadastre-se</a></li>
-                <li><a href="login.html">Login</a></li>
+                <li><a onclick="dashboard()">Dashboard</a></li>
+                <li><a href="./login.html">Entrar</a></li>
+                <li><a href="./cadastro.html">Cadastre-se</a></li>
             </ul>
         </div>
     </nav>
 
-    <span class="tema" onclick="mudar_tema()">
+    <!-- <span class="tema" onclick="mudar_tema()">
         <img src="./icons/tema.png" alt="icone-mudar-tema" id="icon-tema">
-    </span>
+    </span> -->
 
-    <div class="meio" id="aaa">
+    <div class="meio" id="botao-menu" onclick="ExibirNav()">
         <div class="botao">
-            <span onclick="souLindo()" class="material-symbols-outlined" id="menu-icon">
+            <span class="material-symbols-outlined" id="menu-icon">
                 menu
             </span>
         </div>
     </div>
-    <nav id="niel">
+
+    <nav id="nav-mobile-id" class="nav-mobile">
         <div class="esquerda" id="na-onde">
             <a href="./index.html">
 
@@ -69,6 +70,7 @@
         <div class="container">
             <div class="mascara">
             </div>
+            <div class="mascara-texto-mobile"></div>
             <div class="caixa-apresentacao">
                 <h2 id="titulo-section-one">NOC</h2>
                 <p id="frase-section-one">
@@ -76,7 +78,8 @@
                     afim de ajudar sua empresa na tomada de decisões, evitar sobrecargas do sistema,
                     além da perda de clientes que pode ser gerada pela lentidão,
                     ou até mesmo paradas causadas por uma eventual sobrecarga na máquina,
-                    para resumir, nossa solução irá fornecer um apoio para a montagem de um NOC(Centro de operações de rede) na sua empresa
+                    para resumir, nossa solução irá fornecer um apoio para a montagem de um NOC(Centro de operações de
+                    rede) na sua empresa
                 </p>
                 <a href="#section-two-ref" class="a-redirecionar">O que somos?</a>
             </div>
@@ -87,24 +90,26 @@
         <div class="container">
             <div class="mascara2">
             </div>
-                
-                <div class="caixa-apresentacao">
-                    <h2 id="titulo-section-two">
-                        O que somos?
-                    </h2>
+            <div class="mascara-texto-mobile2"></div>
 
-                    <p id="frase-section-two">
-                        Monitorando sua máquina maximizamos desempenho para minimizar prejuízos.
+            <div class="caixa-apresentacao">
+                <h2 id="titulo-section-two">
+                    O que somos?
+                </h2>
 
-                    </p>
+                <p id="frase-section-two">
+                    Fornecemos a plataforma para o monitoramento de sua máquina para maximizar o desempenho e evitar
+                    prejuízos.
 
-                    <span>
-                        <a href="./cadastro.html" class="a-redirecionar">
-                            Cadastre-se para mais informações
-                        </a>
+                </p>
 
-                    </span>
-                </div>
+                <span>
+                    <a href="./cadastro.html" class="a-redirecionar">
+                        Cadastre-se
+                    </a>
+
+                </span>
+            </div>
 
             <div class="div_img">
                 <img src="./assets/processed-0b5f4765-a9bf-4017-9489-15f4c12dedb1_n5Do7ijK.jpeg"
@@ -138,12 +143,13 @@
 <script>
     var esquerda = document.getElementById('na-onde').style
     var direita = document.getElementById('na-onde-oq').style
-    var mein = document.getElementById('aaa').style
-    var nave = document.getElementById('niel').style
+
+    var mein = document.getElementById('botao-menu').style
+    var nav = document.getElementById('nav-mobile-id').style
 
     var contador = 0
 
-    function souLindo() {
+    function ExibirNav() {
         if (contador == 0) {
 
             esquerda.bottom = "0%"
@@ -151,7 +157,7 @@
 
 
             contador++
-            danielLindoDmais()
+            background()
 
         } else {
 
@@ -159,17 +165,17 @@
             direita.bottom = "-60%"
 
             contador = 0
-            danielLindoDmais()
+            background()
         }
 
     }
 
-    function danielLindoDmais() {
+    function background() {
         if (contador == 1) {
-            nave.bottom = "0"
+            nav.bottom = "0"
 
         } else {
-            nave.bottom = "-80%"
+            nav.bottom = "-80%"
 
         }
     }
@@ -183,7 +189,7 @@
     function mudar_tema() {
         var body = document.body;
 
-        // Section
+        // Sections
         var section = document.getElementById("section-one-ref");
         var titulo_one = document.getElementById("titulo-section-one");
         var titulo_two = document.getElementById("titulo-section-two");

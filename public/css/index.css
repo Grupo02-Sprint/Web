@@ -27,21 +27,21 @@ body {
     display: none;
 }
 
-#niel {
+.nav-mobile {
     display: none;
 }
 
 
 
 
-nav {
+/* nav {
     position: fixed !important;
     top: 0 !important;
-}
+} */
 
 .nav-desktop {
     width: 100%;
-    height: 100px;
+    height: 10vh;
     display: flex;
     position: absolute;
     top: 0;
@@ -49,15 +49,22 @@ nav {
     align-items: center;
     border-bottom: 2px solid #ece1c3;
     z-index: 1000000000;
+    overflow-y: hidden;
 }
 
 .nav-desktop a {
+    width: fit-content;
     text-decoration: none;
     color: #ece1c3;
     font: bold;
     font-size: 17px;
-    margin: 0 0 0 5px;
+    margin: 0 0 0 12px;
     transition: all 0.1s;
+}
+
+.nav-desktop a img {
+    width: fit-content;
+    height: 6vh;
 }
 
 .nav-desktop a:hover {
@@ -67,7 +74,7 @@ nav {
 
 .nav-desktop .container {
     display: flex;
-    width: 90%;
+    width: 80%;
     justify-content: flex-end;
     align-items: center;
     font-family: 'ubuntu';
@@ -86,7 +93,7 @@ nav {
 
 .nav-desktop .container ul li {
     list-style: none;
-
+    overflow-y: hidden;
 }
 
 .nav-desktop .container ul li a {
@@ -139,6 +146,10 @@ nav {
 
 }
 
+.mascara-texto-mobile {
+    display: none;
+}
+
 
 #section-one-ref .container .caixa-apresentacao {
     width: 100%;
@@ -147,7 +158,7 @@ nav {
     justify-content: center;
     z-index: 1;
     /* border: 2px solid yellow; */
-    
+
 }
 
 #section-one-ref .container .caixa-apresentacao h2 {
@@ -338,17 +349,40 @@ nav {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /* Responsividade */
 
 @media only screen and (max-width: 600px) {
+
+
+
     .tema {
         width: 8%;
         height: 30px;
         cursor: pointer;
-        display: flex;
         margin: 13px 0 0 515px;
         position: static;
         z-index: 10000000;
+
+
+
+        display: none;
     }
 
 
@@ -357,7 +391,7 @@ nav {
         height: 35px;
     }
 
-    nav {
+    .nav-mobile {
         width: 100%;
         height: 7vh;
         background-color: #ece1c3;
@@ -367,10 +401,11 @@ nav {
         position: fixed;
         bottom: -90%;
         transition: all 0.3s;
+        z-index: 19;
     }
 
-    nav .esquerda,
-    nav .direita {
+    .nav-mobile .esquerda,
+    .nav-mobile .direita {
         width: 40%;
         height: 7vh;
         display: flex;
@@ -380,13 +415,18 @@ nav {
 
     }
 
-    nav .esquerda {
+    .nav-mobile span {
+        overflow-y: hidden;
+
+    }
+
+    .nav-mobile .esquerda {
         bottom: -130%;
         border-radius: 10px 0 0 0;
 
     }
 
-    nav .direita {
+    .nav-mobile .direita {
         bottom: -70%;
     }
 
@@ -403,7 +443,10 @@ nav {
         bottom: 0;
         left: 40%;
         z-index: 20;
+        cursor: pointer;
     }
+
+    .meio .botao {}
 
 
     nav span {
@@ -416,6 +459,7 @@ nav {
         font-size: 8vw !important;
         color: #303030;
         cursor: pointer;
+        overflow-y: hidden;
     }
 
 
@@ -429,32 +473,60 @@ nav {
         display: none;
     }
 
+
+
+    /* Section-one-mobile */
+
     #section-one-ref {
         width: 100%;
-        height: 700px;
+        height: 100vh;
         display: block;
         /* background-color: #303030; */
-        /* border: 1px solid red; */
         color: #303030;
+        /* filter: blur(4px); */
+        border-bottom: 3px solid #ece1c3;
     }
 
     #section-one-ref .container {
         width: 50%;
-        height: 140px;
+        height: 40vh;
         display: flex;
         align-items: center;
         justify-content: center;
-        margin: 300px 0 0 3px;
+        margin: 296.6px 0 0 15px;
+    }
 
-        /* border: 2px solid purple; */
+    .mascara {
+        /* background-color: #fdfbf394; */
+        width: 200%;
+        height: 100vh;
+        background-image: url("../assets/imgfundo.jpeg");
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+        border-radius: 0;
+        filter: blur(5px);
+
+        /* display: none; */
+    }
+
+    .mascara-texto-mobile {
+        background-color: #195e63ef;
+        width: 50%;
+        height: 43vh;
+        position: absolute;
+        filter: blur(4px);
+        border-radius: 10px;
+        display: flex;
     }
 
     #section-one-ref .container .caixa-apresentacao {
         width: 100%;
-        height: 120px;
+        height: 43vh;
         align-items: center;
         justify-content: center;
         /* border: 2px solid yellow; */
+        overflow-y: hidden;
 
     }
 
@@ -466,7 +538,7 @@ nav {
 
     #section-one-ref .container .caixa-apresentacao p {
         color: white;
-        margin: 4px;
+        margin: 12px;
         font-size: 17px;
     }
 
@@ -478,31 +550,65 @@ nav {
         /* background-color: #ece1c3; */
         /* border-bottom: 1px solid #8ebdb6; */
         border-radius: 7px;
-        margin-left: 5px;
+        margin-left: 10px;
     }
+
+
+
+
+
+
+
+
+    /* Section-two-mobile */
 
     #section-two-ref {
         width: 100%;
-        height: 700px;
-        display: block;
+        height: 80vh;
+        display: flex;
+        /* background-color: #3e868c; */
     }
 
     #section-two-ref .container {
-        width: 50%;
-        height: 140px;
+        width: 100%;
+        height: 80vh;
         display: flex;
-        align-items: center;
-        justify-content: center;
-        margin: 700px 0 0 3px;
+        margin: 0 0 0 0;
+    }
 
-        /* border: 2px solid purple; */
+    .mascara2 {
+        width: 100%;
+        height: 80vh;
+        display: flex;
+        background-image: url("../assets/processed-0b5f4765-a9bf-4017-9489-15f4c12dedb1_n5Do7ijK.jpeg");
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+        border-radius: 0;
+        /* filter: none; */
+    }
+
+    .mascara-texto-mobile2 {
+        background-color: #195e63ef;
+        width: 50%;
+        height: 40vh;
+        position: absolute;
+        filter: blur(4px);
+        border-radius: 10px;
+        display: flex;
+        margin: 120px 0 0 15px;
     }
 
     #section-two-ref .container .caixa-apresentacao {
-        width: 100%;
-        height: 130px;
-        align-items: center;
-        justify-content: center;
+        width: 50%;
+        height: 40vh;
+        margin: 120px 0 0 15px;
+
+
+
+
+        /* align-items: center; */
+        /* justify-content: center; */
         /* border: 2px solid yellow; */
 
     }
@@ -515,8 +621,8 @@ nav {
 
     #section-two-ref .container .caixa-apresentacao p {
         color: white;
-        margin: 2px;
-        font-size: 17px;
+        margin: 12px;
+        font-size: 22px;
     }
 
     #section-two-ref .container .caixa-apresentacao .a-redirecionar {
@@ -524,9 +630,14 @@ nav {
         height: 20px;
         text-decoration: none;
         color: #6295e7;
+        margin: 10px;
         /* background-color: #ece1c3; */
         /* border-bottom: 1px solid #8ebdb6; */
         /* margin-left: 2px; */
+    }
+
+    #section-two-ref .container .div_img {
+        display: none;
     }
 
     .footer {
