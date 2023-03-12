@@ -1,14 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans&family=Roboto:wght@900&display=swap');
 @media only screen and (min-width: 600px){
-.container {
-    margin: 0 auto;
-    width: 80%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: Arial, Helvetica, sans-serif;
-}
 .navbar{
     display: flex;
     align-items: flex-start;
@@ -16,21 +8,27 @@
     margin-top: 5vh;
     font-family: 'Roboto', sans-serif;
 }
+.navbar img{
+    height: 5vh;
+
+}
 .container1{
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 .container1 h1{
-    margin-bottom: 0px;
+    margin-bottom: 0vh;
     font-family: 'Roboto', sans-serif;
+    font-size: 5vh;
 }
 
 .container1 h2{
     font-family: 'IBM Plex Sans', sans-serif;
     color: white;
-    margin-top: 10px;
-    margin-bottom: 50px;
+    margin-top: 2vh;
+    margin-bottom: 4vh;
+    font-size: 3.7vh;
 }
 
 .container2{
@@ -42,7 +40,8 @@
 .container2 p{
     font-family: 'IBM Plex Sans', sans-serif;
     color: white;
-    font-size: 12px;
+    margin-top: 2vh;
+    font-size: 2vh;
 }
 
 .container2 input{
@@ -52,14 +51,14 @@
     border: none;
     border-top: none;
     background-color: #7ce4f668;
-
+    
 }
 
 .container2 button{
     height: 4.6vh;
     width: 46vh;
     border-radius: 15px;
-    margin-top: 20px;
+    margin-top: 2vh;
     background-color: white;
     color: #0CC0DF;
     border: none;
@@ -67,12 +66,18 @@
 .caixa0{
     display: flex;
     align-items: center;
-    height: 500px;
+    height: 77vh;
+    width: 62vh;
     background-color: #0cbfdf44;
 }
+
+.caixa0 img{
+    height: 62vh;
+    width: 62vh;
+}
 .caixa{
-    height: 500px;
-    width: 400px;
+    height: 77vh;
+    width: 62vh;
     background-color: #0CC0DF;
 
 }
@@ -88,21 +93,17 @@
 }
 
 
-@media only screen and (max-width: 600px){
-    .container {
-        margin: 0 auto;
-        width: 80%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-family: Arial, Helvetica, sans-serif;
-    }
+@media only screen and (max-width: 600px){    
     .navbar{
         margin-top: 5vh;
         font-family: 'Roboto', sans-serif;
         display: flex;
         margin-left: 2vh;
         margin-top: 5vh;
+    }
+    .navbar img{
+        height: 5vh;
+    
     }
     .container1{
         display: flex;
