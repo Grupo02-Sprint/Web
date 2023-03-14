@@ -28,6 +28,12 @@
     position: fixed;
     top: 0;
     z-index: 30;
+    transition: all 0.5s;
+}
+
+
+.nav-desktop:hover{
+    background-color: #195e63 !important;
 }
 
 .nav-desktop .logo,
@@ -65,6 +71,7 @@
 
 .nav-desktop .container ul li a:hover{
     color: #04868f;
+    border-bottom: 1px solid #04868f;
 }
 
 section {
@@ -157,4 +164,96 @@ section {
     background-color: #ece1c3;
     color: #195e63;
     padding-left: 4.5%;
+}
+
+
+
+/* Segunda section - Quem somos */
+
+.segunda{
+    height: 100vh;
+    background-color: #ece1c3;
+}
+
+.segunda .container{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: row-reverse;
+}
+
+.segunda .container .div_img {
+    width: 50%;
+    height: 100vh;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+} .imagem{
+    width: 100%;
+    height: 100vh;
+    background-image: url('../assets/quemsomos.jpg');
+    background-size: cover;
+    background-position: right;
+}
+
+.segunda .container .caixa-apresentacao{
+    width: 40%;
+    height: 60vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+}
+
+.segunda .container .caixa-apresentacao .titulo,
+.segunda .container .caixa-apresentacao .botao{
+
+    width: 90%;
+    height: 10vh;
+    /* background-color: #00000054; */
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.segunda .container .caixa-apresentacao .titulo h2{
+    font-family: 'Mioge';
+    font-size: 2.8vw;
+}
+
+.segunda .container .caixa-apresentacao .texto{
+    width: 90%;
+    height: 40vh;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.segunda .container .caixa-apresentacao .texto p{
+    font-size: 1.2vw;
+    letter-spacing: 2px;
+    word-spacing: 3px;
+    text-align: justify;
+    line-height: 5vh;
+}
+
+.segunda .container .caixa-apresentacao .botao{
+    height: 20vh;
+}
+
+.segunda .container .caixa-apresentacao .botao a{
+    text-decoration: none;
+    color: #195e63;
+    font-size: 1.3vw;
+    padding: 1.5% 3%;
+    border: 2px solid #195e63;
+    border-radius: 10px;
+    transition: all 300ms ease-out;
+}
+
+.segunda .container .caixa-apresentacao .botao a:hover{
+    background-color: #195e63;
+    color: #ece1c3;
 }

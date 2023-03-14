@@ -17,7 +17,7 @@
 
     <nav class="nav-desktop" id="navbar">
         <div class="logo">
-            <a href="./index.html">
+            <a href="#section-one-ref">
                 <img src="icons/Logo-nome-site.png" alt="Logo-nome-site">
             </a>
         </div>
@@ -101,43 +101,40 @@
 
         function scrollFunction() {
             if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
-                document.getElementById("navbar").style.backgroundColor = "#195e63"
+                document.getElementById("navbar").style.backgroundColor = "#195e6399"
             } else {
                 document.getElementById("navbar").style.backgroundColor = "transparent";
             }
         }
     </script>
 
-    <section id="section-two-ref">
+    <section id="section-two-ref" class="segunda">
         <div class="container">
-            <div class="mascara2">
-            </div>
-            <div class="mascara-texto-mobile2"></div>
 
             <div class="caixa-apresentacao">
-                <h2 id="titulo-section-two">
-                    O que somos?
-                </h2>
-
-                <p id="frase-section-two">
-                    Fornecemos a plataforma para o monitoramento de sua máquina para maximizar o desempenho e evitar
-                    prejuízos.
-
-                </p>
-
-                <span>
-                    <a href="./cadastro.html" class="a-redirecionar">
-                        Cadastre-se
-                    </a>
-
-                </span>
+                <div class="titulo">
+                    <h2 id="titulo-section-two">
+                        O que somos?
+                    </h2>
+                </div>
+                <div class="texto">
+                    <p id="frase-section-two">
+                        A MaxSolutions é uma empresa criada em 2023, observando o cenário atual do varejo, notamos que em dias de pico, como feriados, finais de semana ou semanas de pagamento, os sistemas de caixa de loja sofriam com a sobrecarga e muitas vezes tinham o sistema parado por esse problema, pensando nisso, nós pensamos em uma solução de monitoramento que irá resolver os seus problemas.
+                    </p>
+                </div>
+                <div class="botao">
+                        <a href="./cadastro.html" class="a-redirecionar">
+                            Cadastre-se
+                        </a>
+                </div>
             </div>
 
             <div class="div_img">
-                <img src="./assets/processed-0b5f4765-a9bf-4017-9489-15f4c12dedb1_n5Do7ijK.jpeg"
-                    class="img_section_two">
+                <div class="imagem">
+                    <!-- <img src="./assets/processed-0b5f4765-a9bf-4017-9489-15f4c12dedb1_n5Do7ijK.jpeg"
+                        class="img_section_two"> -->
+                </div>
             </div>
-
 
         </div>
     </section>
