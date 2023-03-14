@@ -5,7 +5,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./css/index.css">
+    <!-- <link rel="stylesheet" href="./css/index.css"> -->
+    <link rel="stylesheet" href="./css/style.css">
     <title>Pagina inicial</title>
 
     <link rel="stylesheet"
@@ -14,10 +15,13 @@
 
 <body>
 
-    <nav class="nav-desktop">
-        <a href="./index.html">
-            <img src="icons/Logo-nome-site.png" alt="Logo-nome-site">
-        </a>
+    <nav class="nav-desktop" id="navbar">
+        <div class="logo">
+            <a href="./index.html">
+                <img src="icons/Logo-nome-site.png" alt="Logo-nome-site">
+            </a>
+        </div>
+
         <div class="container">
             <ul>
                 <li><a onclick="dashboard()">Dashboard</a></li>
@@ -27,19 +31,21 @@
         </div>
     </nav>
 
+
+
     <!-- <span class="tema" onclick="mudar_tema()">
         <img src="./icons/tema.png" alt="icone-mudar-tema" id="icon-tema">
     </span> -->
 
-    <div class="meio" id="botao-menu" onclick="ExibirNav()">
+    <!-- <div class="meio" id="botao-menu" onclick="ExibirNav()">
         <div class="botao">
             <span class="material-symbols-outlined" id="menu-icon">
                 menu
             </span>
         </div>
-    </div>
+    </div> -->
 
-    <nav id="nav-mobile-id" class="nav-mobile">
+    <!-- <nav id="nav-mobile-id" class="nav-mobile">
         <div class="esquerda" id="na-onde">
             <a href="./index.html">
 
@@ -64,27 +70,43 @@
                 </span>
             </a>
         </div>
-    </nav>
+    </nav> -->
 
-    <section id="section-one-ref">
+    <section id="section-one-ref" class="primeira">
+        <div class="mascara"></div>
         <div class="container">
-            <div class="mascara">
-            </div>
-            <div class="mascara-texto-mobile"></div>
-            <div class="caixa-apresentacao">
+            <div class="titulo">
                 <h2 id="titulo-section-one">NOC</h2>
+                <h4>Network Operations Center</h4>
+            </div>
+            <div class="texto">
                 <p id="frase-section-one">
                     Nossa solução irá fornecer o monitoramento do hardware das máquinas,
                     afim de ajudar sua empresa na tomada de decisões, evitar sobrecargas do sistema,
                     além da perda de clientes que pode ser gerada pela lentidão,
                     ou até mesmo paradas causadas por uma eventual sobrecarga na máquina,
-                    para resumir, nossa solução irá fornecer um apoio para a montagem de um NOC(Centro de operações de
-                    rede) na sua empresa
+                    para resumir, nossa solução irá fornecer um apoio para a montagem de um NOC (Centro de operações
+                    de
+                    rede) na sua empresa.
                 </p>
+            </div>
+            <div class="linke">
                 <a href="#section-two-ref" class="a-redirecionar">O que somos?</a>
             </div>
         </div>
     </section>
+
+    <script>
+        window.onscroll = function () { scrollFunction() };
+
+        function scrollFunction() {
+            if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
+                document.getElementById("navbar").style.backgroundColor = "#195e63"
+            } else {
+                document.getElementById("navbar").style.backgroundColor = "transparent";
+            }
+        }
+    </script>
 
     <section id="section-two-ref">
         <div class="container">

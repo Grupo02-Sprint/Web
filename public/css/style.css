@@ -1,0 +1,160 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
+/* Ubuntu */
+
+@import url('https://fonts.googleapis.com/css2?family=Satisfy&display=swap');
+/* 'Satisfy' */
+
+
+@font-face {
+    font-family: 'Mioge';
+    src: url('../assets/mioge-font/MiogeFreeTrial-WyBMz.ttf');
+}
+
+
+* {
+    margin: 0;
+    padding: 0;
+    scroll-behavior: smooth;
+    font-family: 'Ubuntu';
+}
+
+.nav-desktop {
+    width: 100%;
+    height: 9vh;
+    background-color: transparent;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    z-index: 30;
+}
+
+.nav-desktop .logo,
+.nav-desktop .container {
+    width: 50%;
+    height: 9vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.nav-desktop .logo img {
+    width: 70%;
+}
+
+.nav-desktop .container ul {
+    width: 80%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-around;
+    list-style: none;
+}
+
+.nav-desktop .container ul li {
+    margin: 0 5%;
+}
+
+.nav-desktop .container ul li a {
+    color: #ece1c3;
+    text-decoration: none;
+    font-size: 1.2vw;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.nav-desktop .container ul li a:hover{
+    color: #04868f;
+}
+
+section {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.mascara {
+    width: 100%;
+    height: 100vh;
+    background-color: #000;
+    opacity: 0.6;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+}
+
+.primeira {
+    background-image: url(../assets/noc.png);
+    transform: scaleX(-1);
+}
+
+.primeira .container {
+    width: 75%;
+    height: 90vh;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: column;
+    transform: scaleX(-1);
+}
+
+.primeira .container .titulo,
+.primeira .container .linke {
+    width: 100%;
+    height: 10vh;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.primeira .container .texto {
+    width: 60%;
+    height: 25vh;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+}
+
+.primeira .container .titulo h2 {
+    font-size: 5vw;
+    color: #ece1c3;
+    font-family: 'Mioge';
+}
+
+.primeira .container .titulo h4 {
+    font-size: 3vw;
+    color: #ece1c3;
+    font-style: italic;
+    font-family: 'Mioge';
+}
+
+.primeira .container .texto p {
+    color: #ece1c3;
+    font-size: 1.2vw;
+    line-height: 140%;
+}
+
+.primeira .container .linke{
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.primeira .container .linke a{
+    font-size: 1.8vw;
+    color: #ece1c3;
+    font-family: 'Satisfy';
+    padding: 1% 3%;
+    border: 2px solid #ece1c3;
+    border-radius: 10px;
+    transition: all 0.4s;
+}
+
+.primeira .container .linke a:hover{
+    background-color: #ece1c3;
+    color: #195e63;
+    padding-left: 4.5%;
+}
