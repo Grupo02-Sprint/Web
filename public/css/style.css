@@ -32,7 +32,7 @@
 }
 
 
-.nav-desktop:hover{
+.nav-desktop:hover {
     background-color: #195e63 !important;
 }
 
@@ -69,7 +69,7 @@
     transition: all 0.3s;
 }
 
-.nav-desktop .container ul li a:hover{
+.nav-desktop .container ul li a:hover {
     color: #04868f;
     border-bottom: 1px solid #04868f;
 }
@@ -145,12 +145,12 @@ section {
     line-height: 140%;
 }
 
-.primeira .container .linke{
+.primeira .container .linke {
     align-items: flex-start;
     justify-content: center;
 }
 
-.primeira .container .linke a{
+.primeira .container .linke a {
     font-size: 1.8vw;
     color: #ece1c3;
     font-family: 'Satisfy';
@@ -160,7 +160,7 @@ section {
     transition: all 0.4s;
 }
 
-.primeira .container .linke a:hover{
+.primeira .container .linke a:hover {
     background-color: #ece1c3;
     color: #195e63;
     padding-left: 4.5%;
@@ -170,12 +170,12 @@ section {
 
 /* Segunda section - Quem somos */
 
-.segunda{
+.segunda {
     height: 100vh;
     background-color: #ece1c3;
 }
 
-.segunda .container{
+.segunda .container {
     width: 100%;
     height: 100vh;
     display: flex;
@@ -190,7 +190,9 @@ section {
     display: flex;
     justify-content: flex-end;
     align-items: center;
-} .imagem{
+}
+
+.imagem {
     width: 100%;
     height: 100vh;
     background-image: url('../assets/quemsomos.jpg');
@@ -198,7 +200,7 @@ section {
     background-position: right;
 }
 
-.segunda .container .caixa-apresentacao{
+.segunda .container .caixa-apresentacao {
     width: 40%;
     height: 60vh;
     display: flex;
@@ -208,7 +210,7 @@ section {
 }
 
 .segunda .container .caixa-apresentacao .titulo,
-.segunda .container .caixa-apresentacao .botao{
+.segunda .container .caixa-apresentacao .botao {
 
     width: 90%;
     height: 10vh;
@@ -218,12 +220,12 @@ section {
     justify-content: flex-start;
 }
 
-.segunda .container .caixa-apresentacao .titulo h2{
+.segunda .container .caixa-apresentacao .titulo h2 {
     font-family: 'Mioge';
     font-size: 2.8vw;
 }
 
-.segunda .container .caixa-apresentacao .texto{
+.segunda .container .caixa-apresentacao .texto {
     width: 90%;
     height: 40vh;
     display: flex;
@@ -231,7 +233,7 @@ section {
     justify-content: flex-start;
 }
 
-.segunda .container .caixa-apresentacao .texto p{
+.segunda .container .caixa-apresentacao .texto p {
     font-size: 1.2vw;
     letter-spacing: 2px;
     word-spacing: 3px;
@@ -239,11 +241,11 @@ section {
     line-height: 5vh;
 }
 
-.segunda .container .caixa-apresentacao .botao{
+.segunda .container .caixa-apresentacao .botao {
     height: 20vh;
 }
 
-.segunda .container .caixa-apresentacao .botao a{
+.segunda .container .caixa-apresentacao .botao a {
     text-decoration: none;
     color: #195e63;
     font-size: 1.3vw;
@@ -253,7 +255,65 @@ section {
     transition: all 300ms ease-out;
 }
 
-.segunda .container .caixa-apresentacao .botao a:hover{
+.segunda .container .caixa-apresentacao .botao a:hover {
     background-color: #195e63;
     color: #ece1c3;
+    padding-left: 4%;
+}
+
+
+
+
+/* FOOTER */
+.footer {
+    width: 100%;
+    height: 20vh;
+    background-color: #04868f;
+    position: absolute;
+    transform: skewY(-5deg);
+    z-index: 0;
+}
+
+footer {
+    width: 100%;
+    height: 30vh;
+    transform: skewY(0deg);
+    background-color: #195e63;
+    position: absolute;
+    z-index: 1;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+footer .links-1, footer .links-2{
+    width: 30%;
+    height: 15vh;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-evenly;
+    flex-direction: column;
+
+}
+
+footer .titulo h2{
+    color: #112a2c;
+    font-size: 2vw;
+    font-family: 'Mioge';
+}
+
+footer .conteudo{
+    height: 5vh;
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+}
+
+footer .conteudo a{
+    color: #ece1c3;
+    font-size: 1vw;
+    transition: all 300ms;
+}
+footer .conteudo a:hover{
+    color: #ece1c3aa;
 }
