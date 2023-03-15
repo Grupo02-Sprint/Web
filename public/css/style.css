@@ -1,0 +1,476 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
+/* Ubuntu */
+
+@import url('https://fonts.googleapis.com/css2?family=Satisfy&display=swap');
+/* 'Satisfy' */
+
+
+@font-face {
+    font-family: 'Mioge';
+    src: url('../assets/mioge-font/MiogeFreeTrial-WyBMz.ttf');
+}
+
+
+* {
+    margin: 0;
+    padding: 0;
+    scroll-behavior: smooth;
+    font-family: 'Ubuntu';
+}
+
+.nav-desktop {
+    width: 100%;
+    height: 9vh;
+    background-color: transparent;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    z-index: 30;
+    transition: all 0.5s;
+}
+
+
+.nav-desktop:hover {
+    background-color: #195e63 !important;
+}
+
+.nav-desktop .logo,
+.nav-desktop .container {
+    width: 50%;
+    height: 9vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.nav-desktop .logo img {
+    width: 70%;
+}
+
+.nav-desktop .container ul {
+    width: 80%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-around;
+    list-style: none;
+}
+
+.nav-desktop .container ul li {
+    margin: 0 5%;
+}
+
+.nav-desktop .container ul li a {
+    color: #ece1c3;
+    text-decoration: none;
+    font-size: max(17px, 1.2vw);
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.nav-desktop .container ul li a:hover {
+    color: #04868f;
+    border-bottom: 1px solid #04868f;
+}
+
+
+/* NAV TABLET - MOBILE */
+
+.mobile {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    display: none;
+    position: fixed;
+    top: 91vh;
+    z-index: 40;
+    transition: all 900ms;
+}
+
+
+.mobile .esquerda,
+.mobile .direita {
+    width: 40%;
+    height: 9vh;
+    position: absolute;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.mobile .esquerda span,
+.mobile .direita span {
+    font-size: 6vw;
+    cursor: pointer;
+}
+
+.mobile .esquerda {
+    top: 130vh;
+    left: 0;
+    transition: all 300ms;
+}
+
+.mobile .direita {
+    top: 180vh;
+    right: 0;
+    transition: all 300ms;
+}
+
+.mobile .meio {
+    width: 20%;
+    height: 9vh;
+    background-color: #195e63;
+    border-radius: 30px 30px 0 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.mobile .meio span {
+    font-size: 8vw;
+    cursor: pointer;
+}
+
+.corDeFundo{
+    background-color: #112a2caa;
+}
+
+.mostrarMenu{
+    top: 90vh;
+    background-color: #112a2c;
+}
+
+section {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.mascara {
+    width: 100%;
+    height: 100vh;
+    background-color: #000;
+    opacity: 0.6;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+}
+
+.primeira {
+    background-image: url(../assets/noc.png);
+    transform: scaleX(-1);
+}
+
+.primeira .container {
+    width: 75%;
+    height: 90vh;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: column;
+    transform: scaleX(-1);
+}
+
+.primeira .container .titulo,
+.primeira .container .linke {
+    width: 100%;
+    height: 10vh;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.primeira .container .texto {
+    width: 60%;
+    height: 25vh;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+}
+
+.primeira .container .titulo h2 {
+    font-size: max(50px, 5vw);
+    color: #ece1c3;
+    font-family: 'Mioge';
+}
+
+.primeira .container .titulo h4 {
+    font-size: max(30px, 3vw);
+    color: #ece1c3;
+    font-style: italic;
+    font-family: 'Mioge';
+}
+
+.primeira .container .texto p {
+    width: 100%;
+    color: #ece1c3;
+    font-size: max(18px, 1.2vw);
+    line-height: 140%;
+}
+
+.primeira .container .linke {
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.primeira .container .linke a {
+    font-size: max(20px, 1.8vw);
+    color: #ece1c3;
+    font-family: 'Satisfy';
+    padding: 1% 3%;
+    border: 2px solid #ece1c3;
+    border-radius: 10px;
+    transition: all 0.4s;
+}
+
+.primeira .container .linke a:hover {
+    background-color: #ece1c3;
+    color: #195e63;
+    padding-left: 4.5%;
+}
+
+
+
+/* Segunda section - Quem somos */
+
+.segunda {
+    height: 100vh;
+    background-color: #ece1c3;
+}
+
+.segunda .container {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: row-reverse;
+}
+
+.segunda .dois {
+    display: none;
+}
+
+.segunda .container .div_img {
+    width: 50%;
+    height: 100vh;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.imagem {
+    width: 100%;
+    height: 100vh;
+    background-image: url('../assets/quemsomos.jpg');
+    background-size: cover;
+    background-position: right;
+}
+
+.segunda .container .caixa-apresentacao {
+    width: 40%;
+    height: 60vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+}
+
+.segunda .container .caixa-apresentacao .titulo,
+.segunda .container .caixa-apresentacao .botao {
+
+    width: 90%;
+    height: 10vh;
+    /* background-color: #00000054; */
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.segunda .container .caixa-apresentacao .titulo h2 {
+    font-family: 'Mioge';
+    font-size: max(40px, 2.8vw);
+}
+
+.segunda .container .caixa-apresentacao .texto {
+    width: 90%;
+    height: 40vh;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.segunda .container .caixa-apresentacao .texto p {
+    font-size: max(17px, 1.2vw);
+    letter-spacing: 2px;
+    word-spacing: 3px;
+    text-align: justify;
+    line-height: 5vh;
+}
+
+.segunda .container .caixa-apresentacao .botao {
+    height: 20vh;
+}
+
+.segunda .container .caixa-apresentacao .botao a {
+    text-decoration: none;
+    color: #195e63;
+    font-size: max(18px, 1.3vw);
+    padding: 1.5% 3%;
+    border: 2px solid #195e63;
+    border-radius: 10px;
+    transition: all 300ms ease-out;
+}
+
+.segunda .container .caixa-apresentacao .botao a:hover {
+    background-color: #195e63;
+    color: #ece1c3;
+    padding-left: 4%;
+}
+
+
+
+
+/* FOOTER */
+.footer {
+    width: 100%;
+    height: 20vh;
+    background-color: #04868f;
+    position: absolute;
+    transform: skewY(-5deg);
+    z-index: 0;
+}
+
+footer {
+    width: 100%;
+    height: 30vh;
+    transform: skewY(0deg);
+    background-color: #195e63;
+    position: absolute;
+    z-index: 1;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+footer .links-1,
+footer .links-2 {
+    width: 30%;
+    height: 15vh;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-evenly;
+    flex-direction: column;
+
+}
+
+footer .titulo h2 {
+    color: #112a2c;
+    font-size: max(30px, 2vw);
+    font-family: 'Mioge';
+}
+
+footer .conteudo {
+    height: 5vh;
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+}
+
+footer .conteudo a {
+    color: #ece1c3;
+    font-size: max(15px, 1vw);
+    transition: all 300ms;
+}
+
+footer .conteudo a:hover {
+    color: #ece1c3aa;
+}
+
+@media only screen and (max-width: 1000px) {
+    .nav-desktop .container ul li {
+        margin: 0 3%;
+    }
+
+    .primeira .container .texto {
+        width: 70vw;
+        align-items: center;
+    }
+
+    .segunda .container .caixa-apresentacao .texto p {
+        line-height: 2vh;
+    }
+
+    .imagem {
+        width: 100%;
+        height: 60vh;
+        background-repeat: no-repeat;
+    }
+
+    .segunda .container .caixa-apresentacao .texto,
+    .segunda .container .caixa-apresentacao .titulo {
+        align-items: flex-end;
+    }
+}
+
+@media only screen and (max-width: 700px) {
+    .nav-desktop {
+        display: none;
+    }
+
+    .mobile {
+        display: flex;
+    }
+
+    .primeira .container .titulo,
+    .primeira .container .texto {
+        width: 100%;
+        align-items: center;
+        text-align: justify;
+    }
+
+    .primeira .container .titulo {
+        height: 10vh;
+    }
+
+    .primeira .container .texto {
+        width: 100%;
+        height: 50vh;
+        text-align: justify;
+    }
+
+    .primeira .container .texto p {
+        line-height: 3.5vh;
+    }
+
+    .segunda .um {
+        display: none;
+    }
+
+    .segunda .dois {
+        display: flex;
+    }
+
+    .segunda .dois .caixa-apresentacao {
+        width: 90%;
+        height: 85vh;
+    }
+
+    .segunda .dois .caixa-apresentacao .texto {
+        width: 100%;
+    }
+
+    /* .segunda .container .div_img{
+        display: none;
+    }
+
+    .segunda .container .caixa-apresentacao{
+        width: 90%;
+    } */
+}

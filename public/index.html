@@ -5,7 +5,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./css/index.css">
+    <!-- <link rel="stylesheet" href="./css/index.css"> -->
+    <link rel="stylesheet" href="./css/style.css">
     <title>Pagina inicial</title>
 
     <link rel="stylesheet"
@@ -13,11 +14,14 @@
 </head>
 
 <body>
+    <!-- NAV - DESKTOP -->
+    <nav class="nav-desktop" id="navbar">
+        <div class="logo">
+            <a href="#section-one-ref">
+                <img src="icons/Logo-nome-site.png" alt="Logo-nome-site">
+            </a>
+        </div>
 
-    <nav class="nav-desktop">
-        <a href="./index.html">
-            <img src="icons/Logo-nome-site.png" alt="Logo-nome-site">
-        </a>
         <div class="container">
             <ul>
                 <li><a onclick="dashboard()">Dashboard</a></li>
@@ -27,112 +31,176 @@
         </div>
     </nav>
 
-    <!-- <span class="tema" onclick="mudar_tema()">
-        <img src="./icons/tema.png" alt="icone-mudar-tema" id="icon-tema">
-    </span> -->
 
-    <div class="meio" id="botao-menu" onclick="ExibirNav()">
-        <div class="botao">
-            <span class="material-symbols-outlined" id="menu-icon">
+    <!-- NAV TABLET / MOBILE -->
+    <nav class="mobile" id="nave-mobile">
+        <div class="esquerda" id="esquerda">
+            <span class="material-symbols-outlined">
+                home
+            </span>
+            <span class="material-symbols-outlined">
+                monitoring
+            </span>
+        </div>
+        <div class="meio">
+            <span id="botaoMenu" class="material-symbols-outlined" onclick="abrirMenu()">
                 menu
             </span>
         </div>
-    </div>
-
-    <nav id="nav-mobile-id" class="nav-mobile">
-        <div class="esquerda" id="na-onde">
-            <a href="./index.html">
-
-                <span class="material-symbols-outlined" id="home-icon">
-                    home
-                </span>
-            </a>
-            <span onclick="dashboard()" class="material-symbols-outlined" id="dash-icon">
-                bar_chart
+        <div class="direita" id="direita">
+            <span class="material-symbols-outlined">
+                contact_support
             </span>
-        </div>
-
-        <div class="direita" id="na-onde-oq">
-            <a href="https://chat.whatsapp.com/L1mdIQ6TA3BC4mLAn5ZuxA">
-                <span class="material-symbols-outlined" id="faq-icon">
-                    contact_support
-                </span>
-            </a>
-            <a href="./login.html">
-                <span class="material-symbols-outlined" id="user-icon">
-                    person
-                </span>
-            </a>
+            <span class="material-symbols-outlined">
+                person
+            </span>
         </div>
     </nav>
 
-    <section id="section-one-ref">
+    <script>
+        var contador = 0
+        function abrirMenu() {
+            var esquerda = document.getElementById('esquerda')
+            var direita = document.getElementById('direita')
+            var btnMenu = document.getElementById('botaoMenu')
+            var navMob = document.getElementById('nave-mobile')
+
+            if (contador == 0) {
+                esquerda.style.top = 0
+                direita.style.top = 0
+                navMob.style.backgroundColor = "#195e6377"
+
+                contador++
+            } else {
+                esquerda.style.top = "130vh"
+                direita.style.top = "180vh"
+                navMob.style.backgroundColor = "transparent"
+
+                contador = 0
+            }
+        }
+    </script>
+
+
+
+    <section id="section-one-ref" class="primeira">
+        <div class="mascara"></div>
         <div class="container">
-            <div class="mascara">
-            </div>
-            <div class="mascara-texto-mobile"></div>
-            <div class="caixa-apresentacao">
+            <div class="titulo">
                 <h2 id="titulo-section-one">NOC</h2>
+                <h4>Network Operations Center</h4>
+            </div>
+            <div class="texto">
                 <p id="frase-section-one">
                     Nossa solução irá fornecer o monitoramento do hardware das máquinas,
                     afim de ajudar sua empresa na tomada de decisões, evitar sobrecargas do sistema,
                     além da perda de clientes que pode ser gerada pela lentidão,
                     ou até mesmo paradas causadas por uma eventual sobrecarga na máquina,
-                    para resumir, nossa solução irá fornecer um apoio para a montagem de um NOC(Centro de operações de
-                    rede) na sua empresa
+                    para resumir, nossa solução irá fornecer um apoio para a montagem de um NOC (Centro de operações
+                    de
+                    rede) na sua empresa.
                 </p>
+            </div>
+            <div class="linke">
                 <a href="#section-two-ref" class="a-redirecionar">O que somos?</a>
             </div>
         </div>
     </section>
 
-    <section id="section-two-ref">
-        <div class="container">
-            <div class="mascara2">
-            </div>
-            <div class="mascara-texto-mobile2"></div>
+    <script>
+        window.onscroll = function () { scrollFunction() };
 
+        function scrollFunction() {
+            if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
+                document.getElementById("navbar").style.backgroundColor = "#195e6399"
+            } else {
+                document.getElementById("navbar").style.backgroundColor = "transparent";
+            }
+        }
+    </script>
+
+    <section id="section-two-ref" class="segunda">
+        <div class="container um">
             <div class="caixa-apresentacao">
-                <h2 id="titulo-section-two">
-                    O que somos?
-                </h2>
-
-                <p id="frase-section-two">
-                    Fornecemos a plataforma para o monitoramento de sua máquina para maximizar o desempenho e evitar
-                    prejuízos.
-
-                </p>
-
-                <span>
+                <div class="titulo">
+                    <h2 id="titulo-section-two">
+                        O que somos?
+                    </h2>
+                </div>
+                <div class="texto">
+                    <p id="frase-section-two">
+                        A MaxSolutions é uma empresa criada em 2023, observando o cenário atual do varejo, notamos que
+                        em dias de pico, como feriados, finais de semana ou semanas de pagamento, os sistemas de caixa
+                        de loja sofriam com a sobrecarga e muitas vezes tinham o sistema parado por esse problema,
+                        pensando nisso, nós pensamos em uma solução de monitoramento que irá resolver os seus problemas.
+                    </p>
+                </div>
+                <div class="botao">
                     <a href="./cadastro.html" class="a-redirecionar">
                         Cadastre-se
                     </a>
-
-                </span>
+                </div>
             </div>
 
             <div class="div_img">
-                <img src="./assets/processed-0b5f4765-a9bf-4017-9489-15f4c12dedb1_n5Do7ijK.jpeg"
-                    class="img_section_two">
+                <div class="imagem">
+                    <!-- <img src="./assets/processed-0b5f4765-a9bf-4017-9489-15f4c12dedb1_n5Do7ijK.jpeg"
+                        class="img_section_two"> -->
+                </div>
             </div>
+        </div>
 
+        <!-- PARTE DOIS MOBILE -->
+        <div class="container dois">
+            <div class="caixa-apresentacao">
+                <div class="titulo">
+                    <h2 id="titulo-section-two">
+                        O que somos?
+                    </h2>
+                </div>
+                <div class="imagem">
+                    <!-- <img src="./assets/processed-0b5f4765-a9bf-4017-9489-15f4c12dedb1_n5Do7ijK.jpeg"
+                        class="img_section_two"> -->
+                </div>
+                <div class="texto">
+                    <p id="frase-section-two">
+                        A MaxSolutions é uma empresa criada em 2023, observando o cenário atual do varejo, notamos que
+                        em dias de pico, como feriados, finais de semana ou semanas de pagamento, os sistemas de caixa
+                        de loja sofriam com a sobrecarga e muitas vezes tinham o sistema parado por esse problema,
+                        pensando nisso, nós pensamos em uma solução de monitoramento que irá resolver os seus problemas.
+                    </p>
+                </div>
+                <div class="botao">
+                    <a href="./cadastro.html" class="a-redirecionar">
+                        Cadastre-se
+                    </a>
+                </div>
+            </div>
 
         </div>
     </section>
 
-    <footer class="footer">
+
+    <div class="footer"></div>
+    <footer>
         <div class="links-1">
-            <h2>Cadastro</h2>
-            <a href="./cadastro.html">Cadastre-se</a>
-            <a href="./login.html">Já possui uma conta?</a>
+            <div class="titulo">
+                <h2>Cadastro</h2>
+            </div>
+            <div class="conteudo">
+                <a href="./cadastro.html">Cadastre-se</a>
+                <a href="./login.html">Já possui uma conta?</a>
+            </div>
         </div>
         <div class="links-2">
-            <h2>Suporte</h2>
-            <a href="auvodesckblablabalbal">Abrir chamado</a>
+            <div class="titulo">
+                <h2>Suporte</h2>
+            </div>
+            <div class="conteudo">
+                <a href="auvodesckblablabalbal">Abrir chamado</a>
+            </div>
         </div>
-        <div class="links-3">
 
-        </div>
     </footer>
 
 
