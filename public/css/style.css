@@ -18,7 +18,7 @@
     font-family: 'Ubuntu';
 }
 
-nav{
+.nav-desktop {
     width: 100%;
     height: 9vh;
     background-color: transparent;
@@ -32,7 +32,7 @@ nav{
 }
 
 
-nav:hover {
+.nav-desktop:hover {
     background-color: #195e63 !important;
 }
 
@@ -77,38 +77,48 @@ nav:hover {
 
 /* NAV TABLET - MOBILE */
 
-.mobile{
+.mobile {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     display: none;
     position: fixed;
-    background-color: transparent;
     top: 91vh;
     z-index: 40;
+    transition: all 900ms;
 }
-.mobile:hover{
-    background-color: transparent !important;
-}
-.mobile .esquerda, .mobile .direita{
+
+
+.mobile .esquerda,
+.mobile .direita {
     width: 40%;
     height: 9vh;
     position: absolute;
-    background-color: #04868f;
     display: flex;
     justify-content: space-around;
     align-items: center;
 }
 
-.mobile .esquerda{
-    top: vh;
-    left: 0;
-    transition: all 800ms;
-}
-.mobile .direita{
-    top: vh;
-    right: 0;
-    transition: all 800ms;
+.mobile .esquerda span,
+.mobile .direita span {
+    font-size: 6vw;
+    cursor: pointer;
 }
 
-.mobile .meio{
+.mobile .esquerda {
+    top: 130vh;
+    left: 0;
+    transition: all 300ms;
+}
+
+.mobile .direita {
+    top: 180vh;
+    right: 0;
+    transition: all 300ms;
+}
+
+.mobile .meio {
     width: 20%;
     height: 9vh;
     background-color: #195e63;
@@ -118,9 +128,18 @@ nav:hover {
     align-items: center;
 }
 
-.mobile .meio span{
+.mobile .meio span {
     font-size: 8vw;
     cursor: pointer;
+}
+
+.corDeFundo{
+    background-color: #112a2caa;
+}
+
+.mostrarMenu{
+    top: 90vh;
+    background-color: #112a2c;
 }
 
 section {
@@ -234,7 +253,7 @@ section {
     flex-direction: row-reverse;
 }
 
-.segunda .dois{
+.segunda .dois {
     display: none;
 }
 
@@ -401,11 +420,11 @@ footer .conteudo a:hover {
 }
 
 @media only screen and (max-width: 700px) {
-    .nav-desktop{
+    .nav-desktop {
         display: none;
     }
 
-    .mobile{
+    .mobile {
         display: flex;
     }
 
@@ -419,29 +438,31 @@ footer .conteudo a:hover {
     .primeira .container .titulo {
         height: 10vh;
     }
-    
-    .primeira .container .texto{
+
+    .primeira .container .texto {
         width: 100%;
         height: 50vh;
         text-align: justify;
     }
-    .primeira .container .texto p{
+
+    .primeira .container .texto p {
         line-height: 3.5vh;
     }
-    .segunda .um{
+
+    .segunda .um {
         display: none;
     }
 
-    .segunda .dois{
+    .segunda .dois {
         display: flex;
     }
 
-    .segunda .dois .caixa-apresentacao{
+    .segunda .dois .caixa-apresentacao {
         width: 90%;
         height: 85vh;
     }
 
-    .segunda .dois .caixa-apresentacao .texto{
+    .segunda .dois .caixa-apresentacao .texto {
         width: 100%;
     }
 

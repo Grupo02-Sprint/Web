@@ -33,20 +33,53 @@
 
 
     <!-- NAV TABLET / MOBILE -->
-    <nav class="mobile">
-        <div class="esquerda">
-
+    <nav class="mobile" id="nave-mobile">
+        <div class="esquerda" id="esquerda">
+            <span class="material-symbols-outlined">
+                home
+            </span>
+            <span class="material-symbols-outlined">
+                monitoring
+            </span>
         </div>
         <div class="meio">
-            <span class="material-symbols-outlined">
+            <span id="botaoMenu" class="material-symbols-outlined" onclick="abrirMenu()">
                 menu
             </span>
         </div>
-        <div class="direita">
-
+        <div class="direita" id="direita">
+            <span class="material-symbols-outlined">
+                contact_support
+            </span>
+            <span class="material-symbols-outlined">
+                person
+            </span>
         </div>
     </nav>
 
+    <script>
+        var contador = 0
+        function abrirMenu() {
+            var esquerda = document.getElementById('esquerda')
+            var direita = document.getElementById('direita')
+            var btnMenu = document.getElementById('botaoMenu')
+            var navMob = document.getElementById('nave-mobile')
+
+            if (contador == 0) {
+                esquerda.style.top = 0
+                direita.style.top = 0
+                navMob.style.backgroundColor = "#195e6377"
+
+                contador++
+            } else {
+                esquerda.style.top = "130vh"
+                direita.style.top = "180vh"
+                navMob.style.backgroundColor = "transparent"
+
+                contador = 0
+            }
+        }
+    </script>
 
 
 
