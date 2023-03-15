@@ -62,6 +62,7 @@
     background-color: white;
     color: #0CC0DF;
     border: none;
+    cursor: pointer;
 }
 .caixa0{
     display: flex;

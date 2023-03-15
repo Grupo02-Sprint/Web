@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,31 +8,52 @@
     <link rel="stylesheet" href="css/cadastro.css">
     <title>Document</title>
 </head>
+
 <body>
     <div class="header">
         <div class="navbar">
-          <a href="index.html"> <img src="./icons/logo.png" alt="" ></a>  
+            <a href="index.html"> <img src="./icons/logo.png" alt=""></a>
         </div>
     </div>
     <div class="fundo">
         <div class="caixa0">
             <img src="./icons/cadastro.png" alt="">
         </div>
-    <div class="caixa">
-        <div class="container1">
-            <h1>Olá!Bem-vindo</h1>
-            <h2>Insira suas informações</h2>
+        <div class="caixa">
+            <div class="container1">
+                <h1>Olá!Bem-vindo</h1>
+                <h2>Insira suas informações</h2>
+            </div>
+            <div class="container2">
+                <input type="text" id="in_nome" placeholder="   Insira seu nome">
+                <input type="text" id="in_email" placeholder="   Insira seu email">
+                <input type="text" id="in_user" placeholder="   Crie um user">
+                <input type="password" id="in_senha" placeholder="   Crie uma senha">
+                <input type="password" id="in_confirmacao" placeholder="   Confirme sua senha">
+                <button onclick="cadastrar()"> Cadastrar</button>
+                <p>Já tem uma conta? <a href="login.html">Entre</a></p>
+            </div>
         </div>
-        <div class="container2">
-            <input type="text" id="in_nome" placeholder="   Insira seu nome">
-            <input type="text" id="in_email" placeholder="   Insira seu email">
-            <input type="text" id="in_user" placeholder="   Crie um user">
-            <input type="password" id="in_senha" placeholder="   Crie uma senha">
-            <input type="password" id="in_confirmação" placeholder="   Confirme sua senha">
-            <button onclick="cadastrar()"> <a href="cadastro.html"></a> Cadastrar</button>
-            <p>Já tem uma conta? <a href="login.html">Entre</a></p>
-        </div>
-    </div>
     </div>
 </body>
+
 </html>
+
+<script>
+    function cadastrar() {
+        var nome = in_nome.value;
+        var email = in_email.value;
+        var user = in_user.value;
+        var senha = in_senha.value;
+        var senhaConfirmacao = in_confirmacao.value;
+
+        if (nome == "" || email == "" || user == "" || senha == "" || senhaConfirmacao == "") {
+            alert("Verifique se todos os campos foram preenchidos.")
+
+        } else {
+            alert("Usuario cadastrado!");
+
+            window.location = "./login.html";
+        }
+    }
+</script>

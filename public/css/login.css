@@ -52,6 +52,7 @@
     background-color: aqua;
     color: white;
     border: none;
+    cursor: pointer;
 }
 .caixa{
     background-color: none;

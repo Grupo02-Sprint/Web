@@ -35,10 +35,10 @@
     <!-- NAV TABLET / MOBILE -->
     <nav class="mobile" id="nave-mobile">
         <div class="esquerda" id="esquerda">
-            <span class="material-symbols-outlined">
+            <span class="material-symbols-outlined" onclick="home()">
                 home
             </span>
-            <span class="material-symbols-outlined">
+            <span class="material-symbols-outlined" onclick="dashboard()">
                 monitoring
             </span>
         </div>
@@ -48,10 +48,10 @@
             </span>
         </div>
         <div class="direita" id="direita">
-            <span class="material-symbols-outlined">
+            <span class="material-symbols-outlined" onclick="contato()">
                 contact_support
             </span>
-            <span class="material-symbols-outlined">
+            <span class="material-symbols-outlined" onclick="login()">
                 person
             </span>
         </div>
@@ -250,8 +250,20 @@
 
     var contador_tema = 0;
 
+    function home() {
+        window.location = "./index.html";
+    }
+
     function dashboard() {
         alert("Site indisponível no momento");
+    }
+
+    function contato() {
+        window.location = "https://chat.whatsapp.com/L1mdIQ6TA3BC4mLAn5ZuxA";
+    }
+
+    function login() {
+        window.location = "./login.html";
     }
 
     function mudar_tema() {

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,26 +8,48 @@
     <link rel="stylesheet" href="./css/login.css">
     <title>Document</title>
 </head>
+
 <body>
     <div class="tudo">
-    <div class="container0">
-        <img src="./assets/logo.png" alt="" height="30px">
-        <p>Max Solutions</p>
+        <div class="container0">
+            <img src="./assets/logo.png" alt="" height="30px">
+            <p>Max Solutions</p>
+        </div>
+        <div class="caixa">
+            <div class="container1">
+                <h1>Olá!Bem-vindo</h1>
+                <h2>Acesse seu email</h2>
+                <br>
+                <br>
+            </div>
+            <div class="container2">
+                <input type="text" id="in_email" placeholder="Username, Email or Phone Number">
+                <input type="password" id="in_senha" placeholder="Password">
+                <button onclick="entrar()">Entrar</button>
+                <p>Não tem uma conta? <a href="cadastro.html">Cadastre-se</a></p>
+            </div>
+        </div>
     </div>
-    <div class="caixa">
-    <div class="container1">
-        <h1>Olá!Bem-vindo</h1>
-        <h2>Acesse seu email</h2>
-        <br>
-        <br>
-    </div>
-    <div class="container2">
-        <input type="text" id="in_email" placeholder="Username, Email or Phone Number">
-        <input type="password" id="in_senha" placeholder="Password">
-        <button id="Entrar()">Entrar</button>
-        <p>Não tem uma conta? <a href="cadastro.html">Cadastre-se</a></p>
-    </div>
-</div>
-</div>
 </body>
+
 </html>
+
+<script>
+    function entrar() {
+        var email = in_email.value;
+        var senha = in_senha.value;
+
+        if (email == "" || senha == "") {
+            alert("Verifique se todos campos foram preenchidos corretamente.");
+
+        } else if (email == "admin" && senha == "123") {
+            alert("Login realizado com sucesso!");
+
+            window.location = "./index.html";
+
+        } else {
+            alert("Email e/ou senha inválidos!");
+
+        }
+    }
+</script>
