@@ -56,4 +56,109 @@
 .caixa{
     background-color: none;
 }
+.tudo{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    margin: 0px;
+    background-color: white ;
+}
+}
+@media only screen and (min-width: 600px){
+    .container0{
+        display: flex;
+        align-items: flex-start;
+        margin-left: 10vh;
+        margin-top: 5vh;
+        font-family: 'Roboto', sans-serif;
+    }
+    .container0 img{
+        height: 5vh;
+    
+    }
+    .container1{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .container1 h1{
+        margin-bottom: 0vh;
+        font-family: 'Roboto', sans-serif;
+        font-size: 5vh;
+    }
+    
+    .container1 h2{
+        font-family: 'IBM Plex Sans', sans-serif;
+        color: white;
+        margin-top: 2vh;
+        margin-bottom: 4vh;
+        font-size: 3.7vh;
+    }
+    
+    .container2{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .container2 p{
+        font-family: 'IBM Plex Sans', sans-serif;
+        color: white;
+        margin-top: 2vh;
+        font-size: 2vh;
+    }
+    
+    .container2 input{
+        margin-bottom: 3vh;
+        height: 4.6vh;
+        width: 46vh; 
+        border: none;
+        border-top: none;
+        background-color: #7ce4f668;
+        
+    }
+    .container2 ::placeholder{
+        font-size: 2.5vh;
+    }
+    .container2 button{
+        height: 4.6vh;
+        width: 46vh;
+        border-radius: 15px;
+        margin-top: 2vh;
+        font-size: 2.5vh;
+        background-color: white;
+        color: #0CC0DF;
+        border: none;
+    }
+    .caixa0{
+        display: flex;
+        align-items: center;
+        height: 77vh;
+        width: 62vh;
+        background-color: #0cbfdf44;
+    }
+    
+    .caixa0 img{
+        height: 62vh;
+        width: 62vh;
+    }
+    .caixa{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        height: 77vh;
+        width: 62vh;
+        background-color: #0CC0DF;
+    
+    }
+    
+    .tudo{
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        margin: 0px;
+        background-color: white ;
+}
 }
