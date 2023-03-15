@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,7 +8,9 @@
     <link rel="stylesheet" href="./css/login.css">
     <title>Document</title>
 </head>
+
 <body>
+
     <div class="container0">
         <img src="./icons/logo.png" alt="" height="30px">
     </div>
@@ -26,4 +29,25 @@
 </div>
 </div>
 </body>
+
 </html>
+
+<script>
+    function entrar() {
+        var email = in_email.value;
+        var senha = in_senha.value;
+
+        if (email == "" || senha == "") {
+            alert("Verifique se todos campos foram preenchidos corretamente.");
+
+        } else if (email == "admin" && senha == "123") {
+            alert("Login realizado com sucesso!");
+
+            window.location = "./index.html";
+
+        } else {
+            alert("Email e/ou senha inválidos!");
+
+        }
+    }
+</script>
