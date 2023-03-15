@@ -18,7 +18,7 @@
     font-family: 'Ubuntu';
 }
 
-.nav-desktop {
+nav{
     width: 100%;
     height: 9vh;
     background-color: transparent;
@@ -32,7 +32,7 @@
 }
 
 
-.nav-desktop:hover {
+nav:hover {
     background-color: #195e63 !important;
 }
 
@@ -64,7 +64,7 @@
 .nav-desktop .container ul li a {
     color: #ece1c3;
     text-decoration: none;
-    font-size: 1.2vw;
+    font-size: max(17px, 1.2vw);
     cursor: pointer;
     transition: all 0.3s;
 }
@@ -72,6 +72,55 @@
 .nav-desktop .container ul li a:hover {
     color: #04868f;
     border-bottom: 1px solid #04868f;
+}
+
+
+/* NAV TABLET - MOBILE */
+
+.mobile{
+    display: none;
+    position: fixed;
+    background-color: transparent;
+    top: 91vh;
+    z-index: 40;
+}
+.mobile:hover{
+    background-color: transparent !important;
+}
+.mobile .esquerda, .mobile .direita{
+    width: 40%;
+    height: 9vh;
+    position: absolute;
+    background-color: #04868f;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.mobile .esquerda{
+    top: vh;
+    left: 0;
+    transition: all 800ms;
+}
+.mobile .direita{
+    top: vh;
+    right: 0;
+    transition: all 800ms;
+}
+
+.mobile .meio{
+    width: 20%;
+    height: 9vh;
+    background-color: #195e63;
+    border-radius: 30px 30px 0 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.mobile .meio span{
+    font-size: 8vw;
+    cursor: pointer;
 }
 
 section {
@@ -127,21 +176,22 @@ section {
 }
 
 .primeira .container .titulo h2 {
-    font-size: 5vw;
+    font-size: max(50px, 5vw);
     color: #ece1c3;
     font-family: 'Mioge';
 }
 
 .primeira .container .titulo h4 {
-    font-size: 3vw;
+    font-size: max(30px, 3vw);
     color: #ece1c3;
     font-style: italic;
     font-family: 'Mioge';
 }
 
 .primeira .container .texto p {
+    width: 100%;
     color: #ece1c3;
-    font-size: 1.2vw;
+    font-size: max(18px, 1.2vw);
     line-height: 140%;
 }
 
@@ -151,7 +201,7 @@ section {
 }
 
 .primeira .container .linke a {
-    font-size: 1.8vw;
+    font-size: max(20px, 1.8vw);
     color: #ece1c3;
     font-family: 'Satisfy';
     padding: 1% 3%;
@@ -182,6 +232,10 @@ section {
     justify-content: space-around;
     align-items: center;
     flex-direction: row-reverse;
+}
+
+.segunda .dois{
+    display: none;
 }
 
 .segunda .container .div_img {
@@ -222,7 +276,7 @@ section {
 
 .segunda .container .caixa-apresentacao .titulo h2 {
     font-family: 'Mioge';
-    font-size: 2.8vw;
+    font-size: max(40px, 2.8vw);
 }
 
 .segunda .container .caixa-apresentacao .texto {
@@ -234,7 +288,7 @@ section {
 }
 
 .segunda .container .caixa-apresentacao .texto p {
-    font-size: 1.2vw;
+    font-size: max(17px, 1.2vw);
     letter-spacing: 2px;
     word-spacing: 3px;
     text-align: justify;
@@ -248,7 +302,7 @@ section {
 .segunda .container .caixa-apresentacao .botao a {
     text-decoration: none;
     color: #195e63;
-    font-size: 1.3vw;
+    font-size: max(18px, 1.3vw);
     padding: 1.5% 3%;
     border: 2px solid #195e63;
     border-radius: 10px;
@@ -286,7 +340,8 @@ footer {
     align-items: center;
 }
 
-footer .links-1, footer .links-2{
+footer .links-1,
+footer .links-2 {
     width: 30%;
     height: 15vh;
     display: flex;
@@ -296,24 +351,105 @@ footer .links-1, footer .links-2{
 
 }
 
-footer .titulo h2{
+footer .titulo h2 {
     color: #112a2c;
-    font-size: 2vw;
+    font-size: max(30px, 2vw);
     font-family: 'Mioge';
 }
 
-footer .conteudo{
+footer .conteudo {
     height: 5vh;
     display: flex;
     align-items: flex-start;
     flex-direction: column;
 }
 
-footer .conteudo a{
+footer .conteudo a {
     color: #ece1c3;
-    font-size: 1vw;
+    font-size: max(15px, 1vw);
     transition: all 300ms;
 }
-footer .conteudo a:hover{
+
+footer .conteudo a:hover {
     color: #ece1c3aa;
+}
+
+@media only screen and (max-width: 1000px) {
+    .nav-desktop .container ul li {
+        margin: 0 3%;
+    }
+
+    .primeira .container .texto {
+        width: 70vw;
+        align-items: center;
+    }
+
+    .segunda .container .caixa-apresentacao .texto p {
+        line-height: 2vh;
+    }
+
+    .imagem {
+        width: 100%;
+        height: 60vh;
+        background-repeat: no-repeat;
+    }
+
+    .segunda .container .caixa-apresentacao .texto,
+    .segunda .container .caixa-apresentacao .titulo {
+        align-items: flex-end;
+    }
+}
+
+@media only screen and (max-width: 700px) {
+    .nav-desktop{
+        display: none;
+    }
+
+    .mobile{
+        display: flex;
+    }
+
+    .primeira .container .titulo,
+    .primeira .container .texto {
+        width: 100%;
+        align-items: center;
+        text-align: justify;
+    }
+
+    .primeira .container .titulo {
+        height: 10vh;
+    }
+    
+    .primeira .container .texto{
+        width: 100%;
+        height: 50vh;
+        text-align: justify;
+    }
+    .primeira .container .texto p{
+        line-height: 3.5vh;
+    }
+    .segunda .um{
+        display: none;
+    }
+
+    .segunda .dois{
+        display: flex;
+    }
+
+    .segunda .dois .caixa-apresentacao{
+        width: 90%;
+        height: 85vh;
+    }
+
+    .segunda .dois .caixa-apresentacao .texto{
+        width: 100%;
+    }
+
+    /* .segunda .container .div_img{
+        display: none;
+    }
+
+    .segunda .container .caixa-apresentacao{
+        width: 90%;
+    } */
 }
