@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/dashboard.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div class="tudo">
+        <div class="menulateral">
+            <div class="logo">
+               <a href="index.html"><img src="./icons/logo.png" alt="" height="35vh"></a>
+            </div>
+            <div class="hello">
+        
+                <h2>Olá,<span id="b_usuario">usuário!</span></h2>
+        
+              </div>
+              <ul>
+                <li style=>
+                  <a href="">Gráficos</a>
+                </li>
+        
+                <li>
+                  <a href="">Perfil</a>
+                </li>
+                
+                <li>
+                  <a href="login.html">
+                    <span class="menu" onclick="limparSessao()">Sair</span>
+                  </a>
+                </li>
+              </ul>
+        </div>
+        <div class="dashboard">
+        <div class="botao">
+
+          <button class="btn btn-white btn-animate"onclick="grafico1()">
+            <h2>CPU</h2>
+          </button>
+
+          <button class="btn btn-white btn-animate"onclick="grafico2()">
+            <h2>MEMÓRIA</h2>
+          </button>
+          
+          <button class="btn btn-white btn-animate"onclick="grafico3()">
+            <h5>ARMAZENAMENTO</h5>
+          </button>
+
+          <button class="btn btn-white btn-animate"onclick="grafico4()">
+            <h2>REDE</h2>
+          </button>
+
+          </div>
+          <div class="grafico">
+            <div class="linha">
+          <div id="grafic1" class="display-block" >
+            <canvas id="myChart" style="position: relative; height:40vh;width:40vw"></canvas>
+          </div>
+
+
+          <div id="grafic2" class="display-none" >
+            <canvas id="myChart2" style="position: relative; height:40vh;width:40vw"><canvas>
+          </div>
+
+
+          <div id="grafic3" class="display-none" >
+            <canvas id="myChart3" style="position: relative; height:40vh;width:40vw"><canvas>
+          </div>
+
+
+          <div id="grafic4" class="display-none" >
+            <canvas id="myChart4" style="position: relative; height:40vh;width:40vw"><canvas>
+          </div>
+        </div>
+        <div class="pizza">
+          <div class="grafico">
+            <div id="grafic5" class="display-block">
+              <canvas id="myChart5" style="position: relative; height:40vh; width:40vw"></canvas>
+            </div>
+          </div>
+          <div id="text" class="display-block">
+            <h2>
+              CPU
+            </h2>
+          </div>
+        </div>
+        </div>
+        </div>
+      </div>
+    </div>
+</body>
+</html>
+<script>
+ function grafico1(){
+  
+    let graficoExibir3 = document.getElementById(`grafic3`)
+        graficoExibir3.classList.remove("display-block")
+        graficoExibir3.classList.add("display-none")
+    let graficoExibir4 = document.getElementById(`grafic4`)
+        graficoExibir4.classList.remove("display-block")
+        graficoExibir4.classList.add("display-none")            
+    let graficoExibir2 = document.getElementById(`grafic2`)
+        graficoExibir2.classList.remove("display-block")
+        graficoExibir2.classList.add("display-none")
+    let graficoExibir = document.getElementById(`grafic1`)
+        graficoExibir.classList.remove("display-none")
+        graficoExibir.classList.add("display-block")
+
+  const labels = [
+    '12:00',
+    '13:00',
+    '14:00',
+    '15:00',
+    '16:00',
+    '17:00',
+  ];
+
+  const data = {
+    labels: labels,
+    datasets: [{
+      label: 'Temperatura',
+      backgroundColor: 'rgb(255, 0, 0)',
+      borderColor: 'rgb(255, 0, 255)',
+      data: [35, 24, 33, 32, 10, 30,],
+    }
+   ]
+  };
+
+  const config = {
+    type: 'line',
+    data: data,
+    options: {}
+  };
+  const myChart = new Chart(
+    document.getElementById('myChart'),
+    config
+  );
+
+
+
+  const labels5 = [];
+
+  const data5 = {
+    labels: labels5,
+    datasets: [{
+      label: 'Temperatura',
+      backgroundColor: [
+        'rgb(255, 205, 86)',
+        'rgb(0, 255, 0)'
+      ],
+      borderColor: 'rgb(255, 0, 0)',
+      data: [87,13],
+    }
+   ]
+  };
+  
+  const config5 = {
+    type: 'pie',
+    data: data5,
+    options: {}
+  };
+  const myChart5 = new Chart(
+    document.getElementById('myChart5'),
+    config5
+  );
+}
+</script>
+<script>
+  function grafico2(){
+    let graficoExibir = document.getElementById(`grafic1`)
+        graficoExibir.classList.remove("display-block")
+        graficoExibir.classList.add("display-none")
+    let graficoExibir3 = document.getElementById(`grafic3`)
+        graficoExibir3.classList.remove("display-block")
+        graficoExibir3.classList.add("display-none")
+    let graficoExibir4 = document.getElementById(`grafic4`)
+        graficoExibir4.classList.remove("display-block")
+        graficoExibir4.classList.add("display-none")            
+    let graficoExibir2 = document.getElementById(`grafic2`)
+        graficoExibir2.classList.remove("display-none")
+        graficoExibir2.classList.add("display-block")
+          
+
+  const labels2 = [
+    '12:00',
+    '13:00',
+    '14:00',
+    '15:00',
+    '16:00',
+    '17:00',
+  ];
+
+  const data2 = {
+    labels: labels2,
+    datasets: [{
+      label: 'Temperatura',
+      backgroundColor: 'rgb(255, 0, 0)',
+      borderColor: 'rgb(255, 0, 255)',
+      data: [35, 24, 33, 32, 10, 30,],
+    }
+   ]
+  };
+
+  const config2 = {
+    type: 'line',
+    data: data2,
+    options: {}
+  };
+  const myChart2 = new Chart(
+    document.getElementById('myChart2'),
+    config2
+  );
+}
+</script>
+<script>
+  function grafico3(){
+
+    let graficoExibir4 = document.getElementById(`grafic4`)
+        graficoExibir4.classList.remove("display-block")
+        graficoExibir4.classList.add("display-none")            
+    let graficoExibir2 = document.getElementById(`grafic2`)
+        graficoExibir2.classList.remove("display-block")
+        graficoExibir2.classList.add("display-none")
+    let graficoExibir = document.getElementById(`grafic1`)
+        graficoExibir.classList.remove("display-block")
+        graficoExibir.classList.add("display-none")
+    let graficoExibir3 = document.getElementById(`grafic3`)
+        graficoExibir3.classList.remove("display-none")
+        graficoExibir3.classList.add("display-block")
+
+  const labels3 = [
+    '12:00',
+    '13:00',
+    '14:00',
+    '15:00',
+    '16:00',
+    '17:00',
+  ];
+
+  const data3 = {
+    labels: labels3,
+    datasets: [{
+      label: 'Temperatura',
+      backgroundColor: 'rgb(255, 0, 0)',
+      borderColor: 'rgb(255, 0, 0)',
+      data: [30, 29, 28, 25, 22, 23,],
+    }
+   ]
+  };
+
+  const config3 = {
+    type: 'line',
+    data: data3,
+    options: {}
+  };
+  const myChart3 = new Chart(
+    document.getElementById('myChart3'),
+    config3
+  );
+}
+</script>
+<script>
+  function grafico4(){
+
+    let graficoExibir3 = document.getElementById(`grafic3`)
+        graficoExibir3.classList.remove("display-block")
+        graficoExibir3.classList.add("display-none")
+    let graficoExibir2 = document.getElementById(`grafic2`)
+        graficoExibir2.classList.remove("display-block")
+        graficoExibir2.classList.add("display-none")
+    let graficoExibir = document.getElementById(`grafic1`)
+        graficoExibir.classList.remove("display-block")
+        graficoExibir.classList.add("display-none")
+    let graficoExibir4 = document.getElementById(`grafic4`)
+        graficoExibir4.classList.remove("display-none")
+        graficoExibir4.classList.add("display-block")            
+
+  const labels4 = [
+    '12:00',
+    '13:00',
+    '14:00',
+    '15:00',
+    '16:00',
+    '17:00',
+  ];
+
+  const data4 = {
+    labels: labels4,
+    datasets: [{
+      label: 'Temperatura',
+      backgroundColor: 'rgb(255, 0, 0)',
+      borderColor: 'rgb(255, 0, 0)',
+      data: [45, 40, 28, 21, 12, 43,],
+    }
+   ]
+  };
+  const config4 = {
+    type: 'line',
+    data: data4,
+    options: {}
+  };
+  const myChart4 = new Chart(
+    document.getElementById('myChart4'),
+    config4
+  );
+}
+</script>
