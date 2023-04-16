@@ -167,6 +167,7 @@
     height: 45vh;
     width: 80vh;
     box-shadow: 5px 0px 5px black;
+ 
 }
 .pizza{
     background-color: bisque;
@@ -187,20 +188,15 @@ canvas {
 
 .display-none {
     display: none;
-  }
+}
   
-  .display-flex {
-    display: flex;
-  }
-  
-  .display-block {
+.display-block {
+    margin-top: 20px;
     display: block;
-  }
-  
-  canvas {
-    width: 100% !important;
-    height: 100% !important;
-  }
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
 
 .pizza{
     display: flex;
@@ -208,7 +204,59 @@ canvas {
     align-items: center;
 }  
 
+#grafic1 .display-block{
+    height: 200px;
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 15px;
+    justify-content: center;
+}
+
+#grafic2 .display-block{
+    height: 250px;
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 15px;
+}
+
+#grafic3 .display-block{
+    height: 250px;
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 15px;
+}
+
+#grafic4 .display-block{
+    height: 250px;
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 15px;
+}
+
 #grafic5{
+    height: 200px;
+    width: 200px;
+}
+
+#grafic6{
+    height: 200px;
+    width: 200px;
+}
+
+#grafic7{
+    height: 200px;
+    width: 200px;
+}
+
+#grafic8{
     height: 200px;
     width: 200px;
 }

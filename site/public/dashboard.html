@@ -55,37 +55,70 @@
           </button>
 
           </div>
+          
           <div class="grafico">
             <div class="linha">
-          <div id="grafic1" class="display-block" >
+          <div id="grafic1" class="display-none" >
+            <h2>CPU</h2>
             <canvas id="myChart" style="position: relative; height:40vh;width:40vw"></canvas>
           </div>
 
 
           <div id="grafic2" class="display-none" >
+            <h2>MEMÓRIA</h2>
             <canvas id="myChart2" style="position: relative; height:40vh;width:40vw"><canvas>
           </div>
 
 
           <div id="grafic3" class="display-none" >
+            <h2>ARMAZENAMENTO</h2>
             <canvas id="myChart3" style="position: relative; height:40vh;width:40vw"><canvas>
           </div>
 
 
           <div id="grafic4" class="display-none" >
+            <h2>REDE</h2>
             <canvas id="myChart4" style="position: relative; height:40vh;width:40vw"><canvas>
           </div>
         </div>
         <div class="pizza">
           <div class="grafico">
+
             <div id="grafic5" class="display-block">
               <canvas id="myChart5" style="position: relative; height:40vh; width:40vw"></canvas>
             </div>
+
+            <div id="grafic6" class="display-none">
+              <canvas id="myChart6" style="position: relative; height:40vh; width:40vw"></canvas>
+            </div>
+
+            <div id="grafic7" class="display-none">
+              <canvas id="myChart7" style="position: relative; height:40vh; width:40vw"></canvas>
+            </div>
+
+            <div id="grafic8" class="display-none">
+              <canvas id="myChart8" style="position: relative; height:40vh; width:40vw"></canvas>
+            </div>
+
+
           </div>
-          <div id="text" class="display-block">
-            <h2>
-              CPU
-            </h2>
+          <div class="specification">
+
+            <div id="esp1" class="display-none">
+              <h2>CPU</h2>
+            </div>
+            
+            <div id="esp2" class="display-none">
+              <h2>MEMÓRIA</h2>
+            </div>
+
+            <div id="esp3" class="display-none">
+              <h2>ARMAZENAMENTO</h2>
+            </div>
+
+            <div id="esp4" class="display-none">
+              <h2>REDE</h2>
+            </div>
           </div>
         </div>
         </div>
@@ -110,22 +143,52 @@
         graficoExibir.classList.remove("display-none")
         graficoExibir.classList.add("display-block")
 
+    let graficoExibir6 = document.getElementById(`grafic6`)
+        graficoExibir6.classList.remove("display-block")
+        graficoExibir6.classList.add("display-none")
+    let graficoExibir7 = document.getElementById(`grafic7`)
+        graficoExibir7.classList.remove("display-block")
+        graficoExibir7.classList.add("display-none")            
+    let graficoExibir8 = document.getElementById(`grafic8`)
+        graficoExibir8.classList.remove("display-block")
+        graficoExibir8.classList.add("display-none")
+    let graficoExibir5 = document.getElementById(`grafic5`)
+        graficoExibir5.classList.remove("display-none")
+        graficoExibir5.classList.add("display-block")
+
+    let textoExibir2 = document.getElementById(`esp2`)
+        textoExibir2.classList.remove("display-block")
+        textoExibir2.classList.add("display-none")
+    let textoExibir3 = document.getElementById(`esp3`)
+        textoExibir3.classList.remove("display-block")
+        textoExibir3.classList.add("display-none")            
+    let textoExibir4 = document.getElementById(`esp4`)
+        textoExibir4.classList.remove("display-block")
+        textoExibir4.classList.add("display-none")
+    let textoExibir = document.getElementById(`esp1`)
+        textoExibir.classList.remove("display-none")
+        textoExibir.classList.add("display-block")
+
   const labels = [
     '12:00',
-    '13:00',
-    '14:00',
-    '15:00',
-    '16:00',
-    '17:00',
+    '12:01',
+    '12:02',
+    '12:03',
+    '12:04',
+    '12:05',
+    '12:06',
+    '12:07',
+    '12:08',
+    '12:09',
   ];
 
   const data = {
     labels: labels,
     datasets: [{
-      label: 'Temperatura',
+      label:  'Utilização(%)' ,
       backgroundColor: 'rgb(255, 0, 0)',
-      borderColor: 'rgb(255, 0, 255)',
-      data: [35, 24, 33, 32, 10, 30,],
+      borderColor: 'rgb(255, 0, 0)',
+      data: [4, 3, 5, 5, 4, 6, 4, 3, 4, 4],
     }
    ]
   };
@@ -183,24 +246,53 @@
     let graficoExibir2 = document.getElementById(`grafic2`)
         graficoExibir2.classList.remove("display-none")
         graficoExibir2.classList.add("display-block")
+
+    let graficoExibir5 = document.getElementById(`grafic5`)
+        graficoExibir5.classList.remove("display-block")
+        graficoExibir5.classList.add("display-none")
+    let graficoExibir7 = document.getElementById(`grafic7`)
+        graficoExibir7.classList.remove("display-block")
+        graficoExibir7.classList.add("display-none")            
+    let graficoExibir8 = document.getElementById(`grafic8`)
+        graficoExibir8.classList.remove("display-block")
+        graficoExibir8.classList.add("display-none")
+    let graficoExibir6 = document.getElementById(`grafic6`)
+        graficoExibir6.classList.remove("display-none")
+        graficoExibir6.classList.add("display-block")
           
+    let textoExibir = document.getElementById(`esp1`)
+        textoExibir.classList.remove("display-block")
+        textoExibir.classList.add("display-none")
+    let textoExibir3 = document.getElementById(`esp3`)
+        textoExibir3.classList.remove("display-block")
+        textoExibir3.classList.add("display-none")            
+    let textoExibir4 = document.getElementById(`esp4`)
+        textoExibir4.classList.remove("display-block")
+        textoExibir4.classList.add("display-none")
+    let textoExibir2 = document.getElementById(`esp2`)
+        textoExibir2.classList.remove("display-none")
+        textoExibir2.classList.add("display-block")    
 
   const labels2 = [
     '12:00',
-    '13:00',
-    '14:00',
-    '15:00',
-    '16:00',
-    '17:00',
+    '12:01',
+    '12:02',
+    '12:03',
+    '12:04',
+    '12:05',
+    '12:06',
+    '12:07',
+    '12:08',
+    '12:09',
   ];
 
   const data2 = {
     labels: labels2,
     datasets: [{
-      label: 'Temperatura',
+      label: 'Memória em uso(GB)',
       backgroundColor: 'rgb(255, 0, 0)',
-      borderColor: 'rgb(255, 0, 255)',
-      data: [35, 24, 33, 32, 10, 30,],
+      borderColor: 'rgb(255, 0, 0)',
+      data: [5.1, 5.1, 5.2, 5.2, 5.2, 5.2, 5.2, 5.2, 5.2, 5.3],
     }
    ]
   };
@@ -213,6 +305,32 @@
   const myChart2 = new Chart(
     document.getElementById('myChart2'),
     config2
+  );
+
+  const labels6 = [];
+
+  const data6 = {
+    labels: labels6,
+    datasets: [{
+      label: 'Temperatura',
+      backgroundColor: [
+        'rgb(255, 205, 86)',
+        'rgb(0, 255, 0)'
+      ],
+      borderColor: 'rgb(255, 0, 0)',
+      data: [50,50],
+    }
+   ]
+  };
+  
+  const config6 = {
+    type: 'pie',
+    data: data6,
+    options: {}
+  };
+  const myChart6 = new Chart(
+    document.getElementById('myChart6'),
+    config6
   );
 }
 </script>
@@ -231,6 +349,32 @@
     let graficoExibir3 = document.getElementById(`grafic3`)
         graficoExibir3.classList.remove("display-none")
         graficoExibir3.classList.add("display-block")
+
+    let graficoExibir5 = document.getElementById(`grafic5`)
+        graficoExibir5.classList.remove("display-block")
+        graficoExibir5.classList.add("display-none")
+    let graficoExibir6 = document.getElementById(`grafic6`)
+        graficoExibir6.classList.remove("display-block")
+        graficoExibir6.classList.add("display-none")            
+    let graficoExibir8 = document.getElementById(`grafic8`)
+        graficoExibir8.classList.remove("display-block")
+        graficoExibir8.classList.add("display-none")
+    let graficoExibir7 = document.getElementById(`grafic7`)
+        graficoExibir7.classList.remove("display-none")
+        graficoExibir7.classList.add("display-block")    
+
+    let textoExibir2 = document.getElementById(`esp2`)
+        textoExibir2.classList.remove("display-block")
+        textoExibir2.classList.add("display-none")
+    let textoExibir = document.getElementById(`esp2`)
+        textoExibir.classList.remove("display-block")
+        textoExibir.classList.add("display-none")            
+    let textoExibir4 = document.getElementById(`esp4`)
+        textoExibir4.classList.remove("display-block")
+        textoExibir4.classList.add("display-none")
+    let textoExibir3 = document.getElementById(`esp3`)
+        textoExibir3.classList.remove("display-none")
+        textoExibir3.classList.add("display-block")
 
   const labels3 = [
     '12:00',
@@ -261,6 +405,32 @@
     document.getElementById('myChart3'),
     config3
   );
+
+  const labels7 = [];
+
+  const data7 = {
+    labels: labels7,
+    datasets: [{
+      label: 'Temperatura',
+      backgroundColor: [
+        'rgb(255, 205, 86)',
+        'rgb(0, 255, 0)'
+      ],
+      borderColor: 'rgb(255, 0, 0)',
+      data: [70,30],
+    }
+   ]
+  };
+  
+  const config7 = {
+    type: 'pie',
+    data: data7,
+    options: {}
+  };
+  const myChart7 = new Chart(
+    document.getElementById('myChart7'),
+    config7
+  );
 }
 </script>
 <script>
@@ -278,6 +448,32 @@
     let graficoExibir4 = document.getElementById(`grafic4`)
         graficoExibir4.classList.remove("display-none")
         graficoExibir4.classList.add("display-block")            
+
+    let graficoExibir5 = document.getElementById(`grafic5`)
+        graficoExibir5.classList.remove("display-block")
+        graficoExibir5.classList.add("display-none")
+    let graficoExibir6 = document.getElementById(`grafic6`)
+        graficoExibir6.classList.remove("display-block")
+        graficoExibir6.classList.add("display-none")            
+    let graficoExibir7 = document.getElementById(`grafic7`)
+        graficoExibir7.classList.remove("display-block")
+        graficoExibir7.classList.add("display-none")
+    let graficoExibir8 = document.getElementById(`grafic8`)
+        graficoExibir8.classList.remove("display-none")
+        graficoExibir8.classList.add("display-block")
+
+    let textoExibir2 = document.getElementById(`esp2`)
+        textoExibir2.classList.remove("display-block")
+        textoExibir2.classList.add("display-none")
+    let textoExibir3 = document.getElementById(`esp3`)
+        textoExibir3.classList.remove("display-block")
+        textoExibir3.classList.add("display-none")            
+    let textoExibir = document.getElementById(`esp1`)
+        textoExibir.classList.remove("display-block")
+        textoExibir.classList.add("display-none")
+    let textoExibir4 = document.getElementById(`esp4`)
+        textoExibir4.classList.remove("display-none")
+        textoExibir4.classList.add("display-block")
 
   const labels4 = [
     '12:00',
@@ -306,6 +502,32 @@
   const myChart4 = new Chart(
     document.getElementById('myChart4'),
     config4
+  );
+
+  const labels8 = [];
+
+  const data8 = {
+    labels: labels8,
+    datasets: [{
+      label: 'Temperatura',
+      backgroundColor: [
+        'rgb(255, 205, 86)',
+        'rgb(0, 255, 0)'
+      ],
+      borderColor: 'rgb(255, 0, 0)',
+      data: [60,40],
+    }
+   ]
+  };
+  
+  const config8 = {
+    type: 'pie',
+    data: data8,
+    options: {}
+  };
+  const myChart8 = new Chart(
+    document.getElementById('myChart8'),
+    config8
   );
 }
 </script>
