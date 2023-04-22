@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/eb115129d4.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="./css/indexdash.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="tudo">
+        <div class="menulateral">
+            <div class="logo">
+               <a href="index.html"><img src="./icons/logo.png" alt="" height="35vh"></a>
+            </div>
+            <div class="hello">
+        
+              <img src="./assets/WhatsApp Image 2023-04-16 at 17.19.53.jpeg" height="100vh" width="100vh" alt="">
+
+                <h2><span id="b_usuario">usuário!</span></h2>
+        
+              </div>
+              <ul>
+                <li style="color: white;">
+                  <i class="fa-solid fa-chart-line"></i>
+                  <a href=""><b style="color: white;" >Gráficos</b></a>
+                </li>
+        
+                <li> 
+                  <i class="fa-solid fa-user"></i>
+                  <a cla href=""><b>Perfil</b></a></li>
+
+                <li>
+                  <i class="fa-solid fa-computer"></i>
+                  <a href=""><b>Máquina</b></a>
+                </li>
+
+                <li>
+                  <i class="fa-solid fa-address-card"></i>
+                  <a href=""><b>Funcionário</b></a>
+                </li>
+
+                <li>
+                  <i class="fa-solid fa-headset"></i>
+                  <a href=""><b>Suporte</b></a>
+                </li>
+                
+                <li>
+                  <a href="login.html">
+                    <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                    <span class="menu" onclick="limparSessao()"><b>Sair</b></span>
+                  </a>
+                </li>
+              </ul>
+        </div>
+        <div class="dashboard">
+            <div class="maquina">
+              <div class="select"> Maquina:  <select id="select_maquina">
+                    <option value="0">Escolha maquina <i class="fa-solid fa-angle-down"></i> </option>
+                    <option value="1">Máquina 1</option>
+                    <option value="2">Máquina 2</option>
+                    <option value="3">Máquina 3</option>
+                </select>
+            </div>
+                <a href=""><i class="fa-solid fa-computer"></i> Cadastrar máquina</a>
+            </div>
+            <div class="grafico">
+                <div class="plot">
+                    <div class="um">
+                      <div class="parada">
+                        <p>Máquinas que estão paradas:0 </p>
+                      </div>
+                      <div class="indicativos">
+                        <div class="ver"></div>
+                        <div class="amare"></div>
+                        <div class="verm"></div>
+                      </div>
+                    </div>
+                    <div class="dois"></div>
+                    <div class="tres">
+                      <div id="grafic1" class="display-block" >
+                        <canvas id="myChart" style="position: relative; height:40vh;width:40vw"></canvas>
+                      </div>
+                    </div>
+                </div>
+                <div class="opcao">
+                    <div class="vazio"></div>
+                    <div class="botao">
+                      <div class="butt">
+                      <label class="lacpu"><button class="cpu"></button>CPU</label>
+                      <label ><button class="armazenamento"></button>Armazenamento</label>
+                      <label ><button class="memoria"></button>Memória</label>
+                      <label ><button class="rede"></button>Rede</label>
+                    </div>
+                    <div class="indicadores">
+                      <div class="baixa" style="background-color: green;"></div>
+                      <div class="media" style="background-color: yellow;"></div>
+                      <div class="alta" style="background-color: red;"></div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    
+</body>
+</html>
+<script>
+  const labels = [
+    '12:00',
+    '12:01',
+    '12:02',
+    '12:03',
+    '12:04',
+    '12:05',
+    '12:06',
+    '12:07',
+    '12:08',
+    '12:09',
+  ];
+
+  const data = {
+    labels: labels,
+    datasets: [{
+      label:  'Utilização(%)' ,
+      backgroundColor: 'rgb(255, 0, 0)',
+      borderColor: 'rgb(255, 0, 0)',
+      data: [4, 3, 5, 5, 4, 6, 4, 3, 4, 4],
+    }
+   ]
+  };
+
+  const config = {
+    type: 'line',
+    data: data,
+    options: {}
+  };
+  const myChart = new Chart(
+    document.getElementById('myChart'),
+    config
+  );
+</script>
