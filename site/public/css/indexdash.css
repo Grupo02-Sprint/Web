@@ -4,7 +4,7 @@
 }
 
 .tudo {
-    background-color: #87ceeb;
+    background-color: #c7e4f1;
     display: flex;
     flex-direction: row;
     height: 100vh;
@@ -33,10 +33,9 @@
 .menulateral ul li {
     text-decoration: none;
     list-style: none;
-    margin: 5px;
+    margin: 1vh;
     color: black;
     width: 15vh;
-    transition: all 0.8s;
 }
 
 .menulateral ul li a {
@@ -48,7 +47,6 @@
 }
 
 .menulateral ul li:hover {
-    border-radius: 1.4vh;
     color: white;
     
 }
@@ -68,6 +66,7 @@
 
 .menulateral img{
     border-radius: 50vh;
+    
 }
 
 .logo{
@@ -98,7 +97,7 @@ ul{
     flex-direction: column;
     align-items: center;
     width: 100%;
-    background-color: #87ceeb;
+    background-color: #c7e4f1;
 }
 
 .maquina{
@@ -179,8 +178,6 @@ ul{
     justify-content: space-between;
 }
 
-
-
 .dois{
     background-color: #87ceeb;
     width: 100vh;
@@ -229,29 +226,29 @@ ul{
 }
 
 .cpu{
-    height: 6vh;
-    width: 6vh;
+    height: 5vh;
+    width: 5vh;
     border-radius: 3vh;
     margin-left: 4vh;
 }
 
 .armazenamento{
-    height: 6vh;
-    width: 6vh;
+    height: 5vh;
+    width: 5vh;
     border-radius: 3vh;
     margin-left: 4vh;
 }
 
 .memoria{
-    height: 6vh;
-    width: 6vh;
+    height: 5vh;
+    width: 5vh;
     border-radius: 3vh;
     margin-left: 4vh;
 }
 
 .rede{
-    height: 6vh;
-    width: 6vh;
+    height: 5vh;
+    width: 5vh;
     border-radius: 3vh;
     margin-left: 4vh;
 }
@@ -323,3 +320,102 @@ select {
     margin-top: 15px;
     justify-content: center;
 }
+
+.baixa{
+    cursor: pointer;
+    display: block;
+    position: relative;
+}
+
+div.baixa span {
+    position: absolute;
+    text-align: center;
+    visibility: hidden;
+    background-color: #000;
+    color: #FFF;
+    padding: 5px 10px;
+  }
+  div.baixa span:after {
+    content: '';
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    margin-left: -8px;
+    width: 0; height: 0;
+    border-bottom: 8px solid #000;
+    border-right: 8px solid transparent;
+    border-left: 8px solid transparent;
+  }
+ div:hover.baixa span {
+    visibility: visible;
+    opacity: 0.9;
+    top: 7vh;
+    left: -1vh;
+    z-index: 100vh;
+  }
+
+  .media{
+    cursor: pointer;
+    display: block;
+    position: relative;
+}
+
+div.media span {
+    position: absolute;
+    text-align: center;
+    visibility: hidden;
+    background-color: #000;
+    color: #FFF;
+    padding: 5px 10px;
+  }
+  div.media span:after {
+    content: '';
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    margin-left: -8px;
+    width: 0; height: 0;
+    border-bottom: 8px solid #000;
+    border-right: 8px solid transparent;
+    border-left: 8px solid transparent;
+  }
+ div:hover.media span {
+    visibility: visible;
+    opacity: 0.9;
+    top: 7vh;
+    left: -1vh;
+    z-index: 100vh;
+  }
+
+  .alta{
+    cursor: pointer;
+    display: block;
+    position: relative;
+}
+
+div.alta span {
+    position: absolute;
+    text-align: center;
+    visibility: hidden;
+    background-color: #000;
+    color: #FFF;
+    padding: 5px 10px;
+  }
+  div.alta span:after {
+    content: '';
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    margin-left: -8px;
+    width: 0; height: 0;
+    border-bottom: 8px solid #000;
+    border-right: 8px solid transparent;
+    border-left: 8px solid transparent;
+  }
+ div:hover.alta span {
+    visibility: visible;
+    opacity: 0.9;
+    top: 7vh;
+    left: -1vh;
+    z-index: 100vh;
+  }
