@@ -17,7 +17,7 @@
             </div>
             <div class="hello">
         
-              <img src="./assets/WhatsApp Image 2023-01-30 at 23.12.16.jpeg" height="100vh" width="100vh" alt="">
+              <img src="./assets/WhatsApp Image 2023-01-30 at 23.12.16.jpeg" alt="">
 
                 <h2><span id="b_usuario">Dionísio</span></h2>
         
@@ -39,7 +39,7 @@
 
                 <li>
                   <i class="fa-solid fa-address-card"></i>
-                  <a href=""><b>Usuario</b></a>
+                  <a href=""><b>Usuário</b></a>
                 </li>
 
                 <li>
@@ -71,9 +71,9 @@
                         <p>Máquinas que estão paradas:0 </p>
                       </div>
                       <div class="indicativos">
-                        <div class="ver" style="background-color: green;"></div>
+                        <div class="ver" style="background-color: rgba(0, 128, 0, 0.4);"></div>
                         <div class="amare" style="background-color: rgba(255, 255, 0, 0.4);" ></div>
-                        <div class="verm" style="background-color: rgba(255, 0, 0, 0.4);"></div>
+                        <div class="verm" style="background-color: red;"></div>
                       </div>
                     </div>
                     <div class="dois">
@@ -96,8 +96,23 @@
                 </div>
                 <div class="opcao">
                     <div class="vazio">
-                      <div class="espcpu">
-                        <h2></h2>
+                      <div id="espcpu" class="display-none">
+                        <p><b>Modelo: </b> AMD Ryzen 5 3500U with Radeon Vega Mobile Gfx</p>
+                        <br>
+                        <p><b>Número de CPUs Fisícas: </b>4</p>
+                        <p><b>Número de CPUs Lógicas: </b>8</p>
+                      </div>
+                      <div id="esparmaz" class="display-none">
+                        <p><b>Modelo: </b> SPT256L2-2IAS7G2</p>
+                        <br>
+                        <p><b>Tamanho total: </b>239 GB</p>
+                      </div>
+                      <div id="espmemor" class="display-none">
+                        <p><b> Memória Total: </b>8</p>
+                        <p><b> Memória em Uso: </b>65%</p>
+                      </div>
+                      <div id="esprede" class="display-none">
+                        <p><b>Modelo: </b> Realtek 8821CE Wireless LAN 802.11ac PCI-E NIC</p>
                       </div>
                     </div>
                     <div class="botao">
@@ -163,6 +178,19 @@ let graficoExibir3 = document.getElementById(`grafic3`)
     let luz3 = document.getElementById("alta");
         luz3.style.backgroundColor ="rgba(255, 0, 0, 0.4)";        
 
+    let textoExibir1 = document.getElementById(`espcpu`)
+        textoExibir1.classList.remove("display-none")
+        textoExibir1.classList.add("display-flex")
+    let textoExibir2 = document.getElementById(`esparmaz`)
+        textoExibir2.classList.remove("display-flex")
+        textoExibir2.classList.add("display-none")
+    let textoExibir3 = document.getElementById(`espmemor`)
+        textoExibir3.classList.remove("display-flex")
+        textoExibir3.classList.add("display-none")
+    let textoExibir4 = document.getElementById(`esprede`)
+        textoExibir4.classList.remove("display-flex")
+        textoExibir4.classList.add("display-none") 
+        
 
   const labels = [
     '12:00:00',
@@ -236,6 +264,19 @@ let graficoExibir = document.getElementById(`grafic1`)
     let luz3 = document.getElementById("alta");
         luz3.style.backgroundColor ="rgba(255, 0, 0, 0.4)";
 
+    let textoExibir1 = document.getElementById(`espcpu`)
+        textoExibir1.classList.remove("display-flex")
+        textoExibir1.classList.add("display-none")
+    let textoExibir2 = document.getElementById(`esparmaz`)
+        textoExibir2.classList.remove("display-none")
+        textoExibir2.classList.add("display-flex")
+    let textoExibir3 = document.getElementById(`espmemor`)
+        textoExibir3.classList.remove("display-flex")
+        textoExibir3.classList.add("display-none")
+    let textoExibir4 = document.getElementById(`esprede`)
+        textoExibir4.classList.remove("display-flex")
+        textoExibir4.classList.add("display-none")    
+
   const labels2 = [
     '12:00:00',
     '12:00:30',
@@ -252,10 +293,10 @@ let graficoExibir = document.getElementById(`grafic1`)
   const data2 = {
     labels: labels2,
     datasets: [{
-      label: 'Memória em uso(GB)',
+      label: 'Tempo médio de resposta(ms)',
       backgroundColor: 'rgb(255, 0, 0)',
       borderColor: 'rgb(255, 0, 0)',
-      data: [5.1, 5.1, 5.2, 5.2, 5.2, 5.2, 5.2, 5.2, 5.2, 5.3],
+      data: [.6, 1.1, 1.2, 0.7, 1.2, 4.2, 2.2, 5.1, 1.2, .4],
     }
    ]
   };
@@ -303,11 +344,24 @@ let graficoExibir4 = document.getElementById(`grafic4`)
         button4.style.backgroundColor = "blue";
 
     let luz = document.getElementById("baixa");
-        luz.style.backgroundColor ="green";
+        luz.style.backgroundColor ="rgba(0, 128, 0, 0.4)";
     let luz2 = document.getElementById("media");
-        luz2.style.backgroundColor ="rgba(255, 255, 0, 0.4)";
+        luz2.style.backgroundColor ="yellow";
     let luz3 = document.getElementById("alta");
-        luz3.style.backgroundColor ="rgba(255, 0, 0, 0.4)";        
+        luz3.style.backgroundColor ="rgba(255, 0, 0, 0.4)";  
+        
+    let textoExibir1 = document.getElementById(`espcpu`)
+        textoExibir1.classList.remove("display-flex")
+        textoExibir1.classList.add("display-none")
+    let textoExibir2 = document.getElementById(`esparmaz`)
+        textoExibir2.classList.remove("display-flex")
+        textoExibir2.classList.add("display-none")
+    let textoExibir3 = document.getElementById(`espmemor`)
+        textoExibir3.classList.remove("display-none")
+        textoExibir3.classList.add("display-flex")
+    let textoExibir4 = document.getElementById(`esprede`)
+        textoExibir4.classList.remove("display-flex")
+        textoExibir4.classList.add("display-none")
 
 const labels3 = [
     '12:00:00',
@@ -325,7 +379,7 @@ const labels3 = [
   const data3 = {
     labels: labels3,
     datasets: [{
-      label: 'Temperatura',
+      label: 'Memória em uso(GB)',
       backgroundColor: 'rgb(255, 0, 0)',
       borderColor: 'rgb(255, 0, 0)',
       data: [5.1, 5.1, 5.2, 5.2, 5.2, 5.2, 5.2, 5.2, 5.2, 5.3],
@@ -377,11 +431,24 @@ const labels3 = [
         button4.style.backgroundColor = "red";
 
     let luz = document.getElementById("baixa");
-        luz.style.backgroundColor ="green";
+        luz.style.backgroundColor ="rgba(0, 128, 0, 0)";
     let luz2 = document.getElementById("media");
-        luz2.style.backgroundColor ="rgba(255, 255, 0, 0.4)";
+        luz2.style.backgroundColor ="rgba(255, 255, 0, 0)";
     let luz3 = document.getElementById("alta");
-        luz3.style.backgroundColor ="rgba(255, 0, 0, 0.4)";
+        luz3.style.backgroundColor ="rgba(255, 0, 0, 0)";
+
+    let textoExibir1 = document.getElementById(`espcpu`)
+        textoExibir1.classList.remove("display-flex")
+        textoExibir1.classList.add("display-none")
+    let textoExibir2 = document.getElementById(`esparmaz`)
+        textoExibir2.classList.remove("display-flex")
+        textoExibir2.classList.add("display-none")
+    let textoExibir3 = document.getElementById(`espmemor`)
+        textoExibir3.classList.remove("display-flex")
+        textoExibir3.classList.add("display-none")
+    let textoExibir4 = document.getElementById(`esprede`)
+        textoExibir4.classList.remove("display-none")
+        textoExibir4.classList.add("display-flex")
 
   const labels4 = [
     '12:00:00',
@@ -399,11 +466,17 @@ const labels3 = [
   const data4 = {
     labels: labels4,
     datasets: [{
-      label: 'Temperatura',
+      label: 'Download(GB)',
       backgroundColor: 'rgb(255, 0, 0)',
       borderColor: 'rgb(255, 0, 0)',
-      data: [45, 40, 28, 21, 12, 43,],
-    }
+      data: [70, 71, 69, 69, 70, 71, 71, 72, 71, 70],
+      
+    },{
+        label: 'Upload(GB)',
+        backgroundColor: 'rgb(0, 0, 255)',
+        borderColor: 'rgb(0, 0, 255)',
+        data: [40, 40, 38, 39, 39, 40, 45, 45, 44, 46],
+      }
    ]
   };
   const config4 = {
