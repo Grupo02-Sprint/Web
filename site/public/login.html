@@ -7,9 +7,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/login.css">
     <title>Document</title>
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
 </head>
 
 <body>
+
 
     <div class="container0">
         <img src="./icons/logo.png" alt="" height="30px">
@@ -24,6 +26,7 @@
                 <input type="text" id="email_input" placeholder="  Insira seu email">
                 <input type="password" id="senha_input" placeholder="  Insira sua senha">
                 <button onclick="entrar()">Entrar</button>
+                <div id="buttonDiv"></div>
                 <p>Não tem uma conta? <a href="./cadastro.html">Cadastre-se</a></p>
             </div>
         </div>
@@ -78,7 +81,7 @@
                     sessionStorage.IDUSUARIO_USUARIO = json.idUsuario;
 
                     setTimeout(function () {
-                        window.location = "dashboard.html";
+                        window.location = "indexdash.html";
                     }, 1000); // apenas para exibir o loading
 
                 });
@@ -104,4 +107,30 @@
         cardErro.style.display = "none"
     }
 
+</script>
+
+<script>
+    function handleCredentialResponse(response) {
+        const data = jwt_decode(response.credential);
+        console.log(data);
+    }
+    window.onload = function () {
+        google.accounts.id.initialize({
+            client_id: "549063576793-dss6v1rsace16va98t9a89s7h4qtr5dt.apps.googleusercontent.com",
+            callback: handleCredentialResponse
+        });
+        google.accounts.id.renderButton(
+            document.getElementById("buttonDiv"),
+            {
+                theme: "outline",
+                size: "small",
+                type: "standard",
+                shape: "pill",
+                text: "continue_with.",
+                logo_alignment: "left"
+            }  // customization attributes
+        );
+        google.accounts.id.prompt(); // also display the One Tap dialog
+    }
+</script>
 </script>
