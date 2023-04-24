@@ -208,6 +208,7 @@
 </body>
 
 </html>
+
 <script>
     var esquerda = document.getElementById('na-onde').style
     var direita = document.getElementById('na-onde-oq').style
@@ -266,72 +267,4 @@
         window.location = "./login.html";
     }
 
-    function mudar_tema() {
-        var body = document.body;
-
-        // Sections
-        var section = document.getElementById("section-one-ref");
-        var titulo_one = document.getElementById("titulo-section-one");
-        var titulo_two = document.getElementById("titulo-section-two");
-        var frase_one = document.getElementById("frase-section-one");
-        var frase_two = document.getElementById("frase-section-two");
-
-        // Menu
-        var caixa_menu = document.getElementById("aaa");
-        var menu_opt_esquerda = document.getElementById("na-onde");
-        var menu_opt_direita = document.getElementById("na-onde-oq");
-
-        var menu = document.getElementById("menu-icon");
-        var home_icon = document.getElementById("home-icon");
-        var dash_icon = document.getElementById("dash-icon");
-        var faq_icon = document.getElementById("faq-icon");
-        var user_icon = document.getElementById("user-icon");
-
-        // Tema
-        // var tema = document.getElementById("icon-tema");
-
-        if (contador_tema == 0) {
-
-            body.style.backgroundColor = "whitesmoke";
-
-            section.style.color = 'whitesmoke';
-            titulo_one.style.color = "black";
-            titulo_two.style.color = "black";
-            frase_one.style.color = "black";
-            frase_two.style.color = "black";
-
-            caixa_menu.style.backgroundColor = "#303030";
-            menu_opt_esquerda.style.backgroundColor = "#303030";
-            menu_opt_direita.style.backgroundColor = "#303030";
-
-            menu.style.color = "#f5f5f5";
-            home_icon.style.color = "#f5f5f5"
-            dash_icon.style.color = "#f5f5f5"
-            faq_icon.style.color = "#f5f5f5"
-            user_icon.style.color = "#f5f5f5"
-
-            contador_tema++;
-        } else {
-
-            body.style.backgroundColor = "#303030";
-
-            section.style.color = '#303030';
-            titulo_one.style.color = "#ece1c3";
-            titulo_two.style.color = "#ece1c3";
-            frase_one.style.color = "whitesmoke";
-            frase_two.style.color = "whitesmoke";
-
-            caixa_menu.style.backgroundColor = "#ece1c3";
-            menu_opt_esquerda.style.backgroundColor = "#ece1c3";
-            menu_opt_direita.style.backgroundColor = "#ece1c3";
-
-            menu.style.color = "#303030";
-            home_icon.style.color = "#303030"
-            dash_icon.style.color = "#303030"
-            faq_icon.style.color = "#303030"
-            user_icon.style.color = "#303030"
-            contador_tema = 0;
-
-        }
-    }
 </script>

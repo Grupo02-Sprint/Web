@@ -6,6 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/cadastro.css">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
     <title>Document</title>
 </head>
 
@@ -15,13 +17,62 @@
            <a href=""></a> <a href="index.html"> <img src="./icons/logo.png" alt=""></a>
         </div>
     </div>
+
+    <nav class="mobile" id="nave-mobile">
+        <div class="esquerda" id="esquerda">
+            <span class="material-symbols-outlined" onclick="home()">
+                home
+            </span>
+            <span class="material-symbols-outlined" onclick="dashboard()">
+                monitoring
+            </span>
+        </div>
+        <div class="meio">
+            <span id="botaoMenu" class="material-symbols-outlined" onclick="abrirMenu()">
+                menu
+            </span>
+        </div>
+        <div class="direita" id="direita">
+            <span class="material-symbols-outlined" onclick="contato()">
+                contact_support
+            </span>
+            <span class="material-symbols-outlined" onclick="login()">
+                person
+            </span>
+        </div>
+    </nav>
+
+    <script>
+        var contador = 0
+        function abrirMenu() {
+            var esquerda = document.getElementById('esquerda')
+            var direita = document.getElementById('direita')
+            var btnMenu = document.getElementById('botaoMenu')
+            var navMob = document.getElementById('nave-mobile')
+
+            if (contador == 0) {
+                esquerda.style.top = 0
+                direita.style.top = 0
+                navMob.style.backgroundColor = "#195e6377"
+
+                contador++
+            } else {
+                esquerda.style.top = "130vh"
+                direita.style.top = "180vh"
+                navMob.style.backgroundColor = "transparent"
+
+                contador = 0
+            }
+        }
+    </script>
+
     <div class="fundo">
         <div class="caixa0">
             <img src="./icons/cadastro.png" alt="">
         </div>
         <div class="caixa">
             <div class="container1">
-                <h1>Olá!Bem-vindo</h1>
+                <h1>Olá! Seja Bem-vinde</h1>
                 <h2>Insira suas informações</h2>
             </div>
             <div class="container2">
@@ -95,4 +146,62 @@
         return false;
 
     }
+
+    var esquerda = document.getElementById('na-onde').style
+    var direita = document.getElementById('na-onde-oq').style
+
+    var mein = document.getElementById('botao-menu').style
+    var nav = document.getElementById('nav-mobile-id').style
+
+    var contador = 0
+
+    function ExibirNav() {
+        if (contador == 0) {
+
+            esquerda.bottom = "0%"
+            direita.bottom = "0%"
+
+
+            contador++
+            background()
+
+        } else {
+
+            esquerda.bottom = "-130%"
+            direita.bottom = "-60%"
+
+            contador = 0
+            background()
+        }
+
+    }
+
+    function background() {
+        if (contador == 1) {
+            nav.bottom = "0"
+
+        } else {
+            nav.bottom = "-80%"
+
+        }
+    }
+
+    var contador_tema = 0;
+
+    function home() {
+        window.location = "./index.html";
+    }
+
+    function dashboard() {
+        alert("Site indisponível no momento");
+    }
+
+    function contato() {
+        window.location = "https://chat.whatsapp.com/L1mdIQ6TA3BC4mLAn5ZuxA";
+    }
+
+    function login() {
+        window.location = "./login.html";
+    }
+
 </script>
