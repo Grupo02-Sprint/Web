@@ -4,14 +4,14 @@
 }
 
 .tudo {
-    background-color: #c7e4f1;
+    background-color: #d8e5e8;
     display: flex;
     flex-direction: row;
     height: 100vh;
 }
 
 .menulateral {
-    background-color: #0CC0DF;
+    background-color: #195e63;
     padding: 0vh 2vh;
     width: 40vh;
     height: 95vh;
@@ -108,7 +108,7 @@ ul{
     flex-direction: column;
     align-items: center;
     width: 100%;
-    background-color: #c7e4f1;
+    background-color: #d8e5e8;
 }
 
 .maquina{
@@ -117,7 +117,7 @@ ul{
     display: flex;
     align-items: center;
     justify-content: space-around;
-    background-color: #0CC0DF;
+    background-color: #195e63;
     height: 10vh;
    /* border: 0.5vh solid black;*/
     font-size: 3vh;
@@ -149,7 +149,7 @@ ul{
 .plot{
     display: flex;
     flex-direction: column;
-    background-color: #0CC0DF;
+    background-color: #195e63;
     height: 80vh;
     width: 110vh;
     justify-content: space-evenly;
@@ -169,7 +169,7 @@ ul{
 
 .vazio{
     display: flex;
-    background-color: #0CC0DF;
+    background-color: #195e63;
     height: 30vh;
     width: 39vh;
    /* border: 0.5vh solid black;*/
@@ -177,7 +177,7 @@ ul{
 
 .botao{
     display: flex;
-    background-color: #0CC0DF;
+    background-color: #195e63;
     height: 45vh;
     width: 39vh;
    /* border: 0.5vh solid black;*/
@@ -193,7 +193,7 @@ ul{
 .um{
     display: flex;
     flex-direction: row;
-    background-color: #87ceeb;
+    background-color: #25848a;
     height: 15vh;
     width: 100vh;
     align-items: center;
@@ -202,14 +202,14 @@ ul{
 }
 
 .dois{
-    background-color: #87ceeb;
+    background-color: #25848a;
     width: 100vh;
     height: 48vh;
    /* border: 0.5vh solid black;*/
 }
 
 .parada{
-    background-color: #0CC0DF ;
+    background-color: #195e63 ;
     width: 25vh;
     height: 8vh;
     margin-left: 5vh;
@@ -334,7 +334,7 @@ select {
     -moz-appearance: none;
     /*border: .5vh solid black;*/
     font-size: 2.5vh;
-    background-color: #9bd9f1;
+    background-color: #25848a;
 }
 
 .display-none {
@@ -357,109 +357,6 @@ select {
     margin-top: 5vh ;
     justify-content: center;
 }
-
-.baixa{
-    cursor: pointer;
-    display: block;
-    position: relative;
-}
-
-div.baixa span {
-    position: absolute;
-    text-align: center;
-    visibility: hidden;
-    background-color: #000;
-    color: #FFF;
-    padding: 1vh 2vh;
-  }
-  div.baixa span:after {
-    content: '';
-    position: absolute;
-    bottom: 100%;
-    left: 50%;
-    margin-left: -8px;
-    width: 0; height: 0;
-    border-bottom: 8px solid #000;
-    border-right: 8px solid transparent;
-    border-left: 8px solid transparent;
-  }
- div:hover.baixa span {
-    visibility: visible;
-    opacity: 0.9;
-    top: 7vh;
-    left: -1vh;
-    z-index: 100vh;
-  }
-
-  .media{
-    cursor: pointer;
-    display: block;
-    position: relative;
-}
-
-div.media span {
-    position: absolute;
-    text-align: center;
-    visibility: hidden;
-    background-color: #000;
-    color: #FFF;
-    padding: 5px 10px;
-  }
-  div.media span:after {
-    content: '';
-    position: absolute;
-    bottom: 100%;
-    left: 50%;
-    margin-left: -8px;
-    width: 0; height: 0;
-    border-bottom: 8px solid #000;
-    border-right: 8px solid transparent;
-    border-left: 8px solid transparent;
-  }
- div:hover.media span {
-    visibility: visible;
-    opacity: 0.9;
-    top: 7vh;
-    left: -1vh;
-    z-index: 100vh;
-  }
-
-  .alta{
-    cursor: pointer;
-    display: block;
-    position: relative;
-}
-
-i{
-    margin-right: 2vh;
-}
-
-div.alta span {
-    position: absolute;
-    text-align: center;
-    visibility: hidden;
-    background-color: #000;
-    color: #FFF;
-    padding: 5px 10px;
-  }
-  div.alta span:after {
-    content: '';
-    position: absolute;
-    bottom: 100%;
-    left: 50%;
-    margin-left: -8px;
-    width: 0; height: 0;
-    border-bottom: 8px solid #000;
-    border-right: 8px solid transparent;
-    border-left: 8px solid transparent;
-  }
- div:hover.alta span {
-    visibility: visible;
-    opacity: 0.9;
-    top: 7vh;
-    left: -1vh;
-    z-index: 100vh;
-  }
 
 #espcpu{
     flex-direction: column;
