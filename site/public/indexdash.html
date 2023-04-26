@@ -7,7 +7,8 @@
     <script src="https://kit.fontawesome.com/eb115129d4.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet" href="./css/indexdash.css">
-    <title>Document</title>
+    <link rel="shortcut icon" href="./assets/logo.png" type="image/x-icon">
+    <title>Dashboard - MaxSolutions</title>
 </head>
 <body>
     <div class="tudo">
@@ -57,7 +58,7 @@
         </div>
         <div class="dashboard">
             <div class="maquina">
-              <div class="select"> Maquina:  <select id="select_maquina">
+              <div class="select"> Máquina:  <select id="select_maquina">
                     <option value="0">Escolha maquina <i class="fa-solid fa-angle-down"></i> </option>
                     <option value="1">Máquina 1</option>
                 </select>
@@ -145,6 +146,7 @@
 <script>
 
 function grafico1(){
+
 
   if(select_maquina.value==0){
     alert(`Selecione uma maquina`)

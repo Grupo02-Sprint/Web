@@ -143,6 +143,7 @@ body {
     border: none;
     cursor: pointer;
 }
+
 .caixa{
     background-color: none;
 }
@@ -161,7 +162,7 @@ body {
         height: 100vh;
         background-color: #d8e5e8;
     }
-    
+
     .mobile {
         display: none;
     }
@@ -259,6 +260,7 @@ body {
         background-color: white;
         color: #0CC0DF;
         border: none;
+        cursor: pointer;
     }
     .caixa0{
         display: flex;

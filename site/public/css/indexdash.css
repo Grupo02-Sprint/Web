@@ -135,7 +135,8 @@ ul{
 
 .maquina select{
     border-radius: 1vh;
-    height: 4vh;
+    /* height: 4vh; */
+    padding: 1vh;
 }
 
 .grafico{
@@ -186,6 +187,7 @@ ul{
 
 .botao label{
     font-size: 3vh;
+    margin-bottom: 1.3vh;
 }
 
 .um{
@@ -221,6 +223,7 @@ ul{
 .parada p{
     font-size: 3vh;
     margin-left: 1vh;
+    padding: 1vh;
 }
 
 .indicativos{
@@ -239,12 +242,15 @@ ul{
     height: 5vh;
     width: 5vh;
     border-radius: 5vh;
+    margin-right: 2vh;
+
 }
 
 .ver{
     height: 5vh;
     width: 5vh;
     border-radius: 5vh;
+    margin-right: 2vh;
 }
 
 .cpu{
@@ -252,6 +258,8 @@ ul{
     width: 5vh;
     border-radius: 3vh;
     margin-left: 4vh;
+    margin-right: 1vh;
+
 }
 
 .armazenamento{
@@ -259,6 +267,7 @@ ul{
     width: 5vh;
     border-radius: 3vh;
     margin-left: 4vh;
+    margin-right: 1vh;
 }
 
 .memoria{
@@ -266,6 +275,8 @@ ul{
     width: 5vh;
     border-radius: 3vh;
     margin-left: 4vh;
+    margin-right: 1vh;
+
 }
 
 .rede{
@@ -273,6 +284,8 @@ ul{
     width: 5vh;
     border-radius: 3vh;
     margin-left: 4vh;
+    margin-right: 1vh;
+
 }
 
 .butt{
@@ -293,6 +306,8 @@ label{
     display: flex;
     flex-direction: row;
     justify-content: space-around;
+    margin-left: 6vh;
+    margin-right: 6vh;
 }
 
 .baixa{
@@ -355,7 +370,7 @@ div.baixa span {
     visibility: hidden;
     background-color: #000;
     color: #FFF;
-    padding: 5px 10px;
+    padding: 1vh 2vh;
   }
   div.baixa span:after {
     content: '';
@@ -413,6 +428,10 @@ div.media span {
     cursor: pointer;
     display: block;
     position: relative;
+}
+
+i{
+    margin-right: 2vh;
 }
 
 div.alta span {
