@@ -98,7 +98,6 @@ body {
 .container2{
     display: flex;
     flex-direction: column;
-    align-items: center;
 }
 .container2 p{
     font-family: 'IBM Plex Sans', sans-serif;
@@ -128,12 +127,18 @@ body {
     border: none;
     cursor: pointer;
 }
+
+.container3{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 .caixa0{
     display: flex;
     align-items: center;
     height: 77vh;
     width: 62vh;
-    background-color: #0cbfdf44;
+    background-color: #195e637c;
 }
 
 .caixa0 img{
@@ -143,8 +148,10 @@ body {
 .caixa{
     height: 77vh;
     width: 62vh;
-    background-color: #0CC0DF;
-
+    background-color: #195e63;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .fundo{
@@ -158,6 +165,12 @@ body {
 @media only screen and (max-width: 700px){    
     body {
         background-color: #d8e5e8;
+    }
+
+    .caixa{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     }
 
     .mobile {
@@ -179,7 +192,7 @@ body {
         display: flex;
         flex-direction: column;
         align-items: center;
-        margin-top: 130px;
+        margin-top: 5vh;
     }
     .container1 h1{
         margin-bottom: 0px;
@@ -196,7 +209,7 @@ body {
     .container2{
         display: flex;
         flex-direction: column;
-        align-items: center;
+        align-items: flex-start;
     }
     
     .container2 p{
@@ -220,6 +233,16 @@ body {
         background-color: #195e63;
         color: white;
         border: none;
+    }
+
+    .container2 h4{
+        font-family: 'IBM Plex Sans', sans-serif;
+    }
+
+    .container3{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
     
     .fundo{

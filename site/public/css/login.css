@@ -145,7 +145,10 @@ body {
 }
 
 .caixa{
-    background-color: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 .tudo{
@@ -153,18 +156,14 @@ body {
     justify-content: center;
     flex-direction: column;
     align-items: center;
-    margin-top: 22vh;
+    margin-top: 14vh;
     background-color: #d8e5e8;
 }
 }
 @media only screen and (min-width: 700px){
     body {
-        height: 100vh;
+        height: 90vh;
         background-color: #d8e5e8;
-    }
-
-    .mobile {
-        display: none;
     }
 
     .container0{
@@ -202,34 +201,16 @@ body {
         display: flex;
         flex-direction: column;
         align-items: center;
+    }
     
+    .container2 .form-label{
+        align-items: flex-start;
     }
       
-      .form-label {
-        font-weight: bold;
-        margin-bottom: 5px; 
-        
-      }
-      
-      input[type="text"],
-      input[type="password"] {
-        padding: 10px;
-        margin-bottom: 10px;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-        width: 100%;
-        max-width: 300px;
-      }
-      
-      input[type="text"]::placeholder,
-      input[type="password"]::placeholder {
-        color: #aaa;
-      }
-
-    /* .container2{
+     .container2{
         display: flex;
         flex-direction: column;
-        align-items: center;
+        align-items: flex-start;
     }
     
     .container2 p{
@@ -250,18 +231,28 @@ body {
     }
     .container2 ::placeholder{
         font-size: 2.5vh;
-    } */
+        
+    } 
+
+    .container2 h4{
+        display: flex;
+        align-items: flex-start;
+        font-family: 'IBM Plex Sans', sans-serif;
+        font-size: 2.5vh;
+    }
     .container2 button{
         height: 4.6vh;
         width: 46vh;
-        border-radius: 15px;
+        border-radius: 2vh;
         margin-top: 2vh;
         font-size: 2.5vh;
         background-color: white;
-        color: #0CC0DF;
+        color: black;
         border: none;
         cursor: pointer;
     }
+    
+
     .caixa0{
         display: flex;
         align-items: center;
@@ -278,10 +269,16 @@ body {
         display: flex;
         flex-direction: column;
         justify-content: center;
+        align-items: center;
         height: 77vh;
         width: 62vh;
-        background-color: #0CC0DF;
+        background-color: #195e63;
     
+    }
+
+    .caixa p{
+        color: white;
+        font-family: 'IBM Plex Sans', sans-serif;
     }
     
     .tudo{
@@ -289,7 +286,12 @@ body {
         justify-content: center;
         flex-direction: column;
         align-items: center;
-        margin: 0px;
+        margin: 0vh;
         background-color: #d8e5e8;
 }
+    .container3{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
 }
