@@ -21,7 +21,6 @@
     flex-direction: column;
     margin-left: 4vh;
     margin-top: 3vh;
-  /*  border: 0.5vh solid black;*/
 }
 
 .menulateral ul {
@@ -59,16 +58,16 @@
     padding-inline-start: 0%;
 }
 
-.menulateral li{
+.menulateral li {
     display: flex;
     flex-direction: row;
 }
 
-.menulateral img{
+.menulateral img {
     border-radius: 50vh;
 }
 
-.logo{
+.logo {
     background-color: #ffffff;
     border-radius: 1vh;
     width: 4.7vh;
@@ -77,11 +76,11 @@
     margin-top: 2vh;
 }
 
-.logo img{
+.logo img {
     height: 5.4vh;
 }
 
-ul{
+ul {
     height: 35vh;
     display: flex;
     flex-direction: column;
@@ -94,12 +93,12 @@ ul{
     margin-bottom: 5vh;
 }
 
-.hello img{
+.hello img {
     height: 20vh;
     width: 20vh;
 }
 
-.hello h2{
+.hello h2 {
     font-size: 4vh;
 }
 
@@ -111,7 +110,7 @@ ul{
     background-color: #d8e5e8;
 }
 
-.maquina{
+.maquina {
     margin-top: 3vh;
     width: 153.5vh;
     display: flex;
@@ -119,34 +118,32 @@ ul{
     justify-content: space-around;
     background-color: #195e63;
     height: 10vh;
-   /* border: 0.5vh solid black;*/
     font-size: 3vh;
 }
 
-.maquina a{
+.maquina a {
     text-decoration: none;
     list-style: none;
     color: black;
 }
 
-.maquina a :hover{
+.maquina a :hover {
     color: white;
 }
 
-.maquina select{
+.maquina select {
     border-radius: 1vh;
-    /* height: 4vh; */
     padding: 1vh;
 }
 
-.grafico{
+.grafico {
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
     width: 160vh;
 }
 
-.plot{
+.plot {
     display: flex;
     flex-direction: column;
     background-color: #195e63;
@@ -155,10 +152,9 @@ ul{
     justify-content: space-evenly;
     align-items: center;
     margin-top: 4vh;
-   /* border: 0.5vh solid black;*/
 }
 
-.opcao{
+.opcao {
     display: flex;
     flex-direction: column;
     height: 80vh;
@@ -167,49 +163,45 @@ ul{
     justify-content: space-between;
 }
 
-.vazio{
+.vazio {
     display: flex;
     background-color: #195e63;
     height: 30vh;
     width: 39vh;
-   /* border: 0.5vh solid black;*/
 }
 
-.botao{
+.botao {
     display: flex;
     background-color: #195e63;
     height: 45vh;
     width: 39vh;
-   /* border: 0.5vh solid black;*/
     flex-direction: column;
     justify-content: space-evenly;
 }
 
-.botao label{
+.botao label {
     font-size: 3vh;
     margin-bottom: 1.3vh;
 }
 
-.um{
+.um {
     display: flex;
     flex-direction: row;
     background-color: #25848a;
     height: 15vh;
     width: 100vh;
     align-items: center;
-  /*  border: 0.5vh solid black;*/
     justify-content: space-between;
 }
 
-.dois{
+.dois {
     background-color: #25848a;
     width: 100vh;
     height: 48vh;
-   /* border: 0.5vh solid black;*/
 }
 
-.parada{
-    background-color: #195e63 ;
+.parada {
+    background-color: #195e63;
     width: 25vh;
     height: 8vh;
     margin-left: 5vh;
@@ -217,43 +209,65 @@ ul{
     justify-content: center;
     align-items: center;
     border-radius: 1vh;
-   /* border: 0.5vh solid black;*/
 }
 
-.parada p{
+.parada p {
     font-size: 3vh;
     margin-left: 1vh;
     padding: 1vh;
 }
 
-.indicativos{
+.indicativos {
     display: flex;
     flex-direction: row;
     margin-right: 5vh;
 }
 
-.verm{
+.verm {
     height: 5vh;
     width: 5vh;
     border-radius: 5vh;
 }
 
-.amare{
-    height: 5vh;
-    width: 5vh;
-    border-radius: 5vh;
-    margin-right: 2vh;
-
-}
-
-.ver{
+.amare {
     height: 5vh;
     width: 5vh;
     border-radius: 5vh;
     margin-right: 2vh;
 }
 
-.cpu{
+.ver {
+    height: 5vh;
+    width: 5vh;
+    border-radius: 5vh;
+    margin-right: 2vh;
+}
+
+.cpu {
+    height: 5vh;
+    width: 5vh;
+    border-radius: 3vh;
+    margin-left: 4vh;
+    margin-right: 1vh;
+}
+
+.armazenamento {
+    height: 5vh;
+    width: 5vh;
+    border-radius: 3vh;
+    margin-left: 4vh;
+    margin-right: 1vh;
+}
+
+.memoria {
+    height: 5vh;
+    width: 5vh;
+    border-radius: 3vh;
+    margin-left: 4vh;
+    margin-right: 1vh;
+}
+
+.rede {
     height: 5vh;
     width: 5vh;
     border-radius: 3vh;
@@ -262,47 +276,21 @@ ul{
 
 }
 
-.armazenamento{
-    height: 5vh;
-    width: 5vh;
-    border-radius: 3vh;
-    margin-left: 4vh;
-    margin-right: 1vh;
-}
-
-.memoria{
-    height: 5vh;
-    width: 5vh;
-    border-radius: 3vh;
-    margin-left: 4vh;
-    margin-right: 1vh;
-
-}
-
-.rede{
-    height: 5vh;
-    width: 5vh;
-    border-radius: 3vh;
-    margin-left: 4vh;
-    margin-right: 1vh;
-
-}
-
-.butt{
+.butt {
     display: flex;
     flex-direction: column;
 }
 
-.botao p{
+.botao p {
     font-size: 3vh;
 }
 
-label{
+label {
     display: flex;
     align-items: center;
 }
 
-.indicadores{
+.indicadores {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
@@ -310,19 +298,19 @@ label{
     margin-right: 6vh;
 }
 
-.baixa{
+.baixa {
     height: 6vh;
     width: 6vh;
     border-radius: 3vh;
 }
 
-.media{
+.media {
     height: 6vh;
     width: 6vh;
     border-radius: 3vh;
 }
 
-.alta{
+.alta {
     height: 6vh;
     width: 6vh;
     border-radius: 3vh;
@@ -332,7 +320,6 @@ select {
     appearance: none;
     -webkit-appearance: none;
     -moz-appearance: none;
-    /*border: .5vh solid black;*/
     font-size: 2.5vh;
     background-color: #25848a;
 }
@@ -340,7 +327,7 @@ select {
 .display-none {
     display: none;
 }
-  
+
 .display-block {
     display: block;
     display: flex;
@@ -348,40 +335,40 @@ select {
     flex-direction: column;
 }
 
-#grafic1 .display-block{
+#grafic1 .display-block {
     height: 30vh;
     width: 90vh;
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 5vh ;
+    margin-top: 5vh;
     justify-content: center;
 }
 
-#espcpu{
+#espcpu {
     flex-direction: column;
     margin-left: 2vh;
     margin-top: 5vh;
     font-size: 2.5vh;
-}  
+}
 
-#esparmaz{
+#esparmaz {
     flex-direction: column;
     margin-left: 2vh;
     margin-top: 5vh;
     font-size: 2.5vh;
-}  
+}
 
-#espmemor{
+#espmemor {
     flex-direction: column;
     margin-left: 2vh;
     margin-top: 5vh;
     font-size: 2.5vh;
-}  
+}
 
-#esprede{
+#esprede {
     flex-direction: column;
     margin-left: 2vh;
     margin-top: 5vh;
     font-size: 2.5vh;
-}  
+}

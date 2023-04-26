@@ -76,7 +76,6 @@
 
 
 /* NAV TABLET - MOBILE */
-
 .mobile {
     width: 100%;
     display: flex;
@@ -133,11 +132,11 @@
     cursor: pointer;
 }
 
-.corDeFundo{
+.corDeFundo {
     background-color: #112a2caa;
 }
 
-.mostrarMenu{
+.mostrarMenu {
     top: 90vh;
     background-color: #112a2c;
 }
@@ -235,10 +234,7 @@ section {
     padding-left: 4.5%;
 }
 
-
-
 /* Segunda section - Quem somos */
-
 .segunda {
     height: 100vh;
     background-color: #ece1c3;
@@ -287,7 +283,6 @@ section {
 
     width: 90%;
     height: 10vh;
-    /* background-color: #00000054; */
     display: flex;
     align-items: center;
     justify-content: flex-start;
@@ -334,9 +329,6 @@ section {
     padding-left: 4%;
 }
 
-
-
-
 /* FOOTER */
 .footer {
     width: 100%;
@@ -367,7 +359,6 @@ footer .links-2 {
     align-items: flex-start;
     justify-content: space-evenly;
     flex-direction: column;
-
 }
 
 footer .titulo h2 {
@@ -465,12 +456,4 @@ footer .conteudo a:hover {
     .segunda .dois .caixa-apresentacao .texto {
         width: 100%;
     }
-
-    /* .segunda .container .div_img{
-        display: none;
-    }
-
-    .segunda .container .caixa-apresentacao{
-        width: 90%;
-    } */
 }
