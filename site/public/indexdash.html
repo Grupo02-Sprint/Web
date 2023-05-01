@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://kit.fontawesome.com/eb115129d4.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="../js/funcoes.js"></script>
     <link rel="stylesheet" href="./css/indexdash.css">
     <link rel="shortcut icon" href="./assets/logo.png" type="image/x-icon">
     <title>Dashboard - MaxSolutions</title>
@@ -40,7 +41,7 @@
 
                 <li>
                   <i class="fa-solid fa-address-card"></i>
-                  <a href=""><b>Usuário</b></a>
+                  <a href="./funcionario.html"><b>Usuário</b></a>
                 </li>
 
                 <li>
@@ -130,6 +131,23 @@
                       </div>
                       <div id="alta" class="alta" style="background-color:  red;">
                       </div>
+                    </div>
+                    <div id="kpi" class="display-none">
+                      <div class="verkpi" >
+                        <div class="verde" style="background-color: green;"></div>
+                        <div class="kpidupla">
+                        <p> 1% </p>
+                        <p>40%</p>
+                      </div>
+                      </div>
+                      <div class="amarkpi">
+                      <div class="amarelo" style="background-color: yellow;"></div>
+                      <p>70%</p>
+                    </div>
+                    <div class="vermkpi">
+                      <div class="vermelho" style="background-color: red;"></div>
+                      <p> 100% </p>
+                    </div>
                     </div>
                     </div>
                 </div>
@@ -448,6 +466,10 @@ const labels3 = [
     let textoExibir4 = document.getElementById(`esprede`)
         textoExibir4.classList.remove("display-none")
         textoExibir4.classList.add("display-flex")
+
+    let kpiExibir4 = document.getElementById(`kpi`)
+        kpiExibir4.classList.remove("display-flex")
+        kpiExibir4.classList.add("display-none")
 
   const labels4 = [
     '12:00:00',
