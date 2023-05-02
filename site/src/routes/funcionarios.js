@@ -11,4 +11,8 @@ router.get("/listar", function (req, res) {
     funcionarioController.listar(req, res);
 });
 
+router.delete("/deletar/:idAviso", function (req, res) {
+    funcionarioController.deletar(req, res);
+});
+
 module.exports = router;

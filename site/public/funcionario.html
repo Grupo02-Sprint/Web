@@ -61,7 +61,6 @@
                 <button onclick="adicionar()">Adicionar</button>
             </div>
             <div id="exibir" class="exibir">
-                <h2>Funcionários</h2>
             </div>
         </div>
     </div>
@@ -73,77 +72,114 @@
     }
 
     function atualizarFeed() {
-        //aguardar();
-        fetch("/funcionarios/listar").then(function (resposta) {
+  //aguardar();
+  fetch("/funcionarios/listar").then(function (resposta) {
+    if (resposta.ok) {
+      if (resposta.status == 204) {
+        var feed = document.getElementById("exibir");
+        var mensagem = document.createElement("span");
+        mensagem.innerHTML = "Nenhum resultado encontrado."
+        feed.appendChild(mensagem);
+        throw "Nenhum resultado encontrado!!";
+      }
+
+      resposta.json().then(function (resposta) {
+        console.log("Dados recebidos: ", JSON.stringify(resposta));
+
+        var feed = document.getElementById("exibir");
+        feed.innerHTML = "";
+        var tabela = document.createElement("table");
+        tabela.className = "tabela";
+
+        // Cabeçalho da tabela
+        var cabecalho = tabela.insertRow();
+        var cabecalhoId = cabecalho.insertCell();
+        cabecalhoId.innerHTML = "<b>ID</b>";
+        var cabecalhoTitulo = cabecalho.insertCell();
+        cabecalhoTitulo.innerHTML = "<b>Nome</b>";
+        var cabecalhoNome = cabecalho.insertCell();
+        cabecalhoNome.innerHTML = "<b>Função</b>";
+        var cabecalhoAcao = cabecalho.insertCell();
+        cabecalhoAcao.innerHTML = "<b>Ação</b>";
+       /* var cabecalhoEditar = cabecalho.insertCell();
+        cabecalhoEditar.innerHTML = "<b>Editar</b>";
+        var cabecalhoDeletar = cabecalho.insertCell();
+        cabecalhoDeletar.innerHTML = "<b>Deletar</b>";
+        var cabecalhoLog = cabecalho.insertCell();
+        cabecalhoLog.innerHTML = "<b>Log</b>";*/
+
+        for (let i = 0; i < resposta.length; i++) {
+          var publicacao = resposta[i];
+
+          // Adicionar nova linha na tabela
+          var novaLinha = tabela.insertRow();
+
+          // Adicionar células com os dados
+          var id = novaLinha.insertCell();
+          id.innerHTML = publicacao.idAviso;
+
+          var titulo = novaLinha.insertCell();
+          titulo.innerHTML = publicacao.titulo;
+
+          var nome = novaLinha.insertCell();
+          nome.innerHTML = publicacao.descricao;
+
+          var acao = novaLinha.insertCell();
+          var btnEditar = document.createElement("button");
+          btnEditar.innerHTML = "Editar";
+          btnEditar.className = "editar";
+          btnEditar.setAttribute("onclick", `editar(${publicacao.idAviso})`);
+          acao.appendChild(btnEditar);
+
+          var btnDeletar = document.createElement("button");
+          btnDeletar.innerHTML = "Deletar";
+          btnDeletar.className = "deletar";
+          btnDeletar.setAttribute("onclick", `deletar(${publicacao.idAviso})`);
+          acao.appendChild(btnDeletar);
+            
+          var btnLog = document.createElement("button");
+          btnLog.innerHTML = "Log";
+          btnLog.className = "log";
+          btnLog.setAttribute("onclick", `log(${publicacao.idAviso})`);
+          acao.appendChild(btnLog);
+        }
+
+        feed.appendChild(tabela);
+        finalizarAguardar();
+      });
+    } else {
+      throw ('Houve um erro na API!');
+    }
+  }).catch(function (resposta) {
+    console.error(resposta);
+    finalizarAguardar();
+  });
+}
+
+function editar(){
+    window.location ="editfunc.html"
+}
+
+function deletar(idAviso) {
+        console.log("Criar função de apagar post escolhido - ID" + idAviso);
+        fetch(`/funcionarios/deletar/${idAviso}`, {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json"
+            }
+        }).then(function (resposta) {
+
             if (resposta.ok) {
-                if (resposta.status == 204) {
-                    var feed = document.getElementById("exibir");
-                    var mensagem = document.createElement("span");
-                    mensagem.innerHTML = "Nenhum resultado encontrado."
-                    feed.appendChild(mensagem);
-                    throw "Nenhum resultado encontrado!!";
-                }
-
-                resposta.json().then(function (resposta) {
-                    console.log("Dados recebidos: ", JSON.stringify(resposta));
-
-                    var feed = document.getElementById("exibir");
-                    feed.innerHTML = "";
-                    for (let i = 0; i < resposta.length; i++) {
-                        var publicacao = resposta[i];
-
-                        // criando e manipulando elementos do HTML via JavaScript
-                        var divPublicacao = document.createElement("div");
-                        var spanID = document.createElement("span");
-                        var spanTitulo = document.createElement("span");
-                        var spanNome = document.createElement("span");
-                        var divDescricao = document.createElement("div");
-                        var divButtons = document.createElement("div");
-                        var btnEditar = document.createElement("button");
-                        var btnDeletar = document.createElement("button");
-
-
-                        spanID.innerHTML = "ID: <b>" + publicacao.idAviso + "</b>";
-                        spanTitulo.innerHTML = "Título: <b>" + publicacao.titulo + "</b>";
-                        spanNome.innerHTML = "Autor: <b>" + publicacao.nome + "</b>";
-                        divDescricao.innerHTML = "Descrição: <b>" + publicacao.descricao + "</b>";
-                        btnEditar.innerHTML = "Editar";
-                        btnDeletar.innerHTML = "Deletar";
-
-                        divPublicacao.className = "publicacao";
-                        spanTitulo.id = "inputNumero" + publicacao.idAviso;
-                        spanNome.className = "publicacao-nome";
-                        spanTitulo.className = "publicacao-titulo";
-                        divDescricao.className = "publicacao-descricao";
-
-                        divButtons.className = "div-buttons"
-
-                        btnEditar.className = "publicacao-btn-editar"
-                        btnEditar.id = "btnEditar" + publicacao.idAviso;
-                        btnEditar.setAttribute("onclick", `editar(${publicacao.idAviso})`);
-
-                        btnDeletar.className = "publicacao-btn-editar"
-                        btnDeletar.id = "btnDeletar" + publicacao.idAviso;
-                        btnDeletar.setAttribute("onclick", `deletar(${publicacao.idAviso})`);
-
-                        divPublicacao.appendChild(spanID);
-                        divPublicacao.appendChild(spanNome);
-                        divPublicacao.appendChild(spanTitulo);
-                        divPublicacao.appendChild(divDescricao);
-                        divPublicacao.appendChild(divButtons);
-                        divButtons.appendChild(btnEditar);
-                        divButtons.appendChild(btnDeletar);
-                        feed.appendChild(divPublicacao);
-                    }
-
-                    finalizarAguardar();
-                });
+                window.alert("Post deletado com sucesso pelo usuario de email: " + sessionStorage.getItem("EMAIL_USUARIO") + "!");
+                window.location = "funcionario.html"
+            } else if (resposta.status == 404) {
+                window.alert("Deu 404!");
             } else {
-                throw ('Houve um erro na API!');
+                throw ("Houve um erro ao tentar realizar a postagem! Código da resposta: " + resposta.status);
             }
         }).catch(function (resposta) {
-            console.error(resposta);
-            finalizarAguardar();
+            console.log(`#ERRO: ${resposta}`);
         });
     }
+
 </script>

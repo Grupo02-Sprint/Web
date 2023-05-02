@@ -103,74 +103,8 @@ ul{
     font-size: 4vh;
 }
 
-.crud{
-    background-color: #195e63;
+.editar{
     height: 95vh;
     width: 70vw;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.adicionar{
-    height: 10vh;
-    width: 60vw;
-    background-color: pink;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-}
-
-.exibir{
-    height: 80vh;
-    width: 70vw;
-    background-color: orange;
-    display: flex;
-    justify-content: center;
-}
-
-table {
-    width: 30vw;
-    height: 40vh;
-    border-collapse: collapse;
-    border: .2vh solid black;
-}
-  
-tr {
-    border-bottom: .2vh solid black;
-}
-
-tbody tr td {
-    padding: 6px;
-    max-width: 40vw;
-    border: .2vh solid black;
-    background-color: white;
-}
-
-.deletar{
-    background-color: #D83747;
-    height: 4vh;
-    width: 4vw;
-    border: none;
-    border-radius: .7vh;
-    color: white;
-}
-
-.editar{
-    background-color: #007AFF;
-    height: 4vh;
-    width: 4vw;
-    border: none;
-    border-radius: .7vh;
-    color: white;
-}
-
-.log{
-    background-color: #FFBE0A;
-    height: 4vh;
-    width: 4vw;
-    border: none;
-    border-radius: .7vh;
-    color: black;
+    background-color: purple;
 }
