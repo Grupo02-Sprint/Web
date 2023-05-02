@@ -15,4 +15,8 @@ router.delete("/deletar/:idAviso", function (req, res) {
     funcionarioController.deletar(req, res);
 });
 
+router.put("/editar/:idAviso", function (req, res) {
+    funcionarioController.editar(req, res);
+});
+
 module.exports = router;

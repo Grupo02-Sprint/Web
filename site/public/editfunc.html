@@ -54,8 +54,38 @@
               </ul>
         </div>
         <div class="editar">
-            
+           <h2>Editar funcionario</h2>
+           <h4>Nome do Funcionario:</h4>
+           <input id="nome" name="nome" type="text">
+           <h4>Cargo:</h4>
+           <input id="cargo" name="cargo" type="text">
+           <button onclick="editar()">Editar</button>
         </div>
     </div>
 </body>
 </html>
+<script>
+  function editar() {
+        fetch(`/funcionarios/editar/${sessionStorage.getItem("ID_POSTAGEM_EDITANDO")}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                descricao: cargo.value
+            })
+        }).then(function (resposta) {
+
+            if (resposta.ok) {
+                window.alert("Funcionario atualizado com sucesso pelo usuario de email: " + sessionStorage.getItem("EMAIL_USUARIO") + "!");
+                window.location = "funcionario.html"
+            } else if (resposta.status == 404) {
+                window.alert("Deu 404!");
+            } else {
+                throw ("Houve um erro ao tentar realizar a postagem! Código da resposta: " + resposta.status);
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+        });
+    }
+</script>

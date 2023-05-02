@@ -107,4 +107,15 @@ ul{
     height: 95vh;
     width: 70vw;
     background-color: purple;
+    display: flex;
+    flex-direction: column;
+}
+
+.editar input{
+    width: 15vw;
+}
+
+.editar button{
+    width: 7vw;
+    margin-top: 1vh;
 }
