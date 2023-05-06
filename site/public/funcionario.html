@@ -155,10 +155,30 @@
   });
 }
 
-function editar(idAviso){
-    sessionStorage.ID_POSTAGEM_EDITANDO = idAviso;
-    window.location ="editfunc.html"
+function editar(idAviso) {
+  // Procurar a linha correspondente ao ID que quer editar
+  var tabela = document.querySelector('.tabela');
+  for (var i = 1; i < tabela.rows.length; i++) { // Começar em 1 para pular a linha de cabeçalho
+    var idCelula = tabela.rows[i].cells[0];
+    if (idCelula.textContent == idAviso) {
+      // Encontrou a linha correta
+      var nomeCelula = tabela.rows[i].cells[1];
+      var cargoCelula = tabela.rows[i].cells[2];
+      var emailCelula = tabela.rows[i].cells[3];
+      
+      // Passar os dados para a tela de edição
+      sessionStorage.ID_POSTAGEM_EDITANDO = idAviso;
+      sessionStorage.NOME_EDITANDO = nomeCelula.textContent;
+      sessionStorage.CARGO_EDITANDO = cargoCelula.textContent;
+      sessionStorage.EMAIL_EDITANDO = emailCelula.textContent;
+      window.location = "editfunc.html";
+      
+      // Interromper o loop, pois já encontrou a linha correta
+      break;
+    }
+  }
 }
+
 
 function deletar(idAviso) {
         console.log("Criar função de apagar post escolhido - ID" + idAviso);
