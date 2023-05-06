@@ -21,9 +21,9 @@
         
               </div>
               <ul>
-                <li style="color: white;">
+                <li>
                   <i class="fa-solid fa-chart-line"></i>
-                  <a href=""><b style="color: white;" >Gráficos</b></a>
+                  <a href="./indexdash.html"><b  >Gráficos</b></a>
                 </li>
         
                 <li> 
@@ -37,12 +37,12 @@
 
                 <li>
                   <i class="fa-solid fa-address-card"></i>
-                  <a href=""><b>Usuário</b></a>
+                  <a href=""><b style="color: white;">Usuário</b></a>
                 </li>
 
                 <li>
                   <i class="fa-solid fa-headset"></i>
-                  <a href=""><b>Suporte</b></a>
+                  <a href="https://maxsolutions.auvo.com.br/Login#signin"><b>Suporte</b></a>
                 </li>
                 
                 <li>
@@ -58,21 +58,31 @@
            <h4>Nome do Funcionario:</h4>
            <input id="nome" name="nome" type="text">
            <h4>Cargo:</h4>
-           <input id="cargo" name="cargo" type="text">
+           <select name="cargo" id="cargo">
+            <option value="0">Selecione cargo</option>
+            <option value="1">Caixa</option>
+            <option value="2">Gerente</option>
+            <option value="3">Analista</option>
+          </select>
+          <h4>Email: </h4>
+          <input type="text" name="email" id="email">
            <button onclick="editar()">Editar</button>
         </div>
     </div>
 </body>
 </html>
 <script>
+   b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
   function editar() {
+    
         fetch(`/funcionarios/editar/${sessionStorage.getItem("ID_POSTAGEM_EDITANDO")}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
-                descricao: cargo.value
+                cargo: cargo.value,
+                email: email.value
             })
         }).then(function (resposta) {
 

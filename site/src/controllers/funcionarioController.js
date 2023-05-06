@@ -1,18 +1,21 @@
 var funcionarioModel = require("../models/funcionarioModel");
 
 function cadastrar(req, res) {
-    var nome = req.body.nome;
-    var cargo = req.body.cargo;
+    var nome = req.body.nomeServer;
+    var cargo = req.body.cargoServer;
     var idUsuario = req.params.idUsuario;
+    var email = req.body.emailServer;
 
     if (nome == undefined) {
         res.status(400).send("O nome está indefinido!");
     } else if (cargo == undefined) {
         res.status(400).send("O cargo está indefinido!");
     } else if (idUsuario == undefined) {
-        res.status(403).send("O id do usuário está indefinido!");
+        res.status(403).send("O email do usuário está indefinido!");
+    } else if (email == undefined) {
+        res.status(400).send("O id do usuário está indefinido!");
     } else {
-        funcionarioModel.cadastrar(nome, cargo, idUsuario)
+        funcionarioModel.cadastrar(nome, cargo, idUsuario, email)
             .then(
                 function (resultado) {
                     res.json(resultado);
@@ -61,10 +64,11 @@ function deletar(req, res) {
 }
 
 function editar(req, res) {
-    var novaDescricao = req.body.descricao;
+    var novoCargo = req.body.cargo;
+    var novoEmail = req.body.email;
     var idAviso = req.params.idAviso;
 
-    funcionarioModel.editar(novaDescricao, idAviso)
+    funcionarioModel.editar(novoCargo, novoEmail, idAviso)
         .then(
             function (resultado) {
                 res.json(resultado);

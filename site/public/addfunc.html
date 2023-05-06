@@ -61,7 +61,14 @@
                 <h2>Nome do Funcionario:</h2>
                 <input id="nome" name="nome" type="text">
                 <h2>Cargo:</h2>
-                <input id="cargo" name="cargo" type="text">
+                <select name="cargo" id="cargo">
+                  <option value="0">Selecione cargo</option>
+                  <option value="1">Caixa</option>
+                  <option value="2">Gerente</option>
+                  <option value="3">Analista</option>
+                </select>
+                <h2>Email:</h2>
+                <input type="text" id="email" name="email">
                 <button>Cadastrar</button>
             </form>
             </div>
@@ -73,17 +80,22 @@
     function cadastrar() {
         var idUsuario = sessionStorage.IDUSUARIO_USUARIO;
 
-        var corpo = {
-            nome: form_postagem.nome.value,
-            cargo: form_postagem.cargo.value
-        }
+      
+           var nomeVar = form_postagem.nome.value
+           var cargoVar = form_postagem.cargo.value
+           var emailVar = form_postagem.email.value
+        
 
         fetch(`/funcionarios/cadastrar/${idUsuario}`, {
             method: "post",
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify(corpo)
+            body: JSON.stringify({
+              nomeServer: nomeVar,
+              cargoServer:cargoVar,
+              emailServer:emailVar
+        })
         }).then(function (resposta) {
 
             console.log("resposta: ", resposta);

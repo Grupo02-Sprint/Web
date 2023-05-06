@@ -47,6 +47,9 @@
     margin-left: 0vh;
 }
 
+.menulateral ul li  i {
+    margin-right: 2vh;
+}
 .menulateral ul li:hover {
     color: white;
 }
@@ -116,6 +119,10 @@ ul{
 }
 
 .editar button{
-    width: 7vw;
+    width: 9vw;
     margin-top: 1vh;
+}
+
+.editar select{
+    width: 9vw ;
 }

@@ -39,6 +39,10 @@
     width: 15vh;
 }
 
+.menulateral ul li  i {
+    margin-right: 2vh;
+}
+
 .menulateral ul li a {
     text-decoration: none;
     color: black;

@@ -23,9 +23,9 @@
         
               </div>
               <ul>
-                <li style="color: white;">
+                <li>
                   <i class="fa-solid fa-chart-line"></i>
-                  <a href=""><b style="color: white;" >Gráficos</b></a>
+                  <a href="./indexdash.html "><b>Gráficos</b></a>
                 </li>
         
                 <li> 
@@ -37,14 +37,14 @@
                   <a href=""><b>Máquina</b></a>
                 </li>
 
-                <li>
+                <li style="color: white;">
                   <i class="fa-solid fa-address-card"></i>
-                  <a href=""><b>Usuário</b></a>
+                  <a href=""><b style="color: white;">Usuário</b></a>
                 </li>
 
                 <li>
                   <i class="fa-solid fa-headset"></i>
-                  <a href=""><b>Suporte</b></a>
+                  <a href="https://maxsolutions.auvo.com.br/Login#signin"><b>Suporte</b></a>
                 </li>
                 
                 <li>
@@ -67,6 +67,7 @@
 </body>
 </html>
 <script>
+   b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
     function adicionar(){
         window.location ="addfunc.html"
     }
@@ -91,54 +92,52 @@
         var tabela = document.createElement("table");
         tabela.className = "tabela";
 
-        // Cabeçalho da tabela
         var cabecalho = tabela.insertRow();
         var cabecalhoId = cabecalho.insertCell();
         cabecalhoId.innerHTML = "<b>ID</b>";
+        cabecalhoId.className = "id";
         var cabecalhoTitulo = cabecalho.insertCell();
         cabecalhoTitulo.innerHTML = "<b>Nome</b>";
         var cabecalhoNome = cabecalho.insertCell();
         cabecalhoNome.innerHTML = "<b>Função</b>";
+        var cabecalhoEmail = cabecalho.insertCell();
+        cabecalhoEmail.innerHTML = "<b>Email</b>";
         var cabecalhoAcao = cabecalho.insertCell();
         cabecalhoAcao.innerHTML = "<b>Ação</b>";
-       /* var cabecalhoEditar = cabecalho.insertCell();
-        cabecalhoEditar.innerHTML = "<b>Editar</b>";
-        var cabecalhoDeletar = cabecalho.insertCell();
-        cabecalhoDeletar.innerHTML = "<b>Deletar</b>";
-        var cabecalhoLog = cabecalho.insertCell();
-        cabecalhoLog.innerHTML = "<b>Log</b>";*/
+        cabecalhoAcao.className = "acao";
 
         for (let i = 0; i < resposta.length; i++) {
           var publicacao = resposta[i];
 
-          // Adicionar nova linha na tabela
           var novaLinha = tabela.insertRow();
 
-          // Adicionar células com os dados
           var id = novaLinha.insertCell();
           id.innerHTML = publicacao.idAviso;
 
           var titulo = novaLinha.insertCell();
-          titulo.innerHTML = publicacao.titulo;
+          titulo.innerHTML = publicacao.nomeAviso;
 
           var nome = novaLinha.insertCell();
-          nome.innerHTML = publicacao.descricao;
+          nome.innerHTML = publicacao.cargo;
+
+          var email = novaLinha.insertCell();
+          email.innerHTML = publicacao.emailAviso;
 
           var acao = novaLinha.insertCell();
           var btnEditar = document.createElement("button");
-          btnEditar.innerHTML = "Editar";
+          btnEditar.innerHTML = '<i class="fas fa-pencil-alt"></i>';
           btnEditar.className = "editar";
           btnEditar.setAttribute("onclick", `editar(${publicacao.idAviso})`);
           acao.appendChild(btnEditar);
 
           var btnDeletar = document.createElement("button");
-          btnDeletar.innerHTML = "Deletar";
+          btnDeletar.innerHTML = '<i class="fas fa-trash"></i>';
           btnDeletar.className = "deletar";
           btnDeletar.setAttribute("onclick", `deletar(${publicacao.idAviso})`);
           acao.appendChild(btnDeletar);
             
           var btnLog = document.createElement("button");
-          btnLog.innerHTML = "Log";
+          btnLog.innerHTML = '<i class="fa-solid fa-clipboard"></i>';
           btnLog.className = "log";
           btnLog.setAttribute("onclick", `log(${publicacao.idAviso})`);
           acao.appendChild(btnLog);

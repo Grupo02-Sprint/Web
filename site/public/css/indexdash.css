@@ -51,6 +51,10 @@
     margin-left: 0vh;
 }
 
+.menulateral ul li  i {
+    margin-right: 2vh;
+}
+
 .menulateral ul li:hover {
     color: white;
 }

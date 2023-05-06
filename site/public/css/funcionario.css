@@ -47,6 +47,11 @@
     margin-left: 0vh;
 }
 
+
+.menulateral ul li  i {
+    margin-right: 2vh;
+}
+
 .menulateral ul li:hover {
     color: white;
 }
@@ -131,7 +136,7 @@ ul{
 }
 
 table {
-    width: 30vw;
+    width: 40vw;
     height: 40vh;
     border-collapse: collapse;
     border: .2vh solid black;
@@ -145,13 +150,12 @@ tbody tr td {
     padding: 6px;
     max-width: 40vw;
     border: .2vh solid black;
-    background-color: white;
 }
 
 .deletar{
     background-color: #D83747;
-    height: 4vh;
-    width: 4vw;
+    height: 5vh;
+    width: 2.5vw;
     border: none;
     border-radius: .7vh;
     color: white;
@@ -159,8 +163,8 @@ tbody tr td {
 
 .editar{
     background-color: #007AFF;
-    height: 4vh;
-    width: 4vw;
+    height: 5vh;
+    width: 2.5vw;
     border: none;
     border-radius: .7vh;
     color: white;
@@ -168,9 +172,26 @@ tbody tr td {
 
 .log{
     background-color: #FFBE0A;
-    height: 4vh;
-    width: 4vw;
+    height: 5vh;
+    width: 2.5vw;
     border: none;
     border-radius: .7vh;
     color: black;
 }
+
+tr:nth-child(odd) {
+    background-color: #e6e6e6;
+  }
+  
+  tr:nth-child(even) {
+    background-color: #FFFFFF;
+  }
+  
+  tr:hover {
+    background-color: #cdcdcd;
+  }
+  
+  tr td {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }

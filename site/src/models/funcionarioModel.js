@@ -1,9 +1,9 @@
 var database = require("../database/config");
 
-function cadastrar(nome, cargo, idUsuario) {
-    console.log("ACESSEI O FUNCIONARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrar(): ", nome, cargo, idUsuario);
+function cadastrar(nome, cargo, idUsuario, email) {
+    console.log("ACESSEI O FUNCIONARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrar(): ", nome, cargo, idUsuario, email);
     var instrucao = `
-        INSERT INTO aviso (titulo, descricao, fk_usuario) VALUES ('${nome}', '${cargo}', ${idUsuario});
+        INSERT INTO aviso (nomeAviso, cargo, fk_usuario, emailAviso) VALUES ('${nome}', '${cargo}', ${idUsuario}, '${email}');
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
@@ -14,8 +14,9 @@ function listar() {
     var instrucao = `
         SELECT 
             a.id AS idAviso,
-            a.titulo,
-            a.descricao,
+            a.nomeAviso,
+            a.cargo,
+            a.emailAviso,
             a.fk_usuario,
             u.idUsuario AS idUsuario,
             u.nome,
@@ -38,10 +39,10 @@ function deletar(idAviso) {
     return database.executar(instrucao);
 }
 
-function editar(novaDescricao, idAviso) {
-    console.log("ACESSEI O AVISO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function editar(): ", novaDescricao, idAviso);
+function editar(novoCargo, novoEmail, idAviso) {
+    console.log("ACESSEI O AVISO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function editar(): ", novoCargo, novoEmail, idAviso);
     var instrucao = `
-        UPDATE aviso SET descricao = '${novaDescricao}' WHERE id = ${idAviso};
+        UPDATE aviso SET cargo = '${novoCargo}', emailAviso = '${novoEmail}' WHERE id = ${idAviso};
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
