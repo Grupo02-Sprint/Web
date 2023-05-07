@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/eb115129d4.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="./css/editfunc.css">
     <title>Document</title>
 </head>
@@ -53,21 +54,27 @@
                 </li>
               </ul>
         </div>
+        <div class="resto">
         <div class="editar">
-           <h2>Editar funcionario</h2>
-           <h4>Nome do Funcionario:</h4>
+          <div class="titulo">
+           <h2>Editar Funcionário</h2>
+           </div>
+           <div class="dados">
+           <h4>Nome</h4>
            <input id="nome" name="nome" type="text" disabled>
-           <h4>Cargo:</h4>
+           <h4>Cargo</h4>
            <select name="cargo" id="cargo">
             <option value="0">Selecione cargo</option>
             <option value="1">Caixa</option>
             <option value="2">Gerente</option>
             <option value="3">Analista</option>
           </select>
-          <h4>Email: </h4>
+          <h4>Email</h4>
           <input type="text" name="email" id="email">
+        </div>
            <button onclick="editar()">Editar</button>
         </div>
+      </div>
     </div>
 </body>
 </html>

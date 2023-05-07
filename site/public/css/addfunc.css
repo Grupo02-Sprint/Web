@@ -10,14 +10,13 @@
     height: 100vh;
     width: 100vw;
     align-items: center;
-    justify-content: space-evenly;
 }
 
 .menulateral {
     background-color: #195e63;
     padding: 0vh 2vh;
     width: 15vw;
-    height: 95vh;
+    height: 100vh;
     color: #fff;
     font-family: Arial, Helvetica, sans-serif;
     display: flex;
@@ -107,16 +106,92 @@ ul{
     font-size: 4vh;
 }
 
+.resto{
+    height: 100vh;
+    width: 100vw;
+    background-color: #d8e5e8;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .adicionar{
+    background-color: #FEFEFE;
+    height: 80vh;
+    width: 40vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.cadastro{
+    width: 24vw;
+    height: 6vh;
     background-color: #195e63;
-    height: 95vh;
-    width: 70vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    border-radius: .5vh;
+}
+
+.div_form{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+#form_postagem {
     display: flex;
     flex-direction: column;
 }
 
-.caixa{
-    height: 40vh;
+#form_postagem h4{
+    margin-top: 2.5vh;
+}
+
+button{
+    margin-top: 3vh;
+    height: 5vh;
+    width: 10vw;
+    background-color: #195e63;
+    border: none;
+    box-shadow: 0 9px #999;
+}
+
+button:hover{
+    background-color: #47949a;
+}
+
+button:active {
+    transform: scale(0.85);
+    box-shadow: 0 5px #666;
+    
+}
+
+select{
+    width: 30.5vw;
+    height: 4.5vh;
+}
+
+input{
     width: 30vw;
-    background-color: purple;
+    height: 3.5vh;
+}
+
+.senha{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 4vh;
+    height: 8vh;
+    width: 27vw;
+    background-color: #195e63;
+    color: white;
+    border-radius: .5vh;
+    padding: 3vh 3vh;
+}
+.display-none {
+    display: none;
 }

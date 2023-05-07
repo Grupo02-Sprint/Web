@@ -58,7 +58,7 @@
         <div class="crud">
             <div class="adicionar">
                 <h2>Adicionar um funcionário</h2>
-                <button onclick="adicionar()">Adicionar</button>
+                <button onclick="adicionar()"><i class="fa-solid fa-plus"></i></button>
             </div>
             <div id="exibir" class="exibir">
             </div>
@@ -88,7 +88,7 @@
         console.log("Dados recebidos: ", JSON.stringify(resposta));
 
         var feed = document.getElementById("exibir");
-        feed.innerHTML = "";
+        feed.innerHTML = "<h2>Funcionários</h2>";
         var tabela = document.createElement("table");
         tabela.className = "tabela";
 

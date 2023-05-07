@@ -1,6 +1,7 @@
 * {
     margin: 0;
     font-family: Arial, Helvetica, sans-serif;
+    
 }
 
 .tudo {
@@ -11,14 +12,13 @@
     width: 100vw;
     align-items: center;
     justify-content: space-evenly;
-    margin-left: 3vh    ;
 }
 
 .menulateral {
     background-color: #195e63;
     padding: 0vh 2vh;
     width: 40vh;
-    height: 95vh;
+    height: 100vh;
     color: #fff;
     font-family: Arial, Helvetica, sans-serif;
     display: flex;
@@ -125,7 +125,7 @@ ul{
     display: flex;
     align-items: center;
     justify-content: space-around;
-    background-color: #195e63;
+    background-color: #FEFEFE;
     height: 10vh;
    /* border: 0.5vh solid black;*/
     font-size: 3vh;
@@ -135,10 +135,6 @@ ul{
     text-decoration: none;
     list-style: none;
     color: black;
-}
-
-.maquina a :hover{
-    color: white;
 }
 
 .maquina select{
@@ -157,10 +153,9 @@ ul{
 .plot{
     display: flex;
     flex-direction: column;
-    background-color: #195e63;
     height: 80vh;
     width: 110vh;
-    justify-content: space-evenly;
+    justify-content: space-between;
     align-items: center;
     margin-top: 4vh;
    /* border: 0.5vh solid black;*/
@@ -177,7 +172,7 @@ ul{
 
 .vazio{
     display: flex;
-    background-color: #195e63;
+    background-color: #FEFEFE;
     height: 30vh;
     width: 39vh;
    /* border: 0.5vh solid black;*/
@@ -185,7 +180,7 @@ ul{
 
 .botao{
     display: flex;
-    background-color: #195e63;
+    background-color:#FEFEFE ;
     height: 45vh;
     width: 39vh;
    /* border: 0.5vh solid black;*/
@@ -201,30 +196,30 @@ ul{
 .um{
     display: flex;
     flex-direction: row;
-    background-color: #25848a;
+    background-color: #FEFEFE;
     height: 15vh;
-    width: 100vh;
+    width: 110vh;
     align-items: center;
   /*  border: 0.5vh solid black;*/
     justify-content: space-between;
 }
 
 .dois{
-    background-color: #25848a;
-    width: 100vh;
-    height: 48vh;
+    background-color: #FEFEFE;
+    width: 110vh;
+    height: 60vh;
    /* border: 0.5vh solid black;*/
 }
 
 .parada{
-    background-color: #195e63 ;
+    background-color: #d8e5e8 ;
     width: 25vh;
     height: 8vh;
     margin-left: 5vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    border-radius: 1vh;
+    border-radius: .25vh;
    /* border: 0.5vh solid black;*/
 }
 
@@ -301,6 +296,10 @@ ul{
     flex-direction: column;
 }
 
+button:hover{
+    background-color: white;
+}
+
 .botao p{
     font-size: 3vh;
 }
@@ -342,7 +341,7 @@ select {
     -moz-appearance: none;
     /*border: .5vh solid black;*/
     font-size: 2.5vh;
-    background-color: #25848a;
+    background-color: #d8e5e8;
 }
 
 .display-none {
