@@ -1,0 +1,392 @@
+* {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.tudo {
+    background-color: #d8e5e8;
+    display: flex;
+    flex-direction: row;
+    height: 100vh;
+    width: 100vw;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.menulateral {
+    background-color: #195e63;
+    padding: 0vh 2vh;
+    width: 15vw;
+    height: 100vh;
+    color: #fff;
+    font-family: Arial, Helvetica, sans-serif;
+    display: flex;
+    flex-direction: column;
+}
+
+.menulateral ul {
+    width: 100%;
+    margin-right: 15vh;
+    margin-left: 0vh;
+    font-size: 2.5vh;
+}
+
+.menulateral ul li {
+    text-decoration: none;
+    list-style: none;
+    margin: 1vh;
+    color: black;
+    width: 15vh;
+}
+
+.menulateral ul li a {
+    text-decoration: none;
+    color: black;
+    width: 15vh;
+    display: flex;
+    margin-left: 0vh;
+}
+
+.menulateral ul li  i {
+    margin-right: 2vh;
+}
+
+.menulateral ul li:hover {
+    color: white;
+}
+
+.menulateral ul li:hover a {
+    color: white;
+}
+
+.menulateral ul {
+    padding-inline-start: 0%;
+}
+
+.menulateral li{
+    display: flex;
+    flex-direction: row;
+}
+
+.menulateral img{
+    border-radius: 50vh;
+}
+
+.logo{
+    background-color: #ffffff;
+    border-radius: 1vh;
+    width: 4.7vh;
+    height: 5.1vh;
+    margin-bottom: 5vh;
+    margin-top: 2vh;
+}
+
+.logo img{
+    height: 5.4vh;
+}
+
+ul{
+    height: 35vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.hello {
+    padding: 1vh;
+    text-align: center;
+    margin-bottom: 5vh;
+}
+
+.hello img{
+    height: 20vh;
+    width: 20vh;
+}
+
+.hello h2{
+    font-size: 4vh;
+}
+
+.crud{
+    background-color: #d8e5e8;
+    height: 95vh;
+    width: 70vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.adicionar{
+    height: 10vh;
+    width: 60vw;
+    background-color: #FEFEFE;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.adicionar button{
+    margin-left: 2vh;
+    height: 5vh;
+    width: 2.5vw;
+    border: none;
+    border-radius: .7vh;
+    color: white;
+    background-color: #5CB85C;
+}
+
+.adicionar button:hover{
+    background-color: #0a850a;
+}
+
+.exibir{
+    height: 80vh;
+    width: 60vw;
+    background-color: #FEFEFE;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.exibir h2{
+    margin-bottom: 1.5vh;
+}
+
+.maquinas{
+    height: 80vh;
+    width: 60vw;
+    overflow-y: auto; 
+    height: 80vh;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    overflow: auto; 
+    background-color: rgba(0,0,0,0.4); 
+  }
+  
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 40vw;
+    height: 30vh;   
+    margin-right: 37vh;
+}
+
+.modal-content button{
+    height: 5vh;
+    width: 8vw;
+    margin-top: 4vh;
+    background-color: #195e63;
+}
+  
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+  
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+  
+.dados{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.titulo{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.titulo h2{
+    background-color: #195e63;
+    padding: 1vh 2vh;
+    color: white;
+    border-radius: .5vh;
+    margin-bottom: 4vh;
+}
+
+.tudomodal{
+    display: flex;
+    flex-direction: column;
+    
+}
+
+.botao{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+input{
+    width: 39.5vw;
+    height: 3.5vh;
+}
+
+.botao button{
+    margin-top: 3vh;
+    height: 5vh;
+    width: 10vw;
+    background-color: #195e63;
+    border: none;
+    box-shadow: 0 9px #999;
+}
+
+.botao button:hover{
+    background-color: #47949a;
+}
+
+.botao button:active {
+    transform: scale(0.85);
+    box-shadow: 0 5px #666;
+    
+}
+
+.publicacao{
+    background-color: #195e63;
+    margin-bottom: 2vh;
+    padding: 2vh 2vh;
+    width: 14vw;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    height: 25vh;
+}
+
+.publicacao-btn-dasboard{
+    background-color: #5CB85C;
+    height: 14vh;
+    width: 14vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: .5vh;
+}
+
+.publicacao-btn-dasboard{
+    height: 14vh;
+    width: 14vw;
+    background-color: #5CB85C;
+    border: none;
+}
+
+.publicacao-btn-dasboard:hover{
+    background-color: #47949a;
+}
+
+.publicacao-btn-dasboard:active {
+    transform: scale(0.85);
+}
+
+.publicacao-btn-editar{
+    background-color: #007AFF;
+    height: 5vh;
+    width: 2.5vw;
+    border: none;
+    border-radius: .7vh;
+    color: white;
+    margin-top: 1.5vh;
+    margin-left: 17vh;
+}
+
+.publicacao-btn-deletar{
+    background-color: #D83747;
+    height: 5vh;
+    width: 2.5vw;
+    border: none;
+    border-radius: .7vh;
+    color: white;
+    margin-left: 1.9vh;
+}
+
+.maquinas {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.tituloexibir{
+    margin-top: 4vh;
+}
+  
+.modal1 {
+    display: none; 
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    overflow: auto; 
+    background-color: rgba(0,0,0,0.4); 
+  }
+  
+.modal1-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 40vw;
+    height: 30vh;   
+    margin-right: 37vh;
+}
+
+.modal1-content button{
+    height: 5vh;
+    width: 8vw;
+    margin-top: 4vh;
+    background-color: #195e63;
+}
+  
+.close1 {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+  
+.close1:hover,
+.close1:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+  
+.dados1{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.titulo1{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.titulo1 h2{
+    background-color: #195e63;
+    padding: 1vh 2vh;
+    color: white;
+    border-radius: .5vh;
+    margin-bottom: 4vh;
+}

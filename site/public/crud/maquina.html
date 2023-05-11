@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/eb115129d4.js" crossorigin="anonymous"></script>
+    <script src="../js/funcoes.js"></script>
+    <link rel="stylesheet" href="../crudcss/maquina.css">
+    <title>Máquinas</title>
+</head>
+<body onload="validarSessao(), atualizarFeed()">
+    <div class="tudo">
+        <div class="menulateral">
+            <div class="logo">
+               <a href="index.html"><img src="../icons/logo.png" alt="" height="35vh"></a>
+            </div>
+            <div class="hello">
+        
+              <img src="../assets/WhatsApp Image 2023-01-30 at 23.12.16.jpeg" alt="">
+
+                <h2><span id="b_usuario">Dionísio</span></h2>
+        
+              </div>
+              <ul>
+                <li>
+                  <i class="fa-solid fa-chart-line"></i>
+                  <a href="./indexdash.html "><b>Gráficos</b></a>
+                </li>
+        
+                <li> 
+                  <i class="fa-solid fa-user"></i>
+                  <a cla href=""><b>Perfil</b></a>
+                </li>
+
+                <li style="color: white;">
+                  <i class="fa-solid fa-computer"></i>
+                  <a href=""><b style="color: white;">Máquina</b></a>
+                </li>
+
+                <li>
+                  <i class="fa-solid fa-address-card"></i>
+                  <a href="../funcionario.html"><b>Usuário</b></a>
+                </li>
+
+                <li>
+                  <i class="fa-solid fa-headset"></i>
+                  <a href="https://maxsolutions.auvo.com.br/Login#signin"><b>Suporte</b></a>
+                </li>
+                
+                <li>
+                  <a href="login.html">
+                    <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                    <span class="menu" onclick="limparSessao()"><b>Sair</b></span>
+                  </a>
+                </li>
+              </ul>
+        </div>
+        <div class="crud">
+           <div class="adicionar">
+            <h2>Adicionar uma Máquina</h2>
+            <button onclick="adicionar()"><i class="fa-solid fa-plus"></i></button>
+            <div id="myModal" class="modal">
+              <div class="modal-content">
+                <span class="close">&times;</span>
+                <div class="tudomodal">
+                <div class="titulo">
+                <h2>Cadastrar Máquina</h2>
+                </div>
+                <div class="dados">
+                <h4>Patrimônio</h4>
+                <input type="text" id="patrimonio" class="patrimonio">
+              </div>
+            </div>
+            <div class="botao">
+            <button onclick="cadastrar()">Cadastrar</button>
+                </div>
+              </div>
+            </div>
+           </div>
+           <div class="exibir">
+            <div class="tituloexibir">
+              <h2>Máquinas</h2>
+              <div id="myModal1" class="modal1">
+                <div class="modal1-content">
+                  <span class="close1">&times;</span>
+                  <div class="tudomodal">
+                  <div class="titulo1">
+                  <h2>Cadastrar Máquina</h2>
+                  </div>
+                  <div class="dados1">
+                  <h4>Patrimônio</h4>
+                  <input type="text" id="patrimonioEdit" class="patrimonioEdit">
+                </div>
+              </div>
+              <div class="botao">
+              <button onclick="editar()">Editar</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="maquinas" id="maquinas"></div>
+           </div>
+        </div>
+    </div>
+</body>
+</html>
+<script>
+  var idMaquinaEdit = null;
+  b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
+  
+  function adicionar(){
+
+      var modal = document.getElementById("myModal");
+
+      var btn = document.querySelector(".adicionar button");
+
+      var span = document.getElementsByClassName("close")[0];
+
+      btn.onclick = function() {
+        modal.style.display = "block";
+      }
+
+      span.onclick = function() {
+        modal.style.display = "none";
+      }
+
+      window.onclick = function(event) {
+        if (event.target == modal) {
+          modal.style.display = "none";
+        }
+      }
+
+      
+
+    }
+
+  function abrirEditar(idMaquina) {
+    console.log("Abrir modal",idMaquina);
+      idMaquinaEdit = idMaquina;
+      var modal1 = document.getElementById("myModal1");
+      var span = document.getElementsByClassName("close1")[0];
+
+      modal1.style.display = "block";
+
+      span.onclick = function() {
+        modal1.style.display = "none";
+      }
+
+      window.onclick = function(event) {
+        if (event.target == modal1) {
+          modal1.style.display = "none";
+        }
+      }
+    }
+
+
+    function cadastrar() {
+           var idUsuario = sessionStorage.IDUSUARIO_USUARIO;       
+           var patrimonioVar = patrimonio.value
+
+        fetch(`/maquinas/cadastrar/${idUsuario}`, {
+            method: "post",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+              patrimonioServer: patrimonioVar
+        })
+        }).then(function (resposta) {
+
+            console.log("resposta: ", resposta);
+
+            if (resposta.ok) {
+                window.alert("Cadastro realizado com sucesso pelo usuario de ID: " + idUsuario + "!");
+                window.location = "maquina.html"
+                limparFormulario();
+                finalizarAguardar();
+            } else if (resposta.status == 404) {
+                window.alert("Deu 404!");
+            } else {
+                throw ("Houve um erro ao tentar realizar a postagem! Código da resposta: " + resposta.status);
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+            finalizarAguardar();
+        });
+
+        return false;
+
+    }
+
+    function atualizarFeed() {
+        //aguardar();
+        fetch("/maquinas/listar").then(function (resposta) {
+
+            
+            if (resposta.ok) {
+                if (resposta.status == 204) {
+                    var feed = document.getElementById("maquinas");
+                    var mensagem = document.createElement("span");
+                    mensagem.innerHTML = "Nenhum resultado encontrado."
+                    feed.appendChild(mensagem);
+                    throw "Nenhum resultado encontrado!!";
+                }
+
+                resposta.json().then(function (resposta) {
+                    console.log("Dados recebidos: ", JSON.stringify(resposta));
+
+                    var feed = document.getElementById("maquinas");
+                    feed.innerHTML = "";
+                    for (let i = 0; i < resposta.length; i++) {
+                        var publicacao = resposta[i];
+
+                        // criando e manipulando elementos do HTML via JavaScript
+                        var divPublicacao = document.createElement("div");
+                        var spanID = document.createElement("span");
+                        var spanTitulo = document.createElement("span");
+                        var spanNome = document.createElement("span");
+                        var btnDashboard = document.createElement("div");
+                        var divButtons = document.createElement("div");
+                        var btnEditar = document.createElement("button");
+                        var btnDeletar = document.createElement("button");
+
+
+                        spanID.innerHTML = "<b>Máquina: </b>" + publicacao.idMaquina +"<br>" ;
+                        spanTitulo.innerHTML = "<b>Patrimonio: </b>" + publicacao.patrimonio;
+                        btnEditar.innerHTML = '<i class="fas fa-pencil-alt"></i>';
+                        btnDeletar.innerHTML = '<i class="fas fa-trash"></i>';
+                        btnDashboard.innerHTML = '<img src="../assets/computador.png" alt="" height="85vh" width="85vw">'
+                        divPublicacao.className = "publicacao";
+                        spanTitulo.id = "inputNumero" + publicacao.idMaquina;
+                        spanNome.className = "publicacao-nome";
+                        spanTitulo.className = "publicacao-titulo";
+
+                        divButtons.className = "div-buttons"
+
+                        btnDashboard.className = "publicacao-btn-dasboard";
+                        btnDashboard.id = "btnDashboard" + publicacao.idMaquina
+                        btnEditar.setAttribute("onclick", `dashboard(${publicacao.idMaquina})`);
+
+                        btnEditar.className = "publicacao-btn-editar"
+                        btnEditar.id = "btnEditar" + publicacao.idMaquina;
+                        btnEditar.setAttribute("onclick", `abrirEditar(${publicacao.idMaquina})`);
+
+                        btnDeletar.className = "publicacao-btn-deletar"
+                        btnDeletar.id = "btnDeletar" + publicacao.idMaquina;
+                        btnDeletar.setAttribute("onclick", `deletar(${publicacao.idMaquina})`);
+
+                        divPublicacao.appendChild(spanID);
+                        divPublicacao.appendChild(spanNome);
+                        divPublicacao.appendChild(spanTitulo);
+                        divPublicacao.appendChild(btnDashboard);
+                        divPublicacao.appendChild(divButtons);
+                        divButtons.appendChild(btnEditar);
+                        divButtons.appendChild(btnDeletar);
+                        feed.appendChild(divPublicacao);
+                    }
+
+                    finalizarAguardar();
+                });
+            } else {
+                throw ('Houve um erro na API!');
+            }
+        }).catch(function (resposta) {
+            console.error(resposta);
+            finalizarAguardar();
+        });
+    }
+
+    function editar() {
+
+     // console.log("Inicio da função",idMaquina);
+    fetch("/maquinas/editar", {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            patrimonio: patrimonioEdit.value,
+            idMaquina: idMaquinaEdit
+        })
+    }).then(function (resposta) {
+
+        if (resposta.ok) {
+            window.alert("Funcionario atualizado com sucesso pelo usuario de email: " + sessionStorage.getItem("EMAIL_USUARIO") + "!");
+            window.location = "maquina.html"
+        } else if (resposta.status == 404) {
+            window.alert("Deu 404!");
+        } else {
+            throw ("Houve um erro ao tentar realizar a postagem! Código da resposta: " + resposta.status);
+        }
+    }).catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+    });
+}
+
+function deletar(idMaquina) {
+        console.log("Criar função de apagar post escolhido - ID" + idMaquina);
+        fetch(`/maquinas/deletar/${idMaquina}`, {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json"
+            }
+        }).then(function (resposta) {
+
+            if (resposta.ok) {
+                window.alert("Post deletado com sucesso pelo usuario de email: " + sessionStorage.getItem("EMAIL_USUARIO") + "!");
+                window.location = "maquina.html"
+            } else if (resposta.status == 404) {
+                window.alert("Deu 404!");
+            } else {
+                throw ("Houve um erro ao tentar realizar a postagem! Código da resposta: " + resposta.status);
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+        });
+    }
+</script>
