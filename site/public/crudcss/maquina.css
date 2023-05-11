@@ -199,7 +199,7 @@ ul{
   
 .close:hover,
 .close:focus {
-    color: black;
+    color: red;
     text-decoration: none;
     cursor: pointer;
 }
@@ -307,6 +307,10 @@ input{
     margin-left: 17vh;
 }
 
+.publicacao-btn-editar:hover{
+    background-color: #0048ff;
+}
+
 .publicacao-btn-deletar{
     background-color: #D83747;
     height: 5vh;
@@ -315,6 +319,10 @@ input{
     border-radius: .7vh;
     color: white;
     margin-left: 1.9vh;
+}
+
+.publicacao-btn-deletar:hover{
+    background-color: #ba0606;
 }
 
 .maquinas {
@@ -365,7 +373,7 @@ input{
   
 .close1:hover,
 .close1:focus {
-    color: black;
+    color: red;
     text-decoration: none;
     cursor: pointer;
 }
