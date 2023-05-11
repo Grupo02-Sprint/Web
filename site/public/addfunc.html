@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/eb115129d4.js" crossorigin="anonymous"></script>
+    <script src="../js/funcoes.js"></script>
+    <link rel="stylesheet" href="./css/addfunc.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="tudo">
+        <div class="menulateral">
+            <div class="logo">
+               <a href="index.html"><img src="./icons/logo.png" alt="" height="35vh"></a>
+            </div>
+            <div class="hello">
+        
+              <img src="./assets/WhatsApp Image 2023-01-30 at 23.12.16.jpeg" alt="">
+
+                <h2><span id="b_usuario">Dionísio</span></h2>
+        
+              </div>
+              <ul>
+                <li style="color: white;">
+                  <i class="fa-solid fa-chart-line"></i>
+                  <a href=""><b style="color: white;" >Gráficos</b></a>
+                </li>
+        
+                <li> 
+                  <i class="fa-solid fa-user"></i>
+                  <a cla href=""><b>Perfil</b></a></li>
+
+                <li>
+                  <i class="fa-solid fa-computer"></i>
+                  <a href=""><b>Máquina</b></a>
+                </li>
+
+                <li>
+                  <i class="fa-solid fa-address-card"></i>
+                  <a href=""><b>Usuário</b></a>
+                </li>
+
+                <li>
+                  <i class="fa-solid fa-headset"></i>
+                  <a href=""><b>Suporte</b></a>
+                </li>
+                
+                <li>
+                  <a href="login.html">
+                    <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                    <span class="menu" onclick="limparSessao()"><b>Sair</b></span>
+                  </a>
+                </li>
+              </ul>
+        </div>
+        <div class="resto">
+        <div class="adicionar">
+          <div class="cadastro">
+            <h2>Cadastro de Funcionário</h2>
+          </div>
+            <div class="div_form">
+                <form id="form_postagem" method="post" onsubmit="return cadastrar()">
+                <h4>Nome</h4>
+                <input id="nome" name="nome" type="text">
+                <h4>Cargo</h4>
+                <select name="cargo" id="cargo">
+                  <option value="0">Selecione cargo</option>
+                  <option value="1">Gerente</option>
+                  <option value="2">Analista</option>
+                </select>
+                <h4>Email</h4>
+                <input type="text" id="email" name="email">
+              </form>
+              <button onclick="cadastrar()">Cadastrar</button>
+            <div class="display-none" id="senha">Senha</div>
+            </div>
+        </div>
+      </div>
+    </div>
+</body>
+</html>
+<script>
+  b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
+  
+  var caracteres = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789@#$%^&_";
+  var senha="";
+  for(var i=0;i<=8;i++){
+      senha+= caracteres.charAt(Math.floor(Math.random() * caracteres.length));
+  }
+    function cadastrar() {
+           var idUsuario = sessionStorage.IDUSUARIO_USUARIO;       
+           var nomeVar = form_postagem.nome.value
+           var cargoVar = form_postagem.cargo.value
+           var emailVar = form_postagem.email.value
+        
+
+        fetch(`/funcionarios/cadastrar/${idUsuario}`, {
+            method: "post",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+              nomeServer: nomeVar,
+              cargoServer:cargoVar,
+              emailServer:emailVar
+        })
+        }).then(function (resposta) {
+
+            console.log("resposta: ", resposta);
+
+            if (resposta.ok) {
+                window.alert("Post realizado com sucesso pelo usuario de ID: " + idUsuario + "!");
+                document.getElementById("senha").innerHTML =`Senha do ${nomeVar}: ${senha}<br>A senha será enviado no email ${emailVar}`;
+                let mostrarSenha = document.getElementById(`senha`)
+                mostrarSenha.classList.remove("display-none")
+                mostrarSenha.classList.add("senha")
+                /*setTimeout(function() {
+                  window.location = "funcionario.html";
+                }, 60000);*/
+                limparFormulario();
+                finalizarAguardar();
+            } else if (resposta.status == 404) {
+                window.alert("Deu 404!");
+            } else {
+                throw ("Houve um erro ao tentar realizar a postagem! Código da resposta: " + resposta.status);
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+            finalizarAguardar();
+        });
+
+        return false;
+
+    }
+</script>

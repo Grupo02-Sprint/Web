@@ -1,6 +1,7 @@
 * {
     margin: 0;
     font-family: Arial, Helvetica, sans-serif;
+    
 }
 
 .tudo {
@@ -8,19 +9,20 @@
     display: flex;
     flex-direction: row;
     height: 100vh;
+    width: 100vw;
+    align-items: center;
+    justify-content: space-evenly;
 }
 
 .menulateral {
     background-color: #195e63;
     padding: 0vh 2vh;
     width: 40vh;
-    height: 95vh;
+    height: 100vh;
     color: #fff;
     font-family: Arial, Helvetica, sans-serif;
     display: flex;
     flex-direction: column;
-    margin-left: 4vh;
-    margin-top: 3vh;
 }
 
 .menulateral ul {
@@ -44,6 +46,10 @@
     width: 15vh;
     display: flex;
     margin-left: 0vh;
+}
+
+.menulateral ul li  i {
+    margin-right: 2vh;
 }
 
 .menulateral ul li:hover {
@@ -110,13 +116,12 @@ ul {
     background-color: #d8e5e8;
 }
 
-.maquina {
-    margin-top: 3vh;
+.maquina{
     width: 153.5vh;
     display: flex;
     align-items: center;
     justify-content: space-around;
-    background-color: #195e63;
+    background-color: #FEFEFE;
     height: 10vh;
     font-size: 3vh;
 }
@@ -127,11 +132,7 @@ ul {
     color: black;
 }
 
-.maquina a :hover {
-    color: white;
-}
-
-.maquina select {
+.maquina select{
     border-radius: 1vh;
     padding: 1vh;
 }
@@ -146,10 +147,9 @@ ul {
 .plot {
     display: flex;
     flex-direction: column;
-    background-color: #195e63;
     height: 80vh;
     width: 110vh;
-    justify-content: space-evenly;
+    justify-content: space-between;
     align-items: center;
     margin-top: 4vh;
 }
@@ -165,14 +165,14 @@ ul {
 
 .vazio {
     display: flex;
-    background-color: #195e63;
+    background-color: #FEFEFE;
     height: 30vh;
     width: 39vh;
 }
 
 .botao {
     display: flex;
-    background-color: #195e63;
+    background-color:#FEFEFE ;
     height: 45vh;
     width: 39vh;
     flex-direction: column;
@@ -187,28 +187,29 @@ ul {
 .um {
     display: flex;
     flex-direction: row;
-    background-color: #25848a;
+    background-color: #FEFEFE;
     height: 15vh;
-    width: 100vh;
+    width: 110vh;
     align-items: center;
     justify-content: space-between;
 }
 
-.dois {
-    background-color: #25848a;
-    width: 100vh;
-    height: 48vh;
+.dois{
+    background-color: #FEFEFE;
+    width: 110vh;
+    height: 60vh;
 }
 
-.parada {
-    background-color: #195e63;
+.parada{
+    background-color: #d8e5e8 ;
+
     width: 25vh;
     height: 8vh;
     margin-left: 5vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    border-radius: 1vh;
+    border-radius: .25vh;
 }
 
 .parada p {
@@ -281,7 +282,11 @@ ul {
     flex-direction: column;
 }
 
-.botao p {
+button:hover{
+    background-color: white;
+}
+
+.botao p{
     font-size: 3vh;
 }
 
@@ -321,7 +326,7 @@ select {
     -webkit-appearance: none;
     -moz-appearance: none;
     font-size: 2.5vh;
-    background-color: #25848a;
+    background-color: #d8e5e8;
 }
 
 .display-none {
@@ -371,4 +376,54 @@ select {
     margin-left: 2vh;
     margin-top: 5vh;
     font-size: 2.5vh;
+}  
+
+.verde{
+    height: 1vh;
+    width: 5vw;
+}
+
+.amarelo{
+    height: 1vh;
+    width: 5vw;
+}
+
+.vermelho{
+    height: 1vh;
+    width: 5vw;
+}
+
+#kpi{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.vermkpi{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end ;
+}
+
+.amarkpi{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end ;
+}
+
+.verkpi{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end ;
+}
+
+.kpidupla{
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+    width: 5vw;
+}
+
+.botao p{
+    font-size: 2vh;
 }
