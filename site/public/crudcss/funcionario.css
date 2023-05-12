@@ -152,14 +152,19 @@ ul{
 }
 
 .exibir h2{
-    margin-bottom: 1.5vh;
+    margin-bottom: 2vh;
+    margin-top: 4vh;
 }
 
 table {
-    width: 40vw;
-    height: 40vh;
+    width: 60vw;
+    height: 80vh;
     border-collapse: collapse;
     border: .2vh solid black;
+    display: flex;
+    overflow-y: auto; 
+    justify-content: center;
+    border: none;
 }
   
 tr {

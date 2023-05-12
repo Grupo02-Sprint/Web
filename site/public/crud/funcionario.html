@@ -6,18 +6,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://kit.fontawesome.com/eb115129d4.js" crossorigin="anonymous"></script>
     <script src="../js/funcoes.js"></script>
-    <link rel="stylesheet" href="./css/funcionario.css">
+    <link rel="stylesheet" href="../crudcss/funcionario.css">
     <title>Document</title>
 </head>
 <body onload="validarSessao(), atualizarFeed()">
     <div class="tudo">
         <div class="menulateral">
             <div class="logo">
-               <a href="index.html"><img src="./icons/logo.png" alt="" height="35vh"></a>
+               <a href="index.html"><img src="../icons/logo.png" alt="" height="35vh"></a>
             </div>
             <div class="hello">
         
-              <img src="./assets/WhatsApp Image 2023-01-30 at 23.12.16.jpeg" alt="">
+              <img src="../assets/WhatsApp Image 2023-01-30 at 23.12.16.jpeg" alt="">
 
                 <h2><span id="b_usuario">Dionísio</span></h2>
         
@@ -25,7 +25,7 @@
               <ul>
                 <li>
                   <i class="fa-solid fa-chart-line"></i>
-                  <a href="./indexdash.html "><b>Gráficos</b></a>
+                  <a href="../indexdash.html "><b>Gráficos</b></a>
                 </li>
         
                 <li> 
@@ -34,12 +34,12 @@
 
                 <li>
                   <i class="fa-solid fa-computer"></i>
-                  <a href=""><b>Máquina</b></a>
+                  <a href="maquina.html"><b>Máquina</b></a>
                 </li>
 
                 <li style="color: white;">
                   <i class="fa-solid fa-address-card"></i>
-                  <a href=""><b style="color: white;">Usuário</b></a>
+                  <a href="funcionario.html"><b style="color: white;">Usuário</b></a>
                 </li>
 
                 <li>
@@ -136,11 +136,6 @@
           btnDeletar.setAttribute("onclick", `deletar(${publicacao.idAviso})`);
           acao.appendChild(btnDeletar);
             
-          var btnLog = document.createElement("button");
-          btnLog.innerHTML = '<i class="fa-solid fa-clipboard"></i>';
-          btnLog.className = "log";
-          btnLog.setAttribute("onclick", `log(${publicacao.idAviso})`);
-          acao.appendChild(btnLog);
         }
 
         feed.appendChild(tabela);
