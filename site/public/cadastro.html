@@ -5,6 +5,13 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="check" href="js/validacoes.js">
+    <link rel="check" href="js/mascaras.js">
+
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <script src="js/mascaras.js"></script>
+    <script src="js/validacoes.js"></script>
+
     <link rel="stylesheet" href="css/cadastro.css">
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
@@ -76,18 +83,37 @@
                 <h1>Olá! Seja Bem-vinde</h1>
                 <h2>Insira suas informações</h2>
             </div>
+
             <div class="container3">
                 <div class="container2">
-                    <h4 style="font-size: 2.5vh;">Nome:</h4>
-                    <input type="text" id="in_nome" placeholder="   Insira seu nome">
-                    <h4 style="font-size: 2.5vh;">Email:</h4>
-                    <input type="text" id="in_email" placeholder="   Insira seu email">
-                    <h4 style="font-size: 2.5vh;">Username:</h4>
-                    <input type="text" id="in_user" placeholder="   Insira seu username">
-                    <h4 style="font-size: 2.5vh;">Senha:</h4>
-                    <input type="password" id="in_senha" placeholder="   Crie uma senha">
-                    <h4 style="font-size: 2.5vh;">Confirme sua senha:</h4>
-                    <input type="password" id="in_confirmacao" placeholder="   Confirme sua senha">
+
+                    <div class="input-field">
+                        <h4 style="font-size: 2.5vh;">Nome:</h4>
+                        <input type="text" id="in_nome" placeholder="   Insira seu nome">
+                    </div>
+                    
+                    <div class="input-field">
+                        <h4 style="font-size: 2.5vh;">Email:</h4>
+                        <input type="text" id="in_email" placeholder="   Insira seu email">
+                    </div>
+                    
+                    <div class="input-field">
+                        <h4 style="font-size: 2.5vh;">Username:</h4>
+                        <input type="text" id="in_user" placeholder="   Insira seu username">
+                    </div>
+                    
+                    <div class="input-field">
+                        <h4 style="font-size: 2.5vh;">Senha:</h4>
+                        <input type="password" id="in_senha" placeholder="   Crie uma senha">
+                        <i class="ph ph-eye" onclick="toggleVisibilidadeSenha()"></i>
+                    </div>
+                    
+                    <div class="input-field">
+                        <h4 style="font-size: 2.5vh;">Confirme sua senha:</h4>
+                        <input type="password" id="in_confirmacao" placeholder="   Confirme sua senha">
+                        <i class="ph ph-eye" onclick="toggleVisibilidadeSenha2()"></i>
+                    </div>
+
                     <button onclick="cadastrar()"> Cadastrar</button>
                 </div>
             </div>

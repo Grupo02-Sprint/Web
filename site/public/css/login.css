@@ -205,7 +205,7 @@ body {
     .container2 {
         display: flex;
         flex-direction: column;
-        align-items: center;
+        align-items: flex-start;
     }
 
     .container2 .form-label {
@@ -305,5 +305,21 @@ body {
         display: flex;
         flex-direction: column;
         align-items: center;
+    }
+
+    /*máscaras*/
+    .input-field {
+        display: grid;
+        grid-template-columns: 1fr;
+
+        position: relative;
+    }
+
+    .input-field i {
+        color: #b499ff;
+        position: absolute;
+        margin-right: 1rem;
+        right: 0;
+        align-self: center;
     }
 }
