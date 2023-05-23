@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans&family=Roboto:wght@900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
 
 * {
     margin: 0;
@@ -277,5 +278,20 @@
 
     .caixa0 {
         display: none;
+    }
+
+    /*máscaras*/
+    .input-field {
+        display: grid;
+        grid-template-columns: 1fr;
+        position: relative;
+    }
+
+    .input-field i {
+        color: #b499ff;
+        position: absolute;
+        margin-right: 1rem;
+        right: 0;
+        align-self: center;
     }
 }
