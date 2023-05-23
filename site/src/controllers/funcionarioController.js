@@ -6,13 +6,13 @@ function cadastrar(req, res) {
     var idUsuario = req.params.idUsuario;
     var email = req.body.emailServer;
 
-    if (nome == undefined) {
+    if (nome == undefined||nome==null||nome=="") {
         res.status(400).send("O nome está indefinido!");
-    } else if (cargo == undefined) {
+    } else if (cargo == undefined||cargo==null||cargo==""||cargo==0) {
         res.status(400).send("O cargo está indefinido!");
-    } else if (idUsuario == undefined) {
+    } else if (idUsuario == undefined||idUsuario==null||idUsuario=="") {
         res.status(403).send("O email do usuário está indefinido!");
-    } else if (email == undefined) {
+    } else if (email == undefined||email==null||email=="") {
         res.status(400).send("O id do usuário está indefinido!");
     } else {
         funcionarioModel.cadastrar(nome, cargo, idUsuario, email)

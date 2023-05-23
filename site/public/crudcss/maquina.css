@@ -243,12 +243,14 @@ input{
 }
 
 .botao button{
-    margin-top: 3vh;
+    margin-top: 4vh;
     height: 5vh;
     width: 10vw;
     background-color: #195e63;
     border: none;
     box-shadow: 0 9px #999;
+    font-weight: bold;
+    font-size: 2.5vh;
 }
 
 .botao button:hover{
@@ -269,6 +271,8 @@ input{
     margin-right: 10px;
     margin-bottom: 10px;
     height: 25vh;
+    color: white;
+    border-radius: 1vh;
 }
 
 .publicacao-btn-dasboard{
@@ -359,9 +363,14 @@ input{
 
 .modal1-content button{
     height: 5vh;
-    width: 8vw;
+    width: 10vw;
     margin-top: 4vh;
+    border: none;
     background-color: #195e63;
+    font-weight: bold;
+    font-size: 2.5vh;
+    color: white;
+    border-radius: .5vh;
 }
   
 .close1 {

@@ -28,9 +28,9 @@
 
       </div>
       <ul>
-        <li style="color: white;">
+        <li style="color: black;">
           <i class="fa-solid fa-chart-line"></i>
-          <a href=""><b style="color: white;">Gráficos</b></a>
+          <a href=""><b style="color: black;">Gráficos</b></a>
         </li>
 
         <li>
@@ -40,12 +40,12 @@
 
         <li>
           <i class="fa-solid fa-computer"></i>
-          <a href=""><b>Máquina</b></a>
+          <a href="./crud/maquina.html"><b>Máquina</b></a>
         </li>
 
         <li>
           <i class="fa-solid fa-address-card"></i>
-          <a href=""><b>Usuário</b></a>
+          <a href="./crud/funcionario.html"><b>Usuário</b></a>
         </li>
 
         <li>
@@ -68,7 +68,7 @@
             <option value="1">Máquina 1</option>
           </select>
         </div>
-        <a href=""><i class="fa-solid fa-computer"></i> Cadastrar máquina </a>
+        <a href="./crud/maquina.html"><i class="fa-solid fa-computer"></i> Cadastrar máquina </a>
       </div>
       <div class="grafico">
         <div class="plot">
@@ -86,42 +86,16 @@
             <div id="grafic1" class="display-none">
               <canvas id="myChart" style="position: relative; height:40vh;width:40vw"></canvas>
             </div>
-
-                <h2><span id="b_usuario">Dionísio</span></h2>
-        
-              </div>
-              <ul>
-                <li style="color: white;">
-                  <i class="fa-solid fa-chart-line"></i>
-                  <a href=""><b style="color: white;" >Gráficos</b></a>
-                </li>
-        
-                <li> 
-                  <i class="fa-solid fa-user"></i>
-                  <a cla href=""><b>Perfil</b></a></li>
-
-                <li>
-                  <i class="fa-solid fa-computer"></i>
-                  <a href="./crud/maquina.html"><b>Máquina</b></a>
-                </li>
-
-                <li>
-                  <i class="fa-solid fa-address-card"></i>
-                  <a href="./funcionario.html"><b>Usuário</b></a>
-                </li>
-
-                <li>
-                  <i class="fa-solid fa-headset"></i>
-                  <a href="https://maxsolutions.auvo.com.br/Login#signin"><b>Suporte</b></a>
-                </li>
-                
-                <li>
-                  <a href="login.html">
-                    <i class="fa-solid fa-arrow-right-from-bracket"></i>
-                    <span class="menu" onclick="limparSessao()"><b>Sair</b></span>
-                  </a>
-                </li>
-              </ul>
+            <div id="grafic2" class="display-none">
+              <canvas id="myChart2" style="position: relative; height:40vh;width:40vw"></canvas>
+            </div>
+            <div id="grafic3" class="display-none">
+              <canvas id="myChart3" style="position: relative; height:40vh;width:40vw"></canvas>
+            </div>
+            <div id="grafic4" class="display-none">
+              <canvas id="myChart4" style="position: relative; height:40vh;width:40vw"></canvas>
+            </div>
+        </div>
         </div>
         <div class="opcao">
           <div class="vazio">
@@ -143,105 +117,46 @@
             <div id="esprede" class="display-none">
               <p><b>Modelo: </b> Realtek 8821CE Wireless LAN 802.11ac PCI-E NIC</p>
             </div>
-            <div class="grafico">
-                <div class="plot">
-                    <div class="um">
-                      <div class="parada">
-                        <p>Máquinas que estão paradas:0 </p>
-                      </div>
-                      <div class="indicativos">
-                        <div class="ver" style="background-color: rgba(0, 128, 0, 0.4);"></div>
-                        <div class="amare" style="background-color: rgba(255, 255, 0, 0.4);" ></div>
-                        <div class="verm" style="background-color: red;"></div>
-                      </div>
-                    </div>
-                    <div class="dois">
-                      <div id="grafic1" class="display-none" >
-                        <canvas id="myChart" style="position: relative; height:40vh;width:40vw"></canvas>
-                      </div>
-
-                      <div id="grafic2" class="display-none" >
-                        <canvas id="myChart2" style="position: relative; height:40vh;width:40vw"><canvas>
-                      </div>
-            
-                      <div id="grafic3" class="display-none" >
-                        <canvas id="myChart3" style="position: relative; height:40vh;width:40vw"><canvas>
-                      </div>
-            
-                      <div id="grafic4" class="display-none" >
-                        <canvas id="myChart4" style="position: relative; height:40vh;width:40vw"><canvas>
-                      </div>
-                    </div>
+          </div>
+          <div class="botao">
+             <div class="butt" id="butt">
+                <label ><button id="cpu" style="background-color: #8d9699;" class="cpu" onclick="grafico1()"></button>CPU</label>
+                <label ><button id="armazenamento" style="background-color: #8d9699;"class="armazenamento"onclick="grafico2()"></button>Armazenamento</label>
+                <label ><button id="memoria" style="background-color: #8d9699;" class="memoria"onclick="grafico3()"></button>Memória</label>
+                <label ><button id="rede" style="background-color: #8d9699;" class="rede"onclick="grafico4()"></button>Rede</label>
+              </div>
+            <div id="kpi" class="display-none">
+              <div class="verkpi" >
+                <div class="verde" style="background-color: green;"></div>
+                  <div class="kpidupla">
+                    <p> 1% </p>
+                    <p>40%</p>
+                  </div>
                 </div>
-                <div class="opcao">
-                    <div class="vazio">
-                      <div id="espcpu" class="display-none">
-                        <p><b>Modelo: </b> AMD Ryzen 5 3500U with Radeon Vega Mobile Gfx</p>
-                        <br>
-                        <p><b>Número de CPUs Fisícas: </b>4</p>
-                        <p><b>Número de CPUs Lógicas: </b>8</p>
-                      </div>
-                      <div id="esparmaz" class="display-none">
-                        <p><b>Modelo: </b> SPT256L2-2IAS7G2</p>
-                        <br>
-                        <p><b>Tamanho total: </b>239 GB</p>
-                      </div>
-                      <div id="espmemor" class="display-none">
-                        <p><b> Memória Total: </b>8</p>
-                        <p><b> Memória em Uso: </b>65%</p>
-                      </div>
-                      <div id="esprede" class="display-none">
-                        <p><b>Modelo: </b> Realtek 8821CE Wireless LAN 802.11ac PCI-E NIC</p>
-                      </div>
-                    </div>
-                    <div class="botao">
-                      <div class="butt" id="butt">
-                      <label ><button id="cpu" style="background-color: #8d9699;" class="cpu" onclick="grafico1()"></button>CPU</label>
-                      <label ><button id="armazenamento" style="background-color: #8d9699;"class="armazenamento"onclick="grafico2()"></button>Armazenamento</label>
-                      <label ><button id="memoria" style="background-color: #8d9699;" class="memoria"onclick="grafico3()"></button>Memória</label>
-                      <label ><button id="rede" style="background-color: #8d9699;" class="rede"onclick="grafico4()"></button>Rede</label>
-                    </div>
-                    <div class="indicadores">
-                      <div id="baixa" class="baixa" style="background-color: green;">
-                      </div>
-                      <div id="media" class="media" style="background-color:  yellow;">
-                      </div>
-                      <div id="alta" class="alta" style="background-color:  red;">
-                      </div>
-                    </div>
-                    <div id="kpi" class="display-none">
-                      <div class="verkpi" >
-                        <div class="verde" style="background-color: green;"></div>
-                        <div class="kpidupla">
-                        <p> 1% </p>
-                        <p>40%</p>
-                      </div>
-                      </div>
-                      <div class="amarkpi">
-                      <div class="amarelo" style="background-color: yellow;"></div>
-                      <p>70%</p>
-                    </div>
-                    <div class="vermkpi">
-                      <div class="vermelho" style="background-color: red;"></div>
-                      <p> 100% </p>
-                    </div>
-                    </div>
-                    </div>
-                </div>
+              <div class="amarkpi">
+                <div class="amarelo" style="background-color: yellow;"></div>
+                  <p>70%</p>
+              </div>
+              <div class="vermkpi">
+                <div class="vermelho" style="background-color: red;"></div>
+                  <p> 100% </p>
+              </div>
             </div>
             <div class="indicadores">
               <div id="baixa" class="baixa" style="background-color: green;">
-              </div>
+                </div>
               <div id="media" class="media" style="background-color:  yellow;">
-              </div>
+                </div>
               <div id="alta" class="alta" style="background-color:  red;">
+                </div>
               </div>
+              </div>
+                </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
 </body>
 
 </html>
@@ -254,7 +169,7 @@ function grafico1(){
   if(select_maquina.value==0){
     alert(`Selecione uma maquina`)
   }else{
-let graficoExibir3 = document.getElementById(`grafic3`)
+    let graficoExibir3 = document.getElementById(`grafic3`)
         graficoExibir3.classList.remove("display-block")
         graficoExibir3.classList.add("display-none")
     let graficoExibir4 = document.getElementById(`grafic4`)
@@ -318,8 +233,19 @@ let graficoExibir3 = document.getElementById(`grafic3`)
       borderColor: 'rgb(255, 0, 0)',
       data: [4, 3, 5, 5, 4, 6, 4, 3, 4, 4],
 
-    }
+    }]
   }
+  const config = {
+        type: 'line',
+        data: data,
+        options: {}
+      };
+      const myChart = new Chart(
+        document.getElementById('myChart'),
+        config
+      );
+}
+}
 </script>
 <script>
 

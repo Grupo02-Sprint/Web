@@ -4,9 +4,9 @@ function cadastrar(req, res) {
     var patrimonio = req.body.patrimonioServer;
     var idUsuario = req.params.idUsuario;
 
-    if (patrimonio == undefined) {
+    if (patrimonio == undefined||patrimonio==null||patrimonio=="") {
         res.status(400).send("O patrimonio está indefinido!");
-    } else if (idUsuario == undefined) {
+    } else if (idUsuario == undefined||idUsuario==null||idUsuario=="") {
         res.status(403).send("O Usauario está indefinido!!");
     } else{
         maquinaModel.cadastrar(patrimonio, idUsuario)

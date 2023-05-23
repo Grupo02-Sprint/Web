@@ -10,7 +10,6 @@
     height: 100vh;
     width: 100vw;
     align-items: center;
-    justify-content: space-between;
 }
 
 .menulateral {
@@ -35,29 +34,27 @@
     text-decoration: none;
     list-style: none;
     margin: 1vh;
-    color: black;
+    color: #ECE1C3;
     width: 15vh;
 }
 
 .menulateral ul li a {
     text-decoration: none;
-    color: black;
+    color: #ECE1C3;
     width: 15vh;
     display: flex;
     margin-left: 0vh;
 }
 
-
 .menulateral ul li  i {
     margin-right: 2vh;
 }
-
 .menulateral ul li:hover {
-    color: white;
+    color: black;
 }
 
 .menulateral ul li:hover a {
-    color: white;
+    color: black;
 }
 
 .menulateral ul {
@@ -74,7 +71,7 @@
 }
 
 .logo{
-    background-color: #ffffff;
+    background-color: #ECE1C3;
     border-radius: 1vh;
     width: 4.7vh;
     height: 5.1vh;
@@ -84,6 +81,7 @@
 
 .logo img{
     height: 5.4vh;
+    margin-left: .15vw;
 }
 
 ul{
@@ -106,124 +104,78 @@ ul{
 
 .hello h2{
     font-size: 4vh;
+    color: #ECE1C3;
 }
 
-.crud{
+.resto{
+    height: 100vh;
+    width: 100vw;
     background-color: #d8e5e8;
-    height: 95vh;
-    width: 70vw;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-
-.adicionar{
-    height: 10vh;
-    width: 60vw;
-    background-color: #FEFEFE;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-}
-
-.adicionar button{
-    margin-left: 2vh;
-    height: 5vh;
-    width: 2.5vw;
-    border: none;
-    border-radius: .7vh;
-    color: white;
-    background-color: #5CB85C;
-}
-
-.adicionar button:hover{
-    background-color: #0a850a;
-}
-
-.exibir{
-    height: 80vh;
-    width: 60vw;
-    background-color: #FEFEFE;
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
-}
-
-.exibir h2{
-    margin-bottom: 1.5vh;
-}
-
-table {
-    width: 40vw;
-    height: 40vh;
-    border-collapse: collapse;
-    border: .2vh solid black;
-}
-  
-tr {
-    border-bottom: .2vh solid black;
-}
-
-tbody tr td {
-    padding: 6px;
-    max-width: 40vw;
-    border: .2vh solid black;
-}
-
-.deletar{
-    background-color: #D83747;
-    height: 5vh;
-    width: 2.5vw;
-    border: none;
-    border-radius: .7vh;
-    color: white;
-}
-
-.deletar:hover{
-    background-color: #d11818;
 }
 
 .editar{
-    background-color: #007AFF;
+    background-color: #FEFEFE;
+    height: 80vh;
+    width: 40vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.titulo{
+    width: 24vw;
+    height: 6vh;
+    background-color: #195e63;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ECE1C3;
+    border-radius: .5vh;
+}
+
+
+.editar button{
+    width: 9vw;
+    margin-top: 1vh;
+}
+
+select{
+    width: 30.5vw;
+    height: 4.5vh;
+}
+
+input{
+    width: 30vw;
+    height: 3.5vh;
+}
+
+button{
+    margin-top: 3vh;
     height: 5vh;
-    width: 2.5vw;
+    width: 10vw;
+    background-color: #195e63;
     border: none;
+    box-shadow: 0 9px #999;
+    font-weight: bold;
+    font-size: 2.5vh;
+    color: #ECE1C3;
     border-radius: .7vh;
-    color: white;
 }
 
-.editar:hover{
-    background-color: #0040ff;
+button:hover{
+    background-color: #47949a;
 }
 
-.log{
-    background-color: #FFBE0A;
-    height: 5vh;
-    width: 2.5vw;
-    border: none;
-    border-radius: .7vh;
-    color: black;
+button:active {
+    transform: scale(0.85);
+    box-shadow: 0 5px #666;
+    
 }
 
-.log:hover{
-    background-color: #fff200;
+h4{
+    margin-top: 2.5vh;
 }
-
-tr:nth-child(odd) {
-    background-color: #e6e6e6;
-  }
-  
-  tr:nth-child(even) {
-    background-color: #FFFFFF;
-  }
-  
-  tr:hover {
-    background-color: #cdcdcd;
-  }
-  
-  tr td {
-    border: 1px solid #ddd;
-    padding: 8px;
-  }
