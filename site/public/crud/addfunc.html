@@ -13,7 +13,7 @@
     <div class="tudo">
         <div class="menulateral">
             <div class="logo">
-               <a href="index.html"><img src="../icons/logo.png" alt="" height="35vh"></a>
+               <a href="index.html"><img src="../icons/Logo-nome-site.png" alt="" height="35vh"></a>
             </div>
             <div class="hello">
         
@@ -23,9 +23,9 @@
         
               </div>
               <ul>
-                <li style="color: white;">
+                <li>
                   <i class="fa-solid fa-chart-line"></i>
-                  <a href="../indexdash.html"><b style="color: white;" >Gráficos</b></a>
+                  <a href="../indexdash.html"><b>Gráficos</b></a>
                 </li>
         
                 <li> 
@@ -37,9 +37,9 @@
                   <a href="maquina.html"><b>Máquina</b></a>
                 </li>
 
-                <li>
+                <li style="color:black">
                   <i class="fa-solid fa-address-card"></i>
-                  <a href="funcionario.html"><b>Usuário</b></a>
+                  <a href="funcionario.html"><b style="color: black;">Usuário</b></a>
                 </li>
 
                 <li>
@@ -62,15 +62,15 @@
           </div>
             <div class="div_form">
                 <form id="form_postagem" method="post" onsubmit="return cadastrar()">
-                <h4>Nome</h4>
+                <h4>Nome:</h4>
                 <input id="nome" name="nome" type="text">
-                <h4>Cargo</h4>
+                <h4>Cargo:</h4>
                 <select name="cargo" id="cargo">
                   <option value="0">Selecione cargo</option>
                   <option value="1">Gerente</option>
                   <option value="2">Analista</option>
                 </select>
-                <h4>Email</h4>
+                <h4>Email:</h4>
                 <input type="text" id="email" name="email">
               </form>
               <button onclick="cadastrar()">Cadastrar</button>

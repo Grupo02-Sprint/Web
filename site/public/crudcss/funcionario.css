@@ -35,13 +35,13 @@
     text-decoration: none;
     list-style: none;
     margin: 1vh;
-    color: black;
+    color: #ECE1C3;
     width: 15vh;
 }
 
 .menulateral ul li a {
     text-decoration: none;
-    color: black;
+    color: #ECE1C3;
     width: 15vh;
     display: flex;
     margin-left: 0vh;
@@ -53,11 +53,11 @@
 }
 
 .menulateral ul li:hover {
-    color: white;
+    color: black;
 }
 
 .menulateral ul li:hover a {
-    color: white;
+    color: black;
 }
 
 .menulateral ul {
@@ -74,7 +74,7 @@
 }
 
 .logo{
-    background-color: #ffffff;
+    background-color: #ECE1C3;
     border-radius: 1vh;
     width: 4.7vh;
     height: 5.1vh;
@@ -84,6 +84,7 @@
 
 .logo img{
     height: 5.4vh;
+    margin-left: .15vw;
 }
 
 ul{
@@ -106,6 +107,7 @@ ul{
 
 .hello h2{
     font-size: 4vh;
+    color: #ECE1C3;
 }
 
 .crud{
@@ -139,6 +141,10 @@ ul{
 
 .adicionar button:hover{
     background-color: #0a850a;
+}
+
+.adicionar button:active{
+    transform: scale(0.85);
 }
 
 .exibir{
@@ -190,6 +196,10 @@ tbody tr td {
     background-color: #d11818;
 }
 
+.deletar:active{
+    transform: scale(0.85);
+}
+
 .editar{
     background-color: #007AFF;
     height: 5vh;
@@ -203,17 +213,8 @@ tbody tr td {
     background-color: #0040ff;
 }
 
-.log{
-    background-color: #FFBE0A;
-    height: 5vh;
-    width: 2.5vw;
-    border: none;
-    border-radius: .7vh;
-    color: black;
-}
-
-.log:hover{
-    background-color: #fff200;
+.editar:active{
+    transform: scale(0.85);
 }
 
 tr:nth-child(odd) {
