@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/perfil.css">
+    <script src="../js/funcoes.js"></script>
+    <script src="https://kit.fontawesome.com/eb115129d4.js" crossorigin="anonymous"></script>
+    <title>Document</title>
+</head>
+<body onload="validarSessao(), atualizarFeed()">
+    <div class="tudo">
+        <div class="menulateral">
+            <div class="logo">
+               <a href="index.html"><img src="./icons/Logo-nome-site.png" alt="" height="35vh"></a>
+            </div>
+            <div class="hello">
+        
+              <img src="./assets/WhatsApp Image 2023-01-30 at 23.12.16.jpeg" alt="">
+
+                <h2><span id="b_usuario">Dionísio</span></h2>
+        
+              </div>
+              <ul>
+                <li>
+                  <i class="fa-solid fa-chart-line"></i>
+                  <a href="../indexdash.html "><b>Gráficos</b></a>
+                </li>
+        
+                <li> 
+                  <i class="fa-solid fa-user"></i>
+                  <a cla href=""><b>Perfil</b></a>
+                </li>
+
+                <li style="color: black;">
+                  <i class="fa-solid fa-computer"></i>
+                  <a href="maquina.html"><b style="color: black;">Máquina</b></a>
+                </li>
+
+                <li>
+                  <i class="fa-solid fa-address-card"></i>
+                  <a href="funcionario.html"><b>Usuário</b></a>
+                </li>
+
+                <li>
+                  <i class="fa-solid fa-headset"></i>
+                  <a href="https://maxsolutions.auvo.com.br/Login#signin"><b>Suporte</b></a>
+                </li>
+                
+                <li>
+                  <a href="login.html">
+                    <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                    <span class="menu" onclick="limparSessao()"><b>Sair</b></span>
+                  </a>
+                </li>
+              </ul>
+        </div>
+        <div class="perfil">
+            <div class="caixa1">
+                <h2>Funcionario</h2>
+            <div class="form">
+                <label for="">Nome:</label>
+                <input type="text" readonly id="usuario">
+                <label for="">Email:</label>
+                <input type="text"readonly id="usuario">
+                <label for="">Cargo:</label>
+                <select id="cargo" disabled>
+                    <option value="1">Gerente</option>
+                    <option value="2">Analista</option>
+                </select>
+            </div>
+                <button id="btnEditarUsuario" onclick="editarUsuario('usuario')">Editar</button>
+            </div>
+            <div class="caixa2">
+                <h2>Loja</h2>
+            <div class="form">
+                <label for="">Nome:</label>
+                <input type="text"readonly id="loja">
+                <label for="">CNPJ:</label>
+                <input type="text"readonly id="loja">
+                <label for="">Telefone:</label>
+                <input type="text"readonly id="loja">
+            </div>
+                <button onclick="editarUsuario('loja')">Editar</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+<script>
+    function atualizarFeed() {
+  fetch("/perfis/listar")
+    .then(function (resposta) {
+      if (resposta.ok) {
+        if (resposta.status == 204) {
+          var feed = document.getElementById("perfil");
+          var mensagem = document.createElement("span");
+          mensagem.innerHTML = "Nenhum resultado encontrado.";
+          feed.appendChild(mensagem);
+          throw "Nenhum resultado encontrado!!";
+        }
+
+        resposta.json().then(function (resposta) {
+          console.log("Dados recebidos: ", JSON.stringify(resposta));
+
+          var usuarioInput = document.getElementById("usuario");
+          var cargoSelect = document.getElementById("cargo");
+          var lojaInput = document.getElementById("loja");
+
+          // Preencher os campos com os dados obtidos do banco de dados
+          usuarioInput.value = resposta.nomeAviso;
+          cargoSelect.value = resposta.cargo;
+          lojaInput.value = resposta.emailAviso;
+
+          finalizarAguardar();
+        });
+      } else {
+        throw "Houve um erro na API!";
+      }
+    })
+    .catch(function (resposta) {
+      console.error(resposta);
+      finalizarAguardar();
+    });
+}
+
+
+
+
+
+function editarUsuario(id) {
+  let inputs = document.querySelectorAll("#" + id);
+  let select = document.getElementById("cargo")
+  let botao = document.getElementById("btnEditar" + id.charAt(0).toUpperCase() + id.slice(1));
+
+  inputs.forEach(input => {
+    if (input.readOnly) {
+        input.removeAttribute("readonly");
+        botao.innerText = "Salvar Edição";
+        select.removeAttribute("disabled")
+
+    } else {
+      input.setAttribute('readonly', 'readonly');
+      botao.innerText = "Editar";
+      select.setAttribute('disabled','desabled')
+    }
+  });
+}
+
+
+</script>
