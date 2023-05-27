@@ -10,6 +10,7 @@
     height: 100vh;
     width: 100vw;
     align-items: center;
+    justify-content: space-between;
 }
 
 .menulateral {
@@ -38,16 +39,16 @@
     width: 15vh;
 }
 
-.menulateral ul li  i {
-    margin-right: 2vh;
-}
-
 .menulateral ul li a {
     text-decoration: none;
     color: #ECE1C3;
     width: 15vh;
     display: flex;
     margin-left: 0vh;
+}
+
+.menulateral ul li  i {
+    margin-right: 2vh;
 }
 
 .menulateral ul li:hover {
@@ -108,58 +109,59 @@ ul{
     color: #ECE1C3;
 }
 
-.resto{
+.perfil{
     height: 100vh;
     width: 100vw;
-    background-color: #d8e5e8;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.adicionar{
-    background-color: #FEFEFE;
-    height: 80vh;
-    width: 40vw;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    align-items: center;
-}
-
-.cadastro{
-    width: 24vw;
-    height: 6vh;
+.caixa1{
     background-color: #195e63;
+    height: 70vh;
+    width: 25vw;
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: center;
+}
+
+.perfil h2{
+    margin-top: 4vh;
     color: #ECE1C3;
-    border-radius: .5vh;
 }
 
-.div_form{
+.caixa2{
+    background-color: #218991;
+    height: 70vh;
+    width: 25vw;
     display: flex;
+    flex-direction: column;
     align-items: center;
-    flex-direction: column;
 }
 
-#form_postagem {
+.form{
     display: flex;
     flex-direction: column;
 }
 
-#form_postagem h4{
-    margin-top: 2.5vh;
+input{
+    width: 20vw;
+    height: 3.2vh;
+}
+
+label{
+    margin-top: 1vh;
+    color: #ECE1C3;
 }
 
 button{
     margin-top: 3vh;
     height: 5vh;
     width: 10vw;
-    background-color: #195e63;
+    background-color: #0a850a;
     border: none;
-    box-shadow: 0 9px #999;
+    box-shadow: 0 9px black;
     font-weight: bold;
     font-size: 2.5vh;
     color: #ECE1C3;
@@ -167,7 +169,7 @@ button{
 }
 
 button:hover{
-    background-color: #47949a;
+    background-color: #30ca30b2;
 }
 
 button:active {
@@ -177,27 +179,5 @@ button:active {
 }
 
 select{
-    width: 30.5vw;
-    height: 4.5vh;
-}
-
-input{
-    width: 30vw;
-    height: 3.5vh;
-}
-
-.senha{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: 4vh;
-    height: 8vh;
-    width: 27vw;
-    background-color: #195e63;
-    color: white;
-    border-radius: .5vh;
-    padding: 3vh 3vh;
-}
-.display-none {
-    display: none;
+    height: 4.2vh;
 }

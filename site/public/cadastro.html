@@ -127,12 +127,14 @@
 </html>
 
 <script>
+    var idLoja = sessionStorage.FK_LOJA
     function cadastrar() {
         var nome = in_nome.value;
         var email = in_email.value;
         var user = in_user.value;
         var senha = in_senha.value;
         var senhaConfirmacao = in_confirmacao.value;
+        var cargo = 3;
 
         if (nome == "" || email == "" || user == "" || senha == "" || senhaConfirmacao == "") {
             alert("Verifique se todos os campos foram preenchidos.")
@@ -154,7 +156,9 @@
                 // Agora vá para o arquivo routes/usuario.js
                 nomeServer: nome,
                 emailServer: email,
-                senhaServer: senha
+                senhaServer: senha,
+                cargoServer: cargo,
+                lojaServer: idLoja
             })
         }).then(function (resposta) {
 
