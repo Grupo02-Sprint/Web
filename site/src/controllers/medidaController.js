@@ -5,12 +5,12 @@ function buscarUltimasMedidas(req, res) {
     const limite_linhas = 5;
 
     //var idComponente = 1;
-    var idComponente = req.params.idComponente;
-    console.log(idComponente)
+    var idComponente = req.params.idMaquina;
+    console.log(idMaquina)
 
     console.log(`Recuperando as ultimas ${limite_linhas} medidas`);
 
-    medidaModel.buscarUltimasMedidas(idComponente, limite_linhas).then(function (resultado) {
+    medidaModel.buscarUltimasMedidas(idMaquina, limite_linhas).then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
         } else {

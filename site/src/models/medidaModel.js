@@ -48,6 +48,30 @@ function buscarMedidasEmTempoReal(idComponente) {
     return database.executar(instrucaoSql);
 }
 
+function buscarIdMaquina() {
+    instrucaoSql = ''
+
+    nome = req.NOME_USUARIO
+
+    if (process.env.AMBIENTE_PROCESSO == "producao") {
+        instrucaoSql = `select 
+                            [dbo].[maquina].id_Maquina
+                        from [dbo].[maquina]
+                        join [dbo].[loja] on
+                        [dbo].[loja].id_loja = [dbo].[maquina].fk_loja
+                        where [dbo].[loja].id_loja = [dbo].[maquina].fk_loja;`
+
+    } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
+        instrucaoSql = `select memoriaDisponivel from MetricaMemoria where fkComponente = 1; `;
+    } else {
+        console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
+        return
+    }
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
 
 module.exports = {
     buscarUltimasMedidas,
