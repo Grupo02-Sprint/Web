@@ -3,11 +3,11 @@ var router = express.Router();
 
 var perfilController = require("../controllers/perfilController");
 
-router.get("/listar", function (req, res) {
+router.get("/listar/:idUsuario", function (req, res) {
     perfilController.listar(req, res);
 });
 
-router.put("/editar/:idAviso", function (req, res) {
+router.put("/editar/:idUsuario", function (req, res) {
     perfilController.editar(req, res);
 });
 
