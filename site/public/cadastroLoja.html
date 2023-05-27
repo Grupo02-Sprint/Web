@@ -5,30 +5,29 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./css/login.css">
-
     <link rel="check" href="js/validacoes.js">
     <link rel="check" href="js/mascaras.js">
 
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
     <script src="js/mascaras.js"></script>
     <script src="js/validacoes.js"></script>
 
+    <link rel="stylesheet" href="css/cadastro.css">
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+
     <link rel="shortcut icon" href="./assets/logo.png" type="image/x-icon">
-    <title>Login - MaxSolutions</title>
+    <title>Cadastro - MaxSolutions</title>
 </head>
 
 <body>
-
-    <div class="container0">
-        <a href="./index.html">
-            <img src="./icons/logo.png" alt="" class="img_logo">
-        </a>
+    <div class="header">
+        <div class="navbar">
+            <a href=""></a> <a href="index.html"> <img src="./icons/logo.png" alt=""></a>
+        </div>
     </div>
 
-    <!-- Nav mobile/tablet -->
     <nav class="mobile" id="nave-mobile">
         <div class="esquerda" id="esquerda">
             <span class="material-symbols-outlined" onclick="home()">
@@ -77,32 +76,38 @@
         }
     </script>
 
-    <!-- Login -->
-    <div class="tudo">
+    <div class="fundo">
+        <div class="caixa0">
+            <img src="./icons/cadastro.png" alt="">
+        </div>
         <div class="caixa">
             <div class="container1">
-                <h1>Bem-vinde de volta!</h1>
-                <h2>Acesse sua conta</h2>
+                <h1>Olá! Seja Bem-vindo</h1>
+                <h2>Insira as informações da loja</h2>
             </div>
-            
+
             <div class="container3">
                 <div class="container2">
 
                     <div class="input-field">
-                        <h4>Email: </h4>
-                        <input type="text" id="email_input" placeholder="Insira seu email">
+                        <h4 style="font-size: 2.5vh;">Nome:</h4>
+                        <input type="text" id="in_nome" placeholder="   Insira o nome da loja">
                     </div>
-
+                    
                     <div class="input-field">
-                        <h4>Senha: </h4>
-                        <input type="password" id="senha_input" placeholder="Insira sua senha">
-                        <i class="ph ph-eye" onclick="toggleVisibilidadeSenha3()"></i>
+                        <h4 style="font-size: 2.5vh;">Telefone:</h4>
+                        <input type="text" id="in_telefone" placeholder="   Insira o telefone">
+                    </div>
+                    
+                    <div class="input-field">
+                        <h4 style="font-size: 2.5vh;">CNPJ</h4>
+                        <input type="text" id="in_cnpj" placeholder="   Insira o CNPJ">
                     </div>
 
-                    <button onclick="entrar()">Entrar</button>
+                    <button onclick="cadastrar()"> Cadastrar Loja</button>
                 </div>
             </div>
-            <p id="jaConta">Não tem uma conta? <a style="color: inherit;" href="./cadastro.html">Cadastre-se</a></p>
+            <p id="jaAcesso">Já tem uma conta? <a style="color: inherit;" href="./login.html">Entre</a></p>
         </div>
     </div>
 </body>
@@ -110,65 +115,58 @@
 </html>
 
 <script>
+    function cadastrar() {
+        var nome = in_nome.value;
+        var telefone = in_telefone.value;
+        var cnpj = in_cnpj.value;
 
-
-    function entrar() {
-        var emailVar = email_input.value;
-        var senhaVar = senha_input.value;
-
-        if (emailVar == "" || senhaVar == "") {
+        if (nome == "" || telefone == "" || cnpj == "") {
             alert("Verifique se todos os campos foram preenchidos.")
+
+        } else {
+            alert("Usuario cadastrado!");
+
+            window.location = "./cadastro.html";
         }
 
-        console.log("FORM LOGIN: ", emailVar);
-        console.log("FORM SENHA: ", senhaVar);
-
-        fetch("/usuarios/autenticar", {
+        // Enviando o valor da nova input
+        fetch("/lojas/cadastrar", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
-                emailServer: emailVar,
-                senhaServer: senhaVar
+                // crie um atributo que recebe o valor recuperado aqui
+                // Agora vá para o arquivo routes/usuario.js
+                nomeServer: nome,
+                telefoneServer: telefone,
+                cnpjServer: cnpj
             })
         }).then(function (resposta) {
-            console.log("ESTOU NO THEN DO entrar()!")
+
+            console.log("resposta: ", resposta);
 
             if (resposta.ok) {
-                console.log(resposta);
+                cardErro.style.display = "block";
 
-                resposta.json().then(json => {
-                    console.log(json);
-                    console.log(JSON.stringify(json));
+                mensagem_erro.innerHTML = "Cadastro realizado com sucesso! Redirecionando para tela de Login do usuario...";
 
-                    sessionStorage.EMAIL_USUARIO = json.email;
-                    sessionStorage.NOME_USUARIO = json.nome;
-                    sessionStorage.IDUSUARIO_USUARIO = json.idUsuario;
+                setTimeout(() => {
+                    window.location = "login.html";
+                }, "2000")
 
-                    setTimeout(function () {
-                        window.location = "indexdash.html";
-                    }, 1000);
-                });
-
+                // limparFormulario();
+                // finalizarAguardar();
             } else {
-                console.log("Houve um erro ao tentar realizar o login!");
-
-                resposta.text().then(texto => {
-                    console.error(texto);
-                    finalizarAguardar(texto);
-                });
+                throw ("Houve um erro ao tentar realizar o cadastro!");
             }
-
-        }).catch(function (erro) {
-            console.log(erro);
-        })
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+            // finalizarAguardar();
+        });
 
         return false;
-    }
 
-    function sumirMensagem() {
-        cardErro.style.display = "none"
     }
 
     var esquerda = document.getElementById('na-onde').style
@@ -185,6 +183,7 @@
             esquerda.bottom = "0%"
             direita.bottom = "0%"
 
+
             contador++
             background()
 
@@ -196,6 +195,7 @@
             contador = 0
             background()
         }
+
     }
 
     function background() {
@@ -204,6 +204,7 @@
 
         } else {
             nav.bottom = "-80%"
+
         }
     }
 
@@ -224,4 +225,5 @@
     function login() {
         window.location = "./login.html";
     }
+
 </script>
