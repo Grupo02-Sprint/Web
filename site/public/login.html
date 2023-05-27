@@ -84,7 +84,7 @@
                 <h1>Bem-vinde de volta!</h1>
                 <h2>Acesse sua conta</h2>
             </div>
-            
+
             <div class="container3">
                 <div class="container2">
 
@@ -102,7 +102,7 @@
                     <button onclick="entrar()">Entrar</button>
                 </div>
             </div>
-            <p id="jaConta">Não tem uma conta? <a style="color: inherit;" href="./cadastro.html">Cadastre-se</a></p>
+            <p id="jaConta">Não tem uma conta? <a style="color: inherit;" href="./cadastroLoja.html">Cadastre-se</a></p>
         </div>
     </div>
 </body>
@@ -156,7 +156,7 @@
 
                 resposta.text().then(texto => {
                     console.error(texto);
-                    finalizarAguardar(texto);
+                    // finalizarAguardar(texto);
                 });
             }
 
@@ -206,15 +206,13 @@
             nav.bottom = "-80%"
         }
     }
-
-    var contador_tema = 0;
-
+    
     function home() {
         window.location = "./index.html";
     }
 
     function dashboard() {
-        alert("Site indisponível no momento");
+        desconectado();
     }
 
     function contato() {
@@ -223,5 +221,11 @@
 
     function login() {
         window.location = "./login.html";
+    }
+
+    function desconectado() {
+        alert("Faça login para acessar a Dashboard")
+
+        window.location = "./login.html"
     }
 </script>
