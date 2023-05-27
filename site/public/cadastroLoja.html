@@ -116,57 +116,73 @@
 
 <script>
     function cadastrar() {
-        var nome = in_nome.value;
-        var telefone = in_telefone.value;
-        var cnpj = in_cnpj.value;
 
-        if (nome == "" || telefone == "" || cnpj == "") {
-            alert("Verifique se todos os campos foram preenchidos.")
+      //Recupere o valor da nova input pelo nome do id
+      // Agora vá para o método fetch logo abaixo
+      var nomeVar = in_nome.value;
+      var telefoneVar = in_telefone.value;
+      var cnpjVar = in_cnpj.value;
 
-        } else {
-            alert("Usuario cadastrado!");
+      if (
+        nomeVar == "" ||
+        cnpjVar == "" ||
+        telefoneVar == ""
+      ) {
+        alert('preencha todos os campos!')
+        finalizarAguardar();
+        return false;
+      }
+      // Enviando o valor da nova input
+      fetch("/lojas/cadastrar", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          // crie um atributo que recebe o valor recuperado aqui
+          // Agora vá para o arquivo routes/usuario.js
+          nomeServer: nomeVar,
+          cnpjServer: cnpjVar,
+          telefoneServer: telefoneVar
+        }),
+      })
+        .then(function (resposta) {
+          console.log("resposta: ", resposta);
 
-            window.location = "./cadastro.html";
-        }
+          if (resposta.ok) {
 
-        // Enviando o valor da nova input
-        fetch("/lojas/cadastrar", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                // crie um atributo que recebe o valor recuperado aqui
-                // Agora vá para o arquivo routes/usuario.js
-                nomeServer: nome,
-                telefoneServer: telefone,
-                cnpjServer: cnpj
-            })
-        }).then(function (resposta) {
+            fetch(`/lojas/buscar-por-cnpj/${cnpjVar}`)
+              .then(function (resposta) {
+                if (resposta.ok) {
+                  resposta.json().then(function (resposta) {
+                    console.log("DEU CERTTOO");
+  
+                    sessionStorage.FK_LOJA = resposta.idLoja;
 
-            console.log("resposta: ", resposta);
+                 setTimeout(() => {
+                 window.location = "cadastro.html";
+                 }, "2000")
+                  });
+                }
+              })
+              .catch(function (erro) {
+                console.error(erro);
 
-            if (resposta.ok) {
-                cardErro.style.display = "block";
+              });
 
-                mensagem_erro.innerHTML = "Cadastro realizado com sucesso! Redirecionando para tela de Login do usuario...";
-
-                setTimeout(() => {
-                    window.location = "login.html";
-                }, "2000")
-
-                // limparFormulario();
-                // finalizarAguardar();
-            } else {
-                throw ("Houve um erro ao tentar realizar o cadastro!");
-            }
-        }).catch(function (resposta) {
-            console.log(`#ERRO: ${resposta}`);
-            // finalizarAguardar();
+          
+            limparFormulario();
+            finalizarAguardar();
+          } else {
+            throw "Houve um erro ao tentar realizar o cadastro!";
+          }
+        })
+        .catch(function (resposta) {
+          console.log(`#ERRO: ${resposta}`);
+          finalizarAguardar();
         });
 
-        return false;
-
+      return false;
     }
 
     var esquerda = document.getElementById('na-onde').style

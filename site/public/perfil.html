@@ -71,7 +71,7 @@
                 <option value="3">Gerente Premium</option>
               </select>
             </div>
-            <button id="btnEditarUsuario" onclick="editarUsuario()">Editar</button>
+            <button id="btnEditarUsuario" onclick="editarUsuario('btnEditarUsuario')">Editar</button>
           </div>
           <div class="caixa2">
             <h2>Loja</h2>
@@ -83,7 +83,7 @@
               <label for="">Telefone:</label>
               <input type="text" readonly id="telefone">
             </div>
-            <button onclick="editarUsuario()">Editar</button>
+            <button id="btnEditarLoja" onclick="editarUsuario('btnEditarLoja')">Editar</button>
           </div>
         </div>
     </div>
@@ -107,6 +107,9 @@
               usuario.value = resposta[0].nome;
               email.value = resposta[0].email;
               cargo.value = resposta[0].fkCargo;
+              nomeLoja.value = resposta[0].nomeLoja;
+              cnpj.value = resposta[0].cnpj;
+              telefone.value = resposta[0].telefone;
             });
           } else {
             throw "Houve um erro na API!";
@@ -117,11 +120,19 @@
         });
     }
 
-function editarUsuario(idUsuario) {
+function editarUsuario(idBotao) {
   var idUsuario = sessionStorage.IDUSUARIO_USUARIO;
-  let inputs = document.querySelectorAll("#usuario, #email");
+  let inputs = [];
   let select = document.getElementById("cargo");
-  let botao = document.getElementById("btnEditarUsuario");
+  let botao = document.getElementById(idBotao);
+
+  if (idBotao === "btnEditarUsuario") {
+    inputs = document.querySelectorAll("#usuario, #email");
+    select.disabled = false;
+  } else if (idBotao === "btnEditarLoja") {
+    inputs = document.querySelectorAll("#nomeLoja, #telefone, #cnpj");
+    select.disable = true;
+  }
 
   inputs.forEach(input => {
     if (input.readOnly) {
@@ -158,6 +169,5 @@ function editarUsuario(idUsuario) {
       botao.innerText = "Editar";
     }
   });
-  select.disabled = !select.disabled;
 }
 </script>

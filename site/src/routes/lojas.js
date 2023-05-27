@@ -8,4 +8,8 @@ router.post("/cadastrar", function (req, res) {
     lojaController.cadastrar(req, res);
 })
 
+router.get("/buscar-por-cnpj/:cnpj", function (req, res) {
+    lojaController.buscarPorCnpj(req, res);
+});
+
 module.exports = router;

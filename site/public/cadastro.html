@@ -127,6 +127,7 @@
 </html>
 
 <script>
+    var idLoja = sessionStorage.FK_LOJA
     function cadastrar() {
         var nome = in_nome.value;
         var email = in_email.value;
@@ -156,7 +157,8 @@
                 nomeServer: nome,
                 emailServer: email,
                 senhaServer: senha,
-                cargoServer: cargo
+                cargoServer: cargo,
+                lojaServer: idLoja
             })
         }).then(function (resposta) {
 
