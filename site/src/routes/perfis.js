@@ -7,8 +7,12 @@ router.get("/listar/:idUsuario", function (req, res) {
     perfilController.listar(req, res);
 });
 
-router.put("/editar/:idUsuario", function (req, res) {
-    perfilController.editar(req, res);
+router.put("/editarUsuario/:idUsuario", function (req, res) {
+    perfilController.editarUsuario(req, res);
+});
+
+router.put("/editarLoja/:idLoja", function (req, res) {
+    perfilController.editarLoja(req, res);
 });
 
 module.exports = router;

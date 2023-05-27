@@ -69,6 +69,7 @@
                 <option value="1">Gerente</option>
                 <option value="2">Analista</option>
                 <option value="3">Gerente Premium</option>
+                <input type="hidden" value="usuario">
               </select>
             </div>
             <button id="btnEditarUsuario" onclick="editarUsuario('btnEditarUsuario')">Editar</button>
@@ -82,8 +83,9 @@
               <input type="text" readonly id="cnpj">
               <label for="">Telefone:</label>
               <input type="text" readonly id="telefone">
+              <input type="hidden" value="loja">
             </div>
-            <button id="btnEditarLoja" onclick="editarUsuario('btnEditarLoja')">Editar</button>
+            <button id="btnEditarLoja" onclick="editarLoja('btnEditarLoja')">Editar</button>
           </div>
         </div>
     </div>
@@ -91,7 +93,8 @@
 </html>
 <script>
     var idUsuario = sessionStorage.IDUSUARIO_USUARIO;
-
+    var idLoja = null;
+    var cargoUsuario= null;
     function atualizarFeed() {
       var idUsuario = sessionStorage.IDUSUARIO_USUARIO;
       fetch(`/perfis/listar/${idUsuario}`)
@@ -110,6 +113,8 @@
               nomeLoja.value = resposta[0].nomeLoja;
               cnpj.value = resposta[0].cnpj;
               telefone.value = resposta[0].telefone;
+              idLoja = resposta[0].idLoja;
+              cargoUsuario = resposta[0].fkCargo;
             });
           } else {
             throw "Houve um erro na API!";
@@ -120,28 +125,28 @@
         });
     }
 
+
 function editarUsuario(idBotao) {
+  if(cargoUsuario!=3){
+    return window.alert('Você não tem autorização para realizar qualquer mudança')
+  }
   var idUsuario = sessionStorage.IDUSUARIO_USUARIO;
   let inputs = [];
   let select = document.getElementById("cargo");
   let botao = document.getElementById(idBotao);
+  inputs = document.querySelectorAll("#usuario, #email");
 
-  if (idBotao === "btnEditarUsuario") {
-    inputs = document.querySelectorAll("#usuario, #email");
-    select.disabled = false;
-  } else if (idBotao === "btnEditarLoja") {
-    inputs = document.querySelectorAll("#nomeLoja, #telefone, #cnpj");
-    select.disable = true;
-  }
-
+  
+  
   inputs.forEach(input => {
     if (input.readOnly) {
+      select.disabled = false;
       input.removeAttribute("readonly");
       botao.innerText = "Salvar Edição";
       window.alert("Campos liberados para edição!");
     } else {
 
-      fetch(`/perfis/editar/${idUsuario}`, {
+      fetch(`/perfis/editarUsuario/${idUsuario}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json"
@@ -167,7 +172,54 @@ function editarUsuario(idBotao) {
 
       input.setAttribute("readonly", "readonly");
       botao.innerText = "Editar";
+      select.disable = true;
     }
   });
+}
+
+function editarLoja(idBotao){
+    if(cargoUsuario!=3){
+      return window.alert('Você não tem autorização para realizar qualquer mudança')
+    }
+    let inputs = [];
+    let botao = document.getElementById(idBotao);
+    inputs = document.querySelectorAll("#nomeLoja, #telefone, #cnpj");
+
+    inputs.forEach(input => {
+    if (input.readOnly) {
+      input.removeAttribute("readonly");
+      botao.innerText = "Salvar Edição";
+      window.alert("Campos liberados para edição!");
+    } else {
+
+      fetch(`/perfis/editarLoja/${idLoja}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                nome: nomeLoja.value,
+                telefone: telefone.value,
+                cnpj: cnpj.value
+            })
+        }).then(function (resposta) {
+
+            if (resposta.ok) {
+                window.alert("Perfil atualizado com sucesso pelo usuario de email: " + sessionStorage.getItem("EMAIL_USUARIO") + "!");
+                window.location = "perfil.html"
+            } else if (resposta.status == 404) {
+                window.alert("Deu 404!");
+            } else {
+                throw ("Houve um erro ao tentar realizar a postagem! Código da resposta: " + resposta.status);
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+        });
+
+      input.setAttribute("readonly", "readonly");
+      botao.innerText = "Editar";
+    }
+  });
+
 }
 </script>
