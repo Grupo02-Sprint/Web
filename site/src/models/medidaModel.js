@@ -1,5 +1,30 @@
 var database = require("../database/config");
 
+function buscarMaquinas(id_loja) {
+
+    instrucaoSql = ''
+
+    if (process.env.AMBIENTE_PROCESSO == "producao") {
+        instrucaoSql = `select 
+                            id_maquina 
+                        from maquina 
+                        join loja on 
+                            id_loja = fk_loja
+                        where fk_loja = ${id_loja}`;
+    } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
+        instrucaoSql = `select id_maquina from maquina join loja on id_loja = fk_loja;`;
+    } else {
+        console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
+        return
+    }
+
+    console.log("Executando a query: \n" + instrucaoSql);
+    return database.executar(instrucaoSql)
+        .then(function (resultado) {
+            return resultado;
+        });
+}
+
 function buscarUltimasMedidas(idComponente, limite_linhas) {
 
     instrucaoSql = ''
@@ -74,6 +99,7 @@ function buscarIdMaquina() {
 
 
 module.exports = {
+    buscarMaquinas,
     buscarUltimasMedidas,
     buscarMedidasEmTempoReal
 }
