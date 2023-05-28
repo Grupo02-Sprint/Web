@@ -65,12 +65,13 @@
            <h4>Cargo</h4>
            <select name="cargo" id="cargo">
             <option value="0">Selecione cargo</option>
-            <option value="1">Caixa</option>
-            <option value="2">Gerente</option>
-            <option value="3">Analista</option>
+            <option value="1">Gerente</option>
+            <option value="2">Analista</option>
+            <option value="3">Gerente Premium</option>
           </select>
           <h4>Email</h4>
           <input type="text" name="email" id="email">
+          <input type="hidden" id="postagem">
         </div>
            <button onclick="editar()">Editar</button>
         </div>
@@ -83,16 +84,18 @@
     cargo.value = sessionStorage.CARGO_EDITANDO;
     email.value = sessionStorage.EMAIL_EDITANDO;
     b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
+    postagem.value = sessionStorage.ID_POSTAGEM_EDITANDO;
   function editar() {
     
-        fetch(`/funcionarios/editar/${sessionStorage.getItem("ID_POSTAGEM_EDITANDO")}`, {
+        fetch("/funcionarios/editar", {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
                 cargo: cargo.value,
-                email: email.value
+                email: email.value,
+                idUsuario: postagem.value
             })
         }).then(function (resposta) {
 

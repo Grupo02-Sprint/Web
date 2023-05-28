@@ -307,6 +307,10 @@ body {
         align-items: center;
     }
 
+    .senha button{
+        width: 2vw;
+    }
+
     /*máscaras*/
     .input-field {
         display: grid;

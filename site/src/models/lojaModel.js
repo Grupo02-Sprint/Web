@@ -14,7 +14,7 @@ function cadastrar(nome, telefone, cnpj) {
 }
 
 function buscarPorCnpj(cnpj){
-    var instrucao = `select idLoja from loja where cnpj = '${cnpj}'`;
+    var instrucao = `select id_loja from loja where cnpj = ${cnpj}`;
 
     return database.executar(instrucao);
 }

@@ -82,56 +82,85 @@
 </body>
 </html>
 <script>
-  b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
-  
-  var caracteres = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789@#$%^&_";
-  var senha="";
-  for(var i=0;i<=8;i++){
-      senha+= caracteres.charAt(Math.floor(Math.random() * caracteres.length));
-  }
-    function cadastrar() {
-           var idUsuario = sessionStorage.IDUSUARIO_USUARIO;       
-           var nomeVar = form_postagem.nome.value
-           var cargoVar = form_postagem.cargo.value
-           var emailVar = form_postagem.email.value
-        
+ b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
 
-        fetch(`/funcionarios/cadastrar/${idUsuario}`, {
-            method: "post",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-              nomeServer: nomeVar,
-              cargoServer:cargoVar,
-              emailServer:emailVar
-        })
-        }).then(function (resposta) {
+var caracteres = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789@#$%^&_";
+var senha = "";
+for (var i = 0; i <= 8; i++) {
+  senha += caracteres.charAt(Math.floor(Math.random() * caracteres.length));
+}
 
-            console.log("resposta: ", resposta);
+var idLoja = sessionStorage.FK_LOJA;
 
-            if (resposta.ok) {
-                window.alert("Post realizado com sucesso pelo usuario de ID: " + idUsuario + "!");
-                document.getElementById("senha").innerHTML =`Senha do ${nomeVar}: ${senha}<br>A senha será enviado no email ${emailVar}`;
-                let mostrarSenha = document.getElementById(`senha`)
-                mostrarSenha.classList.remove("display-none")
-                mostrarSenha.classList.add("senha")
-                /*setTimeout(function() {
-                  window.location = "funcionario.html";
-                }, 60000);*/
-                limparFormulario();
-                finalizarAguardar();
-            } else if (resposta.status == 404) {
-                window.alert("Deu 404!");
-            } else {
-                throw ("Houve um erro ao tentar realizar a postagem! Código da resposta: " + resposta.status);
-            }
-        }).catch(function (resposta) {
-            console.log(`#ERRO: ${resposta}`);
-            finalizarAguardar();
-        });
+async function enviarEmail(email, senha) {
+  try {
+    const response = await fetch("/recuperar-senha", {
+      method: "post",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email: email, // Email do funcionário
+        senha: senha, // Senha gerada
+      }),
+    });
 
-        return false;
-
+    if (response.ok) {
+      console.log("Email enviado com sucesso");
+    } else {
+      throw new Error("Houve um erro ao tentar enviar o email. Código da resposta: " + response.status);
     }
+  } catch (error) {
+    console.log("#ERRO: ", error);
+    throw error;
+  }
+}
+
+async function cadastrar() {
+  var idUsuario = sessionStorage.IDUSUARIO_USUARIO;
+  var nomeVar = form_postagem.nome.value;
+  var cargoVar = form_postagem.cargo.value;
+  var emailVar = form_postagem.email.value;
+
+  try {
+    const response = await fetch(`/funcionarios/cadastrar/${idUsuario}`, {
+      method: "post",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        nomeServer: nomeVar,
+        cargoServer: cargoVar,
+        emailServer: emailVar,
+        idLojaServer: idLoja,
+        senhaServer: senha,
+      }),
+    });
+
+    if (response.ok) {
+      await enviarEmail(emailVar, senha);
+
+      window.alert("Post realizado com sucesso pelo usuário de ID: " + idUsuario + "!");
+      document.getElementById("senha").innerHTML = `Senha do ${nomeVar}: ${senha}<br>A senha foi enviada para o email ${emailVar}`;
+      let mostrarSenha = document.getElementById("senha");
+      mostrarSenha.classList.remove("display-none");
+      mostrarSenha.classList.add("senha");
+      limparFormulario();
+      finalizarAguardar();
+    } else if (response.status == 404) {
+      window.alert("Deu 404!");
+    } else {
+      throw new Error("Houve um erro ao tentar realizar a postagem! Código da resposta: " + response.status);
+    }
+  } catch (error) {
+    console.log("#ERRO: ", error);
+    finalizarAguardar();
+    throw error;
+  }
+
+  return false;
+}
+var nomeEmail= nomeVar;
+
+
 </script>

@@ -3,15 +3,15 @@ var router = express.Router();
 
 var maquinaController = require("../controllers/maquinaController");
 
-router.post("/cadastrar/:idUsuario", function (req, res) {
+router.post("/cadastrar/:idLoja", function (req, res) {
     maquinaController.cadastrar(req, res);
 });
 
-router.get("/listar", function (req, res) {
+router.get("/listar/:fkLoja", function (req, res) {
     maquinaController.listar(req, res);
 });
 
-router.put("/editar", function (req, res) {
+router.put("/editar/:fkLoja", function (req, res) {
     maquinaController.editar(req, res);
 });
 
