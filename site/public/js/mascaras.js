@@ -1,15 +1,16 @@
-function validEmailMask(){
+//validações da tela de cadastro do funcionário
+function validEmailMaskCadastro(){
     const email = in_email.value.trim()
     const validarEmail = /^[a-z0-9.]+@[a-z0-9]+\.[a-z]+\.([a-z]+)?$/.test(email);
 
     if (validarEmail) {
-        alert("✅ Email válido!")
+        alert("✅ Email com padrões válidos!")
     } else {
-        alert("⚠️ Email inválido!")
+        alert("⚠️ Email com padrões inválidos!")
     }
 }
 
-function validSenhaMask() {
+function validSenhaMaskCadastro() {
     const senha = in_senha.value.trim()
     const hasUppercase = /[A-Z]/g.test(senha)
     const hasLowercase = /[a-z]/g.test(senha)
@@ -25,32 +26,56 @@ function validSenhaMask() {
     const validconfirmSenha = hasUppercase2 && hasLowercase2 && hasNumbers2 && hasSpecialChar2
 
     if (validSenha && validconfirmSenha) {
-        alert("✅ Senha válida!")
+        alert("✅ Senha com padrões válidos!")
     } else {
-        alert("⚠️ Senha inválida!")
+        alert("⚠️ Senha com padrões inválidos!")
     }
 }
 
-function toggleVisibility(event) {
-    var fieldId = event.target.id;
-    var passwordField = document.getElementById(fieldId);
-  
-    // Lógica para alternar a visibilidade da senha
-    if (passwordField.type === 'password') {
-      passwordField.type = 'text';
+//--------------------------------------------------------------------------------------
+//validações tela de login
+function validEmailMaskLogin(){
+    const email = email_input.value.trim()
+    const validarEmail = /^[a-z0-9.]+@[a-z0-9]+\.[a-z]+\.([a-z]+)?$/.test(email);
+
+    if (validarEmail) {
+        alert("✅ Email com padrões válidos!")
     } else {
-      passwordField.type = 'password';
+        alert("⚠️ Email com padrões inválidos!")
     }
 }
-  
-  // Adicione um ouvinte de eventos para cada campo de senha
-  var passwordField1 = document.getElementById('in_senha');
-  var passwordField2 = document.getElementById('in_confirmacao');
-  var passwordField3 = document.getElementById('senha_input');
-  
-  passwordField1.addEventListener('click', toggleVisibility);
-  passwordField2.addEventListener('click', toggleVisibility);
-  passwordField3.addEventListener('click', toggleVisibility);
+
+function validSenhaMaskLogin() {
+    const senha = senha_input.value.trim()
+    const hasUppercase = /[A-Z]/g.test(senha)
+    const hasLowercase = /[a-z]/g.test(senha)
+    const hasNumbers = /[0-9]/g.test(senha)
+    const hasSpecialChar = /\D/g.test(senha)
+    const validSenha = hasUppercase && hasLowercase && hasNumbers && hasSpecialChar
+
+    if (validSenha) {
+        alert("✅ Senha com padrões válidos!")
+    } else {
+        alert("⚠️ Senha com padrões inválidos!")
+    }
+}
+
+//--------------------------------------------------------------------------------------
+//validações tela de cadastro da loja
+
+
+
+//--------------------------------------------------------------------------------------
+//validações 'eye' dos campos de password
+function verSenha(input, icone) {
+    if (input.type == "password") {
+      input.type = "text";
+      icone.classList.replace("ph-eye", "ph-eye-slash");
+    } else {
+      input.type = "password";
+      icone.classList.replace("ph-eye-slash", "ph-eye");
+    }
+  }
 
   function cadastrar() {
     validEmailMask()
