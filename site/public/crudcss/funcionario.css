@@ -240,3 +240,7 @@ tr:nth-child(odd) {
     border: 1px solid #ddd;
     padding: 8px;
   }
+
+  .oculto {
+    display: none;
+  }

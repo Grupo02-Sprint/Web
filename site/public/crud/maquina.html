@@ -13,7 +13,7 @@
     <div class="tudo">
         <div class="menulateral">
             <div class="logo">
-               <a href="index.html"><img src="../icons/Logo-nome-site.png" alt="" height="35vh"></a>
+               <a href="../index.html"><img src="../icons/Logo-nome-site.png" alt="" height="35vh"></a>
             </div>
             <div class="hello">
         
@@ -160,13 +160,14 @@
            var idLoja = sessionStorage.FK_LOJA;       
            var patrimonioVar = patrimonio.value
 
-        fetch(`/maquinas/cadastrar/${idLoja}`, {
+        fetch(`/maquinas/cadastrar`, {
             method: "post",
             headers: {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
-              patrimonioServer: patrimonioVar
+              patrimonioServer: patrimonioVar,
+              idLojaServer:idLoja
         })
         }).then(function (resposta) {
 
@@ -200,8 +201,8 @@
                 resposta.json().then(function (resposta) {
                     console.log("DEU CERTTOO");
 
-                    sessionStorage.FK_LOJA = resposta.fkLoja;
-                    fkLoja = resposta.fkLoja;
+                    sessionStorage.FK_LOJA = resposta.fk_loja;
+                    fkLoja = resposta.fk_loja;
 
                     fetch(`/maquinas/listar/${fkLoja}`).then(function (resposta) {
                         if (resposta.ok) {
@@ -231,29 +232,29 @@
                                     var btnEditar = document.createElement("button");
                                     var btnDeletar = document.createElement("button");
 
-                                    spanID.innerHTML = "<b>Máquina: </b>" + publicacao.idMaquina +"<br>" ;
+                                    spanID.innerHTML = "<b>Máquina: </b>" + publicacao.id_maquina +"<br>" ;
                                     spanTitulo.innerHTML = "<b>Patrimonio: </b>" + publicacao.patrimonio;
                                     btnEditar.innerHTML = '<i class="fas fa-pencil-alt"></i>';
                                     btnDeletar.innerHTML = '<i class="fas fa-trash"></i>';
                                     btnDashboard.innerHTML = '<img src="../assets/computador.png" alt="" height="85vh" width="85vw">';
                                     divPublicacao.className = "publicacao";
-                                    spanTitulo.id = "inputNumero" + publicacao.idMaquina;
+                                    spanTitulo.id = "inputNumero" + publicacao.id_maquina;
                                     spanNome.className = "publicacao-nome";
                                     spanTitulo.className = "publicacao-titulo";
 
                                     divButtons.className = "div-buttons";
 
                                     btnDashboard.className = "publicacao-btn-dasboard";
-                                    btnDashboard.id = "btnDashboard" + publicacao.idMaquina;
+                                    btnDashboard.id = "btnDashboard" + publicacao.id_maquina;
                                     btnEditar.setAttribute("onclick", `dashboard(${publicacao.idMaquina})`);
 
                                     btnEditar.className = "publicacao-btn-editar";
-                                    btnEditar.id = "btnEditar" + publicacao.idMaquina;
-                                    btnEditar.setAttribute("onclick", `abrirEditar(${publicacao.idMaquina})`);
+                                    btnEditar.id = "btnEditar" + publicacao.id_maquina;
+                                    btnEditar.setAttribute("onclick", `abrirEditar(${publicacao.id_maquina})`);
 
                                     btnDeletar.className = "publicacao-btn-deletar";
-                                    btnDeletar.id = "btnDeletar" + publicacao.idMaquina;
-                                    btnDeletar.setAttribute("onclick", `deletar(${publicacao.idMaquina})`);
+                                    btnDeletar.id = "btnDeletar" + publicacao.id_maquina;
+                                    btnDeletar.setAttribute("onclick", `deletar(${publicacao.id_maquina})`);
 
                                     divPublicacao.appendChild(spanID);
                                     divPublicacao.appendChild(spanNome);

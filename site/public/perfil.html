@@ -109,12 +109,12 @@
               // Preencher os campos com os dados obtidos do banco de dados
               usuario.value = resposta[0].nome;
               email.value = resposta[0].email;
-              cargo.value = resposta[0].fkCargo;
+              cargo.value = resposta[0].fk_cargo;
               nomeLoja.value = resposta[0].nomeLoja;
               cnpj.value = resposta[0].cnpj;
               telefone.value = resposta[0].telefone;
-              idLoja = resposta[0].idLoja;
-              cargoUsuario = resposta[0].fkCargo;
+              idLoja = resposta[0].id_loja;
+              cargoUsuario = resposta[0].fk_cargo;
             });
           } else {
             throw "Houve um erro na API!";

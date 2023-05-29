@@ -3,7 +3,7 @@ var router = express.Router();
 
 var maquinaController = require("../controllers/maquinaController");
 
-router.post("/cadastrar/:idLoja", function (req, res) {
+router.post("/cadastrar", function (req, res) {
     maquinaController.cadastrar(req, res);
 });
 

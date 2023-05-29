@@ -13,7 +13,7 @@
     <div class="tudo">
         <div class="menulateral">
             <div class="logo">
-               <a href="index.html"><img src="../icons/Logo-nome-site.png" alt="" height="35vh"></a>
+               <a href="../index.html"><img src="../icons/Logo-nome-site.png" alt="" height="35vh"></a>
             </div>
             <div class="hello">
         
@@ -72,6 +72,7 @@
                 </select>
                 <h4>Email:</h4>
                 <input type="text" id="email" name="email">
+                <input type="hidden" id="postagem">
               </form>
               <button onclick="cadastrar()">Cadastrar</button>
             <div class="display-none" id="senha">Senha</div>
@@ -83,6 +84,7 @@
 </html>
 <script>
  b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
+ postagem.value= sessionStorage.ID_POSTAGEM_EDITANDO;
 
 var caracteres = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789@#$%^&_";
 var senha = "";
@@ -91,6 +93,8 @@ for (var i = 0; i <= 8; i++) {
 }
 
 var idLoja = sessionStorage.FK_LOJA;
+
+
 
 async function enviarEmail(email, senha) {
   try {
@@ -116,8 +120,8 @@ async function enviarEmail(email, senha) {
   }
 }
 
+var idUsuario = sessionStorage.IDUSUARIO_USUARIO;
 async function cadastrar() {
-  var idUsuario = sessionStorage.IDUSUARIO_USUARIO;
   var nomeVar = form_postagem.nome.value;
   var cargoVar = form_postagem.cargo.value;
   var emailVar = form_postagem.email.value;
@@ -141,10 +145,8 @@ async function cadastrar() {
       await enviarEmail(emailVar, senha);
 
       window.alert("Post realizado com sucesso pelo usuário de ID: " + idUsuario + "!");
-      document.getElementById("senha").innerHTML = `Senha do ${nomeVar}: ${senha}<br>A senha foi enviada para o email ${emailVar}`;
-      let mostrarSenha = document.getElementById("senha");
-      mostrarSenha.classList.remove("display-none");
-      mostrarSenha.classList.add("senha");
+      window.alert(`Senha do ${nomeVar}: ${senha}A senha foi enviada para o email ${emailVar}`);
+      window.location = "funcionario.html"
       limparFormulario();
       finalizarAguardar();
     } else if (response.status == 404) {
@@ -160,7 +162,6 @@ async function cadastrar() {
 
   return false;
 }
-var nomeEmail= nomeVar;
 
 
 </script>

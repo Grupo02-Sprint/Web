@@ -13,7 +13,7 @@
     <div class="tudo">
         <div class="menulateral">
             <div class="logo">
-               <a href="index.html"><img src="../icons/Logo-nome-site.png" alt="" height="35vh"></a>
+               <a href="../index.html"><img src="../icons/Logo-nome-site.png" alt="" height="35vh"></a>
             </div>
             <div class="hello">
         
@@ -86,8 +86,8 @@
                   resposta.json().then(function (resposta) {
                     console.log("DEU CERTTOO");
   
-                    sessionStorage.FK_LOJA = resposta.fkLoja;
-                    fkLoja = resposta.fkLoja; // Atribua o valor à variável fkLoja
+                    sessionStorage.FK_LOJA = resposta.fk_loja;
+                    fkLoja = resposta.fk_loja; // Atribua o valor à variável fkLoja
   
                     fetch(`/funcionarios/listar/${fkLoja}`).then(function (resposta) {
                       console.log(fkLoja);
@@ -128,28 +128,32 @@
                             var novaLinha = tabela.insertRow();
   
                             var id = novaLinha.insertCell();
-                            id.innerHTML = publicacao.idUsuario;
+                            id.innerHTML = publicacao.id_usuario;
   
                             var titulo = novaLinha.insertCell();
                             titulo.innerHTML = publicacao.nome;
   
                             var nome = novaLinha.insertCell();
-                            nome.innerHTML = publicacao.nomeCargo;
+                            nome.innerHTML = publicacao.tipo;
   
                             var email = novaLinha.insertCell();
                             email.innerHTML = publicacao.email;
+                            
+                            var idCargo = novaLinha.insertCell();
+                            idCargo.innerHTML = publicacao.id;
+                            idCargo.className = "oculto";
   
                             var acao = novaLinha.insertCell();
                             var btnEditar = document.createElement("button");
                             btnEditar.innerHTML = '<i class="fas fa-pencil-alt"></i>';
                             btnEditar.className = "editar";
-                            btnEditar.setAttribute("onclick", `editar(${publicacao.idUsuario})`);
+                            btnEditar.setAttribute("onclick", `editar(${publicacao.id_usuario})`);
                             acao.appendChild(btnEditar);
   
                             var btnDeletar = document.createElement("button");
                             btnDeletar.innerHTML = '<i class="fas fa-trash"></i>';
                             btnDeletar.className = "deletar";
-                            btnDeletar.setAttribute("onclick", `deletar(${publicacao.idUsuario})`);
+                            btnDeletar.setAttribute("onclick", `deletar(${publicacao.id_usuario})`);
                             acao.appendChild(btnDeletar);
                               
                           }
@@ -179,7 +183,7 @@ function editar(idUsuario) {
     var idCelula = tabela.rows[i].cells[0];
     if (idCelula.textContent == idUsuario) {
       var nomeCelula = tabela.rows[i].cells[1];
-      var cargoCelula = tabela.rows[i].cells[2];
+      var cargoCelula = tabela.rows[i].cells[4];
       var emailCelula = tabela.rows[i].cells[3];
       
       sessionStorage.ID_POSTAGEM_EDITANDO = idUsuario;

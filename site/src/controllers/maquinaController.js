@@ -2,7 +2,7 @@ var maquinaModel = require("../models/maquinaModel");
 
 function cadastrar(req, res) {
     var patrimonio = req.body.patrimonioServer;
-    var idLoja = req.params.fkLoja;
+    var idLoja = req.body.idLojaServer;
 
     if (patrimonio == undefined||patrimonio==null||patrimonio=="") {
         res.status(400).send("O patrimonio está indefinido!");
