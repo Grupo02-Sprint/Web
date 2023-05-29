@@ -1,64 +1,83 @@
-const patterns = {
-    CNPJ: /^(\d{2})(\d{3})(\d{0,3})(\d{4})(\d{2})/,
-    CPF_9: /^(\d{3})(\d{3})(\d{3})(\d{0,2})/,
-    CPF_6: /^(\d{3})(\d{3})/,
-    CPF_3: /^(\d{3})/,
+//validações da tela de cadastro do funcionário
+function validEmailMaskCadastro(){
+    const email = in_email.value.trim()
+    const validarEmail = /^[a-z0-9.]+@[a-z0-9]+\.[a-z]+\.([a-z]+)?$/.test(email);
 
-    PHONE_11: /^(\d{2})(\d{5})(\d{4})/,
-    PHONE_6: /^(\d{2})(\d{4})/,
-    PHONE_2: /^(\d{2})/,
-
-    CEP: /^(\d{5})/
+    if (validarEmail) {
+        alert("✅ Email com padrões válidos!")
+    } else {
+        alert("⚠️ Email com padrões inválidos!")
+    }
 }
 
-function maskCPF_CNPJ() {
-    let document = in_cpf_cnpj.value.replace(/\D+/g, "").trim()
+function validSenhaMaskCadastro() {
+    const senha = in_senha.value.trim()
+    const hasUppercase = /[A-Z]/g.test(senha)
+    const hasLowercase = /[a-z]/g.test(senha)
+    const hasNumbers = /[0-9]/g.test(senha)
+    const hasSpecialChar = /\D/g.test(senha)
+    const validSenha = hasUppercase && hasLowercase && hasNumbers && hasSpecialChar
 
-    if (document.length > 14) {
-        return false
+    const confirmacaoSenha = in_confirmacao.value.trim()
+    const hasUppercase2 = /[A-Z]/g.test(confirmacaoSenha)
+    const hasLowercase2 = /[a-z]/g.test(confirmacaoSenha)
+    const hasNumbers2 = /[0-9]/g.test(confirmacaoSenha)
+    const hasSpecialChar2 = /\D/g.test(confirmacaoSenha)
+    const validconfirmSenha = hasUppercase2 && hasLowercase2 && hasNumbers2 && hasSpecialChar2
+
+    if (validSenha && validconfirmSenha) {
+        alert("✅ Senha com padrões válidos!")
+    } else {
+        alert("⚠️ Senha com padrões inválidos!")
     }
-
-    if (document.length > 11) {
-        document = document.replace(patterns.CNPJ, "$1.$2.$3/$4-$5")
-    } else if (document.length > 9) {
-        document = document.replace(patterns.CPF_9, "$1.$2.$3-$4")
-    } else if (document.length > 6) {
-        document = document.replace(patterns.CPF_6, "$1.$2.")
-    } else if (document.length > 3) {
-        document = document.replace(patterns.CPF_3, "$1.")
-    }
-
-    in_cpf_cnpj.value = document
 }
 
-function maskPhone() {
-    let phone = in_phone.value.replace(/\D+/g, "").trim()
+//--------------------------------------------------------------------------------------
+//validações tela de login
+function validEmailMaskLogin(){
+    const email = email_input.value.trim()
+    const validarEmail = /^[a-z0-9.]+@[a-z0-9]+\.[a-z]+\.([a-z]+)?$/.test(email);
 
-    if (phone.length > 11) {
-        return false
+    if (validarEmail) {
+        alert("✅ Email com padrões válidos!")
+    } else {
+        alert("⚠️ Email com padrões inválidos!")
     }
-
-    if (phone.length > 10) {
-        phone = phone.replace(patterns.PHONE_11, "($1) $2-$3")
-    }  else if (phone.length > 6) {
-        phone = phone.replace(patterns.PHONE_6, "($1) $2-")
-    } else if (phone.length > 1) {
-        phone = phone.replace(patterns.PHONE_2, "($1) ")
-    }
-
-    in_phone.value = phone
 }
 
-function maskCEP() {
-    let cep = in_cep.value.replace(/\D+/g, "")
+function validSenhaMaskLogin() {
+    const senha = senha_input.value.trim()
+    const hasUppercase = /[A-Z]/g.test(senha)
+    const hasLowercase = /[a-z]/g.test(senha)
+    const hasNumbers = /[0-9]/g.test(senha)
+    const hasSpecialChar = /\D/g.test(senha)
+    const validSenha = hasUppercase && hasLowercase && hasNumbers && hasSpecialChar
 
-    if (cep.length > 8) {
-        return false
+    if (validSenha) {
+        alert("✅ Senha com padrões válidos!")
+    } else {
+        alert("⚠️ Senha com padrões inválidos!")
     }
-
-    if(cep.length > 5){
-        cep = cep.replace(patterns.CEP, "$1-")
-    }
-
-    in_cep.value = cep
 }
+
+//--------------------------------------------------------------------------------------
+//validações tela de cadastro da loja
+
+
+
+//--------------------------------------------------------------------------------------
+//validações 'eye' dos campos de password
+function verSenha(input, icone) {
+    if (input.type == "password") {
+      input.type = "text";
+      icone.classList.replace("ph-eye", "ph-eye-slash");
+    } else {
+      input.type = "password";
+      icone.classList.replace("ph-eye-slash", "ph-eye");
+    }
+  }
+
+  function cadastrar() {
+    validEmailMask()
+    validSenhaMask()
+    }

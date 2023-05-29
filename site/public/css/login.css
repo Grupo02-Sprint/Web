@@ -308,7 +308,7 @@ body {
     }
 
     /*máscaras*/
-    .input-field {
+/*    .input-field {
         display: grid;
         grid-template-columns: 1fr;
         position: relative;
@@ -320,5 +320,5 @@ body {
         margin-right: 1rem;
         right: 0;
         align-self: center;
-    }
+    }*/
 }
