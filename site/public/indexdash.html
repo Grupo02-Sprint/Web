@@ -198,19 +198,19 @@
 
   function obterDadosGrafico(idMaquina) {
 
-    var idMaquina = Number(select_maquina.value);
+    var fklojavar = Number(select_maquina.value);
 
     if (proximaAtualizacao != undefined) {
       clearTimeout(proximaAtualizacao);
     }
 
-    fetch(`/medidas/ultimas/${idMaquina}`, { cache: 'no-store' }).then(function (response) {
+    fetch(`/medidas/ultimas/${fklojavar}`, { cache: 'no-store' }).then(function (resposta) {
       if (response.ok) {
         response.json().then(function (resposta) {
           console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
           resposta.reverse();
 
-          plotarGrafico(resposta, idMaquina);
+          plotarGrafico(resposta, fklojavar);
 
         });
       } else {

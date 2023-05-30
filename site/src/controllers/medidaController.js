@@ -28,17 +28,17 @@ function buscarMaquinas(fklojavar, res) {
     }
 }
 
-function buscarUltimasMedidas(req, res) {
+function buscarUltimasMedidas(fklojavar, res) {
 
-    const limite_linhas = 9;
+    const limite_linhas = 7;
 
     //var idComponente = 1;
-    var idMaquina = req.params.idMaquina;
-    console.log(idMaquina)
+    var id_Loja = fklojavar;
+    console.log(idLoja)
 
     console.log(`Recuperando as ultimas ${limite_linhas} medidas`);
 
-    medidaModel.buscarUltimasMedidas(idMaquina, limite_linhas).then(function (resultado) {
+    medidaModel.buscarUltimasMedidas(id_Loja, limite_linhas).then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
         } else {
@@ -52,13 +52,13 @@ function buscarUltimasMedidas(req, res) {
 }
 
 
-function buscarMedidasEmTempoReal(req, res) {
+function buscarMedidasEmTempoReal(fklojavar, res) {
 
-    var idMaquina = 1;
+    var id_Loja = fklojavar;
 
     console.log(`Recuperando medidas em tempo real`);
 
-    medidaModel.buscarMedidasEmTempoReal(idComponente).then(function (resultado) {
+    medidaModel.buscarMedidasEmTempoReal(id_Loja).then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
         } else {

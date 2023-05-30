@@ -8,12 +8,14 @@ router.get("/buscar/maquinas/:fklojavar", function (req, res) {
     medidaController.buscarMaquinas(fklojavar, res);
 })
 
-router.get("/ultimas/:idMaquina", function (req, res) {
-    medidaController.buscarUltimasMedidas(req, res);
+router.get("/ultimas/:fklojavar", function (req, res) {
+    var fklojavar = req.params.fklojavar;
+    medidaController.buscarUltimasMedidas(fklojavar, res);
 });
 
-router.get("/tempo-real/:idMaquina", function (req, res) {
-    medidaController.buscarMedidasEmTempoReal(req, res);
+router.get("/tempo-real/:fklojavar", function (req, res) {
+    var fklojavar = req.params.fklojavar;
+    medidaController.buscarMedidasEmTempoReal(fklojavar, res);
 })
 
 
