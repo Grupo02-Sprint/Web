@@ -26,7 +26,7 @@
             <ul>
                 <li><a onclick="desconectado()">Dashboard</a></li>
                 <li><a href="./login.html">Entrar</a></li>
-                <li><a href="./cadastro.html">Cadastre-se</a></li>
+                <li><a href="./cadastroLoja.html">Cadastre-se</a></li>
             </ul>
         </div>
     </nav>
@@ -240,13 +240,12 @@
         }
     }
 
-    var contador_tema = 0;
     function home() {
         window.location = "./index.html";
     }
 
     function dashboard() {
-        alert("Site indisponível no momento");
+        desconectado();
     }
 
     function contato() {

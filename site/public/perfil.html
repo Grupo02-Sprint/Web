@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/perfil.css">
+    <script src="../js/funcoes.js"></script>
+    <script src="https://kit.fontawesome.com/eb115129d4.js" crossorigin="anonymous"></script>
+    <title>Document</title>
+</head>
+<body onload="validarSessao(), atualizarFeed()">
+    <div class="tudo">
+        <div class="menulateral">
+            <div class="logo">
+               <a href="index.html"><img src="./icons/Logo-nome-site.png" alt="" height="35vh"></a>
+            </div>
+            <div class="hello">
+        
+              <img src="./assets/WhatsApp Image 2023-01-30 at 23.12.16.jpeg" alt="">
+
+                <h2><span id="b_usuario">Dionísio</span></h2>
+        
+              </div>
+              <ul>
+                <li>
+                  <i class="fa-solid fa-chart-line"></i>
+                  <a href="../indexdash.html "><b>Gráficos</b></a>
+                </li>
+        
+                <li style="color: black;"> 
+                  <i class="fa-solid fa-user"></i>
+                  <a cla href="perfil.html"><b style="color: black;">Perfil</b></a>
+                </li>
+
+                <li>
+                  <i class="fa-solid fa-computer"></i>
+                  <a href="./crud/maquina.html"><b>Máquina</b></a>
+                </li>
+
+                <li>
+                  <i class="fa-solid fa-address-card"></i>
+                  <a href="./crud/funcionario.html"><b>Funcionário</b></a>
+                </li>
+
+                <li>
+                  <i class="fa-solid fa-headset"></i>
+                  <a href="https://maxsolutions.auvo.com.br/Login#signin"><b>Suporte</b></a>
+                </li>
+                
+                <li>
+                  <a href="login.html">
+                    <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                    <span class="menu" onclick="limparSessao()"><b>Sair</b></span>
+                  </a>
+                </li>
+              </ul>
+        </div>
+        <div class="perfil">
+          <div class="caixa1">
+            <h2>Funcionario</h2>
+            <div class="form">
+              <label for="">Nome:</label>
+              <input type="text" readonly id="usuario">
+              <label for="">Email:</label>
+              <input type="text" readonly id="email">
+              <label for="">Cargo:</label>
+              <select id="cargo" disabled>
+                <option value="1">Gerente</option>
+                <option value="2">Analista</option>
+                <option value="3">Gerente Premium</option>
+              </select>
+            </div>
+            <button id="btnEditarUsuario" onclick="editarUsuario('btnEditarUsuario')">Editar</button>
+          </div>
+          <div class="caixa2">
+            <h2>Loja</h2>
+            <div class="form">
+              <label for="">Nome:</label>
+              <input type="text" readonly id="nomeLoja">
+              <label for="">CNPJ:</label>
+              <input type="text" readonly id="cnpj">
+              <label for="">Telefone:</label>
+              <input type="text" readonly id="telefone">
+            </div>
+            <button id="btnEditarLoja" onclick="editarUsuario('btnEditarLoja')">Editar</button>
+          </div>
+        </div>
+    </div>
+</body>
+</html>
+<script>
+    var idUsuario = sessionStorage.IDUSUARIO_USUARIO;
+
+    function atualizarFeed() {
+      var idUsuario = sessionStorage.IDUSUARIO_USUARIO;
+      fetch(`/perfis/listar/${idUsuario}`)
+        .then(function (resposta) {
+          if (resposta.ok) {
+            if (resposta.status == 204) {
+              throw "Nenhum resultado encontrado!";
+            }
+            resposta.json().then(function (resposta) {
+              console.log("Dados recebidos: ",JSON.stringify(resposta));
+
+              // Preencher os campos com os dados obtidos do banco de dados
+              usuario.value = resposta[0].nome;
+              email.value = resposta[0].email;
+              cargo.value = resposta[0].fkCargo;
+              nomeLoja.value = resposta[0].nomeLoja;
+              cnpj.value = resposta[0].cnpj;
+              telefone.value = resposta[0].telefone;
+            });
+          } else {
+            throw "Houve um erro na API!";
+          }
+        })
+        .catch(function (erro) {
+          console.error(erro);
+        });
+    }
+
+function editarUsuario(idBotao) {
+  var idUsuario = sessionStorage.IDUSUARIO_USUARIO;
+  let inputs = [];
+  let select = document.getElementById("cargo");
+  let botao = document.getElementById(idBotao);
+
+  if (idBotao === "btnEditarUsuario") {
+    inputs = document.querySelectorAll("#usuario, #email");
+    select.disabled = false;
+  } else if (idBotao === "btnEditarLoja") {
+    inputs = document.querySelectorAll("#nomeLoja, #telefone, #cnpj");
+    select.disable = true;
+  }
+
+  inputs.forEach(input => {
+    if (input.readOnly) {
+      input.removeAttribute("readonly");
+      botao.innerText = "Salvar Edição";
+      window.alert("Campos liberados para edição!");
+    } else {
+
+      fetch(`/perfis/editar/${idUsuario}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                nome: usuario.value,
+                cargo: cargo.value,
+                email: email.value
+            })
+        }).then(function (resposta) {
+
+            if (resposta.ok) {
+                window.alert("Perfil atualizado com sucesso pelo usuario de email: " + sessionStorage.getItem("EMAIL_USUARIO") + "!");
+                window.location = "perfil.html"
+            } else if (resposta.status == 404) {
+                window.alert("Deu 404!");
+            } else {
+                throw ("Houve um erro ao tentar realizar a postagem! Código da resposta: " + resposta.status);
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+        });
+
+      input.setAttribute("readonly", "readonly");
+      botao.innerText = "Editar";
+    }
+  });
+}
+</script>
