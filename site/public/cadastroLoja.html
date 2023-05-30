@@ -5,13 +5,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="check" href="js/validacoes.js">
-    <link rel="check" href="js/mascaras.js">
 
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
 
-    <script src="js/mascaras.js"></script>
-    <script src="js/validacoes.js"></script>
+    <script src="../js/mascaras.js"></script>
 
     <link rel="stylesheet" href="css/cadastro.css">
     <link rel="stylesheet"
@@ -93,15 +90,15 @@
                         <h4 style="font-size: 2.5vh;">Nome:</h4>
                         <input type="text" id="in_nome" placeholder="   Insira o nome da loja">
                     </div>
-                    
+
                     <div class="input-field">
                         <h4 style="font-size: 2.5vh;">Telefone:</h4>
-                        <input type="text" id="in_telefone" placeholder="   Insira o telefone">
+                        <input type="text" id="in_telefone" placeholder="   Insira o telefone" onkeyup="maskPhone(event)">
                     </div>
-                    
+
                     <div class="input-field">
                         <h4 style="font-size: 2.5vh;">CNPJ</h4>
-                        <input type="text" id="in_cnpj" placeholder="   Insira o CNPJ">
+                        <input type="text" id="in_cnpj" placeholder="   Insira o CNPJ" maxlength="18" onkeyup="maskCNPJ()">
                     </div>
 
                     <button onclick="cadastrar()"> Cadastrar Loja</button>
@@ -117,42 +114,38 @@
 <script>
     function cadastrar() {
 
-      //Recupere o valor da nova input pelo nome do id
-      // Agora vá para o método fetch logo abaixo
-      var nomeVar = in_nome.value;
-      var telefoneVar = in_telefone.value;
-      var cnpjVar = in_cnpj.value;
+        //Recupere o valor da nova input pelo nome do id
+        // Agora vá para o método fetch logo abaixo
+        var nomeVar = in_nome.value;
+        var telefoneVar = in_telefone.value;
+        var cnpjVar = in_cnpj.value;
 
-      if (
-        nomeVar == "" ||
-        cnpjVar == "" ||
-        telefoneVar == ""
-      ) {
-        alert('preencha todos os campos!')
-        finalizarAguardar();
-        return false;
-      }
-      // Enviando o valor da nova input
-      fetch("/lojas/cadastrar", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          // crie um atributo que recebe o valor recuperado aqui
-          // Agora vá para o arquivo routes/usuario.js
-          nomeServer: nomeVar,
-          cnpjServer: cnpjVar,
-          telefoneServer: telefoneVar
-        }),
-      })
-        .then(function (resposta) {
-          console.log("resposta: ", resposta);
+        if (
+            nomeVar == "" ||
+            cnpjVar == "" ||
+            telefoneVar == ""
+        ) {
+            alert('preencha todos os campos!')
+            // finalizarAguardar();
+            return false;
+        }
+        // Enviando o valor da nova input
+        fetch("/lojas/cadastrar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                // crie um atributo que recebe o valor recuperado aqui
+                // Agora vá para o arquivo routes/usuario.js
+                nomeServer: nomeVar,
+                cnpjServer: cnpjVar,
+                telefoneServer: telefoneVar
+            }),
+        })
+            .then(function (resposta) {
+                console.log("resposta: ", resposta);
 
-          if (resposta.ok) {
-
-            fetch(`/lojas/buscar-por-cnpj/${cnpjVar}`)
-              .then(function (resposta) {
                 if (resposta.ok) {
                   resposta.json().then(function (resposta) {
                     console.log("DEU CERTTOO");
@@ -163,26 +156,15 @@
                  window.location = "cadastro.html";
                  }, "2000")
                   });
+
                 }
-              })
-              .catch(function (erro) {
-                console.error(erro);
+            })
+            .catch(function (resposta) {
+                console.log(`#ERRO: ${resposta}`);
+                //   finalizarAguardar();
+            });
 
-              });
-
-          
-            limparFormulario();
-            finalizarAguardar();
-          } else {
-            throw "Houve um erro ao tentar realizar o cadastro!";
-          }
-        })
-        .catch(function (resposta) {
-          console.log(`#ERRO: ${resposta}`);
-          finalizarAguardar();
-        });
-
-      return false;
+        return false;
     }
 
     var esquerda = document.getElementById('na-onde').style
@@ -224,14 +206,12 @@
         }
     }
 
-    var contador_tema = 0;
-
     function home() {
         window.location = "./index.html";
     }
 
     function dashboard() {
-        alert("Site indisponível no momento");
+        desconectado();
     }
 
     function contato() {
@@ -242,4 +222,9 @@
         window.location = "./login.html";
     }
 
+    function desconectado() {
+        alert("Faça login para acessar a Dashboard")
+
+        window.location = "./login.html"
+    }
 </script>

@@ -14,8 +14,10 @@ function cadastrar(nome, telefone, cnpj) {
 }
 
 function buscarPorCnpj(cnpj){
+
     var instrucao = `select id_loja from loja where cnpj = ${cnpj}`;
 
+    console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
 }
 
