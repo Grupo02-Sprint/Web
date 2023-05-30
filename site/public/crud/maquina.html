@@ -13,7 +13,7 @@
     <div class="tudo">
         <div class="menulateral">
             <div class="logo">
-               <a href="index.html"><img src="../icons/Logo-nome-site.png" alt="" height="35vh"></a>
+               <a href="../index.html"><img src="../icons/Logo-nome-site.png" alt="" height="35vh"></a>
             </div>
             <div class="hello">
         
@@ -110,7 +110,7 @@
 <script>
   var idMaquinaEdit = null;
   b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
-  
+  var idUsuario = sessionStorage.IDUSUARIO_USUARIO;
   function adicionar(){
 
       var modal = document.getElementById("myModal");
@@ -157,16 +157,25 @@
 
 
     function cadastrar() {
-           var idUsuario = sessionStorage.IDUSUARIO_USUARIO;       
+
+    var senha = "";
+    var caracteres = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789@#$%^&_";
+        
+    for (var i = 0; i <= 8; i++) {
+      senha += caracteres.charAt(Math.floor(Math.random() * caracteres.length));
+    }
+           var idLoja = sessionStorage.FK_LOJA;       
            var patrimonioVar = patrimonio.value
 
-        fetch(`/maquinas/cadastrar/${idUsuario}`, {
+        fetch(`/maquinas/cadastrar`, {
             method: "post",
             headers: {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
-              patrimonioServer: patrimonioVar
+              patrimonioServer: patrimonioVar,
+              idLojaServer:idLoja,
+              senhaServer:senha
         })
         }).then(function (resposta) {
 
@@ -192,93 +201,110 @@
     }
 
     function atualizarFeed() {
-        //aguardar();
-        fetch("/maquinas/listar").then(function (resposta) {
+    //aguardar();
 
-            
+    fetch(`/funcionarios/buscar-por-usuario/${idUsuario}`)
+        .then(function (resposta) {
             if (resposta.ok) {
-                if (resposta.status == 204) {
-                    var feed = document.getElementById("maquinas");
-                    var mensagem = document.createElement("span");
-                    mensagem.innerHTML = "Nenhum resultado encontrado."
-                    feed.appendChild(mensagem);
-                    throw "Nenhum resultado encontrado!!";
-                }
-
                 resposta.json().then(function (resposta) {
-                    console.log("Dados recebidos: ", JSON.stringify(resposta));
+                    console.log("DEU CERTTOO");
 
-                    var feed = document.getElementById("maquinas");
-                    feed.innerHTML = "";
-                    for (let i = 0; i < resposta.length; i++) {
-                        var publicacao = resposta[i];
+                    sessionStorage.FK_LOJA = resposta.fk_loja;
+                    fkLoja = resposta.fk_loja;
 
-                        // criando e manipulando elementos do HTML via JavaScript
-                        var divPublicacao = document.createElement("div");
-                        var spanID = document.createElement("span");
-                        var spanTitulo = document.createElement("span");
-                        var spanNome = document.createElement("span");
-                        var btnDashboard = document.createElement("div");
-                        var divButtons = document.createElement("div");
-                        var btnEditar = document.createElement("button");
-                        var btnDeletar = document.createElement("button");
+                    fetch(`/maquinas/listar/${fkLoja}`).then(function (resposta) {
+                        if (resposta.ok) {
+                            if (resposta.status == 204) {
+                                var feed = document.getElementById("maquinas");
+                                var mensagem = document.createElement("span");
+                                mensagem.innerHTML = "Nenhum resultado encontrado."
+                                feed.appendChild(mensagem);
+                                throw "Nenhum resultado encontrado!!";
+                            }
 
+                            resposta.json().then(function (resposta) {
+                                console.log("Dados recebidos: ", JSON.stringify(resposta));
 
-                        spanID.innerHTML = "<b>Máquina: </b>" + publicacao.idMaquina +"<br>" ;
-                        spanTitulo.innerHTML = "<b>Patrimonio: </b>" + publicacao.patrimonio;
-                        btnEditar.innerHTML = '<i class="fas fa-pencil-alt"></i>';
-                        btnDeletar.innerHTML = '<i class="fas fa-trash"></i>';
-                        btnDashboard.innerHTML = '<img src="../assets/computador.png" alt="" height="85vh" width="85vw">'
-                        divPublicacao.className = "publicacao";
-                        spanTitulo.id = "inputNumero" + publicacao.idMaquina;
-                        spanNome.className = "publicacao-nome";
-                        spanTitulo.className = "publicacao-titulo";
+                                var feed = document.getElementById("maquinas");
+                                feed.innerHTML = "";
+                                for (let i = 0; i < resposta.length; i++) {
+                                    var publicacao = resposta[i];
 
-                        divButtons.className = "div-buttons"
+                                    // criando e manipulando elementos do HTML via JavaScript
+                                    var divPublicacao = document.createElement("div");
+                                    var spanID = document.createElement("span");
+                                    var spanTitulo = document.createElement("span");
+                                    var spanNome = document.createElement("span");
+                                    var btnDashboard = document.createElement("div");
+                                    var divButtons = document.createElement("div");
+                                    var senhaMaq = document.createElement("span");
+                                    var btnEditar = document.createElement("button");
+                                    var btnDeletar = document.createElement("button");
 
-                        btnDashboard.className = "publicacao-btn-dasboard";
-                        btnDashboard.id = "btnDashboard" + publicacao.idMaquina
-                        btnEditar.setAttribute("onclick", `dashboard(${publicacao.idMaquina})`);
+                                    spanID.innerHTML = "<b>Máquina: </b>" + publicacao.id_maquina +"<br>" ;
+                                    spanTitulo.innerHTML = "<b>Patrimonio: </b>" + publicacao.patrimonio;
+                                    btnEditar.innerHTML = '<i class="fas fa-pencil-alt"></i>';
+                                    btnDeletar.innerHTML = '<i class="fas fa-trash"></i>';
+                                    btnDashboard.innerHTML = '<img src="../assets/computador.png" alt="" height="85vh" width="85vw">';
+                                    divPublicacao.className = "publicacao";
+                                    spanTitulo.id = "inputNumero" + publicacao.id_maquina;
+                                    spanNome.className = "publicacao-nome";
+                                    spanTitulo.className = "publicacao-titulo";
+                                    senhaMaq.innerHTML ="<b>Senha: </b>" + publicacao.senha +"<br>"
+                                    senhaMaq.id = "inputSenha" + publicacao.id_maquina;
+                                    senhaMaq.className = "publicacao-senha";
 
-                        btnEditar.className = "publicacao-btn-editar"
-                        btnEditar.id = "btnEditar" + publicacao.idMaquina;
-                        btnEditar.setAttribute("onclick", `abrirEditar(${publicacao.idMaquina})`);
+                                    divButtons.className = "div-buttons";
 
-                        btnDeletar.className = "publicacao-btn-deletar"
-                        btnDeletar.id = "btnDeletar" + publicacao.idMaquina;
-                        btnDeletar.setAttribute("onclick", `deletar(${publicacao.idMaquina})`);
+                                    btnDashboard.className = "publicacao-btn-dasboard";
+                                    btnDashboard.id = "btnDashboard" + publicacao.id_maquina;
+                                    btnEditar.setAttribute("onclick", `dashboard(${publicacao.id_maquina})`);
 
-                        divPublicacao.appendChild(spanID);
-                        divPublicacao.appendChild(spanNome);
-                        divPublicacao.appendChild(spanTitulo);
-                        divPublicacao.appendChild(btnDashboard);
-                        divPublicacao.appendChild(divButtons);
-                        divButtons.appendChild(btnEditar);
-                        divButtons.appendChild(btnDeletar);
-                        feed.appendChild(divPublicacao);
-                    }
+                                    btnEditar.className = "publicacao-btn-editar";
+                                    btnEditar.id = "btnEditar" + publicacao.id_maquina;
+                                    btnEditar.setAttribute("onclick", `abrirEditar(${publicacao.id_maquina})`);
 
-                    finalizarAguardar();
+                                    btnDeletar.className = "publicacao-btn-deletar";
+                                    btnDeletar.id = "btnDeletar" + publicacao.id_maquina;
+                                    btnDeletar.setAttribute("onclick", `deletar(${publicacao.id_maquina})`);
+
+                                    divPublicacao.appendChild(spanID);
+                                    divPublicacao.appendChild(spanNome);
+                                    divPublicacao.appendChild(spanTitulo);
+                                    divPublicacao.appendChild(btnDashboard);
+                                    divPublicacao.appendChild(divButtons);
+                                    divButtons.appendChild(senhaMaq);
+                                    divButtons.appendChild(btnEditar);
+                                    divButtons.appendChild(btnDeletar);
+                                    feed.appendChild(divPublicacao);
+                                }
+
+                                finalizarAguardar();
+                            });
+                        } else {
+                            throw ('Houve um erro na API!');
+                        }
+                    }).catch(function (resposta) {
+                        console.error(resposta);
+                        finalizarAguardar();
+                    });
                 });
-            } else {
-                throw ('Houve um erro na API!');
             }
-        }).catch(function (resposta) {
-            console.error(resposta);
-            finalizarAguardar();
         });
-    }
+}
 
     function editar() {
+      var fkLoja = sessionStorage.FK_LOJA;
 
-    fetch("/maquinas/editar", {
+    fetch(`/maquinas/editar/${fkLoja}`, {
         method: "PUT",
         headers: {
             "Content-Type": "application/json"
         },
         body: JSON.stringify({
             patrimonio: patrimonioEdit.value,
-            idMaquina: idMaquinaEdit
+            idMaquina: idMaquinaEdit,
+            idLoja: fkLoja
         })
     }).then(function (resposta) {
 
@@ -296,12 +322,16 @@
 }
 
 function deletar(idMaquina) {
+  var fkLoja = sessionStorage.FK_LOJA;
         console.log("Criar função de apagar post escolhido - ID" + idMaquina);
         fetch(`/maquinas/deletar/${idMaquina}`, {
             method: "DELETE",
             headers: {
                 "Content-Type": "application/json"
-            }
+            },
+            body: JSON.stringify({
+            idLoja: fkLoja
+        })
         }).then(function (resposta) {
 
             if (resposta.ok) {

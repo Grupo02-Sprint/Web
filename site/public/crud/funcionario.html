@@ -9,11 +9,11 @@
     <link rel="stylesheet" href="../crudcss/funcionario.css">
     <title>Document</title>
 </head>
-<body onload="validarSessao(), atualizarFeed()">
+<body onload="validarSessao(), atualizarFeed() ">
     <div class="tudo">
         <div class="menulateral">
             <div class="logo">
-               <a href="index.html"><img src="../icons/Logo-nome-site.png" alt="" height="35vh"></a>
+               <a href="../index.html"><img src="../icons/Logo-nome-site.png" alt="" height="35vh"></a>
             </div>
             <div class="hello">
         
@@ -70,98 +70,123 @@
 </html>
 <script>
    b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
+   var idUsuario = sessionStorage.IDUSUARIO_USUARIO;
+   
+   
     function adicionar(){
         window.location ="addfunc.html"
     }
 
+    
     function atualizarFeed() {
-  //aguardar();
-  fetch("/funcionarios/listar").then(function (resposta) {
-    if (resposta.ok) {
-      if (resposta.status == 204) {
-        var feed = document.getElementById("exibir");
-        var mensagem = document.createElement("span");
-        mensagem.innerHTML = "Nenhum resultado encontrado."
-        feed.appendChild(mensagem);
-        throw "Nenhum resultado encontrado!!";
-      }
-
-      resposta.json().then(function (resposta) {
-        console.log("Dados recebidos: ", JSON.stringify(resposta));
-
-        var feed = document.getElementById("exibir");
-        feed.innerHTML = "<h2>Funcionários</h2>";
-        var tabela = document.createElement("table");
-        tabela.className = "tabela";
-
-        var cabecalho = tabela.insertRow();
-        var cabecalhoId = cabecalho.insertCell();
-        cabecalhoId.innerHTML = "<b>ID</b>";
-        cabecalhoId.className = "id";
-        var cabecalhoTitulo = cabecalho.insertCell();
-        cabecalhoTitulo.innerHTML = "<b>Nome</b>";
-        var cabecalhoNome = cabecalho.insertCell();
-        cabecalhoNome.innerHTML = "<b>Função</b>";
-        var cabecalhoEmail = cabecalho.insertCell();
-        cabecalhoEmail.innerHTML = "<b>Email</b>";
-        var cabecalhoAcao = cabecalho.insertCell();
-        cabecalhoAcao.innerHTML = "<b>Ação</b>";
-        cabecalhoAcao.className = "acao";
-
-        for (let i = 0; i < resposta.length; i++) {
-          var publicacao = resposta[i];
-
-          var novaLinha = tabela.insertRow();
-
-          var id = novaLinha.insertCell();
-          id.innerHTML = publicacao.idAviso;
-
-          var titulo = novaLinha.insertCell();
-          titulo.innerHTML = publicacao.nomeAviso;
-
-          var nome = novaLinha.insertCell();
-          nome.innerHTML = publicacao.cargo;
-
-          var email = novaLinha.insertCell();
-          email.innerHTML = publicacao.emailAviso;
-
-          var acao = novaLinha.insertCell();
-          var btnEditar = document.createElement("button");
-          btnEditar.innerHTML = '<i class="fas fa-pencil-alt"></i>';
-          btnEditar.className = "editar";
-          btnEditar.setAttribute("onclick", `editar(${publicacao.idAviso})`);
-          acao.appendChild(btnEditar);
-
-          var btnDeletar = document.createElement("button");
-          btnDeletar.innerHTML = '<i class="fas fa-trash"></i>';
-          btnDeletar.className = "deletar";
-          btnDeletar.setAttribute("onclick", `deletar(${publicacao.idAviso})`);
-          acao.appendChild(btnDeletar);
-            
-        }
-
-        feed.appendChild(tabela);
-        finalizarAguardar();
-      });
-    } else {
-      throw ('Houve um erro na API!');
+      //aguardar();
+      fetch(`/funcionarios/buscar-por-usuario/${idUsuario}`)
+              .then(function (resposta) {
+                if (resposta.ok) {
+                  resposta.json().then(function (resposta) {
+                    console.log("DEU CERTTOO");
+  
+                    sessionStorage.FK_LOJA = resposta.fk_loja;
+                    fkLoja = resposta.fk_loja; // Atribua o valor à variável fkLoja
+  
+                    fetch(`/funcionarios/listar/${fkLoja}`).then(function (resposta) {
+                      console.log(fkLoja);
+                      if (resposta.ok) {
+                        if (resposta.status == 204) {
+                          var feed = document.getElementById("exibir");
+                          var mensagem = document.createElement("span");
+                          mensagem.innerHTML = "Nenhum resultado encontrado."
+                          feed.appendChild(mensagem);
+                          throw "Nenhum resultado encontrado!!";
+                        }
+  
+                        resposta.json().then(function (resposta) {
+                          console.log("Dados recebidos: ", JSON.stringify(resposta));
+  
+                          var feed = document.getElementById("exibir");
+                          feed.innerHTML = "<h2>Funcionários</h2>";
+                          var tabela = document.createElement("table");
+                          tabela.className = "tabela";
+  
+                          var cabecalho = tabela.insertRow();
+                          var cabecalhoId = cabecalho.insertCell();
+                          cabecalhoId.innerHTML = "<b>ID</b>";
+                          cabecalhoId.className = "id";
+                          var cabecalhoTitulo = cabecalho.insertCell();
+                          cabecalhoTitulo.innerHTML = "<b>Nome</b>";
+                          var cabecalhoNome = cabecalho.insertCell();
+                          cabecalhoNome.innerHTML = "<b>Função</b>";
+                          var cabecalhoEmail = cabecalho.insertCell();
+                          cabecalhoEmail.innerHTML = "<b>Email</b>";
+                          var cabecalhoAcao = cabecalho.insertCell();
+                          cabecalhoAcao.innerHTML = "<b>Ação</b>";
+                          cabecalhoAcao.className = "acao";
+  
+                          for (let i = 0; i < resposta.length; i++) {
+                            var publicacao = resposta[i];
+  
+                            var novaLinha = tabela.insertRow();
+  
+                            var id = novaLinha.insertCell();
+                            id.innerHTML = publicacao.id_usuario;
+  
+                            var titulo = novaLinha.insertCell();
+                            titulo.innerHTML = publicacao.nome;
+  
+                            var nome = novaLinha.insertCell();
+                            nome.innerHTML = publicacao.tipo;
+  
+                            var email = novaLinha.insertCell();
+                            email.innerHTML = publicacao.email;
+                            
+                            var idCargo = novaLinha.insertCell();
+                            idCargo.innerHTML = publicacao.id;
+                            idCargo.className = "oculto";
+  
+                            var acao = novaLinha.insertCell();
+                            var btnEditar = document.createElement("button");
+                            btnEditar.innerHTML = '<i class="fas fa-pencil-alt"></i>';
+                            btnEditar.className = "editar";
+                            btnEditar.setAttribute("onclick", `editar(${publicacao.id_usuario})`);
+                            acao.appendChild(btnEditar);
+  
+                            var btnDeletar = document.createElement("button");
+                            btnDeletar.innerHTML = '<i class="fas fa-trash"></i>';
+                            btnDeletar.className = "deletar";
+                            btnDeletar.setAttribute("onclick", `deletar(${publicacao.id_usuario})`);
+                            acao.appendChild(btnDeletar);
+                              
+                          }
+  
+                          feed.appendChild(tabela);
+                          finalizarAguardar();
+                        });
+                      } else {
+                        throw ('Houve um erro na API!');
+                      }
+                    }).catch(function (resposta) {
+                      console.error(resposta);
+                      finalizarAguardar();
+                    });
+                  });
+                }
+              })
+              .catch(function (erro) {
+                console.error(erro);
+  
+              });
     }
-  }).catch(function (resposta) {
-    console.error(resposta);
-    finalizarAguardar();
-  });
-}
 
-function editar(idAviso) {
+function editar(idUsuario) {
   var tabela = document.querySelector('.tabela');
   for (var i = 1; i < tabela.rows.length; i++) { 
     var idCelula = tabela.rows[i].cells[0];
-    if (idCelula.textContent == idAviso) {
+    if (idCelula.textContent == idUsuario) {
       var nomeCelula = tabela.rows[i].cells[1];
-      var cargoCelula = tabela.rows[i].cells[2];
+      var cargoCelula = tabela.rows[i].cells[4];
       var emailCelula = tabela.rows[i].cells[3];
       
-      sessionStorage.ID_POSTAGEM_EDITANDO = idAviso;
+      sessionStorage.ID_POSTAGEM_EDITANDO = idUsuario;
       sessionStorage.NOME_EDITANDO = nomeCelula.textContent;
       sessionStorage.CARGO_EDITANDO = cargoCelula.textContent;
       sessionStorage.EMAIL_EDITANDO = emailCelula.textContent;
@@ -173,9 +198,9 @@ function editar(idAviso) {
 }
 
 
-function deletar(idAviso) {
-        console.log("Criar função de apagar post escolhido - ID" + idAviso);
-        fetch(`/funcionarios/deletar/${idAviso}`, {
+function deletar(idUsuario) {
+        console.log("Criar função de apagar post escolhido - ID" + idUsuario);
+        fetch(`/funcionarios/deletar/${idUsuario}`, {
             method: "DELETE",
             headers: {
                 "Content-Type": "application/json"

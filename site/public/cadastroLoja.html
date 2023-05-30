@@ -147,30 +147,16 @@
                 console.log("resposta: ", resposta);
 
                 if (resposta.ok) {
+                  resposta.json().then(function (resposta) {
+                    console.log("DEU CERTTOO");
+  
+                    sessionStorage.FK_LOJA = resposta.id_loja;
 
-                    fetch(`/lojas/buscar-por-cnpj/${cnpjVar}`)
-                        .then(function (resposta) {
-                            if (resposta.ok) {
-                                resposta.json().then(function (resposta) {
-                                    console.log("DEU CERTTOO");
-                                    sessionStorage.FK_LOJA = resposta.id_loja;
+                 setTimeout(() => {
+                 window.location = "cadastro.html";
+                 }, "2000")
+                  });
 
-                                    setTimeout(() => {
-                                        window.location = "cadastro.html";
-                                    }, "2000")
-                                });
-                            }
-                        })
-                        .catch(function (erro) {
-                            console.error(erro);
-
-                        });
-
-
-                    // limparFormulario();
-                    // finalizarAguardar();
-                } else {
-                    throw "Houve um erro ao tentar realizar o cadastro!";
                 }
             })
             .catch(function (resposta) {

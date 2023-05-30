@@ -98,7 +98,9 @@
                     <button onclick="entrar()">Entrar</button>
                 </div>
             </div>
-            <p id="jaConta">Não tem uma conta? <a style="color: inherit;" href="./cadastroLoja.html">Cadastre-se</a></p>
+            <p>Esqueceu sua senha? Gere outra <a href="senha.html">aqui</a></p>
+            <p id="jaConta">Não tem uma conta? <a style="color: inherit;" href="./cadastro.html">Cadastre-se</a></p>
+
         </div>
     </div>
 </body>
@@ -106,6 +108,11 @@
 </html>
 
 <script>
+    var senha = "";
+    var caracteres = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789@#$%^&_";
+        for (var i = 0; i <= 8; i++) {
+            senha += caracteres.charAt(Math.floor(Math.random() * caracteres.length));
+        }
 
 
     function entrar() {
@@ -140,7 +147,7 @@
 
                     sessionStorage.EMAIL_USUARIO = json.email;
                     sessionStorage.NOME_USUARIO = json.nome;
-                    sessionStorage.IDUSUARIO_USUARIO = json.idUsuario;
+                    sessionStorage.IDUSUARIO_USUARIO = json.id_usuario;
 
                     setTimeout(function () {
                         window.location = "indexdash.html";
@@ -162,6 +169,36 @@
 
         return false;
     }
+
+    function gerarSenha() {
+        var email = email_input.value;
+        if (email === "") {
+            alert("Insira um e-mail válido.");
+            return;
+        }
+
+        fetch("/recuperar-senha2", {
+            method: "POST",
+            headers: {
+            "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+            email: email,
+            senha:senha
+            }),
+        })
+            .then(function (resposta) {
+            if (resposta.ok) {
+                alert("Uma nova senha foi enviada para o seu e-mail.");
+            } else {
+                alert("Ocorreu um erro ao enviar a nova senha por e-mail.");
+            }
+            })
+            .catch(function (erro) {
+            console.error(erro);
+            });
+}
+
 
     function sumirMensagem() {
         cardErro.style.display = "none"

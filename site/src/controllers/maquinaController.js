@@ -2,14 +2,17 @@ var maquinaModel = require("../models/maquinaModel");
 
 function cadastrar(req, res) {
     var patrimonio = req.body.patrimonioServer;
-    var idUsuario = req.params.idUsuario;
+    var idLoja = req.body.idLojaServer;
+    var senha = req.body.senhaServer;
 
     if (patrimonio == undefined||patrimonio==null||patrimonio=="") {
         res.status(400).send("O patrimonio está indefinido!");
-    } else if (idUsuario == undefined||idUsuario==null||idUsuario=="") {
+    } else if (idLoja == undefined||idLoja==null||idLoja=="") {
+        res.status(403).send("O Usauario está indefinido!!");
+    } else if (senha == undefined||senha==null||senha=="") {
         res.status(403).send("O Usauario está indefinido!!");
     } else{
-        maquinaModel.cadastrar(patrimonio, idUsuario)
+        maquinaModel.cadastrar(patrimonio, idLoja, senha)
             .then(
                 function (resultado) {
                     res.json(resultado);
@@ -26,7 +29,8 @@ function cadastrar(req, res) {
 }
 
 function listar(req, res) {
-    maquinaModel.listar().then(function (resultado) {
+    var fkLoja = req.params.fkLoja;
+    maquinaModel.listar(fkLoja).then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
         } else {
@@ -41,9 +45,10 @@ function listar(req, res) {
 
 function editar(req, res) {
     var novoPatrimonio = req.body.patrimonio;
-    var idAviso = req.body.idMaquina;
-    console.log("definindo idAviso",idAviso);
-    maquinaModel.editar(novoPatrimonio, idAviso)
+    var idMaquina = req.body.idMaquina;
+    var idLoja = req.body.idLoja
+    console.log("definindo idLoja",idLoja);
+    maquinaModel.editar(novoPatrimonio, idMaquina, idLoja)
         .then(
             function (resultado) {
                 res.json(resultado);
@@ -60,9 +65,9 @@ function editar(req, res) {
 }
 
 function deletar(req, res) {
-    var idAviso = req.params.idMaquina;
-
-    maquinaModel.deletar(idAviso)
+    var idMaquina = req.params.idMaquina;
+    var idLoja = req.body.idLoja
+    maquinaModel.deletar(idMaquina, idLoja)
         .then(
             function (resultado) {
                 res.json(resultado);
