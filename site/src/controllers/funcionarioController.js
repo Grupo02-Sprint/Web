@@ -5,6 +5,7 @@ function cadastrar(req, res) {
     var cargo = req.body.cargoServer;
     var idUsuario = req.params.idUsuario;
     var email = req.body.emailServer;
+    var cpf = req.body.cpfServer;
     var idLoja = req.body.idLojaServer;
     var senha = req.body.senhaServer;
 
@@ -16,12 +17,14 @@ function cadastrar(req, res) {
         res.status(403).send("O email do usuário está indefinido!");
     } else if (email == undefined||email==null||email=="") {
         res.status(400).send("O id do usuário está indefinido!");
+    } else if (cpf == undefined||cpf==null||cpf=="") {
+        res.status(400).send("O id do usuário está indefinido!");
     } else if (idLoja == undefined||idLoja==null||idLoja=="") {
         res.status(400).send("O id do usuário está indefinido!");
     } else if (senha == undefined||senha==null||senha=="") {
         res.status(400).send("O id do usuário está indefinido!");
     } else {
-        funcionarioModel.cadastrar(nome, cargo, idUsuario, email, idLoja, senha)
+        funcionarioModel.cadastrar(nome, cargo, idUsuario, email, cpf, idLoja, senha)
             .then(
                 function (resultado) {
                     res.json(resultado);

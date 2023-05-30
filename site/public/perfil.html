@@ -58,12 +58,14 @@
         </div>
         <div class="perfil">
           <div class="caixa1">
-            <h2>Funcionario</h2>
+            <h2>Funcionário</h2>
             <div class="form">
               <label for="">Nome:</label>
               <input type="text" readonly id="usuario">
               <label for="">Email:</label>
               <input type="text" readonly id="email">
+              <label for="">CPF:</label>
+              <input type="text" readonly id="cpf">
               <label for="">Cargo:</label>
               <select id="cargo" disabled>
                 <option value="1">Gerente</option>
@@ -84,6 +86,7 @@
               <label for="">Telefone:</label>
               <input type="text" readonly id="telefone">
               <input type="hidden" value="loja">
+              <button onclick="editarValores()">Editar Valores</button>
             </div>
             <button id="btnEditarLoja" onclick="editarLoja('btnEditarLoja')">Editar</button>
           </div>
@@ -95,6 +98,10 @@
     var idUsuario = sessionStorage.IDUSUARIO_USUARIO;
     var idLoja = null;
     var cargoUsuario= null;
+
+    function editarValores() {
+      window.location = "./crud/ideal.html"
+    }
     function atualizarFeed() {
       var idUsuario = sessionStorage.IDUSUARIO_USUARIO;
       fetch(`/perfis/listar/${idUsuario}`)
@@ -109,6 +116,7 @@
               // Preencher os campos com os dados obtidos do banco de dados
               usuario.value = resposta[0].nome;
               email.value = resposta[0].email;
+              cpf.value = resposta[0].cpf;
               cargo.value = resposta[0].fk_cargo;
               nomeLoja.value = resposta[0].nomeLoja;
               cnpj.value = resposta[0].cnpj;
@@ -134,7 +142,7 @@ function editarUsuario(idBotao) {
   let inputs = [];
   let select = document.getElementById("cargo");
   let botao = document.getElementById(idBotao);
-  inputs = document.querySelectorAll("#usuario, #email");
+  inputs = document.querySelectorAll("#usuario, #email, #cpf");
 
   
   
@@ -154,7 +162,8 @@ function editarUsuario(idBotao) {
             body: JSON.stringify({
                 nome: usuario.value,
                 cargo: cargo.value,
-                email: email.value
+                email: email.value,
+                cpf: cpf.value
             })
         }).then(function (resposta) {
 

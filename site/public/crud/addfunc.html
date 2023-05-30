@@ -69,9 +69,12 @@
                   <option value="0">Selecione cargo</option>
                   <option value="1">Gerente</option>
                   <option value="2">Analista</option>
+                  <option value="3">Gerente Premium</option>
                 </select>
                 <h4>Email:</h4>
                 <input type="text" id="email" name="email">
+                <h4>CPF:</h4>
+                <input type="text" id="cpf" name="cpf">
                 <input type="hidden" id="postagem">
               </form>
               <button onclick="cadastrar()">Cadastrar</button>
@@ -125,6 +128,7 @@ async function cadastrar() {
   var nomeVar = form_postagem.nome.value;
   var cargoVar = form_postagem.cargo.value;
   var emailVar = form_postagem.email.value;
+  var cpfVar = form_postagem.cpf.value;
 
   try {
     const response = await fetch(`/funcionarios/cadastrar/${idUsuario}`, {
@@ -136,6 +140,7 @@ async function cadastrar() {
         nomeServer: nomeVar,
         cargoServer: cargoVar,
         emailServer: emailVar,
+        cpfServer: cpfVar,
         idLojaServer: idLoja,
         senhaServer: senha,
       }),

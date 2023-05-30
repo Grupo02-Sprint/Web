@@ -157,6 +157,13 @@
 
 
     function cadastrar() {
+
+    var senha = "";
+    var caracteres = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789@#$%^&_";
+        
+    for (var i = 0; i <= 8; i++) {
+      senha += caracteres.charAt(Math.floor(Math.random() * caracteres.length));
+    }
            var idLoja = sessionStorage.FK_LOJA;       
            var patrimonioVar = patrimonio.value
 
@@ -167,7 +174,8 @@
             },
             body: JSON.stringify({
               patrimonioServer: patrimonioVar,
-              idLojaServer:idLoja
+              idLojaServer:idLoja,
+              senhaServer:senha
         })
         }).then(function (resposta) {
 
@@ -229,6 +237,7 @@
                                     var spanNome = document.createElement("span");
                                     var btnDashboard = document.createElement("div");
                                     var divButtons = document.createElement("div");
+                                    var senhaMaq = document.createElement("span");
                                     var btnEditar = document.createElement("button");
                                     var btnDeletar = document.createElement("button");
 
@@ -241,12 +250,15 @@
                                     spanTitulo.id = "inputNumero" + publicacao.id_maquina;
                                     spanNome.className = "publicacao-nome";
                                     spanTitulo.className = "publicacao-titulo";
+                                    senhaMaq.innerHTML ="<b>Senha: </b>" + publicacao.senha +"<br>"
+                                    senhaMaq.id = "inputSenha" + publicacao.id_maquina;
+                                    senhaMaq.className = "publicacao-senha";
 
                                     divButtons.className = "div-buttons";
 
                                     btnDashboard.className = "publicacao-btn-dasboard";
                                     btnDashboard.id = "btnDashboard" + publicacao.id_maquina;
-                                    btnEditar.setAttribute("onclick", `dashboard(${publicacao.idMaquina})`);
+                                    btnEditar.setAttribute("onclick", `dashboard(${publicacao.id_maquina})`);
 
                                     btnEditar.className = "publicacao-btn-editar";
                                     btnEditar.id = "btnEditar" + publicacao.id_maquina;
@@ -261,6 +273,7 @@
                                     divPublicacao.appendChild(spanTitulo);
                                     divPublicacao.appendChild(btnDashboard);
                                     divPublicacao.appendChild(divButtons);
+                                    divButtons.appendChild(senhaMaq);
                                     divButtons.appendChild(btnEditar);
                                     divButtons.appendChild(btnDeletar);
                                     feed.appendChild(divPublicacao);

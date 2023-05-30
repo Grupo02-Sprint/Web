@@ -100,8 +100,8 @@
                     </div>
                     
                     <div class="input-field">
-                        <h4 style="font-size: 2.5vh;">Username:</h4>
-                        <input type="text" id="in_user" placeholder="   Insira seu username">
+                        <h4 style="font-size: 2.5vh;">CPF:</h4>
+                        <input type="number" id="in_cpf" placeholder="   Insira seu CPF">
                     </div>
 
                     <div class="input-field" style="position: relative;">
@@ -131,12 +131,12 @@
     function cadastrar() {
         var nome = in_nome.value;
         var email = in_email.value;
-        var user = in_user.value;
+        var cpf = in_cpf.value;
         var senha = in_senha.value;
         var senhaConfirmacao = in_confirmacao.value;
         var cargo = 3;
 
-        if (nome == "" || email == "" || user == "" || senha == "" || senhaConfirmacao == "") {
+        if (nome == "" || email == "" || cpf == "" || senha == "" || senhaConfirmacao == "") {
             alert("Verifique se todos os campos foram preenchidos.")
 
         } else {
@@ -156,6 +156,7 @@
                 // Agora vá para o arquivo routes/usuario.js
                 nomeServer: nome,
                 emailServer: email,
+                cpfServer: cpf,
                 senhaServer: senha,
                 cargoServer: cargo,
                 lojaServer: idLoja

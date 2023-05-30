@@ -100,13 +100,9 @@
                     </div>
 
                     <button onclick="entrar()">Entrar</button>
-                    <div class="senha">
-
-                        <span>Esqueceu sua senha? Gere outra aqui</span>
-                        <button onclick="gerarSenha()"></button>
-                    </div>
                 </div>
             </div>
+            <p>Esqueceu sua senha? Gere outra <a href="senha.html">aqui</a></p>
             <p id="jaConta">Não tem uma conta? <a style="color: inherit;" href="./cadastro.html">Cadastre-se</a></p>
         </div>
     </div>
@@ -115,6 +111,11 @@
 </html>
 
 <script>
+    var senha = "";
+    var caracteres = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789@#$%^&_";
+        for (var i = 0; i <= 8; i++) {
+            senha += caracteres.charAt(Math.floor(Math.random() * caracteres.length));
+        }
 
 
     function entrar() {
@@ -174,11 +175,6 @@
 
     function gerarSenha() {
         var email = email_input.value;
-        var senha = "";
-        var caracteres = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789@#$%^&_";
-            for (var i = 0; i <= 8; i++) {
-            senha += caracteres.charAt(Math.floor(Math.random() * caracteres.length));
-            }
         if (email === "") {
             alert("Insira um e-mail válido.");
             return;

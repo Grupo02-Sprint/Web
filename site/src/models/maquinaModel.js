@@ -1,9 +1,9 @@
 var database = require("../database/config");
 
-function cadastrar(patrimonio, idLoja) {
-    console.log("ACESSEI O MAQUINA MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrar(): ", patrimonio, idLoja);
+function cadastrar(patrimonio, idLoja, senha) {
+    console.log("ACESSEI O MAQUINA MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrar(): ", patrimonio, idLoja, senha);
     var instrucao = `
-        INSERT INTO maquina (patrimonio, fk_loja) VALUES ('${patrimonio}', ${idLoja});
+        INSERT INTO maquina (patrimonio, fk_loja, senha) VALUES ('${patrimonio}', ${idLoja}, '${senha}');
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
@@ -12,7 +12,7 @@ function cadastrar(patrimonio, idLoja) {
 function listar(fkLoja) {
     console.log("ACESSEI O AVISO  MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listar()", fkLoja);
     var instrucao = `
-        SELECT id_maquina, patrimonio FROM maquina where fk_loja = ${fkLoja};
+        SELECT id_maquina, patrimonio, senha FROM maquina where fk_loja = ${fkLoja};
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);

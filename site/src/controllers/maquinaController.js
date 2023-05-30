@@ -3,13 +3,16 @@ var maquinaModel = require("../models/maquinaModel");
 function cadastrar(req, res) {
     var patrimonio = req.body.patrimonioServer;
     var idLoja = req.body.idLojaServer;
+    var senha = req.body.senhaServer;
 
     if (patrimonio == undefined||patrimonio==null||patrimonio=="") {
         res.status(400).send("O patrimonio está indefinido!");
     } else if (idLoja == undefined||idLoja==null||idLoja=="") {
         res.status(403).send("O Usauario está indefinido!!");
+    } else if (senha == undefined||senha==null||senha=="") {
+        res.status(403).send("O Usauario está indefinido!!");
     } else{
-        maquinaModel.cadastrar(patrimonio, idLoja)
+        maquinaModel.cadastrar(patrimonio, idLoja, senha)
             .then(
                 function (resultado) {
                     res.json(resultado);

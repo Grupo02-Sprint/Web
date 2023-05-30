@@ -285,12 +285,12 @@ body {
         height: 77vh;
         width: 62vh;
         background-color: #195e63;
+        border-radius: 2vh;
     }
 
     .caixa p {
         color: white;
         font-family: 'IBM Plex Sans', sans-serif;
-        margin-top: 1vh;
     }
 
     .tudo {
@@ -325,5 +325,10 @@ body {
         margin-right: 1rem;
         right: 0;
         align-self: center;
+        border-radius: 10vh;
+    }
+
+    .input-field input{
+        border-radius: 5vh;
     }
 }
