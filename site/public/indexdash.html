@@ -64,7 +64,7 @@
     <div class="dashboard">
       <div class="maquina">
         <div class="select"> Máquina:
-          <select id="select_maquina">
+          <select id="select_maquina" onchange="obterDadosGrafico()">
             <option value="0">Escolha maquina <i class="fa-solid fa-angle-down"></i> </option>
             <option value="1">Máquina 1</option>
           </select>
@@ -134,17 +134,17 @@
               <div class="verkpi">
                 <div class="verde" style="background-color: green;"></div>
                 <div class="kpidupla">
-                  <p> 1% </p>
-                  <p>40%</p>
+                  <p id="minimo"> 1% </p>
+                  <p id="ok">40%</p>
                 </div>
               </div>
               <div class="amarkpi">
                 <div class="amarelo" style="background-color: yellow;"></div>
-                <p>70%</p>
+                <p id="quase_limite">70%</p>
               </div>
               <div class="vermkpi">
                 <div class="vermelho" style="background-color: red;"></div>
-                <p> 100% </p>
+                <p id="limite_toleravel"> 100% </p>
               </div>
             </div>
             <div class="indicadores">
@@ -167,10 +167,18 @@
 </html>
 <script>
 
+  var fklojavar = sessionStorage.FK_LOJA;
+  var labels1 = []
+  var labels2 = []
+  var labels3 = []
+  var labels4 = []
+  var dados1 = {}
+  var dados2 = {}
+  var dados3 = {}
+  var dados4 = {}
 
 
   async function buscarMaquinas() {
-    var fklojavar = sessionStorage.FK_LOJA;
 
     await fetch(`/medidas/buscar/maquinas/${fklojavar}`)
       .then(function (resposta) {
@@ -196,34 +204,284 @@
       });
   }
 
-  function obterDadosGrafico(idMaquina) {
+  function obterDadosGrafico() {
 
-    var fklojavar = Number(select_maquina.value);
+    var idMaquina = Number(select_maquina.value);
 
-    if (proximaAtualizacao != undefined) {
-      clearTimeout(proximaAtualizacao);
-    }
+    fetch(`/medidas/ultimas/${idMaquina}`, { cache: 'no-store' }).then(function (resCpu, resDisco, resRam, resRede) {
+      if (resCpu.ok) {
+        if (resDisco.ok) {
+          if (resRam.ok) {
+            if (resRede.ok) {
+              return resCpu.json(), resDisco.json(), resRam.json(), resRede.json()
 
-    fetch(`/medidas/ultimas/${fklojavar}`, { cache: 'no-store' }).then(function (resposta) {
+            }
+          }
+        }
+      } else {
+        throw new Error("Nenhum dado encontrado ou erro na API")
+      }
+    }).then(function (dataCpu, dataDisco, dataRam, dataRede) {
+      // data.forEach(metrica => {
+      //   console.log(metrica);
+
+      //   if (metrica.tipo == "cpu" && metrica.captura != resposta1[resposta1.length - 1]?.captura) {
+      //     resposta1.push(metrica);
+
+      //   } else if (metrica.tipo == "disco" && metrica.captura != resposta2[resposta2.length - 1]?.captura) {
+      //     resposta2.push(metrica);
+
+      //   } else if (metrica.tipo == "Memoria RAM" && metrica.captura != resposta3[resposta3.length - 1]?.captura) {
+      //     resposta3.push(metrica);
+
+      //   }
+
+      // resposta4.push(metrica);
+
+      dataCpu.reverse()
+      dataDisco.reverse()
+      dataRam.reverse()
+      dataRede.reverse()
+
+      console.log(dataCpu);
+      console.log(dataDisco);
+      console.log(dataRam);
+      console.log(dataRede);
+
+      plotarGraficos(dataCpu, dataDisco, dataRam, dataRede, idMaquina);
+    })
+      // plotarGraficoRede(resposta4, idMaquina);
+
+      .catch(function (error) {
+        console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+      });
+  }
+
+  function plotarGraficos(respostaCpu, respostaDisco, respostaRam, respostaRede, idMaquina) {
+
+    console.log('iniciando plotagem do gráfico...');
+
+    labels1 = [];
+    labels2 = [];
+    labels3 = [];
+    labels4 = [];
+
+    dados1 = {
+      labels: labels1,
+      datasets: [{
+        label: 'Utilização(%)',
+        data: [],
+        fill: false,
+        borderColor: 'rgb(75, 192, 192)',
+        tension: 0.1
+      }]
+    };
+
+    dados2 = {
+      labels: labels2,
+      datasets: [{
+        label: 'Tempo médio de resposta(%)',
+        data: [],
+        fill: false,
+        borderColor: 'rgb(75, 192, 192)',
+        tension: 0.1
+      }]
+    };
+
+    dados3 = {
+      labels: labels3,
+      datasets: [{
+        label: 'Memória em uso(%)',
+        data: [],
+        fill: false,
+        borderColor: 'rgb(75, 192, 192)',
+        tension: 0.1
+      }]
+    };
+
+    dados4 = {
+      labels: labels4,
+      datasets: [{
+        label: 'Download(Mb/s)',
+        data: [],
+        fill: false,
+        borderColor: 'rgb(75, 192, 192)',
+        tension: 0.1
+      },
+      {
+        label: 'Upload(Mb/s)',
+        data: [],
+        fill: false,
+        borderColor: 'rgb(75, 192, 192)',
+        tension: 0.1
+      }]
+    };
+
+
+    console.log('----------------------------------------------')
+    console.log('Estes dados foram recebidos pela funcao "obterDadosGrafico" e passados para "plotarGrafico":')
+    console.log(respostaCpu)
+    console.log(respostaDisco)
+    console.log(respostaRam)
+    console.log(respostaRede)
+
+    respostaCpu.forEach(m1 => {
+      labels1.push(m1.dt_hora);
+
+      dados1.datasets[0].data.push(m1.captura);
+
+    });
+    respostaDisco.forEach(m2 => {
+      labels2.push(m2.dt_hora);
+
+      dados2.datasets[0].data.push(m2.captura);
+
+    });
+    respostaRam.forEach(m3 => {
+      labels3.push(m3.dt_hora);
+
+      dados3.datasets[0].data.push(m3.captura);
+
+    });
+    respostaRede.forEach(m4 => {
+      labels4.push(m4.dt_hora);
+
+      dados4.datasets[0].data.push(m4.bytes_recebidos);
+      dados4.datasets[1].data.push(m4.bytes_enviados);
+
+    });
+
+    console.log('----------------------------------------------')
+    console.log('O gráfico será plotado com os respectivos valores:')
+    console.log('Labels:')
+    console.log(labels1)
+    console.log(labels2)
+    console.log(labels3)
+    console.log(labels4)
+    console.log('Dados:')
+    console.log(dados1.datasets)
+    console.log(dados2.datasets)
+    console.log(dados3.datasets)
+    console.log(dados4.datasets)
+    console.log('----------------------------------------------')
+
+    // setTimeout(() => grafico1(labels1, dados1), grafico2(labels2, dados2), grafico3(labels3, dados3), 2000);
+
+  }
+
+  // function plotarGraficoRede(resposta4, idMaquina) {
+
+  //   console.log('iniciando plotagem do gráfico...');
+
+  //   labels4 = [];
+
+  //   dados4 = [
+  //     {
+  //       labels: labels4,
+  //       datasets: [{
+  //         label: 'Download(KB)',
+  //         data: [],
+  //         fill: false,
+  //         borderColor: 'rgb(255, 0, 0)',
+  //         tension: 0.1
+  //       }]
+  //     },
+  //     {
+  //       labels: labels4,
+  //       datasets: [{
+  //         label: 'Upload(KB)',
+  //         data: [],
+  //         fill: false,
+  //         borderColor: 'rgb(0, 0, 255)',
+  //         tension: 0.1
+  //       }]
+  //     }
+  //   ];
+
+  //   console.log('----------------------------------------------')
+  //   console.log('Estes dados foram recebidos pela funcao "obterDadosGrafico" e passados para "plotarGrafico":')
+  //   console.log(resposta4)
+
+  //   resposta4.forEach(m4 => {
+  //     labels4.push(m4.dt_hora);
+
+  //     dados4.datasets[0].data.push(m4.bytes_recebidos);
+  //     dados4.datasets[1].data.push(m4.bytes_enviados);
+
+  //   })
+
+  //   console.log('----------------------------------------------')
+  //   console.log('O gráfico será plotado com os respectivos valores:')
+  //   console.log('Labels:')
+  //   console.log(labels4)
+  //   console.log('Dados:')
+  //   console.log(dados4.datasets)
+  //   console.log('----------------------------------------------')
+
+  // }
+
+  function atualizarGrafico(idMaquina, dados, myChart) {
+
+
+
+    fetch(`/medidas/tempo-real/${idAquario}`, { cache: 'no-store' }).then(function (response) {
       if (response.ok) {
-        response.json().then(function (resposta) {
-          console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
-          resposta.reverse();
+        response.json().then(function (novoRegistro) {
 
-          plotarGrafico(resposta, fklojavar);
+          obterdados(idAquario);
+          console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
+          console.log(`Dados atuais do gráfico:`);
+          console.log(dados);
 
+          let avisoCaptura = document.getElementById(`avisoCaptura${idAquario}`)
+          avisoCaptura.innerHTML = ""
+
+
+          if (novoRegistro[0].momento_grafico == dados.labels[dados.labels.length - 1]) {
+            console.log("---------------------------------------------------------------")
+            console.log("Como não há dados novos para captura, o gráfico não atualizará.")
+            avisoCaptura.innerHTML = "<i class='fa-solid fa-triangle-exclamation'></i> Foi trazido o dado mais atual capturado pelo sensor. <br> Como não há dados novos a exibir, o gráfico não atualizará."
+            console.log("Horário do novo dado capturado:")
+            console.log(novoRegistro[0].momento_grafico)
+            console.log("Horário do último dado capturado:")
+            console.log(dados.labels[dados.labels.length - 1])
+            console.log("---------------------------------------------------------------")
+          } else {
+            // tirando e colocando valores no gráfico
+            dados.labels.shift(); // apagar o primeiro
+            dados.labels.push(novoRegistro[0].momento_grafico); // incluir um novo momento
+
+            dados.datasets[0].data.shift();  // apagar o primeiro de umidade
+            dados.datasets[0].data.push(novoRegistro[0].umidade); // incluir uma nova medida de umidade
+
+            dados.datasets[1].data.shift();  // apagar o primeiro de temperatura
+            dados.datasets[1].data.push(novoRegistro[0].temperatura); // incluir uma nova medida de temperatura
+
+            myChart.update();
+          }
+
+          // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
+          proximaAtualizacao = setTimeout(() => atualizarGrafico(idAquario, dados, myChart), 2000);
         });
       } else {
         console.error('Nenhum dado encontrado ou erro na API');
+        // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
+        proximaAtualizacao = setTimeout(() => atualizarGrafico(idAquario, dados, myChart), 2000);
       }
-    }).catch(function (error) {
-      console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
-    });
+    })
+      .catch(function (error) {
+        console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+      });
+
   }
 
-  b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
-  function grafico1() {
 
+  b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
+  function grafico1(labels1, dados1) {
+
+    let cont = 0;
+
+    componente = "cpu";
 
     if (select_maquina.value == 0) {
       alert(`Selecione uma maquina`)
@@ -271,44 +529,32 @@
       textoExibir4.classList.add("display-none")
 
 
-      const labels = [
-        '12:00:00',
-        '12:00:30',
-        '12:01:00',
-        '12:01:30',
-        '12:02:00',
-        '12:02:30',
-        '12:03:00',
-        '12:03:30',
-        '12:04:00',
-        '12:04:30',
-      ];
+      const labels = labels1
 
-      const data = {
-        labels: labels,
-        datasets: [{
-          label: 'Utilização(%)',
-          backgroundColor: 'rgb(255, 0, 0)',
-          borderColor: 'rgb(255, 0, 0)',
-          data: [4, 3, 5, 5, 4, 6, 4, 3, 4, 4],
-
-        }]
-      }
+      const data1 = dados1
       const config = {
         type: 'line',
-        data: data,
+        data: data1,
         options: {}
-      };
+      }
       const myChart = new Chart(
         document.getElementById('myChart'),
         config
       );
+
+      // setTimeout(() => {
+      //   myChart.destroy(), grafico1()
+      // }, 2000);
     }
   }
 </script>
 <script>
 
-  function grafico2() {
+  function grafico2(labels2, dados2) {
+
+    myChart2.destroy()
+
+    componente = "MEMORIA RAM";
 
     if (select_maquina.value == 0) {
       alert(`Selecione uma maquina`)
@@ -355,29 +601,9 @@
       textoExibir4.classList.remove("display-flex")
       textoExibir4.classList.add("display-none")
 
-      const labels2 = [
-        '12:00:00',
-        '12:00:30',
-        '12:01:00',
-        '12:01:30',
-        '12:02:00',
-        '12:02:30',
-        '12:03:00',
-        '12:03:30',
-        '12:04:00',
-        '12:04:30',
-      ];
+      const labels = labels2
 
-      const data2 = {
-        labels: labels2,
-        datasets: [{
-          label: 'Tempo médio de resposta(ms)',
-          backgroundColor: 'rgb(255, 0, 0)',
-          borderColor: 'rgb(255, 0, 0)',
-          data: [.6, 1.1, 1.2, 0.7, 1.2, 4.2, 2.2, 5.1, 1.2, .4],
-        }
-        ]
-      };
+      const data2 = dados2
 
       const config2 = {
         type: 'line',
@@ -394,7 +620,9 @@
 
 <script>
 
-  function grafico3() {
+  function grafico3(labels3, dados3) {
+    myChart3.destroy
+
 
     if (select_maquina.value == 0) {
       alert(`Selecione uma maquina`)
@@ -441,29 +669,9 @@
       textoExibir4.classList.remove("display-flex")
       textoExibir4.classList.add("display-none")
 
-      const labels3 = [
-        '12:00:00',
-        '12:00:30',
-        '12:01:00',
-        '12:01:30',
-        '12:02:00',
-        '12:02:30',
-        '12:03:00',
-        '12:03:30',
-        '12:04:00',
-        '12:04:30',
-      ];
+      const labels = labels3
 
-      const data3 = {
-        labels: labels3,
-        datasets: [{
-          label: 'Memória em uso(GB)',
-          backgroundColor: 'rgb(255, 0, 0)',
-          borderColor: 'rgb(255, 0, 0)',
-          data: [5.1, 5.1, 5.2, 5.2, 5.2, 5.2, 5.2, 5.2, 5.2, 5.3],
-        }
-        ]
-      };
+      const data3 = dados3
 
       const config3 = {
         type: 'line',
@@ -480,7 +688,9 @@
 
 <script>
 
-  function grafico4() {
+  function grafico4(labels4, dados4) {
+
+    myChart4.destroy()
 
     if (select_maquina.value == 0) {
       alert(`Selecione uma maquina`)
@@ -532,35 +742,9 @@
       kpiExibir4.classList.remove("display-flex")
       kpiExibir4.classList.add("display-none")
 
-      const labels4 = [
-        '12:00:00',
-        '12:00:30',
-        '12:01:00',
-        '12:01:30',
-        '12:02:00',
-        '12:02:30',
-        '12:03:00',
-        '12:03:30',
-        '12:04:00',
-        '12:04:30',
-      ];
+      const labels = labels4
 
-      const data4 = {
-        labels: labels4,
-        datasets: [{
-          label: 'Download(GB)',
-          backgroundColor: 'rgb(255, 0, 0)',
-          borderColor: 'rgb(255, 0, 0)',
-          data: [70, 71, 69, 69, 70, 71, 71, 72, 71, 70],
-
-        }, {
-          label: 'Upload(GB)',
-          backgroundColor: 'rgb(0, 0, 255)',
-          borderColor: 'rgb(0, 0, 255)',
-          data: [40, 40, 38, 39, 39, 40, 45, 45, 44, 46],
-        }
-        ]
-      };
+      const data4 = dados4
       const config4 = {
         type: 'line',
         data: data4,
