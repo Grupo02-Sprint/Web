@@ -64,6 +64,7 @@ function cadastrar(req, res) {
     // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
     var nome = req.body.nomeServer;
     var email = req.body.emailServer;
+    var cpf = req.body.cpfServer;
     var senha = req.body.senhaServer;
     var cargo = req.body.cargoServer;
     var loja = req.body.lojaServer;
@@ -73,6 +74,8 @@ function cadastrar(req, res) {
         res.status(400).send("Verifique se seus dados foram preenchidos corretamente!");
     } else if (email == undefined) {
         res.status(400).send("Verifique se seus dados foram preenchidos corretamente!");
+    } else if (cpf == undefined) {
+        res.status(400).send("Verifique se seus dados foram preenchidos corretamente!");
     } else if (senha == undefined) {
         res.status(400).send("Verifique se seus dados foram preenchidos corretamente!");
     } else if (loja == undefined) {
@@ -80,7 +83,7 @@ function cadastrar(req, res) {
     } else{
 
         // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
-        usuarioModel.cadastrar(nome, email, senha, cargo, loja)
+        usuarioModel.cadastrar(nome, email, senha, cargo, loja, cpf)
             .then(
                 function (resultado) {
                     res.json(resultado);
@@ -98,9 +101,30 @@ function cadastrar(req, res) {
     }
 }
 
+function salvar(req, res) {
+    var cpf = req.body.cpf;
+    var senha = req.body.senha;
+
+    usuarioModel.salvar(cpf, senha)
+        .then(
+            function (resultado) {
+                res.json(resultado);
+            }
+        )
+        .catch(
+            function (erro) {
+                console.log(erro);
+                console.log("Houve um erro ao realizar o post: ", erro.sqlMessage);
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+
+}
+
 module.exports = {
     entrar,
     cadastrar,
     listar,
-    testar
+    testar,
+    salvar
 }

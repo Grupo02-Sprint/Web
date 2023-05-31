@@ -5,15 +5,12 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="check" href="js/validacoes.js">
-    <link rel="check" href="js/mascaras.js">
+
+    <script src="../js/mascaras.js"></script>
+    <link rel="stylesheet" href="css/cadastro.css">
 
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
-
-    <script src="js/mascaras.js"></script>
-    <script src="js/validacoes.js"></script>
-
-    <link rel="stylesheet" href="css/cadastro.css">
+    
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
 
@@ -100,20 +97,20 @@
                     </div>
                     
                     <div class="input-field">
-                        <h4 style="font-size: 2.5vh;">Username:</h4>
-                        <input type="text" id="in_user" placeholder="   Insira seu username">
+                        <h4 style="font-size: 2.5vh;">CPF:</h4>
+                        <input type="number" id="in_cpf" placeholder="   Insira seu CPF">
                     </div>
 
                     <div class="input-field" style="position: relative;">
                         <h4>Senha: </h4>
                         <input type="password" id="in_senha" placeholder="Crie uma senha">
-                        <i class="ph ph-eye" onclick="toggleVisibilidadeSenha()" style="position: absolute; right: 3vh; top: 3.3vh;"></i>
+                        <i class="ph ph-eye" id="ic_senha" onclick="verSenha(in_senha, ic_senha)"></i>
                     </div>
 
                     <div class="input-field" style="position: relative;">
                         <h4>Senha: </h4>
                         <input type="password" id="in_confirmacao" placeholder="Confirme sua senha">
-                        <i class="ph ph-eye" onclick="toggleVisibilidadeSenha2()" style="position: absolute; right: 3vh; top: 3.3vh;"></i>
+                        <i class="ph ph-eye" id="ic_senhaConfirm" onclick="verSenha(in_confirmacao, ic_senhaConfirm)"></i>
                     </div>
 
                     <button onclick="cadastrar()"> Cadastrar</button>
@@ -131,18 +128,13 @@
     function cadastrar() {
         var nome = in_nome.value;
         var email = in_email.value;
-        var user = in_user.value;
+        var cpf = in_cpf.value;
         var senha = in_senha.value;
         var senhaConfirmacao = in_confirmacao.value;
         var cargo = 3;
 
-        if (nome == "" || email == "" || user == "" || senha == "" || senhaConfirmacao == "") {
+        if (nome == "" || email == "" || cpf == "" || senha == "" || senhaConfirmacao == "") {
             alert("Verifique se todos os campos foram preenchidos.")
-
-        } else {
-            alert("Usuario cadastrado!");
-
-            window.location = "./login.html";
         }
 
         // Enviando o valor da nova input
@@ -156,6 +148,7 @@
                 // Agora vá para o arquivo routes/usuario.js
                 nomeServer: nome,
                 emailServer: email,
+                cpfServer: cpf,
                 senhaServer: senha,
                 cargoServer: cargo,
                 lojaServer: idLoja

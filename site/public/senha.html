@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/senha.css">
+
+    <link rel="check" href="js/validacoes.js">
+    <link rel="check" href="js/mascaras.js">
+
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <script src="js/mascaras.js"></script>
+    <script src="js/validacoes.js"></script>
+
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+    <link rel="shortcut icon" href="./assets/logo.png" type="image/x-icon">
+    <title>Login - MaxSolutions</title>
+</head>
+
+<body>
+
+    <div class="container0">
+        <a href="./index.html">
+            <img src="./icons/logo.png" alt="" class="img_logo">
+        </a>
+    </div>
+
+    <!-- Nav mobile/tablet -->
+    <nav class="mobile" id="nave-mobile">
+        <div class="esquerda" id="esquerda">
+            <span class="material-symbols-outlined" onclick="home()">
+                home
+            </span>
+            <span class="material-symbols-outlined" onclick="dashboard()">
+                monitoring
+            </span>
+        </div>
+        <div class="meio">
+            <span id="botaoMenu" class="material-symbols-outlined" onclick="abrirMenu()">
+                menu
+            </span>
+        </div>
+        <div class="direita" id="direita">
+            <span class="material-symbols-outlined" onclick="contato()">
+                contact_support
+            </span>
+            <span class="material-symbols-outlined" onclick="login()">
+                person
+            </span>
+        </div>
+    </nav>
+
+    <script>
+        var contador = 0
+        function abrirMenu() {
+            var esquerda = document.getElementById('esquerda')
+            var direita = document.getElementById('direita')
+            var btnMenu = document.getElementById('botaoMenu')
+            var navMob = document.getElementById('nave-mobile')
+
+            if (contador == 0) {
+                esquerda.style.top = 0
+                direita.style.top = 0
+                navMob.style.backgroundColor = "#195e6377"
+
+                contador++
+            } else {
+                esquerda.style.top = "130vh"
+                direita.style.top = "180vh"
+                navMob.style.backgroundColor = "transparent"
+
+                contador = 0
+            }
+        }
+    </script>
+
+    <!-- Login -->
+    <div class="tudo">
+        <div class="caixa">
+            <div class="container1">
+                <h1>Recadastre sua senha!</h1>
+                <h2>Acesse sua conta</h2>
+            </div>
+            
+            <div class="container3">
+                <div class="container2">
+
+                    <div class="input-field">
+                        <h4>CPF: </h4>
+                        <input type="text" id="cpf" placeholder="Insira seu email">
+                    </div>
+
+                    <div class="input-field">
+                        <h4>Nova Senha: </h4>
+                        <input type="password" id="senha" placeholder="Insira sua senha">
+                        <i class="ph ph-eye" onclick="toggleVisibilidadeSenha3()"></i>
+                    </div>
+
+                    <button onclick="salvar()">Salvar</button>
+                   
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+<script>
+    function salvar() {
+    
+    fetch("/usuarios/salvar", {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            cpf: cpf.value,
+            senha: senha.value,
+        })
+    }).then(function (resposta) {
+
+        if (resposta.ok) {
+            window.alert("Senha alterada com sucesso!");
+            window.location = "login.html"
+        } else if (resposta.status == 404) {
+            window.alert("Deu 404!");
+        } else {
+            throw ("Houve um erro ao tentar realizar a mudança da senha! Código da resposta: " + resposta.status);
+        }
+    }).catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+    });
+}
+</script>

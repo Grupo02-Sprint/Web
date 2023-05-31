@@ -290,7 +290,6 @@ body {
     .caixa p {
         color: white;
         font-family: 'IBM Plex Sans', sans-serif;
-        margin-top: 1vh;
     }
 
     .tudo {
@@ -313,7 +312,7 @@ body {
     }
 
     /*máscaras*/
-/*    .input-field {
+    .input-field {
         display: grid;
         grid-template-columns: 1fr;
         position: relative;
@@ -325,5 +324,6 @@ body {
         margin-right: 1rem;
         right: 0;
         align-self: center;
-    }*/
+        border-radius: 10vh;
+    }
 }

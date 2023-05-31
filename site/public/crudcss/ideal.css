@@ -109,75 +109,65 @@ ul{
     color: #ECE1C3;
 }
 
-.perfil{
+.ideal{
     height: 100vh;
     width: 100vw;
     display: flex;
+    align-items: center;
     justify-content: center;
-    align-items: center;
 }
 
-.caixa1{
-    background-color: #61AEB3;
-    height: 55vh;
+.caixa{
+    height: 71vh;
     width: 30vw;
     display: flex;
+    justify-content: center;
     flex-direction: column;
     align-items: center;
+    background-color: #195e63;
 }
 
-.perfil h2{
+.ideal h2{
+    margin-bottom: 4vh;
     margin-top: 4vh;
-    color: black;
 }
 
-.caixa2{
-    background-color: #61AEB3;
-    height: 55vh;
-    width: 30vw;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.form{
-    display: flex;
-    flex-direction: column;
-}
-
-input{
-    width: 20vw;
-    height: 3.2vh;
-}
-
-label{
-    margin-top: 1vh;
-    color: black;
+.ideal button{
+    margin-top: 3vh;
 }
 
 button{
     margin-top: 3vh;
     height: 5vh;
     width: 10vw;
-    background-color: #195e63;
+    background-color: #5CB85C;
     border: none;
     box-shadow: 0 9px black;
     font-weight: bold;
     font-size: 2.5vh;
     color: #ECE1C3;
     border-radius: .7vh;
+    margin-bottom: 4vh;
 }
 
 button:hover{
-    background-color: #30ca30b2;
+    background-color: #47949a;
 }
 
 button:active {
     transform: scale(0.85);
-    box-shadow: 0 5px #666;
-    
+    box-shadow: 0 5px black;
 }
 
-select{
-    height: 4.2vh;
+h2{
+    color: #ECE1C3;
+}
+
+h4{
+    color: #ECE1C3;
+}
+
+.form{
+    display: flex;
+    flex-direction: column;
 }

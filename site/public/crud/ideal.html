@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/eb115129d4.js" crossorigin="anonymous"></script>
+    <script src="../js/funcoes.js"></script>
+    <link rel="stylesheet" href="../crudcss/ideal.css">
+    <title>Document</title>
+</head>
+<body onload="atualizarFeed()">
+    <div class="tudo">
+        <div class="menulateral">
+            <div class="logo">
+               <a href="../index.html"><img src="../icons/Logo-nome-site.png" alt="" height="35vh"></a>
+            </div>
+            <div class="hello">
+        
+              <img src="../assets/WhatsApp Image 2023-01-30 at 23.12.16.jpeg" alt="">
+
+                <h2><span id="b_usuario">Dionísio</span></h2>
+        
+              </div>
+              <ul>
+                <li>
+                  <i class="fa-solid fa-chart-line"></i>
+                  <a href="../indexdash.html "><b>Gráficos</b></a>
+                </li>
+        
+                <li style="color: black;"> 
+                  <i class="fa-solid fa-user"></i>
+                  <a cla href="../perfil.html"><b style="color: black;">Perfil</b></a>
+                </li>
+
+                <li>
+                  <i class="fa-solid fa-computer"></i>
+                  <a href="maquina.html"><b>Máquina</b></a>
+                </li>
+
+                <li>
+                  <i class="fa-solid fa-address-card"></i>
+                  <a href="funcionario.html"><b>Funcionário</b></a>
+                </li>
+
+                <li>
+                  <i class="fa-solid fa-headset"></i>
+                  <a href="https://maxsolutions.auvo.com.br/Login#signin"><b>Suporte</b></a>
+                </li>
+                
+                <li>
+                  <a href="login.html">
+                    <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                    <span class="menu" onclick="limparSessao()"><b>Sair</b></span>
+                  </a>
+                </li>
+              </ul>
+        </div>
+        <div class="ideal">
+            <div class="caixa">
+                <div class="form">
+                <h2>Ideal da Loja</h2>
+                <h4>CPU</h4>
+                <input type="text" id="cpu">
+                <button onclick="salvarCpu()">Salvar</button>
+                <h4>Memória</h4>
+                <input type="text" id="memoria">
+                <button onclick="salvarMemoria()">Salvar</button>
+                <h4>Armazenamento</h4>
+                <input type="text" id="armazenamento">
+                <button onclick="salvarArmazenamento()">Salvar</button>
+            </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+<script>
+    b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
+    var fkLoja;
+    function atualizarFeed() {
+  var idUsuario = sessionStorage.IDUSUARIO_USUARIO;
+  fetch(`/funcionarios/buscar-por-usuario/${idUsuario}`)
+    .then(function(resposta) {
+      if (resposta.ok) {
+        resposta.json().then(function(resposta) {
+          console.log("DEU CERTTOO");
+
+          sessionStorage.FK_LOJA = resposta.fk_loja;
+           fkLoja = resposta.fk_loja;
+
+          fetch(`/perfis/listarvalores/${fkLoja}`)
+            .then(function(resposta) {
+              if (resposta.ok) {
+                if (resposta.status == 204) {
+                  throw "Nenhum resultado encontrado!";
+                }
+                resposta.json().then(function(resposta) {
+                  console.log("Dados recebidos: ", JSON.stringify(resposta));
+
+                  // Preencher os campos com os dados obtidos do banco de dados
+                  cpu.value = resposta[0].armazenamento;
+                  memoria.value = resposta[1].armazenamento;
+                  armazenamento.value = resposta[2].armazenamento;
+                });
+              } else {
+                throw "Houve um erro na API!";
+              }
+            })
+            .catch(function(erro) {
+              console.error(erro);
+            });
+        });
+      } else {
+        throw "Houve um erro na API!";
+      }
+    })
+    .catch(function(erro) {
+      console.error(erro);
+    });
+}
+
+function salvarCpu() {
+    
+    fetch("/perfis/salvarcpu", {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            cpu: cpu.value,
+            idLoja:fkLoja
+        })
+    }).then(function (resposta) {
+
+        if (resposta.ok) {
+            window.alert("Dado atualizado com sucesso");
+            window.location = "../perfil.html"
+        } else if (resposta.status == 404) {
+            window.alert("Deu 404!");
+        } else {
+            throw ("Houve um erro ao tentar realizar a atualizaçõa do dado! Código da resposta: " + resposta.status);
+        }
+    }).catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+    });
+}
+
+function salvarMemoria() {
+    
+    fetch("/perfis/salvarmemoria", {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            memoria: memoria.value,
+            idLoja:fkLoja
+        })
+    }).then(function (resposta) {
+
+        if (resposta.ok) {
+            window.alert("Dado atualizado com sucesso");
+            window.location = "../perfil.html"
+        } else if (resposta.status == 404) {
+            window.alert("Deu 404!");
+        } else {
+            throw ("Houve um erro ao tentar realizar a atualização do dado! Código da resposta: " + resposta.status);
+        }
+    }).catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+    });
+}
+
+function salvarArmazenamento() {
+    
+    fetch("/perfis/salvararmazenamento", {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            armazenamento: armazenamento.value,
+            idLoja:fkLoja
+        })
+    }).then(function (resposta) {
+
+        if (resposta.ok) {
+            window.alert("Dado atualizado com sucesso");
+            window.location = "../perfil.html"
+        } else if (resposta.status == 404) {
+            window.alert("Deu 404!");
+        } else {
+            throw ("Houve um erro ao tentar realizar a atualização do dado! Código da resposta: " + resposta.status);
+        }
+    }).catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+    });
+}
+</script>

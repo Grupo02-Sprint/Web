@@ -7,12 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/login.css">
 
-    <link rel="check" href="js/validacoes.js">
-    <link rel="check" href="js/mascaras.js">
-
+    <script src="../js/mascaras.js"></script>
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
-    <script src="js/mascaras.js"></script>
-    <script src="js/validacoes.js"></script>
 
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
@@ -96,13 +92,15 @@
                     <div class="input-field">
                         <h4>Senha: </h4>
                         <input type="password" id="senha_input" placeholder="Insira sua senha">
-                        <i class="ph ph-eye" onclick="toggleVisibilidadeSenha3()"></i>
+                        <i class="ph ph-eye" id="ic_senhaInput" onclick="verSenha(senha_input, ic_senhaInput)"></i>
                     </div>
 
                     <button onclick="entrar()">Entrar</button>
                 </div>
             </div>
-            <p id="jaConta">Não tem uma conta? <a style="color: inherit;" href="./cadastroLoja.html">Cadastre-se</a></p>
+            <p>Esqueceu sua senha? Gere outra <a href="senha.html">aqui</a></p>
+            <p id="jaConta">Não tem uma conta? <a style="color: inherit;" href="./cadastro.html">Cadastre-se</a></p>
+
         </div>
     </div>
 </body>
@@ -110,6 +108,11 @@
 </html>
 
 <script>
+    var senha = "";
+    var caracteres = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789@#$%^&_";
+        for (var i = 0; i <= 8; i++) {
+            senha += caracteres.charAt(Math.floor(Math.random() * caracteres.length));
+        }
 
 
     function entrar() {
@@ -144,6 +147,7 @@
 
                     sessionStorage.EMAIL_USUARIO = json.email;
                     sessionStorage.NOME_USUARIO = json.nome;
+
                     sessionStorage.IDUSUARIO_USUARIO = json.idUsuario;
                     sessionStorage.FK_LOJA = json.fk_loja
 
@@ -167,6 +171,36 @@
 
         return false;
     }
+
+    function gerarSenha() {
+        var email = email_input.value;
+        if (email === "") {
+            alert("Insira um e-mail válido.");
+            return;
+        }
+
+        fetch("/recuperar-senha2", {
+            method: "POST",
+            headers: {
+            "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+            email: email,
+            senha:senha
+            }),
+        })
+            .then(function (resposta) {
+            if (resposta.ok) {
+                alert("Uma nova senha foi enviada para o seu e-mail.");
+            } else {
+                alert("Ocorreu um erro ao enviar a nova senha por e-mail.");
+            }
+            })
+            .catch(function (erro) {
+            console.error(erro);
+            });
+}
+
 
     function sumirMensagem() {
         cardErro.style.display = "none"
