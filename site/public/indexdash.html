@@ -216,13 +216,21 @@
       });
   }
 
+  var dado1 = []
+  var dado2 = []
+  var dado3 = []
+  var dado4 = []
+  var label1 =  []
+  var label2 =  []
+  var label3 =  []
+  var label4 =  []
+  var resposta1 = []
+  var resposta2 = []
+  var resposta3 = []
+  var resposta4 = []
   function obterDadosGrafico() {
 
     var idMaquina = Number(select_maquina.value);
-    var resposta1 = []
-    var resposta2 = []
-    var resposta3 = []
-    var resposta4 = []
 
     fetch(`/medidas/ultimas/${idMaquina}`, { cache: 'no-store' }).then(function (response) {
       if (response.ok) {
@@ -237,17 +245,24 @@
 
             if (metrica.tipo == "cpu" && metrica.captura != resposta1[resposta1.length - 1]?.captura && resposta1.length < 7) {
               resposta1.push(metrica);
+              dado1.push(metrica.captura);
+              label1.push(metrica.dt_hora);
 
             } else if (metrica.tipo == "disco" && metrica.captura != resposta2[resposta2.length - 1]?.captura && resposta2.length < 7) {
               resposta2.push(metrica);
+              dado2.push(metrica.captura);
+              label2.push(metrica.dt_hora);
 
             } else if (metrica.tipo == "Memoria RAM" && metrica.captura != resposta3[resposta3.length - 1]?.captura && resposta3.length < 7) {
               resposta3.push(metrica);
-
+              dado3.push(metrica.captura);
+              label3.push(metrica.dt_hora);
             }
 
             if (resposta4.length < 7) {
               resposta4.push(metrica);
+              dado4.push(metrica.captura);
+              label4.push(metrica.dt_hora);
             }
           })
         })
@@ -262,9 +277,15 @@
 
       plotarGraficos(resposta1, resposta2, resposta3, idMaquina);
       plotarGraficoRede(resposta4, idMaquina);
+      setTimeout(() => {
+        obterDadosGrafico()
+      }, 3000);
     })
       .catch(function (error) {
         console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+        setTimeout(() => {
+        obterDadosGrafico()
+      }, 3000);
       });
   }
 
@@ -348,7 +369,6 @@
     console.log('----------------------------------------------')
 
     // setTimeout(() => grafico1(labels1, dados1), grafico2(labels2, dados2), grafico3(labels3, dados3), 2000);
-
   }
 
   function plotarGraficoRede(resposta4, idMaquina) {
@@ -378,6 +398,7 @@
           tension: 0.1
         }]
       }
+
     ];
 
     console.log('----------------------------------------------')
@@ -399,7 +420,10 @@
     console.log('Dados:')
     console.log(dados4.datasets)
     console.log('----------------------------------------------')
-
+    myChart.update()
+    myChart2.update()
+    myChart3.update()
+    myChart4.update()
   }
 
   function atualizarGrafico(idAquario, dados, myChart) {
@@ -459,8 +483,9 @@
 
 
   b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
-  function grafico1(labels1, dados1) {
+  function grafico1() {
 
+    console.log('ESTOU DENTRO DO GR´PAFICO');
     let cont = 0;
 
     componente = "cpu";
@@ -511,28 +536,37 @@
       textoExibir4.classList.add("display-none")
 
 
-      const labels = labels1
+      var ctx = document.getElementById('myChart').getContext('2d');
 
-      const data1 = dados1
-      const config = {
-        type: 'line',
-        data: data1,
-        options: {}
-      }
-      const myChart = new Chart(
-        document.getElementById('myChart'),
-        config
-      );
+      console.log("TO AQUI: ", dado1);
+      let dados = {
+            labels: label1,
+            datasets: [{
+                label: 'Umidade',
+                data: dado1,
+                fill: false,
+                borderColor: 'rgb(75, 192, 192)',
+                tension: 0.1
+            },
+            ]
+        };
+        const config = {
+            type: 'line',
+            data: dados,
+        };
 
-      // setTimeout(() => {
-      // myChart.destroy(), grafico1()
-      // }, 2000);
+        // Adicionando gráfico criado em div na tela
+        let myChart = new Chart(
+            document.getElementById(`myChart`),
+            config
+        );
     }
-  }
+    }
+  
 </script>
 <script>
 
-  function grafico2(labels2, dados2) {
+  function grafico2() {
 
     // myChart2.destroy()
 
@@ -583,26 +617,34 @@
       textoExibir4.classList.remove("display-flex")
       textoExibir4.classList.add("display-none")
 
-      const labels = labels2
+      let dados = {
+            labels: label2,
+            datasets: [{
+                label: 'Umidade',
+                data: dado2,
+                fill: false,
+                borderColor: 'rgb(75, 192, 192)',
+                tension: 0.1
+            },
+            ]
+        };
+        const config2 = {
+            type: 'line',
+            data: dados,
+        };
 
-      const data2 = dados2
-
-      const config2 = {
-        type: 'line',
-        data: data2,
-        options: {}
-      };
-      const myChart2 = new Chart(
-        document.getElementById('myChart2'),
-        config2
-      );
+        // Adicionando gráfico criado em div na tela
+        let myChart2 = new Chart(
+            document.getElementById(`myChart2`),
+            config2
+        );
     }
   }
 </script>
 
 <script>
 
-  function grafico3(labels3, dados3) {
+  function grafico3() {
 
     if (select_maquina.value == 0) {
       alert(`Selecione uma maquina`)
@@ -649,20 +691,30 @@
       textoExibir4.classList.remove("display-flex")
       textoExibir4.classList.add("display-none")
 
-      const labels = labels3
+      
+      let dados = {
+            labels: label3,
+            datasets: [{
+                label: 'Umidade',
+                data: dado3,
+                fill: false,
+                borderColor: 'rgb(75, 192, 192)',
+                tension: 0.1
+            },
+            ]
+        };
+        const config3 = {
+            type: 'line',
+            data: dados,
+        };
 
-      const data3 = dados3
-
-      const config3 = {
-        type: 'line',
-        data: data3,
-        options: {}
-      };
-      const myChart3 = new Chart(
-        document.getElementById('myChart3'),
-        config3
-      );
+        // Adicionando gráfico criado em div na tela
+        let myChart3 = new Chart(
+            document.getElementById(`myChart3`),
+            config3
+        );
     }
+  
   }
 </script>
 
@@ -720,18 +772,27 @@
       kpiExibir4.classList.remove("display-flex")
       kpiExibir4.classList.add("display-none")
 
-      const labels = labels4
+      let dados = {
+            labels: label4,
+            datasets: [{
+                label: 'Rede',
+                data: dado4,
+                fill: false,
+                borderColor: 'rgb(75, 192, 192)',
+                tension: 0.1
+            },
+            ]
+        };
+        const config4 = {
+            type: 'line',
+            data: dados,
+        };
 
-      const data4 = dados4
-      const config4 = {
-        type: 'line',
-        data: data4,
-        options: {}
-      };
-      const myChart4 = new Chart(
-        document.getElementById('myChart4'),
-        config4
-      );
+        // Adicionando gráfico criado em div na tela
+        let myChart4 = new Chart(
+            document.getElementById(`myChart4`),
+            config4
+        );
     }
   }
 

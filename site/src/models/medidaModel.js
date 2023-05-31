@@ -70,7 +70,7 @@ function buscarMedidasEmTempoReal(id_maquina) {
     instrucaoSql = ''
 
     if (process.env.AMBIENTE_PROCESSO == "producao") {
-        instrucaoSql = `select distinct
+        instrucaoSql = `select distinct top 1
                                 maquina.id_maquina, 
                                 maquina.fk_loja, 
                                 metrica.captura, 
@@ -92,7 +92,7 @@ function buscarMedidasEmTempoReal(id_maquina) {
                         JOIN unidadeMedida ON 
                             unidadeMedida.id = especificacao.fk_unidade_medida 
                         WHERE 
-                            maquina.id_maquina = ${id_maquina}`;
+                            maquina.id_maquina = ${id_maquina} order by id_metrica desc`;
 
     } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
         instrucaoSql = `select memoriaDisponivel from MetricaMemoria where fkComponente=1;  `;
