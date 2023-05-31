@@ -86,7 +86,9 @@
     b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
     postagem.value = sessionStorage.ID_POSTAGEM_EDITANDO;
   function editar() {
-    
+    if(fkCargo=!3){
+       return window.alert('Você não tem autorização para realizar essa ação')
+      }
         fetch("/funcionarios/editar", {
             method: "PUT",
             headers: {
@@ -105,7 +107,7 @@
             } else if (resposta.status == 404) {
                 window.alert("Deu 404!");
             } else {
-                throw ("Houve um erro ao tentar realizar a postagem! Código da resposta: " + resposta.status);
+                throw ("Houve um erro ao tentar realizar a edição do funcionário! Código da resposta: " + resposta.status);
             }
         }).catch(function (resposta) {
             console.log(`#ERRO: ${resposta}`);

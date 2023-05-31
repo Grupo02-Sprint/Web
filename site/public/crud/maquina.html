@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="../crudcss/maquina.css">
     <title>Máquinas</title>
 </head>
-<body onload="validarSessao(), atualizarFeed()">
+<body onload="atualizarFeed()">
     <div class="tudo">
         <div class="menulateral">
             <div class="logo">
@@ -112,6 +112,9 @@
   b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
   var idUsuario = sessionStorage.IDUSUARIO_USUARIO;
   function adicionar(){
+    if(fkCargo!=3){
+       return window.alert('Você não tem autorização para realizar essa ação')
+      }
 
       var modal = document.getElementById("myModal");
 
@@ -138,6 +141,9 @@
     }
 
   function abrirEditar(idMaquina) {
+    if(fkCargo!=3){
+       return window.alert('Você não tem autorização para realizar essa ação')
+    }
       idMaquinaEdit = idMaquina;
       var modal1 = document.getElementById("myModal1");
       var span = document.getElementsByClassName("close1")[0];
@@ -157,6 +163,10 @@
 
 
     function cadastrar() {
+
+    if(fkCargo=!3){
+       return window.alert('Você não tem autorização para realizar essa ação')
+    }
 
     var senha = "";
     var caracteres = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789@#$%^&_";
@@ -182,14 +192,14 @@
             console.log("resposta: ", resposta);
 
             if (resposta.ok) {
-                window.alert("Cadastro realizado com sucesso pelo usuario de ID: " + idUsuario + "!");
+                window.alert("Cadastro da máquina realizado com sucesso");
                 window.location = "maquina.html"
                 limparFormulario();
                 finalizarAguardar();
             } else if (resposta.status == 404) {
                 window.alert("Deu 404!");
             } else {
-                throw ("Houve um erro ao tentar realizar a postagem! Código da resposta: " + resposta.status);
+                throw ("Houve um erro ao tentar realizar o cadastro da máquina! Código da resposta: " + resposta.status);
             }
         }).catch(function (resposta) {
             console.log(`#ERRO: ${resposta}`);
@@ -211,7 +221,8 @@
 
                     sessionStorage.FK_LOJA = resposta.fk_loja;
                     fkLoja = resposta.fk_loja;
-
+                    sessionStorage.FK_CARGO = resposta.fk_cargo;
+                    fkCargo = resposta.fk_cargo;
                     fetch(`/maquinas/listar/${fkLoja}`).then(function (resposta) {
                         if (resposta.ok) {
                             if (resposta.status == 204) {
@@ -294,6 +305,10 @@
 }
 
     function editar() {
+
+    if(fkCargo=!3){
+       return window.alert('Você não tem autorização para realizar essa ação')
+    }
       var fkLoja = sessionStorage.FK_LOJA;
 
     fetch(`/maquinas/editar/${fkLoja}`, {
@@ -309,12 +324,12 @@
     }).then(function (resposta) {
 
         if (resposta.ok) {
-            window.alert("Funcionario atualizado com sucesso pelo usuario de email: " + sessionStorage.getItem("EMAIL_USUARIO") + "!");
+            window.alert("Máquina atualizado com sucesso");
             window.location = "maquina.html"
         } else if (resposta.status == 404) {
             window.alert("Deu 404!");
         } else {
-            throw ("Houve um erro ao tentar realizar a postagem! Código da resposta: " + resposta.status);
+            throw ("Houve um erro ao tentar realizar a edição do patrimonio na máquina! Código da resposta: " + resposta.status);
         }
     }).catch(function (resposta) {
         console.log(`#ERRO: ${resposta}`);
@@ -322,6 +337,9 @@
 }
 
 function deletar(idMaquina) {
+      if(fkCargo=!3){
+       return window.alert('Você não tem autorização para realizar essa ação')
+      }
   var fkLoja = sessionStorage.FK_LOJA;
         console.log("Criar função de apagar post escolhido - ID" + idMaquina);
         fetch(`/maquinas/deletar/${idMaquina}`, {
@@ -335,12 +353,12 @@ function deletar(idMaquina) {
         }).then(function (resposta) {
 
             if (resposta.ok) {
-                window.alert("Post deletado com sucesso pelo usuario de email: " + sessionStorage.getItem("EMAIL_USUARIO") + "!");
+                window.alert("Máquina deletada com sucesso");
                 window.location = "maquina.html"
             } else if (resposta.status == 404) {
                 window.alert("Deu 404!");
             } else {
-                throw ("Houve um erro ao tentar realizar a postagem! Código da resposta: " + resposta.status);
+                throw ("Houve um erro ao deletar a máquina! Código da resposta: " + resposta.status);
             }
         }).catch(function (resposta) {
             console.log(`#ERRO: ${resposta}`);

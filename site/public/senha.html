@@ -128,7 +128,7 @@
         } else if (resposta.status == 404) {
             window.alert("Deu 404!");
         } else {
-            throw ("Houve um erro ao tentar realizar a postagem! Código da resposta: " + resposta.status);
+            throw ("Houve um erro ao tentar realizar a mudança da senha! Código da resposta: " + resposta.status);
         }
     }).catch(function (resposta) {
         console.log(`#ERRO: ${resposta}`);

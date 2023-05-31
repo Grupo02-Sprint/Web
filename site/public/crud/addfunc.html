@@ -149,7 +149,7 @@ async function cadastrar() {
     if (response.ok) {
       await enviarEmail(emailVar, senha);
 
-      window.alert("Post realizado com sucesso pelo usuário de ID: " + idUsuario + "!");
+      window.alert("Funcionário adicionado com sucesso");
       window.alert(`Senha do ${nomeVar}: ${senha}A senha foi enviada para o email ${emailVar}`);
       window.location = "funcionario.html"
       limparFormulario();

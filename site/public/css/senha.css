@@ -285,7 +285,6 @@ body {
         height: 77vh;
         width: 62vh;
         background-color: #195e63;
-        border-radius: 2vh;
     }
 
     .caixa p {
@@ -326,9 +325,5 @@ body {
         right: 0;
         align-self: center;
         border-radius: 10vh;
-    }
-
-    .input-field input{
-        border-radius: 5vh;
     }
 }

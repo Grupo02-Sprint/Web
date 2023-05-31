@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="../crudcss/funcionario.css">
     <title>Document</title>
 </head>
-<body onload="validarSessao(), atualizarFeed() ">
+<body onload="atualizarFeed() ">
     <div class="tudo">
         <div class="menulateral">
             <div class="logo">
@@ -74,6 +74,9 @@
    
    
     function adicionar(){
+      if(fkCargo=!3){
+       return window.alert('Você não tem autorização para realizar essa ação')
+      }
         window.location ="addfunc.html"
     }
 
@@ -88,7 +91,8 @@
   
                     sessionStorage.FK_LOJA = resposta.fk_loja;
                     fkLoja = resposta.fk_loja; // Atribua o valor à variável fkLoja
-  
+                    sessionStorage.FK_CARGO = resposta.fk_cargo;
+                    fkCargo = resposta.fk_cargo;
                     fetch(`/funcionarios/listar/${fkLoja}`).then(function (resposta) {
                       console.log(fkLoja);
                       if (resposta.ok) {
@@ -178,6 +182,9 @@
     }
 
 function editar(idUsuario) {
+  if(fkCargo=!3){
+       return window.alert('Você não tem autorização para realizar essa ação')
+  }
   var tabela = document.querySelector('.tabela');
   for (var i = 1; i < tabela.rows.length; i++) { 
     var idCelula = tabela.rows[i].cells[0];
@@ -199,6 +206,9 @@ function editar(idUsuario) {
 
 
 function deletar(idUsuario) {
+  if(fkCargo=!3){
+       return window.alert('Você não tem autorização para realizar essa ação')
+  }
         console.log("Criar função de apagar post escolhido - ID" + idUsuario);
         fetch(`/funcionarios/deletar/${idUsuario}`, {
             method: "DELETE",
@@ -208,12 +218,12 @@ function deletar(idUsuario) {
         }).then(function (resposta) {
 
             if (resposta.ok) {
-                window.alert("Post deletado com sucesso pelo usuario de email: " + sessionStorage.getItem("EMAIL_USUARIO") + "!");
+                window.alert("Funcionario deletado com sucesso");
                 window.location = "funcionario.html"
             } else if (resposta.status == 404) {
                 window.alert("Deu 404!");
             } else {
-                throw ("Houve um erro ao tentar realizar a postagem! Código da resposta: " + resposta.status);
+                throw ("Houve um erro ao deletar o funcionário! Código da resposta: " + resposta.status);
             }
         }).catch(function (resposta) {
             console.log(`#ERRO: ${resposta}`);

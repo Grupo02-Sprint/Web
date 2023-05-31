@@ -134,12 +134,12 @@ function salvarCpu() {
     }).then(function (resposta) {
 
         if (resposta.ok) {
-            window.alert("Funcionario atualizado com sucesso pelo usuario de email: " + sessionStorage.getItem("EMAIL_USUARIO") + "!");
+            window.alert("Dado atualizado com sucesso");
             window.location = "../perfil.html"
         } else if (resposta.status == 404) {
             window.alert("Deu 404!");
         } else {
-            throw ("Houve um erro ao tentar realizar a postagem! Código da resposta: " + resposta.status);
+            throw ("Houve um erro ao tentar realizar a atualizaçõa do dado! Código da resposta: " + resposta.status);
         }
     }).catch(function (resposta) {
         console.log(`#ERRO: ${resposta}`);
@@ -160,12 +160,12 @@ function salvarMemoria() {
     }).then(function (resposta) {
 
         if (resposta.ok) {
-            window.alert("Funcionario atualizado com sucesso pelo usuario de email: " + sessionStorage.getItem("EMAIL_USUARIO") + "!");
+            window.alert("Dado atualizado com sucesso");
             window.location = "../perfil.html"
         } else if (resposta.status == 404) {
             window.alert("Deu 404!");
         } else {
-            throw ("Houve um erro ao tentar realizar a postagem! Código da resposta: " + resposta.status);
+            throw ("Houve um erro ao tentar realizar a atualização do dado! Código da resposta: " + resposta.status);
         }
     }).catch(function (resposta) {
         console.log(`#ERRO: ${resposta}`);
@@ -186,12 +186,12 @@ function salvarArmazenamento() {
     }).then(function (resposta) {
 
         if (resposta.ok) {
-            window.alert("Funcionario atualizado com sucesso pelo usuario de email: " + sessionStorage.getItem("EMAIL_USUARIO") + "!");
+            window.alert("Dado atualizado com sucesso");
             window.location = "../perfil.html"
         } else if (resposta.status == 404) {
             window.alert("Deu 404!");
         } else {
-            throw ("Houve um erro ao tentar realizar a postagem! Código da resposta: " + resposta.status);
+            throw ("Houve um erro ao tentar realizar a atualização do dado! Código da resposta: " + resposta.status);
         }
     }).catch(function (resposta) {
         console.log(`#ERRO: ${resposta}`);

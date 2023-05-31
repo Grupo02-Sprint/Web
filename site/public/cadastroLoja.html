@@ -120,24 +120,15 @@
         var telefoneVar = in_telefone.value;
         var cnpjVar = in_cnpj.value;
 
-        if (
-            nomeVar == "" ||
-            cnpjVar == "" ||
-            telefoneVar == ""
-        ) {
+        if (nomeVar == "" || cnpjVar == "" || telefoneVar == "") {
             alert('preencha todos os campos!')
-            // finalizarAguardar();
-            return false;
         }
-        // Enviando o valor da nova input
         fetch("/lojas/cadastrar", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({
-                // crie um atributo que recebe o valor recuperado aqui
-                // Agora vá para o arquivo routes/usuario.js
                 nomeServer: nomeVar,
                 cnpjServer: cnpjVar,
                 telefoneServer: telefoneVar
@@ -161,7 +152,6 @@
             })
             .catch(function (resposta) {
                 console.log(`#ERRO: ${resposta}`);
-                //   finalizarAguardar();
             });
 
         return false;

@@ -9,7 +9,7 @@
     <script src="https://kit.fontawesome.com/eb115129d4.js" crossorigin="anonymous"></script>
     <title>Document</title>
 </head>
-<body onload="validarSessao(), atualizarFeed()">
+<body onload="atualizarFeed()">
     <div class="tudo">
         <div class="menulateral">
             <div class="logo">
@@ -95,6 +95,7 @@
 </body>
 </html>
 <script>
+    b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
     var idUsuario = sessionStorage.IDUSUARIO_USUARIO;
     var idLoja = null;
     var cargoUsuario= null;
@@ -135,9 +136,7 @@
 
 
 function editarUsuario(idBotao) {
-  if(cargoUsuario!=3){
-    return window.alert('Você não tem autorização para realizar qualquer mudança')
-  }
+  
   var idUsuario = sessionStorage.IDUSUARIO_USUARIO;
   let inputs = [];
   let select = document.getElementById("cargo");
@@ -148,7 +147,9 @@ function editarUsuario(idBotao) {
   
   inputs.forEach(input => {
     if (input.readOnly) {
-      select.disabled = false;
+      if(cargoUsuario==3){
+        select.disabled = false;
+      }
       input.removeAttribute("readonly");
       botao.innerText = "Salvar Edição";
       window.alert("Campos liberados para edição!");
@@ -168,12 +169,12 @@ function editarUsuario(idBotao) {
         }).then(function (resposta) {
 
             if (resposta.ok) {
-                window.alert("Perfil atualizado com sucesso pelo usuario de email: " + sessionStorage.getItem("EMAIL_USUARIO") + "!");
+                window.alert("Perfil atualizado com sucesso");
                 window.location = "perfil.html"
             } else if (resposta.status == 404) {
                 window.alert("Deu 404!");
             } else {
-                throw ("Houve um erro ao tentar realizar a postagem! Código da resposta: " + resposta.status);
+                throw ("Houve um erro ao tentar realizar a edição do seu perfil! Código da resposta: " + resposta.status);
             }
         }).catch(function (resposta) {
             console.log(`#ERRO: ${resposta}`);
@@ -214,12 +215,12 @@ function editarLoja(idBotao){
         }).then(function (resposta) {
 
             if (resposta.ok) {
-                window.alert("Perfil atualizado com sucesso pelo usuario de email: " + sessionStorage.getItem("EMAIL_USUARIO") + "!");
+                window.alert("Loja atualizada com sucesso");
                 window.location = "perfil.html"
             } else if (resposta.status == 404) {
                 window.alert("Deu 404!");
             } else {
-                throw ("Houve um erro ao tentar realizar a postagem! Código da resposta: " + resposta.status);
+                throw ("Houve um erro ao tentar realizar a edição da loja! Código da resposta: " + resposta.status);
             }
         }).catch(function (resposta) {
             console.log(`#ERRO: ${resposta}`);
