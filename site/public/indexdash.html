@@ -177,6 +177,18 @@
   var dados3 = {}
   var dados4 = {}
 
+  var componente = 'cpu'
+
+  function buscarPorCpu() {
+    componente = 'cpu'
+  }
+
+  function buscarPorCpu() {
+    componente = 'disco'
+  }
+  function buscarPorCpu() {
+    componente = 'Memoria RAM'
+  }
 
   async function buscarMaquinas() {
 
@@ -207,64 +219,62 @@
   function obterDadosGrafico() {
 
     var idMaquina = Number(select_maquina.value);
+    var resposta1 = []
+    var resposta2 = []
+    var resposta3 = []
+    var resposta4 = []
 
-    fetch(`/medidas/ultimas/${idMaquina}`, { cache: 'no-store' }).then(function (resCpu, resDisco, resRam, resRede) {
-      if (resCpu.ok) {
-        if (resDisco.ok) {
-          if (resRam.ok) {
-            if (resRede.ok) {
-              return resCpu.json(), resDisco.json(), resRam.json(), resRede.json()
+    fetch(`/medidas/ultimas/${idMaquina}`, { cache: 'no-store' }).then(function (response) {
+      if (response.ok) {
+        response.json().then(function (data) {
+          data.reverse()
+
+          data.forEach(metrica => {
+            // console.log(metrica);
+
+            // console.log(resposta1.length);
+            // console.log(resposta1[0].length);
+
+            if (metrica.tipo == "cpu" && metrica.captura != resposta1[resposta1.length - 1]?.captura && resposta1.length < 7) {
+              resposta1.push(metrica);
+
+            } else if (metrica.tipo == "disco" && metrica.captura != resposta2[resposta2.length - 1]?.captura && resposta2.length < 7) {
+              resposta2.push(metrica);
+
+            } else if (metrica.tipo == "Memoria RAM" && metrica.captura != resposta3[resposta3.length - 1]?.captura && resposta3.length < 7) {
+              resposta3.push(metrica);
 
             }
-          }
-        }
+
+            if (resposta4.length < 7) {
+              resposta4.push(metrica);
+            }
+          })
+        })
       } else {
         throw new Error("Nenhum dado encontrado ou erro na API")
       }
-    }).then(function (dataCpu, dataDisco, dataRam, dataRede) {
-      // data.forEach(metrica => {
-      //   console.log(metrica);
 
-      //   if (metrica.tipo == "cpu" && metrica.captura != resposta1[resposta1.length - 1]?.captura) {
-      //     resposta1.push(metrica);
+      console.log(resposta1);
+      console.log(resposta2);
+      console.log(resposta3);
+      console.log(resposta4);
 
-      //   } else if (metrica.tipo == "disco" && metrica.captura != resposta2[resposta2.length - 1]?.captura) {
-      //     resposta2.push(metrica);
-
-      //   } else if (metrica.tipo == "Memoria RAM" && metrica.captura != resposta3[resposta3.length - 1]?.captura) {
-      //     resposta3.push(metrica);
-
-      //   }
-
-      // resposta4.push(metrica);
-
-      dataCpu.reverse()
-      dataDisco.reverse()
-      dataRam.reverse()
-      dataRede.reverse()
-
-      console.log(dataCpu);
-      console.log(dataDisco);
-      console.log(dataRam);
-      console.log(dataRede);
-
-      plotarGraficos(dataCpu, dataDisco, dataRam, dataRede, idMaquina);
+      plotarGraficos(resposta1, resposta2, resposta3, idMaquina);
+      plotarGraficoRede(resposta4, idMaquina);
     })
-      // plotarGraficoRede(resposta4, idMaquina);
-
       .catch(function (error) {
         console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
       });
   }
 
-  function plotarGraficos(respostaCpu, respostaDisco, respostaRam, respostaRede, idMaquina) {
+  function plotarGraficos(resposta1, resposta2, resposta3, idMaquina) {
 
     console.log('iniciando plotagem do gráfico...');
 
     labels1 = [];
     labels2 = [];
     labels3 = [];
-    labels4 = [];
 
     dados1 = {
       labels: labels1,
@@ -299,55 +309,29 @@
       }]
     };
 
-    dados4 = {
-      labels: labels4,
-      datasets: [{
-        label: 'Download(Mb/s)',
-        data: [],
-        fill: false,
-        borderColor: 'rgb(75, 192, 192)',
-        tension: 0.1
-      },
-      {
-        label: 'Upload(Mb/s)',
-        data: [],
-        fill: false,
-        borderColor: 'rgb(75, 192, 192)',
-        tension: 0.1
-      }]
-    };
-
 
     console.log('----------------------------------------------')
     console.log('Estes dados foram recebidos pela funcao "obterDadosGrafico" e passados para "plotarGrafico":')
-    console.log(respostaCpu)
-    console.log(respostaDisco)
-    console.log(respostaRam)
-    console.log(respostaRede)
+    console.log(resposta1)
+    console.log(resposta2)
+    console.log(resposta3)
 
-    respostaCpu.forEach(m1 => {
+    resposta1.forEach(m1 => {
       labels1.push(m1.dt_hora);
 
       dados1.datasets[0].data.push(m1.captura);
 
     });
-    respostaDisco.forEach(m2 => {
+    resposta2.forEach(m2 => {
       labels2.push(m2.dt_hora);
 
       dados2.datasets[0].data.push(m2.captura);
 
     });
-    respostaRam.forEach(m3 => {
+    resposta3.forEach(m3 => {
       labels3.push(m3.dt_hora);
 
       dados3.datasets[0].data.push(m3.captura);
-
-    });
-    respostaRede.forEach(m4 => {
-      labels4.push(m4.dt_hora);
-
-      dados4.datasets[0].data.push(m4.bytes_recebidos);
-      dados4.datasets[1].data.push(m4.bytes_enviados);
 
     });
 
@@ -357,70 +341,68 @@
     console.log(labels1)
     console.log(labels2)
     console.log(labels3)
-    console.log(labels4)
     console.log('Dados:')
     console.log(dados1.datasets)
     console.log(dados2.datasets)
     console.log(dados3.datasets)
-    console.log(dados4.datasets)
     console.log('----------------------------------------------')
 
     // setTimeout(() => grafico1(labels1, dados1), grafico2(labels2, dados2), grafico3(labels3, dados3), 2000);
 
   }
 
-  // function plotarGraficoRede(resposta4, idMaquina) {
+  function plotarGraficoRede(resposta4, idMaquina) {
 
-  //   console.log('iniciando plotagem do gráfico...');
+    console.log('iniciando plotagem do gráfico...');
 
-  //   labels4 = [];
+    labels4 = [];
 
-  //   dados4 = [
-  //     {
-  //       labels: labels4,
-  //       datasets: [{
-  //         label: 'Download(KB)',
-  //         data: [],
-  //         fill: false,
-  //         borderColor: 'rgb(255, 0, 0)',
-  //         tension: 0.1
-  //       }]
-  //     },
-  //     {
-  //       labels: labels4,
-  //       datasets: [{
-  //         label: 'Upload(KB)',
-  //         data: [],
-  //         fill: false,
-  //         borderColor: 'rgb(0, 0, 255)',
-  //         tension: 0.1
-  //       }]
-  //     }
-  //   ];
+    dados4 = [
+      {
+        labels: labels4,
+        datasets: [{
+          label: 'Download(KB)',
+          data: [],
+          fill: false,
+          borderColor: 'rgb(255, 0, 0)',
+          tension: 0.1
+        }]
+      },
+      {
+        labels: labels4,
+        datasets: [{
+          label: 'Upload(KB)',
+          data: [],
+          fill: false,
+          borderColor: 'rgb(0, 0, 255)',
+          tension: 0.1
+        }]
+      }
+    ];
 
-  //   console.log('----------------------------------------------')
-  //   console.log('Estes dados foram recebidos pela funcao "obterDadosGrafico" e passados para "plotarGrafico":')
-  //   console.log(resposta4)
+    console.log('----------------------------------------------')
+    console.log('Estes dados foram recebidos pela funcao "obterDadosGrafico" e passados para "plotarGrafico":')
+    console.log(resposta4)
 
-  //   resposta4.forEach(m4 => {
-  //     labels4.push(m4.dt_hora);
+    resposta4.forEach(m4 => {
+      labels4.push(m4.dt_hora);
 
-  //     dados4.datasets[0].data.push(m4.bytes_recebidos);
-  //     dados4.datasets[1].data.push(m4.bytes_enviados);
+      dados4.datasets[0].data.push(m4.bytes_recebidos);
+      dados4.datasets[1].data.push(m4.bytes_enviados);
 
-  //   })
+    })
 
-  //   console.log('----------------------------------------------')
-  //   console.log('O gráfico será plotado com os respectivos valores:')
-  //   console.log('Labels:')
-  //   console.log(labels4)
-  //   console.log('Dados:')
-  //   console.log(dados4.datasets)
-  //   console.log('----------------------------------------------')
+    console.log('----------------------------------------------')
+    console.log('O gráfico será plotado com os respectivos valores:')
+    console.log('Labels:')
+    console.log(labels4)
+    console.log('Dados:')
+    console.log(dados4.datasets)
+    console.log('----------------------------------------------')
 
-  // }
+  }
 
-  function atualizarGrafico(idMaquina, dados, myChart) {
+  function atualizarGrafico(idAquario, dados, myChart) {
 
 
 
@@ -461,12 +443,12 @@
           }
 
           // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
-          proximaAtualizacao = setTimeout(() => atualizarGrafico(idAquario, dados, myChart), 2000);
+          // proximaAtualizacao = setTimeout(() => atualizarGrafico(idAquario, dados, myChart), 2000);
         });
       } else {
         console.error('Nenhum dado encontrado ou erro na API');
         // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
-        proximaAtualizacao = setTimeout(() => atualizarGrafico(idAquario, dados, myChart), 2000);
+        // proximaAtualizacao = setTimeout(() => atualizarGrafico(idAquario, dados, myChart), 2000);
       }
     })
       .catch(function (error) {
@@ -543,7 +525,7 @@
       );
 
       // setTimeout(() => {
-      //   myChart.destroy(), grafico1()
+      // myChart.destroy(), grafico1()
       // }, 2000);
     }
   }
@@ -552,9 +534,9 @@
 
   function grafico2(labels2, dados2) {
 
-    myChart2.destroy()
+    // myChart2.destroy()
 
-    componente = "MEMORIA RAM";
+    componente = "Memoria RAM";
 
     if (select_maquina.value == 0) {
       alert(`Selecione uma maquina`)
@@ -621,8 +603,6 @@
 <script>
 
   function grafico3(labels3, dados3) {
-    myChart3.destroy
-
 
     if (select_maquina.value == 0) {
       alert(`Selecione uma maquina`)
@@ -689,8 +669,6 @@
 <script>
 
   function grafico4(labels4, dados4) {
-
-    myChart4.destroy()
 
     if (select_maquina.value == 0) {
       alert(`Selecione uma maquina`)

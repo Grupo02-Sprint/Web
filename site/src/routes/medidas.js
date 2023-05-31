@@ -10,18 +10,13 @@ router.get("/buscar/maquinas/:fklojavar", function (req, res) {
 
 router.get("/ultimas/:idMaquina", function (req, res) {
     var idMaquina = req.params.idMaquina;
-    medidaController.buscarUltimasMedidasCpu(idMaquina, res);
-    medidaController.buscarUltimasMedidasDisco(idMaquina, res);
-    medidaController.buscarUltimasMedidasRam(idMaquina, res);
-    medidaController.buscarUltimasMedidasRede(idMaquina, res);
+    // var tipo_componente = req.params.componente
+    medidaController.buscarUltimasMedidas(idMaquina, res);
 });
 
 router.get("/tempo-real/:idMaquina", function (req, res) {
     var idMaquina = req.params.idMaquina;
-    medidaController.buscarMedidasEmTempoRealCpu(idMaquina, res);
-    medidaController.buscarMedidasEmTempoRealDisco(idMaquina, res);
-    medidaController.buscarMedidasEmTempoRealRam(idMaquina, res);
-    medidaController.buscarMedidasEmTempoRealRede(idMaquina, res);
+    medidaController.buscarMedidasEmTempoReal(idMaquina, res);
 })
 
 
