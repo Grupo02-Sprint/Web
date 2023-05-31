@@ -147,7 +147,9 @@
 
                     sessionStorage.EMAIL_USUARIO = json.email;
                     sessionStorage.NOME_USUARIO = json.nome;
-                    sessionStorage.IDUSUARIO_USUARIO = json.id_usuario;
+
+                    sessionStorage.IDUSUARIO_USUARIO = json.idUsuario;
+                    sessionStorage.FK_LOJA = json.fk_loja
 
                     setTimeout(function () {
                         window.location = "indexdash.html";
@@ -239,7 +241,7 @@
             nav.bottom = "-80%"
         }
     }
-    
+
     function home() {
         window.location = "./index.html";
     }
