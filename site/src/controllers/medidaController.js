@@ -28,7 +28,7 @@ function buscarMaquinas(fklojarvar, res) {
     }
 }
 
-async function buscarUltimasMedidas(idMaquina, res) {
+async function buscarUltimasMedidas(idMaquina, tipoGrafico, res) {
 
     const limite_linhas = 7;
 
@@ -40,7 +40,7 @@ async function buscarUltimasMedidas(idMaquina, res) {
 
     console.log(`Recuperando as ultimas ${limite_linhas} medidas`);
 
-    await medidaModel.buscarUltimasMedidas(id_maquina).then(function (resultado) {
+    await medidaModel.buscarUltimasMedidas(id_maquina, tipoGrafico, limite_linhas).then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
             console.log(resultado);
@@ -56,13 +56,13 @@ async function buscarUltimasMedidas(idMaquina, res) {
 }
 
 
-async function buscarMedidasEmTempoReal(idMaquina, res) {
+async function buscarMedidasEmTempoReal(idMaquina, tipoGrafico, res) {
 
     var id_maquina = idMaquina;
 
     console.log(`Recuperando medidas em tempo real`);
 
-    await medidaModel.buscarMedidasEmTempoReal(id_maquina).then(function (resultado) {
+    await medidaModel.buscarMedidasEmTempoReal(id_maquina, tipoGrafico).then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
         } else {
