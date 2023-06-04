@@ -40,7 +40,10 @@ async function buscarUltimasMedidas(id_maquina, tipoGrafico, limite_linhas) {
                                 JOIN metrica ON 
                                     maquina.id_maquina = metrica.fk_maquina 
                                 WHERE 
-                                    rede.fk_maquina = ${id_maquina}`;
+                                    rede.fk_maquina = ${id_maquina}
+                                ORDER BY
+                                    rede.idRede
+                                DESC`;
         } else {
             instrucaoSql = `SELECT DISTINCT TOP ${limite_linhas}
                                 metrica.id_metrica, 
@@ -61,7 +64,10 @@ async function buscarUltimasMedidas(id_maquina, tipoGrafico, limite_linhas) {
                             WHERE 
                             	metrica.fk_maquina = ${id_maquina} AND
                                 componente.tipo = '${tipoGrafico}' AND
-								especificacao.capacidade != 0`;
+								especificacao.capacidade != 0
+                            ORDER BY
+                                metrica.id_metrica
+                            DESC`;
 
         }
     } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
@@ -100,7 +106,10 @@ function buscarMedidasEmTempoReal(id_maquina, tipoGrafico) {
                                 JOIN metrica ON 
                                     maquina.id_maquina = metrica.fk_maquina 
                                 WHERE 
-                                    rede.fk_maquina = ${id_maquina}`;
+                                    rede.fk_maquina = ${id_maquina}
+                                ORDER BY
+                                    rede.idRede
+                                DESC`;
         } else {
             instrucaoSql = `SELECT DISTINCT TOP 1
                                 metrica.id_metrica, 
@@ -121,7 +130,10 @@ function buscarMedidasEmTempoReal(id_maquina, tipoGrafico) {
                             WHERE 
                             	metrica.fk_maquina = ${id_maquina} AND
                                 componente.tipo = '${tipoGrafico}' AND
-								especificacao.capacidade != 0`;
+								especificacao.capacidade != 0
+                            ORDER BY
+                                metrica.id_metrica
+                            DESC`;
 
         }
 
