@@ -31,14 +31,12 @@ async function buscarUltimasMedidas(id_maquina, tipoGrafico, limite_linhas) {
         if (tipoGrafico == 'rede') {
             instrucaoSql = `SELECT DISTINCT TOP ${limite_linhas}
                                     rede.idRede,
-                                    FORMAT(metrica.dt_hora_captura, 'HH:mm:ss') as dt_hora,
+                                    FORMAT(rede.dt_hora, 'HH:mm:ss') as dt_hora,
                                     rede.bytes_recebidos,
                                     rede.bytes_enviados
                                 FROM rede
                                 JOIN maquina ON
                                     maquina.id_maquina = rede.fk_maquina
-                                JOIN metrica ON 
-                                    maquina.id_maquina = metrica.fk_maquina 
                                 WHERE 
                                     rede.fk_maquina = ${id_maquina}
                                 ORDER BY
@@ -97,14 +95,12 @@ function buscarMedidasEmTempoReal(id_maquina, tipoGrafico) {
         if (tipoGrafico == 'rede') {
             instrucaoSql = `SELECT DISTINCT TOP 1
                                     rede.idRede,
-                                    FORMAT(metrica.dt_hora_captura, 'HH:mm:ss') as dt_hora,
+                                    FORMAT(rede.dt_hora, 'HH:mm:ss') as dt_hora,
                                     rede.bytes_recebidos,
                                     rede.bytes_enviados
                                 FROM rede
                                 JOIN maquina ON
                                     maquina.id_maquina = rede.fk_maquina
-                                JOIN metrica ON 
-                                    maquina.id_maquina = metrica.fk_maquina 
                                 WHERE 
                                     rede.fk_maquina = ${id_maquina}
                                 ORDER BY
