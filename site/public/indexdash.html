@@ -218,7 +218,7 @@
   function alterarTipoGrafico(tipo) {
     tipoGrafico = tipo;
 
-    obterDadosGrafico();
+    obterDadosGrafico(tipoGrafico);
   }
 
   async function buscarMaquinas() {
@@ -260,7 +260,7 @@
   // var resposta2 = []
   // var resposta3 = []
   // var resposta4 = []
-  function obterDadosGrafico() {
+  function obterDadosGrafico(tipoGrafico) {
 
     var idMaquina = Number(select_maquina.value);
 
@@ -319,7 +319,7 @@
       button4.style.backgroundColor = "blue";
 
     } else if (tipoGrafico == 'Memoria RAM') {
-      nomeLabel = 'Memória em uso(Mb)'
+      nomeLabel = 'Memória em uso(%)'
 
       let button = document.getElementById("cpu");
       button.style.backgroundColor = "blue";
@@ -380,6 +380,21 @@
         dados.datasets[0].data.push(metricas.bytes_recebidos);
         dados.datasets[1].data.push(metricas.bytes_enviados);
       }
+
+      const config = {
+        type: 'line',
+        data: dados,
+      };
+
+      myChart.destroy()
+
+      myChart = new Chart(
+        document.getElementById('myChart'),
+        config
+      );
+
+
+      myChart.update();
 
     } else {
       dados = {
@@ -473,7 +488,7 @@
               config
             );
 
-            // myChart.update();
+            myChart.update();
           }
 
           proximaAtualizacao = setTimeout(() => atualizarGrafico(dados, tipoGrafico), 3000);
