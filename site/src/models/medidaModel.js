@@ -5,10 +5,16 @@ function buscarMaquinas(idLoja) {
     instrucaoSql = ''
 
     if (process.env.AMBIENTE_PROCESSO == "producao") {
-        instrucaoSql = `select 
-                            id_maquina 
-                        from maquina 
-                        where fk_loja = ${idLoja}`;
+        instrucaoSql = `SELECT 
+                            maquina.id_maquina,
+                            ideal.limite_toleravel
+                        FROM maquina 
+                        JOIN loja ON
+                        loja.id_loja = maquina.fk_loja
+                        JOIN ideal ON
+                        loja.id_loja = ideal.fk_loja
+                        WHERE maquina.fk_loja = ${idLoja} AND
+                        ideal.fk_componente = 1`;
     } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
         instrucaoSql = `select id_maquina from maquina join loja on id_loja = fk_loja;`;
     } else {

@@ -94,8 +94,9 @@
         <div class="plot">
           <div class="um">
             <div class="parada">
-              <p>Máquinas que estão paradas:0 </p>
+              <p>Ideal da loja: <span id="ideal"></span> </p>
             </div>
+            <p id="alerta"></p>
             <div class="indicativos">
               <div class="ver" style="background-color: rgba(0, 128, 0, 0.4);"></div>
               <div class="amare" style="background-color: rgba(255, 255, 0, 0.4);"></div>
@@ -119,19 +120,20 @@
         </div>
         <div class="opcao">
           <div class="vazio">
-            <div id="espcpu" class="display-none">
+            <div id="infos" class="display-none">
               <p>
-                <b>Modelo: </b> AMD Ryzen 5 3500U with Radeon Vega Mobile Gfx
+                <b>Horário da última captura: </b> <span id="hrCaptura"></span>
               </p>
               <br>
               <p>
-                <b>Número de CPUs Fisícas: </b>4
+                <b>Dado mais recente: </b> <span id="dadoRecente1"></span>
               </p>
-              <p>
-                <b>Número de CPUs Lógicas: </b>8
+              <br>
+              <p id="upload">
+                <b>Dado mais recente(upload): </b> <span id="dadoRecente2"></span>
               </p>
             </div>
-            <div id="esparmaz" class="display-none">
+            <!-- <div id="esparmaz" class="display-none">
               <p>
                 <b>Modelo: </b> SPT256L2-2IAS7G2
               </p><br>
@@ -151,7 +153,7 @@
               <p>
                 <b>Modelo: </b> Realtek 8821CE Wireless LAN 802.11ac PCI-E NIC
               </p>
-            </div>
+            </div> -->
           </div>
           <div class="botao">
             <div class="butt" id="butt">
@@ -216,9 +218,18 @@
   var tipoGrafico = 'cpu'
 
   function alterarTipoGrafico(tipo) {
-    tipoGrafico = tipo;
+    var idMaquina = Number(select_maquina.value)
+    if (idMaquina == 0) {
+      alert('Selecione uma máquina para exibir os gráficos!')
+    } else {
 
-    obterDadosGrafico(tipoGrafico);
+      let textoExibir = document.getElementById(`infos`)
+      textoExibir.classList.remove("display-none")
+      textoExibir.classList.add("display-flex")
+      tipoGrafico = tipo;
+
+      obterDadosGrafico(tipoGrafico);
+    }
   }
 
   async function buscarMaquinas() {
@@ -234,6 +245,7 @@
               html += `<option value="${item.id_maquina}">Maquina ${item.id_maquina}</option>`;
             });
             document.getElementById('select_maquina').innerHTML = html;
+            ideal.innerHTML = json[0].limite_toleravel
             criarGraficoInicial()
           })
             .catch(function (erro) {
@@ -289,6 +301,7 @@
 
     let nomeLabel;
     let nomeLabel2;
+    var spanDado2 = document.getElementById('dadoRecente2')
 
     let graficoElement = document.getElementById('grafic')
     graficoElement.classList.remove("display-none")
@@ -305,6 +318,8 @@
       button3.style.backgroundColor = "blue";
       let button4 = document.getElementById("rede");
       button4.style.backgroundColor = "blue";
+      // PRECISA COLOCAR P DAR DISPLAY NONE NO dadoRecente2 AQUI
+      spanDado2.style.display = "none"
 
     } else if (tipoGrafico == 'disco') {
       nomeLabel = 'Tempo médio de resposta(ms)'
@@ -317,6 +332,9 @@
       button3.style.backgroundColor = "blue";
       let button4 = document.getElementById("rede");
       button4.style.backgroundColor = "blue";
+      // PRECISA COLOCAR P DAR DISPLAY NONE NO dadoRecente2 AQUI
+      spanDado2.style.display = "none"
+
 
     } else if (tipoGrafico == 'Memoria RAM') {
       nomeLabel = 'Memória em uso(%)'
@@ -329,6 +347,8 @@
       button3.style.backgroundColor = "red";
       let button4 = document.getElementById("rede");
       button4.style.backgroundColor = "blue";
+      // PRECISA COLOCAR P DAR DISPLAY NONE NO dadoRecente2 AQUI
+      spanDado2.style.display = "none"
 
     } else {
       nomeLabel = 'Download(Mb/s)'
@@ -342,6 +362,8 @@
       button3.style.backgroundColor = "blue";
       let button4 = document.getElementById("rede");
       button4.style.backgroundColor = "red";
+      // PRECISA COLOCAR P DAR DISPLAY BLOCK OU FLEX NO dadoRecente2 AQUI
+      spanDado2.style.display = "block"
 
     }
 
@@ -436,12 +458,13 @@
     console.log('Estes dados foram recebidos pela funcao "obterDadosGrafico" e passados para "plotarGrafico":')
     console.log(resposta)
 
-    proximaAtualizacao = setTimeout(() => atualizarGrafico(dados, tipoGrafico), 300);
+    proximaAtualizacao = setTimeout(() => atualizarGrafico(dados, tipoGrafico), 3000);
   }
 
   function atualizarGrafico(dados, tipoGrafico) {
 
     var idMaquina = Number(select_maquina.value);
+    let spanDado2 = document.getElementById('dadoRecente2')
 
     fetch(`/medidas/tempo-real/${idMaquina}/${tipoGrafico}`, { cache: 'no-store' }).then(function (response) {
       if (response.ok) {
@@ -457,23 +480,59 @@
             console.log("Como não há dados novos para captura, o gráfico não atualizará.")
             console.log("Horário do novo dado capturado:")
             console.log(novoRegistro[0].dt_hora)
+            hrCaptura.innerHTML = dados.labels[dados.labels.length - 1]
+
+            if (tipoGrafico == 'rede') {
+              dadoRecente1.innerHTML = dados.datasets[0].data[dados.datasets[0].data.length - 1]
+              dadoRecente2.innerHTML = dados.datasets[1].data[dados.datasets[1].data.length - 1]
+
+            } else {
+              dadoRecente1.innerHTML = dados.datasets[0].data[dados.datasets[0].data.length - 1]
+              if (tipoGrafico == 'Memoria RAM') {
+                if (dados.datasets[0].data[dados.datasets[0].data.length - 1] > Number(ideal.innerHTML)) {
+                  alerta.innerHTML = `O uso de mémoria da máquina ${idMaquina} está acima do ideal!!`
+
+                } else if (dados.datasets[0].data[dados.datasets[0].data.length - 1] < Number(ideal.innerHTML)) {
+                  alerta.innerHTML = `O uso de mémoria da máquina ${idMaquina} está dentro do ideal`
+                }
+              } else {
+                alerta.innerHTML = ''
+              }
+              // PRECISA COLOCAR P DAR DISPLAY NONE NO dadoRecente2 AQUI
+            }
+
             console.log("Horário do último dado capturado:")
             console.log(dados.labels[dados.labels.length - 1])
             console.log("---------------------------------------------------------------")
           } else {
+            // dtHoraAtual = novoRegistro[0].dt_hora
+
             dados.labels.shift();
             dados.labels.push(novoRegistro[0].dt_hora);
+            hrCaptura.innerHTML = dados.labels[dados.labels[0].length - 1]
 
             if (tipoGrafico == 'rede') {
+
               dados.datasets[0].data.shift();
               dados.datasets[0].data.push(novoRegistro[0].bytes_recebidos);
 
+
               dados.datasets[1].data.shift();
               dados.datasets[1].data.push(novoRegistro[0].bytes_enviados);
+              dadoRecente1.innerHTML = dados.datasets[0].data[dados.datasets[0].data.length - 1]
+              // PRECISA COLOCAR P DAR DISPLAY BLOCK OU FLEX NO dadoRecente2 AQUI
+
+              dadoRecente2.innerHTML = dados.datasets[0].data[dados.datasets[1].data.length - 1]
 
             } else {
+
               dados.datasets[0].data.shift();
               dados.datasets[0].data.push(novoRegistro[0].captura);
+              dadoRecente1.innerHTML = dados.datasets[0].data[dados.datasets[0].data.length - 1]
+
+              // PRECISA COLOCAR P DAR DISPLAY NONE NO dadoRecente2 AQUI
+
+
             }
 
             const config = {
