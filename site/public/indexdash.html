@@ -210,6 +210,8 @@
 </html>
 <script>
 
+  var proximaAtualizacao;
+
   var myChart;
 
   var fklojavar = sessionStorage.FK_LOJA;
@@ -275,6 +277,10 @@
 
     var idMaquina = Number(select_maquina.value);
 
+    if (proximaAtualizacao != undefined) {
+      clearTimeout(proximaAtualizacao);
+
+    }
 
     fetch(`/medidas/ultimas/${idMaquina}/${tipoGrafico}`, { cache: 'no-store' }).then(function (response) {
       if (response.ok) {
