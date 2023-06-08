@@ -465,6 +465,10 @@
     var idMaquina = Number(select_maquina.value);
     let spanDado2 = document.getElementById('dadoRecente2')
 
+    if (proximaAtualizacao != undefined) {
+      clearTimeout(proximaAtualizacao);
+    }
+
     fetch(`/medidas/tempo-real/${idMaquina}/${tipoGrafico}`, { cache: 'no-store' }).then(function (response) {
       if (response.ok) {
         response.json().then(function (novoRegistro) {
@@ -484,7 +488,7 @@
             if (tipoGrafico == 'rede') {
               dadoRecente1.innerHTML = dados.datasets[0].data[dados.datasets[0].data.length - 1]
               upload.innerHTML = `<b>Dado mais recente(upload): </b> <span id="dadoRecente2"></span>`
-              dadoRecente2.innerHTML = dados.datasets[1].data[dados.datasets[1].data.length - 1]
+              dadoRecente2.innerHTML = `${dados.datasets[1].data[dados.datasets[1].data.length - 1]}`
 
             } else {
               dadoRecente1.innerHTML = dados.datasets[0].data[dados.datasets[0].data.length - 1]
