@@ -210,6 +210,8 @@
 </html>
 <script>
 
+  var proximaAtualizacao
+
   var myChart;
 
   var fklojavar = sessionStorage.FK_LOJA;
@@ -218,6 +220,7 @@
 
   function alterarTipoGrafico(tipo) {
     var idMaquina = Number(select_maquina.value)
+
     if (idMaquina == 0) {
       alert('Selecione uma máquina para exibir os gráficos!')
     } else {
@@ -275,6 +278,11 @@
 
     var idMaquina = Number(select_maquina.value);
 
+    if (proximaAtualizacao != undefined) {
+      clearTimeout(proximaAtualizacao);
+
+    }
+
 
     fetch(`/medidas/ultimas/${idMaquina}/${tipoGrafico}`, { cache: 'no-store' }).then(function (response) {
       if (response.ok) {
@@ -297,6 +305,7 @@
   function plotarGraficos(resposta, tipoGrafico) {
 
     // document.getElementById('myChart').destroy()
+
 
     let nomeLabel;
     let nomeLabel2;
@@ -465,10 +474,6 @@
     var idMaquina = Number(select_maquina.value);
     let spanDado2 = document.getElementById('dadoRecente2')
 
-    if (proximaAtualizacao != undefined) {
-      clearTimeout(proximaAtualizacao);
-    }
-
     fetch(`/medidas/tempo-real/${idMaquina}/${tipoGrafico}`, { cache: 'no-store' }).then(function (response) {
       if (response.ok) {
         response.json().then(function (novoRegistro) {
@@ -493,10 +498,10 @@
             } else {
               dadoRecente1.innerHTML = dados.datasets[0].data[dados.datasets[0].data.length - 1]
               if (tipoGrafico == 'Memoria RAM') {
-                if (dados.datasets[0].data[dados.datasets[0].data.length - 1] > Number(ideal.innerHTML)) {
+                if (Number(dadoRecente1.innerHTML) > Number(ideal.innerHTML)) {
                   alerta.innerHTML = `O uso de mémoria da máquina ${idMaquina} está acima do ideal!!`
 
-                } else if (dados.datasets[0].data[dados.datasets[0].data.length - 1] < Number(ideal.innerHTML)) {
+                } else if (Number(dadoRecente1.innerHTML) < Number(ideal.innerHTML)) {
                   alerta.innerHTML = `O uso de mémoria da máquina ${idMaquina} está dentro do ideal`
                 }
               } else {
