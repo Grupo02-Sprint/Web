@@ -33,7 +33,7 @@ app.use("/lojas", lojaRouter);
 app.use("/medidas", medidasRouter);
 
 app.post("/recuperar-senha", (req, res) => {
-  const { email, senha} = req.body;
+  const { email, senha } = req.body;
   const transporter = nodemailer.createTransport({
     host: "smtp.office365.com",
     port: 587,
@@ -64,7 +64,7 @@ app.post("/recuperar-senha", (req, res) => {
 
 
 app.post("/recuperar-senha2", (req, res) => {
-  const { email, senha} = req.body;
+  const { email, senha } = req.body;
   const transporter = nodemailer.createTransport({
     host: "smtp.office365.com",
     port: 587,

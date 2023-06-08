@@ -8,15 +8,16 @@ router.get("/buscar/maquinas/:fklojavar", function (req, res) {
     medidaController.buscarMaquinas(fklojavar, res);
 })
 
-router.get("/ultimas/:idMaquina", function (req, res) {
+router.get("/ultimas/:idMaquina/:tipoGrafico", function (req, res) {
     var idMaquina = req.params.idMaquina;
-    // var tipo_componente = req.params.componente
-    medidaController.buscarUltimasMedidas(idMaquina, res);
+    var tipoGrafico = req.params.tipoGrafico;
+    medidaController.buscarUltimasMedidas(idMaquina, tipoGrafico, res);
 });
 
-router.get("/tempo-real/:idMaquina", function (req, res) {
+router.get("/tempo-real/:idMaquina/:tipoGrafico", function (req, res) {
     var idMaquina = req.params.idMaquina;
-    medidaController.buscarMedidasEmTempoReal(idMaquina, res);
+    var tipoGrafico = req.params.tipoGrafico;
+    medidaController.buscarMedidasEmTempoReal(idMaquina, tipoGrafico, res);
 })
 
 

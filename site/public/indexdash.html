@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="https://kit.fontawesome.com/eb115129d4.js" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <script src="../js/funcoes.js"></script>
+  <!-- <script src="../js/funcoes.js"></script> -->
   <link rel="stylesheet" href="./css/indexdash.css">
   <link rel="shortcut icon" href="./assets/logo.png" type="image/x-icon">
   <title>Dashboard - MaxSolutions</title>
@@ -18,45 +18,61 @@
   <div class="tudo">
     <div class="menulateral">
       <div class="logo">
-        <a href="index.html"><img src="./icons/Logo-nome-site.png" alt="" height="35vh"></a>
+        <a href="index.html">
+          <img src="./icons/Logo-nome-site.png" alt="" height="35vh">
+        </a>
       </div>
       <div class="hello">
 
         <img src="./assets/WhatsApp Image 2023-01-30 at 23.12.16.jpeg" alt="">
 
-        <h2><span id="b_usuario">Dionísio</span></h2>
+        <h2>
+          <span id="b_usuario">Dionísio</span>
+        </h2>
 
       </div>
       <ul>
         <li style="color: black;">
           <i class="fa-solid fa-chart-line"></i>
-          <a href=""><b style="color: black;">Gráficos</b></a>
+          <a href="">
+            <b style="color: black;">Gráficos</b>
+          </a>
         </li>
 
         <li>
           <i class="fa-solid fa-user"></i>
-          <a cla href="perfil.html"><b>Perfil</b></a>
+          <a cla href="perfil.html">
+            <b>Perfil</b>
+          </a>
         </li>
 
         <li>
           <i class="fa-solid fa-computer"></i>
-          <a href="./crud/maquina.html"><b>Máquina</b></a>
+          <a href="./crud/maquina.html">
+            <b>Máquina</b>
+          </a>
         </li>
 
         <li>
           <i class="fa-solid fa-address-card"></i>
-          <a href="./crud/funcionario.html"><b>Funcionário</b></a>
+          <a href="./crud/funcionario.html">
+            <b>Funcionário</b>
+          </a>
         </li>
 
         <li>
           <i class="fa-solid fa-headset"></i>
-          <a href="https://maxsolutions.auvo.com.br/Login#signin"><b>Suporte</b></a>
+          <a href="https://maxsolutions.auvo.com.br/Login#signin">
+            <b>Suporte</b>
+          </a>
         </li>
 
         <li>
           <a href="login.html">
             <i class="fa-solid fa-arrow-right-from-bracket"></i>
-            <span class="menu" onclick="limparSessao()"><b>Sair</b></span>
+            <span class="menu" onclick="limparSessao()">
+              <b>Sair</b>
+            </span>
           </a>
         </li>
       </ul>
@@ -64,19 +80,23 @@
     <div class="dashboard">
       <div class="maquina">
         <div class="select"> Máquina:
-          <select id="select_maquina" onchange="obterDadosGrafico()">
-            <option value="0">Escolha maquina <i class="fa-solid fa-angle-down"></i> </option>
-            <option value="1">Máquina 1</option>
+          <select id="select_maquina">
+            <option value="0" onclick="obterDadosGrafico()">Escolha maquina <i class="fa-solid fa-angle-down"></i>
+            </option>
+            <option value="1" onclick="obterDadosGrafico()">Máquina 1</option>
           </select>
         </div>
-        <a href="./crud/maquina.html"><i class="fa-solid fa-computer"></i> Cadastrar máquina </a>
+        <a href="./crud/maquina.html">
+          <i class="fa-solid fa-computer"></i> Cadastrar máquina
+        </a>
       </div>
       <div class="grafico">
         <div class="plot">
           <div class="um">
             <div class="parada">
-              <p>Máquinas que estão paradas:0 </p>
+              <p>Ideal da loja: <span id="ideal"></span> </p>
             </div>
+            <p id="alerta"></p>
             <div class="indicativos">
               <div class="ver" style="background-color: rgba(0, 128, 0, 0.4);"></div>
               <div class="amare" style="background-color: rgba(255, 255, 0, 0.4);"></div>
@@ -84,10 +104,10 @@
             </div>
           </div>
           <div class="dois">
-            <div id="grafic1" class="display-none">
-              <canvas id="myChart" style="position: relative; height:40vh;width:40vw"></canvas>
+            <div id="grafic" class="display-none" style="height:60vh; width:100vw">
+              <canvas id="myChart" style="position: relative; height:16.3vh;width:100vw"></canvas>
             </div>
-            <div id="grafic2" class="display-none">
+            <!-- <div id="grafic2" class="display-none">
               <canvas id="myChart2" style="position: relative; height:40vh;width:40vw"></canvas>
             </div>
             <div id="grafic3" class="display-none">
@@ -95,40 +115,63 @@
             </div>
             <div id="grafic4" class="display-none">
               <canvas id="myChart4" style="position: relative; height:40vh;width:40vw"></canvas>
-            </div>
+            </div> -->
           </div>
         </div>
         <div class="opcao">
           <div class="vazio">
-            <div id="espcpu" class="display-none">
-              <p><b>Modelo: </b> AMD Ryzen 5 3500U with Radeon Vega Mobile Gfx</p>
+            <div id="infos" class="display-none">
+              <p>
+                <b>Horário da última captura: </b> <span id="hrCaptura"></span>
+              </p>
               <br>
-              <p><b>Número de CPUs Fisícas: </b>4</p>
-              <p><b>Número de CPUs Lógicas: </b>8</p>
+              <p>
+                <b>Dado mais recente: </b> <span id="dadoRecente1"></span>
+              </p>
+              <br>
+              <p id="upload">
+              </p>
             </div>
-            <div id="esparmaz" class="display-none">
-              <p><b>Modelo: </b> SPT256L2-2IAS7G2</p>
-              <br>
-              <p><b>Tamanho total: </b>239 GB</p>
+            <!-- <div id="esparmaz" class="display-none">
+              <p>
+                <b>Modelo: </b> SPT256L2-2IAS7G2
+              </p><br>
+              <p>
+                <b>Tamanho total: </b>239 GB
+              </p>
             </div>
             <div id="espmemor" class="display-none">
-              <p><b> Memória Total: </b>8</p>
-              <p><b> Memória em Uso: </b>65%</p>
+              <p>
+                <b> Memória Total: </b>8
+              </p>
+              <p>
+                <b> Memória em Uso: </b>65%
+              </p>
             </div>
             <div id="esprede" class="display-none">
-              <p><b>Modelo: </b> Realtek 8821CE Wireless LAN 802.11ac PCI-E NIC</p>
-            </div>
+              <p>
+                <b>Modelo: </b> Realtek 8821CE Wireless LAN 802.11ac PCI-E NIC
+              </p>
+            </div> -->
           </div>
           <div class="botao">
             <div class="butt" id="butt">
-              <label><button id="cpu" style="background-color: #8d9699;" class="cpu"
-                  onclick="grafico1()"></button>CPU</label>
-              <label><button id="armazenamento" style="background-color: #8d9699;" class="armazenamento"
-                  onclick="grafico2()"></button>Armazenamento</label>
-              <label><button id="memoria" style="background-color: #8d9699;" class="memoria"
-                  onclick="grafico3()"></button>Memória</label>
-              <label><button id="rede" style="background-color: #8d9699;" class="rede"
-                  onclick="grafico4()"></button>Rede</label>
+              <label>
+                <button id="cpu" style="background-color: #8d9699;" class="cpu"
+                  onclick="alterarTipoGrafico('cpu')"></button>CPU
+              </label>
+              <label>
+                <button id="armazenamento" style="background-color: #8d9699;" class="armazenamento"
+                  onclick="alterarTipoGrafico('disco')"></button>Armazenamento
+              </label>
+              <label>
+                <button id="memoria" style="background-color: #8d9699;" class="memoria"
+                  onclick="alterarTipoGrafico('Memoria RAM')"></button>Memória
+              </label>
+              <label>
+                <button id="rede" style="background-color: #8d9699;" class="rede"
+                  onclick="alterarTipoGrafico('rede')"></button>Rede
+              </label>
             </div>
             <div id="kpi" class="display-none">
               <div class="verkpi">
@@ -167,27 +210,25 @@
 </html>
 <script>
 
+  var myChart;
+
   var fklojavar = sessionStorage.FK_LOJA;
-  var labels1 = []
-  var labels2 = []
-  var labels3 = []
-  var labels4 = []
-  var dados1 = {}
-  var dados2 = {}
-  var dados3 = {}
-  var dados4 = {}
 
-  var componente = 'cpu'
+  var tipoGrafico = 'cpu'
 
-  function buscarPorCpu() {
-    componente = 'cpu'
-  }
+  function alterarTipoGrafico(tipo) {
+    var idMaquina = Number(select_maquina.value)
+    if (idMaquina == 0) {
+      alert('Selecione uma máquina para exibir os gráficos!')
+    } else {
 
-  function buscarPorCpu() {
-    componente = 'disco'
-  }
-  function buscarPorCpu() {
-    componente = 'Memoria RAM'
+      let textoExibir = document.getElementById(`infos`)
+      textoExibir.classList.remove("display-none")
+      textoExibir.classList.add("display-flex")
+      tipoGrafico = tipo;
+
+      obterDadosGrafico(tipoGrafico);
+    }
   }
 
   async function buscarMaquinas() {
@@ -198,11 +239,13 @@
           console.log(resposta);
           resposta.json().then(function (json) {
             console.log(json);
-            var html = '<option value="0">Escolha maquina <i class="fa-solid fa-angle-down"></i> </option>';
+            var html = '<option value="0" onclick="obterDadosGrafico()">Escolha maquina <i class="fa-solid fa-angle-down"></i> </option>';
             json.forEach(function (item) {
               html += `<option value="${item.id_maquina}">Maquina ${item.id_maquina}</option>`;
             });
             document.getElementById('select_maquina').innerHTML = html;
+            ideal.innerHTML = json[0].limite_toleravel
+            criarGraficoInicial()
           })
             .catch(function (erro) {
               console.log(erro);
@@ -216,295 +259,55 @@
       });
   }
 
-  var dado1 = []
-  var dado2 = []
-  var dado3 = []
-  var dado4 = []
-  var label1 =  []
-  var label2 =  []
-  var label3 =  []
-  var label4 =  []
-  var resposta1 = []
-  var resposta2 = []
-  var resposta3 = []
-  var resposta4 = []
-  function obterDadosGrafico() {
+  // var dado1 = []
+  // var dado2 = []
+  // var dado3 = []
+  // var dado4 = []
+  // var label1 =  []
+  // var label2 =  []
+  // var label3 =  []
+  // var label4 =  []
+  // var resposta1 = []
+  // var resposta2 = []
+  // var resposta3 = []
+  // var resposta4 = []
+  function obterDadosGrafico(tipoGrafico) {
 
     var idMaquina = Number(select_maquina.value);
 
-    fetch(`/medidas/ultimas/${idMaquina}`, { cache: 'no-store' }).then(function (response) {
+
+    fetch(`/medidas/ultimas/${idMaquina}/${tipoGrafico}`, { cache: 'no-store' }).then(function (response) {
       if (response.ok) {
-        response.json().then(function (data) {
-          data.reverse()
+        response.json().then(function (resposta) {
+          console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+          resposta.reverse();
 
-          data.forEach(metrica => {
-            // console.log(metrica);
+          plotarGraficos(resposta, tipoGrafico);
 
-            // console.log(resposta1.length);
-            // console.log(resposta1[0].length);
-
-            if (metrica.tipo == "cpu" && metrica.captura != resposta1[resposta1.length - 1]?.captura && resposta1.length < 7) {
-              resposta1.push(metrica);
-              dado1.push(metrica.captura);
-              label1.push(metrica.dt_hora);
-
-            } else if (metrica.tipo == "disco" && metrica.captura != resposta2[resposta2.length - 1]?.captura && resposta2.length < 7) {
-              resposta2.push(metrica);
-              dado2.push(metrica.captura);
-              label2.push(metrica.dt_hora);
-
-            } else if (metrica.tipo == "Memoria RAM" && metrica.captura != resposta3[resposta3.length - 1]?.captura && resposta3.length < 7) {
-              resposta3.push(metrica);
-              dado3.push(metrica.captura);
-              label3.push(metrica.dt_hora);
-            }
-
-            if (resposta4.length < 7) {
-              resposta4.push(metrica);
-              dado4.push(metrica.captura);
-              label4.push(metrica.dt_hora);
-            }
-          })
-        })
-      } else {
-        throw new Error("Nenhum dado encontrado ou erro na API")
-      }
-
-      console.log(resposta1);
-      console.log(resposta2);
-      console.log(resposta3);
-      console.log(resposta4);
-
-      plotarGraficos(resposta1, resposta2, resposta3, idMaquina);
-      plotarGraficoRede(resposta4, idMaquina);
-      setTimeout(() => {
-        obterDadosGrafico()
-      }, 3000);
-    })
-      .catch(function (error) {
-        console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
-        setTimeout(() => {
-        obterDadosGrafico()
-      }, 3000);
-      });
-  }
-
-  function plotarGraficos(resposta1, resposta2, resposta3, idMaquina) {
-
-    console.log('iniciando plotagem do gráfico...');
-
-    labels1 = [];
-    labels2 = [];
-    labels3 = [];
-
-    dados1 = {
-      labels: labels1,
-      datasets: [{
-        label: 'Utilização(%)',
-        data: [],
-        fill: false,
-        borderColor: 'rgb(75, 192, 192)',
-        tension: 0.1
-      }]
-    };
-
-    dados2 = {
-      labels: labels2,
-      datasets: [{
-        label: 'Tempo médio de resposta(%)',
-        data: [],
-        fill: false,
-        borderColor: 'rgb(75, 192, 192)',
-        tension: 0.1
-      }]
-    };
-
-    dados3 = {
-      labels: labels3,
-      datasets: [{
-        label: 'Memória em uso(%)',
-        data: [],
-        fill: false,
-        borderColor: 'rgb(75, 192, 192)',
-        tension: 0.1
-      }]
-    };
-
-
-    console.log('----------------------------------------------')
-    console.log('Estes dados foram recebidos pela funcao "obterDadosGrafico" e passados para "plotarGrafico":')
-    console.log(resposta1)
-    console.log(resposta2)
-    console.log(resposta3)
-
-    resposta1.forEach(m1 => {
-      labels1.push(m1.dt_hora);
-
-      dados1.datasets[0].data.push(m1.captura);
-
-    });
-    resposta2.forEach(m2 => {
-      labels2.push(m2.dt_hora);
-
-      dados2.datasets[0].data.push(m2.captura);
-
-    });
-    resposta3.forEach(m3 => {
-      labels3.push(m3.dt_hora);
-
-      dados3.datasets[0].data.push(m3.captura);
-
-    });
-
-    console.log('----------------------------------------------')
-    console.log('O gráfico será plotado com os respectivos valores:')
-    console.log('Labels:')
-    console.log(labels1)
-    console.log(labels2)
-    console.log(labels3)
-    console.log('Dados:')
-    console.log(dados1.datasets)
-    console.log(dados2.datasets)
-    console.log(dados3.datasets)
-    console.log('----------------------------------------------')
-
-    // setTimeout(() => grafico1(labels1, dados1), grafico2(labels2, dados2), grafico3(labels3, dados3), 2000);
-  }
-
-  function plotarGraficoRede(resposta4, idMaquina) {
-
-    console.log('iniciando plotagem do gráfico...');
-
-    labels4 = [];
-
-    dados4 = [
-      {
-        labels: labels4,
-        datasets: [{
-          label: 'Download(KB)',
-          data: [],
-          fill: false,
-          borderColor: 'rgb(255, 0, 0)',
-          tension: 0.1
-        }]
-      },
-      {
-        labels: labels4,
-        datasets: [{
-          label: 'Upload(KB)',
-          data: [],
-          fill: false,
-          borderColor: 'rgb(0, 0, 255)',
-          tension: 0.1
-        }]
-      }
-
-    ];
-
-    console.log('----------------------------------------------')
-    console.log('Estes dados foram recebidos pela funcao "obterDadosGrafico" e passados para "plotarGrafico":')
-    console.log(resposta4)
-
-    resposta4.forEach(m4 => {
-      labels4.push(m4.dt_hora);
-
-      dados4.datasets[0].data.push(m4.bytes_recebidos);
-      dados4.datasets[1].data.push(m4.bytes_enviados);
-
-    })
-
-    console.log('----------------------------------------------')
-    console.log('O gráfico será plotado com os respectivos valores:')
-    console.log('Labels:')
-    console.log(labels4)
-    console.log('Dados:')
-    console.log(dados4.datasets)
-    console.log('----------------------------------------------')
-    myChart.update()
-    myChart2.update()
-    myChart3.update()
-    myChart4.update()
-  }
-
-  function atualizarGrafico(idAquario, dados, myChart) {
-
-
-
-    fetch(`/medidas/tempo-real/${idAquario}`, { cache: 'no-store' }).then(function (response) {
-      if (response.ok) {
-        response.json().then(function (novoRegistro) {
-
-          obterdados(idAquario);
-          console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
-          console.log(`Dados atuais do gráfico:`);
-          console.log(dados);
-
-          let avisoCaptura = document.getElementById(`avisoCaptura${idAquario}`)
-          avisoCaptura.innerHTML = ""
-
-
-          if (novoRegistro[0].momento_grafico == dados.labels[dados.labels.length - 1]) {
-            console.log("---------------------------------------------------------------")
-            console.log("Como não há dados novos para captura, o gráfico não atualizará.")
-            avisoCaptura.innerHTML = "<i class='fa-solid fa-triangle-exclamation'></i> Foi trazido o dado mais atual capturado pelo sensor. <br> Como não há dados novos a exibir, o gráfico não atualizará."
-            console.log("Horário do novo dado capturado:")
-            console.log(novoRegistro[0].momento_grafico)
-            console.log("Horário do último dado capturado:")
-            console.log(dados.labels[dados.labels.length - 1])
-            console.log("---------------------------------------------------------------")
-          } else {
-            // tirando e colocando valores no gráfico
-            dados.labels.shift(); // apagar o primeiro
-            dados.labels.push(novoRegistro[0].momento_grafico); // incluir um novo momento
-
-            dados.datasets[0].data.shift();  // apagar o primeiro de umidade
-            dados.datasets[0].data.push(novoRegistro[0].umidade); // incluir uma nova medida de umidade
-
-            dados.datasets[1].data.shift();  // apagar o primeiro de temperatura
-            dados.datasets[1].data.push(novoRegistro[0].temperatura); // incluir uma nova medida de temperatura
-
-            myChart.update();
-          }
-
-          // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
-          // proximaAtualizacao = setTimeout(() => atualizarGrafico(idAquario, dados, myChart), 2000);
         });
       } else {
         console.error('Nenhum dado encontrado ou erro na API');
-        // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
-        // proximaAtualizacao = setTimeout(() => atualizarGrafico(idAquario, dados, myChart), 2000);
       }
     })
       .catch(function (error) {
         console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
       });
-
   }
 
+  function plotarGraficos(resposta, tipoGrafico) {
 
-  b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
-  function grafico1() {
+    // document.getElementById('myChart').destroy()
 
-    console.log('ESTOU DENTRO DO GR´PAFICO');
-    let cont = 0;
+    let nomeLabel;
+    let nomeLabel2;
+    // var spanDado2 = document.getElementById('dadoRecente2')
 
-    componente = "cpu";
+    let graficoElement = document.getElementById('grafic')
+    graficoElement.classList.remove("display-none")
+    graficoElement.classList.remove("display-block")
 
-    if (select_maquina.value == 0) {
-      alert(`Selecione uma maquina`)
-    } else {
-      let graficoExibir3 = document.getElementById(`grafic3`)
-      graficoExibir3.classList.remove("display-block")
-      graficoExibir3.classList.add("display-none")
-      let graficoExibir4 = document.getElementById(`grafic4`)
-      graficoExibir4.classList.remove("display-block")
-      graficoExibir4.classList.add("display-none")
-      let graficoExibir2 = document.getElementById(`grafic2`)
-      graficoExibir2.classList.remove("display-block")
-      graficoExibir2.classList.add("display-none")
-      let graficoExibir = document.getElementById(`grafic1`)
-      graficoExibir.classList.remove("display-none")
-      graficoExibir.classList.add("display-block")
+    if (tipoGrafico == 'cpu') {
+      nomeLabel = 'Utilização(%)'
 
       let button = document.getElementById("cpu");
       button.style.backgroundColor = "red";
@@ -514,57 +317,413 @@
       button3.style.backgroundColor = "blue";
       let button4 = document.getElementById("rede");
       button4.style.backgroundColor = "blue";
+      // PRECISA COLOCAR P DAR DISPLAY NONE NO dadoRecente2 AQUI
+      // spanDado2.style.display = "none"
 
-      let luz = document.getElementById("baixa");
-      luz.style.backgroundColor = "green";
-      let luz2 = document.getElementById("media");
-      luz2.style.backgroundColor = "rgba(255, 255, 0, 0.4)";
-      let luz3 = document.getElementById("alta");
-      luz3.style.backgroundColor = "rgba(255, 0, 0, 0.4)";
+    } else if (tipoGrafico == 'disco') {
+      nomeLabel = 'Tempo médio de resposta(ms)'
 
-      let textoExibir1 = document.getElementById(`espcpu`)
-      textoExibir1.classList.remove("display-none")
-      textoExibir1.classList.add("display-flex")
-      let textoExibir2 = document.getElementById(`esparmaz`)
-      textoExibir2.classList.remove("display-flex")
-      textoExibir2.classList.add("display-none")
-      let textoExibir3 = document.getElementById(`espmemor`)
-      textoExibir3.classList.remove("display-flex")
-      textoExibir3.classList.add("display-none")
-      let textoExibir4 = document.getElementById(`esprede`)
-      textoExibir4.classList.remove("display-flex")
-      textoExibir4.classList.add("display-none")
+      let button = document.getElementById("cpu");
+      button.style.backgroundColor = "blue";
+      let button2 = document.getElementById("armazenamento");
+      button2.style.backgroundColor = "red";
+      let button3 = document.getElementById("memoria");
+      button3.style.backgroundColor = "blue";
+      let button4 = document.getElementById("rede");
+      button4.style.backgroundColor = "blue";
+      // PRECISA COLOCAR P DAR DISPLAY NONE NO dadoRecente2 AQUI
+      // spanDado2.style.display = "none"
 
 
-      var ctx = document.getElementById('myChart').getContext('2d');
+    } else if (tipoGrafico == 'Memoria RAM') {
+      nomeLabel = 'Memória em uso(%)'
 
-      console.log("TO AQUI: ", dado1);
-      let dados = {
-            labels: label1,
-            datasets: [{
-                label: 'Umidade',
-                data: dado1,
-                fill: false,
-                borderColor: 'rgb(75, 192, 192)',
-                tension: 0.1
-            },
-            ]
-        };
-        const config = {
-            type: 'line',
-            data: dados,
-        };
+      let button = document.getElementById("cpu");
+      button.style.backgroundColor = "blue";
+      let button2 = document.getElementById("armazenamento");
+      button2.style.backgroundColor = "blue";
+      let button3 = document.getElementById("memoria");
+      button3.style.backgroundColor = "red";
+      let button4 = document.getElementById("rede");
+      button4.style.backgroundColor = "blue";
+      // PRECISA COLOCAR P DAR DISPLAY NONE NO dadoRecente2 AQUI
+      // spanDado2.style.display = "none"
 
-        // Adicionando gráfico criado em div na tela
-        let myChart = new Chart(
-            document.getElementById(`myChart`),
-            config
-        );
+    } else {
+      nomeLabel = 'Download(Mb/s)'
+      nomeLabel2 = "Upload(Mb/s)"
+
+      let button = document.getElementById("cpu");
+      button.style.backgroundColor = "blue";
+      let button2 = document.getElementById("armazenamento");
+      button2.style.backgroundColor = "blue";
+      let button3 = document.getElementById("memoria");
+      button3.style.backgroundColor = "blue";
+      let button4 = document.getElementById("rede");
+      button4.style.backgroundColor = "red";
+      // PRECISA COLOCAR P DAR DISPLAY BLOCK OU FLEX NO dadoRecente2 AQUI
+      // spanDado2.style.display = "block"
+
     }
+
+
+
+    console.log('Plotando Gráfico');
+
+    // Criando estrutura para plotar gráfico - labels
+    let labels = [];
+
+    // Criando estrutura para plotar gráfico - dados
+    let dados = []
+
+    if (tipoGrafico == 'rede') {
+      dados = {
+        labels: labels,
+        datasets: [{
+          label: nomeLabel,
+          data: [],
+          fill: false,
+          borderColor: 'rgb(75, 192, 192)',
+          tension: 0.1
+        },
+        {
+          label: nomeLabel2,
+          data: [],
+          fill: false,
+          borderColor: 'rgb(199, 52, 52)',
+          tension: 0.1
+        }]
+      };
+
+      for (i = 0; i < resposta.length; i++) {
+        var metricas = resposta[i];
+        labels.push(metricas.dt_hora);
+        dados.datasets[0].data.push(metricas.bytes_recebidos);
+        dados.datasets[1].data.push(metricas.bytes_enviados);
+      }
+
+      const config = {
+        type: 'line',
+        data: dados,
+      };
+
+      myChart.destroy()
+
+      myChart = new Chart(
+        document.getElementById('myChart'),
+        config
+      );
+
+
+      myChart.update();
+
+    } else {
+      dados = {
+        labels: labels,
+        datasets: [{
+          label: nomeLabel,
+          data: [],
+          fill: false,
+          borderColor: 'rgb(75, 192, 192)',
+          tension: 0.1
+        }
+        ]
+      };
+
+      for (i = 0; i < resposta.length; i++) {
+        var metricas = resposta[i];
+        labels.push(metricas.dt_hora);
+        dados.datasets[0].data.push(metricas.captura);
+      }
+
+      const config = {
+        type: 'line',
+        data: dados,
+      };
+
+      myChart.destroy()
+
+      myChart = new Chart(
+        document.getElementById('myChart'),
+        config
+      );
+
+
+      myChart.update();
     }
-  
+
+
+    console.log('----------------------------------------------')
+    console.log('Estes dados foram recebidos pela funcao "obterDadosGrafico" e passados para "plotarGrafico":')
+    console.log(resposta)
+
+    proximaAtualizacao = setTimeout(() => atualizarGrafico(dados, tipoGrafico), 3000);
+  }
+
+  function atualizarGrafico(dados, tipoGrafico) {
+
+    var idMaquina = Number(select_maquina.value);
+    let spanDado2 = document.getElementById('dadoRecente2')
+
+    if (proximaAtualizacao != undefined) {
+      clearTimeout(proximaAtualizacao);
+    }
+
+    fetch(`/medidas/tempo-real/${idMaquina}/${tipoGrafico}`, { cache: 'no-store' }).then(function (response) {
+      if (response.ok) {
+        response.json().then(function (novoRegistro) {
+
+          // obterDadosGrafico();
+          console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
+          console.log(`Dados atuais do gráfico:`);
+          console.log(dados);
+
+          if (novoRegistro[0].dt_hora == dados.labels[dados.labels.length - 1]) {
+            console.log("---------------------------------------------------------------")
+            console.log("Como não há dados novos para captura, o gráfico não atualizará.")
+            console.log("Horário do novo dado capturado:")
+            console.log(novoRegistro[0].dt_hora)
+            hrCaptura.innerHTML = dados.labels[dados.labels.length - 1]
+
+            if (tipoGrafico == 'rede') {
+              dadoRecente1.innerHTML = dados.datasets[0].data[dados.datasets[0].data.length - 1]
+              upload.innerHTML = `<b>Dado mais recente(upload): </b> <span id="dadoRecente2"></span>`
+              dadoRecente2.innerHTML = `${dados.datasets[1].data[dados.datasets[1].data.length - 1]}`
+
+            } else {
+              dadoRecente1.innerHTML = dados.datasets[0].data[dados.datasets[0].data.length - 1]
+              if (tipoGrafico == 'Memoria RAM') {
+                if (dados.datasets[0].data[dados.datasets[0].data.length - 1] > Number(ideal.innerHTML)) {
+                  alerta.innerHTML = `O uso de mémoria da máquina ${idMaquina} está acima do ideal!!`
+
+                } else if (dados.datasets[0].data[dados.datasets[0].data.length - 1] < Number(ideal.innerHTML)) {
+                  alerta.innerHTML = `O uso de mémoria da máquina ${idMaquina} está dentro do ideal`
+                }
+              } else {
+                alerta.innerHTML = ''
+              }
+              // PRECISA COLOCAR P DAR DISPLAY NONE NO dadoRecente2 AQUI
+              upload.innerHTML = ''
+            }
+
+            console.log("Horário do último dado capturado:")
+            console.log(dados.labels[dados.labels.length - 1])
+            console.log("---------------------------------------------------------------")
+          } else {
+            // dtHoraAtual = novoRegistro[0].dt_hora
+
+            dados.labels.shift();
+            dados.labels.push(novoRegistro[0].dt_hora);
+            hrCaptura.innerHTML = dados.labels[dados.labels[0].length - 1]
+
+            if (tipoGrafico == 'rede') {
+
+              dados.datasets[0].data.shift();
+              dados.datasets[0].data.push(novoRegistro[0].bytes_recebidos);
+
+
+              dados.datasets[1].data.shift();
+              dados.datasets[1].data.push(novoRegistro[0].bytes_enviados);
+              dadoRecente1.innerHTML = dados.datasets[0].data[dados.datasets[0].data.length - 1]
+              // PRECISA COLOCAR P DAR DISPLAY BLOCK OU FLEX NO dadoRecente2 AQUI
+              upload.innerHTML = `<b>Dado mais recente(upload): </b> <span id="dadoRecente2"></span>`
+              dadoRecente2.innerHTML = dados.datasets[0].data[dados.datasets[1].data.length - 1]
+
+            } else {
+
+              dados.datasets[0].data.shift();
+              dados.datasets[0].data.push(novoRegistro[0].captura);
+              dadoRecente1.innerHTML = dados.datasets[0].data[dados.datasets[0].data.length - 1]
+
+              // PRECISA COLOCAR P DAR DISPLAY NONE NO dadoRecente2 AQUI
+              upload.innerHTML = ''
+
+            }
+
+            const config = {
+              type: 'line',
+              data: dados,
+            };
+
+            myChart.destroy()
+
+            myChart = new Chart(
+              document.getElementById('myChart'),
+              config
+            );
+
+            myChart.update();
+          }
+
+          proximaAtualizacao = setTimeout(() => atualizarGrafico(dados, tipoGrafico), 3000);
+        });
+      } else {
+        console.error('Nenhum dado encontrado ou erro na API');
+
+        proximaAtualizacao = setTimeout(() => atualizarGrafico(dados, tipoGrafico), 3000);
+      }
+    })
+      .catch(function (error) {
+        console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+      });
+
+  }
+
+  function criarGraficoInicial() {
+    const labels = [
+
+    ];
+
+    const data = {
+      labels: labels,
+      datasets: [{
+        label: 'Utilização(%)',
+        backgroundColor: 'rgb(255, 0, 0)',
+        borderColor: 'rgb(255, 0, 0)',
+        data: [],
+
+      }
+      ]
+    }
+
+    const config = {
+      type: 'line',
+      data: data
+    };
+
+    myChart = new Chart(
+      document.getElementById('myChart'),
+      config
+    );
+  }
+
+  // function plotarGraficoRede(resposta4, idMaquina) {
+
+  //   console.log('iniciando plotagem do gráfico...');
+
+  //   labels4 = [];
+
+  //   dados4 = [
+  //     {
+  //       labels: labels4,
+  //       datasets: [{
+  //         label: 'Download(KB)',
+  //         data: [],
+  //         fill: false,
+  //         borderColor: 'rgb(255, 0, 0)',
+  //         tension: 0.1
+  //       }]
+  //     },
+  //     {
+  //       labels: labels4,
+  //       datasets: [{
+  //         label: 'Upload(KB)',
+  //         data: [],
+  //         fill: false,
+  //         borderColor: 'rgb(0, 0, 255)',
+  //         tension: 0.1
+  //       }]
+  //     }
+
+  //   ];
+
+  //   console.log('----------------------------------------------')
+  //   console.log('Estes dados foram recebidos pela funcao "obterDadosGrafico" e passados para "plotarGrafico":')
+  //   console.log(resposta4)
+
+  //   resposta4.forEach(m4 => {
+  //     labels4.push(m4.dt_hora);
+
+  //     dados4.datasets[0].data.push(m4.bytes_recebidos);
+  //     dados4.datasets[1].data.push(m4.bytes_enviados);
+
+  //   })
+
+  //   console.log('----------------------------------------------')
+  //   console.log('O gráfico será plotado com os respectivos valores:')
+  //   console.log('Labels:')
+  //   console.log(labels4)
+  //   console.log('Dados:')
+  //   console.log(dados4.datasets)
+  //   console.log('----------------------------------------------')
+  //   myChart.update()
+  //   myChart2.update()
+  //   myChart3.update()
+  //   myChart4.update()
+  // }
+
+
+
+  b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
+//   function grafico() {
+
+//     console.log('ESTOU DENTRO DO GR´PAFICO');
+//     let cont = 0;
+
+//     componente = "cpu";
+
+//     if (select_maquina.value == 0) {
+//       alert(`Selecione uma maquina`)
+//     } else {
+//       let button = document.getElementById("cpu");
+//       button.style.backgroundColor = "red";
+//       let button2 = document.getElementById("armazenamento");
+//       button2.style.backgroundColor = "blue";
+//       let button3 = document.getElementById("memoria");
+//       button3.style.backgroundColor = "blue";
+//       let button4 = document.getElementById("rede");
+//       button4.style.backgroundColor = "blue";
+
+//       let luz = document.getElementById("baixa");
+//       luz.style.backgroundColor = "green";
+//       let luz2 = document.getElementById("media");
+//       luz2.style.backgroundColor = "rgba(255, 255, 0, 0.4)";
+//       let luz3 = document.getElementById("alta");
+//       luz3.style.backgroundColor = "rgba(255, 0, 0, 0.4)";
+
+//       let textoExibir1 = document.getElementById(`espcpu`)
+//       textoExibir1.classList.remove("display-none")
+//       textoExibir1.classList.add("display-flex")
+//       let textoExibir2 = document.getElementById(`esparmaz`)
+//       textoExibir2.classList.remove("display-flex")
+//       textoExibir2.classList.add("display-none")
+//       let textoExibir3 = document.getElementById(`espmemor`)
+//       textoExibir3.classList.remove("display-flex")
+//       textoExibir3.classList.add("display-none")
+//       let textoExibir4 = document.getElementById(`esprede`)
+//       textoExibir4.classList.remove("display-flex")
+//       textoExibir4.classList.add("display-none")
+
+
+//       var ctx = document.getElementById('myChart').getContext('2d');
+
+//       console.log("TO AQUI: ", dado1);
+//       let dados = {
+//         labels: label1,
+//         datasets: [{
+//           label: 'Umidade',
+//           data: dado1,
+//           fill: false,
+//           borderColor: 'rgb(75, 192, 192)',
+//           tension: 0.1
+//         },
+//         ]
+//       };
+//       const config = {
+//         type: 'line',
+//         data: dados,
+//       };
+
+//       // Adicionando gráfico criado em div na tela
+//       myChart = Chart(
+//         document.getElementById(`myChart`),
+//         config
+//       );
+//     }
+//   }
+
 </script>
-<script>
+<!-- <script>
 
   function grafico2() {
 
@@ -618,26 +777,26 @@
       textoExibir4.classList.add("display-none")
 
       let dados = {
-            labels: label2,
-            datasets: [{
-                label: 'Umidade',
-                data: dado2,
-                fill: false,
-                borderColor: 'rgb(75, 192, 192)',
-                tension: 0.1
-            },
-            ]
-        };
-        const config2 = {
-            type: 'line',
-            data: dados,
-        };
+        labels: label2,
+        datasets: [{
+          label: 'Umidade',
+          data: dado2,
+          fill: false,
+          borderColor: 'rgb(75, 192, 192)',
+          tension: 0.1
+        },
+        ]
+      };
+      const config2 = {
+        type: 'line',
+        data: dados,
+      };
 
-        // Adicionando gráfico criado em div na tela
-        let myChart2 = new Chart(
-            document.getElementById(`myChart2`),
-            config2
-        );
+      // Adicionando gráfico criado em div na tela
+      let myChart2 = new Chart(
+        document.getElementById(`myChart2`),
+        config2
+      );
     }
   }
 </script>
@@ -691,30 +850,30 @@
       textoExibir4.classList.remove("display-flex")
       textoExibir4.classList.add("display-none")
 
-      
-      let dados = {
-            labels: label3,
-            datasets: [{
-                label: 'Umidade',
-                data: dado3,
-                fill: false,
-                borderColor: 'rgb(75, 192, 192)',
-                tension: 0.1
-            },
-            ]
-        };
-        const config3 = {
-            type: 'line',
-            data: dados,
-        };
 
-        // Adicionando gráfico criado em div na tela
-        let myChart3 = new Chart(
-            document.getElementById(`myChart3`),
-            config3
-        );
+      let dados = {
+        labels: label3,
+        datasets: [{
+          label: 'Umidade',
+          data: dado3,
+          fill: false,
+          borderColor: 'rgb(75, 192, 192)',
+          tension: 0.1
+        },
+        ]
+      };
+      const config3 = {
+        type: 'line',
+        data: dados,
+      };
+
+      // Adicionando gráfico criado em div na tela
+      let myChart3 = new Chart(
+        document.getElementById(`myChart3`),
+        config3
+      );
     }
-  
+
   }
 </script>
 
@@ -773,27 +932,27 @@
       kpiExibir4.classList.add("display-none")
 
       let dados = {
-            labels: label4,
-            datasets: [{
-                label: 'Rede',
-                data: dado4,
-                fill: false,
-                borderColor: 'rgb(75, 192, 192)',
-                tension: 0.1
-            },
-            ]
-        };
-        const config4 = {
-            type: 'line',
-            data: dados,
-        };
+        labels: label4,
+        datasets: [{
+          label: 'Rede',
+          data: dado4,
+          fill: false,
+          borderColor: 'rgb(75, 192, 192)',
+          tension: 0.1
+        },
+        ]
+      };
+      const config4 = {
+        type: 'line',
+        data: dados,
+      };
 
-        // Adicionando gráfico criado em div na tela
-        let myChart4 = new Chart(
-            document.getElementById(`myChart4`),
-            config4
-        );
+      // Adicionando gráfico criado em div na tela
+      let myChart4 = new Chart(
+        document.getElementById(`myChart4`),
+        config4
+      );
     }
   }
 
-</script>
+</script> -->

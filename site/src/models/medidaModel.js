@@ -5,10 +5,16 @@ function buscarMaquinas(idLoja) {
     instrucaoSql = ''
 
     if (process.env.AMBIENTE_PROCESSO == "producao") {
-        instrucaoSql = `select 
-                            id_maquina 
-                        from maquina 
-                        where fk_loja = ${idLoja}`;
+        instrucaoSql = `SELECT 
+                            maquina.id_maquina,
+                            ideal.limite_toleravel
+                        FROM maquina 
+                        JOIN loja ON
+                        loja.id_loja = maquina.fk_loja
+                        JOIN ideal ON
+                        loja.id_loja = ideal.fk_loja
+                        WHERE maquina.fk_loja = ${idLoja} AND
+                        ideal.fk_componente = 1`;
     } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
         instrucaoSql = `select id_maquina from maquina join loja on id_loja = fk_loja;`;
     } else {
@@ -23,29 +29,51 @@ function buscarMaquinas(idLoja) {
         });
 }
 
-async function buscarUltimasMedidas(id_maquina) {
+async function buscarUltimasMedidas(id_maquina, tipoGrafico, limite_linhas) {
     instrucaoSql = ''
 
     if (process.env.AMBIENTE_PROCESSO == "producao") {
-        instrucaoSql = `select distinct
-                                maquina.id_maquina, 
-                                maquina.fk_loja, 
+
+        if (tipoGrafico == 'rede') {
+            instrucaoSql = `SELECT DISTINCT TOP ${limite_linhas}
+                                    rede.idRede,
+                                    FORMAT(rede.dt_hora, 'HH:mm:ss') as dt_hora,
+                                    rede.bytes_recebidos,
+                                    rede.bytes_enviados
+                                FROM rede
+                                JOIN maquina ON
+                                    maquina.id_maquina = rede.fk_maquina
+                                WHERE 
+                                    rede.fk_maquina = ${id_maquina}
+                                ORDER BY
+                                    rede.idRede
+                                DESC`;
+        } else {
+            instrucaoSql = `SELECT DISTINCT TOP ${limite_linhas}
+                                metrica.id_metrica, 
                                 metrica.captura,
                                 FORMAT(metrica.dt_hora_captura, 'HH:mm:ss') as dt_hora, 
                                 componente.tipo, 
                                 especificacao.capacidade, 
                                 unidadeMedida.tipo_unidade
-                        FROM maquina
-                        JOIN metrica ON 
-                            maquina.id_maquina = metrica.fk_maquina
-                        JOIN componente ON 
-                            componente.idComponente = metrica.fk_componente
-                        JOIN especificacao ON 
-                            especificacao.fk_componente = componente.idComponente
-                        JOIN unidadeMedida ON 
-                            unidadeMedida.id = componente.fk_unidade_medida
-                        WHERE 
-                            maquina.id_maquina = ${id_maquina}`;
+                            FROM metrica
+                            JOIN maquina ON 
+                                maquina.id_maquina = metrica.fk_maquina
+                            JOIN componente ON 
+                                componente.idComponente = metrica.fk_componente
+                            JOIN especificacao ON 
+                                especificacao.fk_componente = componente.idComponente
+                            JOIN unidadeMedida ON 
+                                unidadeMedida.id = componente.fk_unidade_medida
+                            WHERE 
+                            	metrica.fk_maquina = ${id_maquina} AND
+                                componente.tipo = '${tipoGrafico}' AND
+								especificacao.capacidade != 0
+                            ORDER BY
+                                metrica.id_metrica
+                            DESC`;
+
+        }
     } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
         instrucaoSql = `select memoriaDisponivel from MetricaMemoria where fkComponente=1;  `;
     } else {
@@ -65,34 +93,51 @@ async function buscarUltimasMedidas(id_maquina) {
 
 }
 
-function buscarMedidasEmTempoReal(id_maquina) {
+function buscarMedidasEmTempoReal(id_maquina, tipoGrafico) {
 
     instrucaoSql = ''
 
     if (process.env.AMBIENTE_PROCESSO == "producao") {
-        instrucaoSql = `select distinct top 1
-                                maquina.id_maquina, 
-                                maquina.fk_loja, 
-                                metrica.captura, 
-                                metrica.dt_hora_captura, 
+        if (tipoGrafico == 'rede') {
+            instrucaoSql = `SELECT DISTINCT TOP 1
+                                    rede.idRede,
+                                    FORMAT(rede.dt_hora, 'HH:mm:ss') as dt_hora,
+                                    rede.bytes_recebidos,
+                                    rede.bytes_enviados
+                                FROM rede
+                                JOIN maquina ON
+                                    maquina.id_maquina = rede.fk_maquina
+                                WHERE 
+                                    rede.fk_maquina = ${id_maquina}
+                                ORDER BY
+                                    rede.idRede
+                                DESC`;
+        } else {
+            instrucaoSql = `SELECT DISTINCT TOP 1
+                                metrica.id_metrica, 
+                                metrica.captura,
+                                FORMAT(metrica.dt_hora_captura, 'HH:mm:ss') as dt_hora, 
                                 componente.tipo, 
                                 especificacao.capacidade, 
-                                unidadeMedida.tipo_unidade, 
-                                rede.bytes_recebidos, 
-                                rede.bytes_enviados 
-                        FROM maquina 
-                        JOIN rede ON 
-                            maquina.id_maquina = rede.fk_maquina 
-                        JOIN metrica ON 
-                            maquina.id_maquina = metrica.fk_maquina 
-                        JOIN componente ON 
-                            componente.idComponente = metrica.fk_componente 
-                        JOIN especificacao ON 
-                            especificacao.idComponente = componente.fk_componente 
-                        JOIN unidadeMedida ON 
-                            unidadeMedida.id = especificacao.fk_unidade_medida 
-                        WHERE 
-                            maquina.id_maquina = ${id_maquina} order by id_metrica desc`;
+                                unidadeMedida.tipo_unidade
+                            FROM metrica
+                            JOIN maquina ON 
+                                maquina.id_maquina = metrica.fk_maquina
+                            JOIN componente ON 
+                                componente.idComponente = metrica.fk_componente
+                            JOIN especificacao ON 
+                                especificacao.fk_componente = componente.idComponente
+                            JOIN unidadeMedida ON 
+                                unidadeMedida.id = componente.fk_unidade_medida
+                            WHERE 
+                            	metrica.fk_maquina = ${id_maquina} AND
+                                componente.tipo = '${tipoGrafico}' AND
+								especificacao.capacidade != 0
+                            ORDER BY
+                                metrica.id_metrica
+                            DESC`;
+
+        }
 
     } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
         instrucaoSql = `select memoriaDisponivel from MetricaMemoria where fkComponente=1;  `;
