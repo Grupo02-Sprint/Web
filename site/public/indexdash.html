@@ -24,7 +24,7 @@
       </div>
       <div class="hello">
 
-        <img src="./assets/WhatsApp Image 2023-01-30 at 23.12.16.jpeg" alt="">
+        <img src="./assets/OIP (2).jpg" alt="">
 
         <h2>
           <span id="b_usuario">Dionísio</span>
@@ -93,29 +93,29 @@
       <div class="grafico">
         <div class="plot">
           <div class="um">
-            <div class="parada">
-              <p>Ideal da loja: <span id="ideal"></span> </p>
+            <div class="limite">
+            <div class="parada1">
+              <p><span id="ideal1"></span>%</p>
             </div>
+            <div class="parada2">
+              <p><span id="ideal2"></span>%</p>
+            </div>
+            <div class="parada3">
+              <p><span id="ideal3"></span>%</p>
+            </div>
+            <button onclick="editarLimite()">Editar</button>
+          </div>
             <p id="alerta"></p>
             <div class="indicativos">
               <div class="ver" style="background-color: rgba(0, 128, 0, 0.4);"></div>
               <div class="amare" style="background-color: rgba(255, 255, 0, 0.4);"></div>
-              <div class="verm" style="background-color: red;"></div>
+              <div class="verm" style="background-color: rgba(255,0,0,0.4);"></div>
             </div>
           </div>
           <div class="dois">
-            <div id="grafic" class="display-none" style="height:60vh; width:100vw">
-              <canvas id="myChart" style="position: relative; height:16.3vh;width:100vw"></canvas>
+            <div id="grafic" class="display-none" style="height:56vh; width:52.5vw">
+              <canvas id="myChart" style="position: relative; height:16.3vh;width:90vw"></canvas>
             </div>
-            <!-- <div id="grafic2" class="display-none">
-              <canvas id="myChart2" style="position: relative; height:40vh;width:40vw"></canvas>
-            </div>
-            <div id="grafic3" class="display-none">
-              <canvas id="myChart3" style="position: relative; height:40vh;width:40vw"></canvas>
-            </div>
-            <div id="grafic4" class="display-none">
-              <canvas id="myChart4" style="position: relative; height:40vh;width:40vw"></canvas>
-            </div> -->
           </div>
         </div>
         <div class="opcao">
@@ -132,71 +132,25 @@
               <p id="upload">
               </p>
             </div>
-            <!-- <div id="esparmaz" class="display-none">
-              <p>
-                <b>Modelo: </b> SPT256L2-2IAS7G2
-              </p><br>
-              <p>
-                <b>Tamanho total: </b>239 GB
-              </p>
-            </div>
-            <div id="espmemor" class="display-none">
-              <p>
-                <b> Memória Total: </b>8
-              </p>
-              <p>
-                <b> Memória em Uso: </b>65%
-              </p>
-            </div>
-            <div id="esprede" class="display-none">
-              <p>
-                <b>Modelo: </b> Realtek 8821CE Wireless LAN 802.11ac PCI-E NIC
-              </p>
-            </div> -->
           </div>
           <div class="botao">
             <div class="butt" id="butt">
               <label>
-                <button id="cpu" style="background-color: #8d9699;" class="cpu"
-                  onclick="alterarTipoGrafico('cpu')"></button>CPU
+                <button id="cpu" style="background-color: #195e63;" class="cpu"
+                  onclick="alterarTipoGrafico('cpu')"></button><p>CPU</p>
               </label>
               <label>
-                <button id="armazenamento" style="background-color: #8d9699;" class="armazenamento"
-                  onclick="alterarTipoGrafico('disco')"></button>Armazenamento
+                <button id="armazenamento" style="background-color: #195e63;" class="armazenamento"
+                  onclick="alterarTipoGrafico('disco')"></button><p>Armazenamento</p>
               </label>
               <label>
-                <button id="memoria" style="background-color: #8d9699;" class="memoria"
-                  onclick="alterarTipoGrafico('Memoria RAM')"></button>Memória
+                <button id="memoria" style="background-color: #195e63;" class="memoria"
+                  onclick="alterarTipoGrafico('Memoria RAM')"></button><p>Memória</p>
               </label>
               <label>
-                <button id="rede" style="background-color: #8d9699;" class="rede"
-                  onclick="alterarTipoGrafico('rede')"></button>Rede
+                <button id="rede" style="background-color: #195e63;" class="rede"
+                  onclick="alterarTipoGrafico('rede')"></button><p>Rede</p>
               </label>
-            </div>
-            <div id="kpi" class="display-none">
-              <div class="verkpi">
-                <div class="verde" style="background-color: green;"></div>
-                <div class="kpidupla">
-                  <p id="minimo"> 1% </p>
-                  <p id="ok">40%</p>
-                </div>
-              </div>
-              <div class="amarkpi">
-                <div class="amarelo" style="background-color: yellow;"></div>
-                <p id="quase_limite">70%</p>
-              </div>
-              <div class="vermkpi">
-                <div class="vermelho" style="background-color: red;"></div>
-                <p id="limite_toleravel"> 100% </p>
-              </div>
-            </div>
-            <div class="indicadores">
-              <div id="baixa" class="baixa" style="background-color: green;">
-              </div>
-              <div id="media" class="media" style="background-color:  yellow;">
-              </div>
-              <div id="alta" class="alta" style="background-color:  red;">
-              </div>
             </div>
           </div>
         </div>
@@ -216,7 +170,17 @@
 
   var fklojavar = sessionStorage.FK_LOJA;
 
+  var fkCargo = sessionStorage.FK_CARGO;
+
   var tipoGrafico = 'cpu'
+  
+  function editarLimite(){
+    if(fkCargo!=3){
+      return window.alert('Você não tem permição para realizar esta ação')
+    }
+
+    window.location = "./crud/ideal.html"
+  }
 
   function alterarTipoGrafico(tipo) {
     var idMaquina = Number(select_maquina.value)
@@ -246,7 +210,9 @@
               html += `<option value="${item.id_maquina}">Maquina ${item.id_maquina}</option>`;
             });
             document.getElementById('select_maquina').innerHTML = html;
-            ideal.innerHTML = json[0].limite_toleravel
+            ideal1.innerHTML = json[0].limite_toleravel -15
+            ideal2.innerHTML = json[0].limite_toleravel -10
+            ideal3.innerHTML = json[0].limite_toleravel 
             criarGraficoInicial()
           })
             .catch(function (erro) {
@@ -261,18 +227,6 @@
       });
   }
 
-  // var dado1 = []
-  // var dado2 = []
-  // var dado3 = []
-  // var dado4 = []
-  // var label1 =  []
-  // var label2 =  []
-  // var label3 =  []
-  // var label4 =  []
-  // var resposta1 = []
-  // var resposta2 = []
-  // var resposta3 = []
-  // var resposta4 = []
   function obterDadosGrafico(tipoGrafico) {
 
     var idMaquina = Number(select_maquina.value);
@@ -316,13 +270,13 @@
       nomeLabel = 'Utilização(%)'
 
       let button = document.getElementById("cpu");
-      button.style.backgroundColor = "red";
+      button.style.backgroundColor = "#5CB85C";
       let button2 = document.getElementById("armazenamento");
-      button2.style.backgroundColor = "blue";
+      button2.style.backgroundColor = "#195e63";
       let button3 = document.getElementById("memoria");
-      button3.style.backgroundColor = "blue";
+      button3.style.backgroundColor = "#195e63";
       let button4 = document.getElementById("rede");
-      button4.style.backgroundColor = "blue";
+      button4.style.backgroundColor = "#195e63";
       // PRECISA COLOCAR P DAR DISPLAY NONE NO dadoRecente2 AQUI
       // spanDado2.style.display = "none"
 
@@ -330,28 +284,27 @@
       nomeLabel = 'Tempo médio de resposta(ms)'
 
       let button = document.getElementById("cpu");
-      button.style.backgroundColor = "blue";
+      button.style.backgroundColor = "#195e63";
       let button2 = document.getElementById("armazenamento");
-      button2.style.backgroundColor = "red";
+      button2.style.backgroundColor = "#5CB85C";
       let button3 = document.getElementById("memoria");
-      button3.style.backgroundColor = "blue";
+      button3.style.backgroundColor = "#195e63";
       let button4 = document.getElementById("rede");
-      button4.style.backgroundColor = "blue";
+      button4.style.backgroundColor = "#195e63";
       // PRECISA COLOCAR P DAR DISPLAY NONE NO dadoRecente2 AQUI
       // spanDado2.style.display = "none"
-
 
     } else if (tipoGrafico == 'Memoria RAM') {
       nomeLabel = 'Memória em uso(%)'
 
       let button = document.getElementById("cpu");
-      button.style.backgroundColor = "blue";
+      button.style.backgroundColor = "#195e63";
       let button2 = document.getElementById("armazenamento");
-      button2.style.backgroundColor = "blue";
+      button2.style.backgroundColor = "#195e63";
       let button3 = document.getElementById("memoria");
-      button3.style.backgroundColor = "red";
+      button3.style.backgroundColor = "#5CB85C";
       let button4 = document.getElementById("rede");
-      button4.style.backgroundColor = "blue";
+      button4.style.backgroundColor = "#195e63";
       // PRECISA COLOCAR P DAR DISPLAY NONE NO dadoRecente2 AQUI
       // spanDado2.style.display = "none"
 
@@ -360,19 +313,17 @@
       nomeLabel2 = "Upload(Mb/s)"
 
       let button = document.getElementById("cpu");
-      button.style.backgroundColor = "blue";
+      button.style.backgroundColor = "#195e63";
       let button2 = document.getElementById("armazenamento");
-      button2.style.backgroundColor = "blue";
+      button2.style.backgroundColor = "#195e63";
       let button3 = document.getElementById("memoria");
-      button3.style.backgroundColor = "blue";
+      button3.style.backgroundColor = "#195e63";
       let button4 = document.getElementById("rede");
-      button4.style.backgroundColor = "red";
+      button4.style.backgroundColor = "#5CB85C";
       // PRECISA COLOCAR P DAR DISPLAY BLOCK OU FLEX NO dadoRecente2 AQUI
       // spanDado2.style.display = "block"
 
     }
-
-
 
     console.log('Plotando Gráfico');
 
@@ -458,7 +409,6 @@
       myChart.update();
     }
 
-
     console.log('----------------------------------------------')
     console.log('Estes dados foram recebidos pela funcao "obterDadosGrafico" e passados para "plotarGrafico":')
     console.log(resposta)
@@ -499,11 +449,31 @@
             } else {
               dadoRecente1.innerHTML = dados.datasets[0].data[dados.datasets[0].data.length - 1]
               if (tipoGrafico == 'Memoria RAM') {
-                if (dados.datasets[0].data[dados.datasets[0].data.length - 1] > Number(ideal.innerHTML)) {
+                if(dados.datasets[0].data[dados.datasets[0].data.length - 1] >= Number(ideal2.innerHTML) && dados.datasets[0].data[dados.datasets[0].data.length - 1] < Number(ideal3.innerHTML)){
+                  alerta.innerHTML = `O uso de mémoria da máquina ${idMaquina} está quase acima do ideal!!`
+                  var elementoVerde = document.getElementsByClassName("ver")[0];
+                  var elementoAmarelo = document.getElementsByClassName("amare")[0];
+                  var elementoVermelho = document.getElementsByClassName("verm")[0];
+                  elementoVerde.style.backgroundColor = "rgba(0, 128, 0, 0.4)";
+                  elementoAmarelo.style.backgroundColor = "rgb(255, 255, 0)";
+                  elementoVermelho.style.backgroundColor = "rgb(255, 0, 0, 0.4)";
+                }else if (dados.datasets[0].data[dados.datasets[0].data.length - 1] > Number(ideal3.innerHTML)) {
                   alerta.innerHTML = `O uso de mémoria da máquina ${idMaquina} está acima do ideal!!`
+                  var elementoVerde = document.getElementsByClassName("ver")[0];
+                  var elementoAmarelo = document.getElementsByClassName("amare")[0];
+                  var elementoVermelho = document.getElementsByClassName("verm")[0];
+                  elementoVerde.style.backgroundColor = "rgba(0, 128, 0, 0.4)";
+                  elementoAmarelo.style.backgroundColor = "rgb(255, 255, 0. 0.4)";
+                  elementoVermelho.style.backgroundColor = "rgb(255, 0, 0)";
 
-                } else if (dados.datasets[0].data[dados.datasets[0].data.length - 1] < Number(ideal.innerHTML)) {
+                } else if (dados.datasets[0].data[dados.datasets[0].data.length - 1] < Number(ideal3.innerHTML)) {
                   alerta.innerHTML = `O uso de mémoria da máquina ${idMaquina} está dentro do ideal`
+                  var elementoVerde = document.getElementsByClassName("ver")[0];
+                  var elementoAmarelo = document.getElementsByClassName("amare")[0];
+                  var elementoVermelho = document.getElementsByClassName("verm")[0];
+                  elementoVerde.style.backgroundColor = "rgba(0, 128, 0)";
+                  elementoAmarelo.style.backgroundColor = "rgb(255, 255, 0. 0.4)";
+                  elementoVermelho.style.backgroundColor = "rgb(255, 0, 0, 0.4)";
                 }
               } else {
                 alerta.innerHTML = ''
@@ -602,363 +572,5 @@
       config
     );
   }
-
-  // function plotarGraficoRede(resposta4, idMaquina) {
-
-  //   console.log('iniciando plotagem do gráfico...');
-
-  //   labels4 = [];
-
-  //   dados4 = [
-  //     {
-  //       labels: labels4,
-  //       datasets: [{
-  //         label: 'Download(KB)',
-  //         data: [],
-  //         fill: false,
-  //         borderColor: 'rgb(255, 0, 0)',
-  //         tension: 0.1
-  //       }]
-  //     },
-  //     {
-  //       labels: labels4,
-  //       datasets: [{
-  //         label: 'Upload(KB)',
-  //         data: [],
-  //         fill: false,
-  //         borderColor: 'rgb(0, 0, 255)',
-  //         tension: 0.1
-  //       }]
-  //     }
-
-  //   ];
-
-  //   console.log('----------------------------------------------')
-  //   console.log('Estes dados foram recebidos pela funcao "obterDadosGrafico" e passados para "plotarGrafico":')
-  //   console.log(resposta4)
-
-  //   resposta4.forEach(m4 => {
-  //     labels4.push(m4.dt_hora);
-
-  //     dados4.datasets[0].data.push(m4.bytes_recebidos);
-  //     dados4.datasets[1].data.push(m4.bytes_enviados);
-
-  //   })
-
-  //   console.log('----------------------------------------------')
-  //   console.log('O gráfico será plotado com os respectivos valores:')
-  //   console.log('Labels:')
-  //   console.log(labels4)
-  //   console.log('Dados:')
-  //   console.log(dados4.datasets)
-  //   console.log('----------------------------------------------')
-  //   myChart.update()
-  //   myChart2.update()
-  //   myChart3.update()
-  //   myChart4.update()
-  // }
-
-
-
   b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
-//   function grafico() {
-
-//     console.log('ESTOU DENTRO DO GR´PAFICO');
-//     let cont = 0;
-
-//     componente = "cpu";
-
-//     if (select_maquina.value == 0) {
-//       alert(`Selecione uma maquina`)
-//     } else {
-//       let button = document.getElementById("cpu");
-//       button.style.backgroundColor = "red";
-//       let button2 = document.getElementById("armazenamento");
-//       button2.style.backgroundColor = "blue";
-//       let button3 = document.getElementById("memoria");
-//       button3.style.backgroundColor = "blue";
-//       let button4 = document.getElementById("rede");
-//       button4.style.backgroundColor = "blue";
-
-//       let luz = document.getElementById("baixa");
-//       luz.style.backgroundColor = "green";
-//       let luz2 = document.getElementById("media");
-//       luz2.style.backgroundColor = "rgba(255, 255, 0, 0.4)";
-//       let luz3 = document.getElementById("alta");
-//       luz3.style.backgroundColor = "rgba(255, 0, 0, 0.4)";
-
-//       let textoExibir1 = document.getElementById(`espcpu`)
-//       textoExibir1.classList.remove("display-none")
-//       textoExibir1.classList.add("display-flex")
-//       let textoExibir2 = document.getElementById(`esparmaz`)
-//       textoExibir2.classList.remove("display-flex")
-//       textoExibir2.classList.add("display-none")
-//       let textoExibir3 = document.getElementById(`espmemor`)
-//       textoExibir3.classList.remove("display-flex")
-//       textoExibir3.classList.add("display-none")
-//       let textoExibir4 = document.getElementById(`esprede`)
-//       textoExibir4.classList.remove("display-flex")
-//       textoExibir4.classList.add("display-none")
-
-
-//       var ctx = document.getElementById('myChart').getContext('2d');
-
-//       console.log("TO AQUI: ", dado1);
-//       let dados = {
-//         labels: label1,
-//         datasets: [{
-//           label: 'Umidade',
-//           data: dado1,
-//           fill: false,
-//           borderColor: 'rgb(75, 192, 192)',
-//           tension: 0.1
-//         },
-//         ]
-//       };
-//       const config = {
-//         type: 'line',
-//         data: dados,
-//       };
-
-//       // Adicionando gráfico criado em div na tela
-//       myChart = Chart(
-//         document.getElementById(`myChart`),
-//         config
-//       );
-//     }
-//   }
-
 </script>
-<!-- <script>
-
-  function grafico2() {
-
-    // myChart2.destroy()
-
-    componente = "Memoria RAM";
-
-    if (select_maquina.value == 0) {
-      alert(`Selecione uma maquina`)
-    } else {
-      let graficoExibir = document.getElementById(`grafic1`)
-      graficoExibir.classList.remove("display-block")
-      graficoExibir.classList.add("display-none")
-      let graficoExibir3 = document.getElementById(`grafic3`)
-      graficoExibir3.classList.remove("display-block")
-      graficoExibir3.classList.add("display-none")
-      let graficoExibir4 = document.getElementById(`grafic4`)
-      graficoExibir4.classList.remove("display-block")
-      graficoExibir4.classList.add("display-none")
-      let graficoExibir2 = document.getElementById(`grafic2`)
-      graficoExibir2.classList.remove("display-none")
-      graficoExibir2.classList.add("display-block")
-
-      let button = document.getElementById("cpu");
-      button.style.backgroundColor = "blue";
-      let button2 = document.getElementById("armazenamento");
-      button2.style.backgroundColor = "red";
-      let button3 = document.getElementById("memoria");
-      button3.style.backgroundColor = "blue";
-      let button4 = document.getElementById("rede");
-      button4.style.backgroundColor = "blue";
-
-      let luz = document.getElementById("baixa");
-      luz.style.backgroundColor = "green";
-      let luz2 = document.getElementById("media");
-      luz2.style.backgroundColor = "rgba(255, 255, 0, 0.4)";
-      let luz3 = document.getElementById("alta");
-      luz3.style.backgroundColor = "rgba(255, 0, 0, 0.4)";
-
-      let textoExibir1 = document.getElementById(`espcpu`)
-      textoExibir1.classList.remove("display-flex")
-      textoExibir1.classList.add("display-none")
-      let textoExibir2 = document.getElementById(`esparmaz`)
-      textoExibir2.classList.remove("display-none")
-      textoExibir2.classList.add("display-flex")
-      let textoExibir3 = document.getElementById(`espmemor`)
-      textoExibir3.classList.remove("display-flex")
-      textoExibir3.classList.add("display-none")
-      let textoExibir4 = document.getElementById(`esprede`)
-      textoExibir4.classList.remove("display-flex")
-      textoExibir4.classList.add("display-none")
-
-      let dados = {
-        labels: label2,
-        datasets: [{
-          label: 'Umidade',
-          data: dado2,
-          fill: false,
-          borderColor: 'rgb(75, 192, 192)',
-          tension: 0.1
-        },
-        ]
-      };
-      const config2 = {
-        type: 'line',
-        data: dados,
-      };
-
-      // Adicionando gráfico criado em div na tela
-      let myChart2 = new Chart(
-        document.getElementById(`myChart2`),
-        config2
-      );
-    }
-  }
-</script>
-
-<script>
-
-  function grafico3() {
-
-    if (select_maquina.value == 0) {
-      alert(`Selecione uma maquina`)
-    } else {
-      let graficoExibir4 = document.getElementById(`grafic4`)
-      graficoExibir4.classList.remove("display-block")
-      graficoExibir4.classList.add("display-none")
-      let graficoExibir2 = document.getElementById(`grafic2`)
-      graficoExibir2.classList.remove("display-block")
-      graficoExibir2.classList.add("display-none")
-      let graficoExibir = document.getElementById(`grafic1`)
-      graficoExibir.classList.remove("display-block")
-      graficoExibir.classList.add("display-none")
-      let graficoExibir3 = document.getElementById(`grafic3`)
-      graficoExibir3.classList.remove("display-none")
-      graficoExibir3.classList.add("display-block")
-
-      let button = document.getElementById("cpu");
-      button.style.backgroundColor = "blue";
-      let button2 = document.getElementById("armazenamento");
-      button2.style.backgroundColor = "blue";
-      let button3 = document.getElementById("memoria");
-      button3.style.backgroundColor = "red";
-      let button4 = document.getElementById("rede");
-      button4.style.backgroundColor = "blue";
-
-      let luz = document.getElementById("baixa");
-      luz.style.backgroundColor = "rgba(0, 128, 0, 0.4)";
-      let luz2 = document.getElementById("media");
-      luz2.style.backgroundColor = "yellow";
-      let luz3 = document.getElementById("alta");
-      luz3.style.backgroundColor = "rgba(255, 0, 0, 0.4)";
-
-      let textoExibir1 = document.getElementById(`espcpu`)
-      textoExibir1.classList.remove("display-flex")
-      textoExibir1.classList.add("display-none")
-      let textoExibir2 = document.getElementById(`esparmaz`)
-      textoExibir2.classList.remove("display-flex")
-      textoExibir2.classList.add("display-none")
-      let textoExibir3 = document.getElementById(`espmemor`)
-      textoExibir3.classList.remove("display-none")
-      textoExibir3.classList.add("display-flex")
-      let textoExibir4 = document.getElementById(`esprede`)
-      textoExibir4.classList.remove("display-flex")
-      textoExibir4.classList.add("display-none")
-
-
-      let dados = {
-        labels: label3,
-        datasets: [{
-          label: 'Umidade',
-          data: dado3,
-          fill: false,
-          borderColor: 'rgb(75, 192, 192)',
-          tension: 0.1
-        },
-        ]
-      };
-      const config3 = {
-        type: 'line',
-        data: dados,
-      };
-
-      // Adicionando gráfico criado em div na tela
-      let myChart3 = new Chart(
-        document.getElementById(`myChart3`),
-        config3
-      );
-    }
-
-  }
-</script>
-
-<script>
-
-  function grafico4(labels4, dados4) {
-
-    if (select_maquina.value == 0) {
-      alert(`Selecione uma maquina`)
-    } else {
-
-      let graficoExibir3 = document.getElementById(`grafic3`)
-      graficoExibir3.classList.remove("display-block")
-      graficoExibir3.classList.add("display-none")
-      let graficoExibir2 = document.getElementById(`grafic2`)
-      graficoExibir2.classList.remove("display-block")
-      graficoExibir2.classList.add("display-none")
-      let graficoExibir = document.getElementById(`grafic1`)
-      graficoExibir.classList.remove("display-block")
-      graficoExibir.classList.add("display-none")
-      let graficoExibir4 = document.getElementById(`grafic4`)
-      graficoExibir4.classList.remove("display-none")
-      graficoExibir4.classList.add("display-block")
-
-      let button = document.getElementById("cpu");
-      button.style.backgroundColor = "blue";
-      let button2 = document.getElementById("armazenamento");
-      button2.style.backgroundColor = "blue";
-      let button3 = document.getElementById("memoria");
-      button3.style.backgroundColor = "blue";
-      let button4 = document.getElementById("rede");
-      button4.style.backgroundColor = "red";
-
-      let luz = document.getElementById("baixa");
-      luz.style.backgroundColor = "rgba(0, 128, 0, 0)";
-      let luz2 = document.getElementById("media");
-      luz2.style.backgroundColor = "rgba(255, 255, 0, 0)";
-      let luz3 = document.getElementById("alta");
-      luz3.style.backgroundColor = "rgba(255, 0, 0, 0)";
-
-      let textoExibir1 = document.getElementById(`espcpu`)
-      textoExibir1.classList.remove("display-flex")
-      textoExibir1.classList.add("display-none")
-      let textoExibir2 = document.getElementById(`esparmaz`)
-      textoExibir2.classList.remove("display-flex")
-      textoExibir2.classList.add("display-none")
-      let textoExibir3 = document.getElementById(`espmemor`)
-      textoExibir3.classList.remove("display-flex")
-      textoExibir3.classList.add("display-none")
-      let textoExibir4 = document.getElementById(`esprede`)
-      textoExibir4.classList.remove("display-none")
-      textoExibir4.classList.add("display-flex")
-
-      let kpiExibir4 = document.getElementById(`kpi`)
-      kpiExibir4.classList.remove("display-flex")
-      kpiExibir4.classList.add("display-none")
-
-      let dados = {
-        labels: label4,
-        datasets: [{
-          label: 'Rede',
-          data: dado4,
-          fill: false,
-          borderColor: 'rgb(75, 192, 192)',
-          tension: 0.1
-        },
-        ]
-      };
-      const config4 = {
-        type: 'line',
-        data: dados,
-      };
-
-      // Adicionando gráfico criado em div na tela
-      let myChart4 = new Chart(
-        document.getElementById(`myChart4`),
-        config4
-      );
-    }
-  }
-
-</script> -->

@@ -202,27 +202,62 @@ ul {
     height: 60vh;
 }
 
-.parada {
-    background-color: #d8e5e8;
+.parada1 {
+    background-color: #32CD32;
 
-    width: 25vh;
-    height: 8vh;
+    width: 4vw;
+    height: 6vh;
     margin-left: 5vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    border-radius: .25vh;
+    border-radius: 2vh 0 0 2vh;
 }
 
-.parada p {
+.parada1 p {
     font-size: 3vh;
     margin-left: 1vh;
     padding: 1vh;
 }
 
+.parada2 {
+    background-color: #FFFF66;
+
+    width: 4vw;
+    height: 6vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.parada2 p {
+    font-size: 3vh;
+    margin-left: 1vh;
+    padding: 1vh;
+}
+
+.parada3 {
+    background-color: #ff1500;
+
+    width: 4vw;
+    height: 6vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 0 2vh 2vh 0;
+}
+
+.parada3 p {
+    font-size: 3vh;
+    margin-left: 1vh;
+    padding: 1vh;
+    color: white;
+}
+
 #alerta {
     font-size: 2vh;
     font-weight: bold;
+    padding: 2vh;
 }
 
 .indicativos {
@@ -251,42 +286,109 @@ ul {
     margin-right: 2vh;
 }
 
-.cpu {
+.cpu{
+    margin-top: 3vh;
     height: 5vh;
-    width: 5vh;
-    border-radius: 3vh;
-    margin-left: 4vh;
-    margin-right: 1vh;
+    width: 2.5vw;
+    background-color: #195e63;
+    border: none;
+    box-shadow: 0 9px #999;
+    font-weight: bold;
+    font-size: 2.5vh;
+    color: #ECE1C3;
+    border-radius: .7vh;
 }
 
-.armazenamento {
-    height: 5vh;
-    width: 5vh;
-    border-radius: 3vh;
-    margin-left: 4vh;
-    margin-right: 1vh;
+.cpu:hover{
+    background-color: #47949a;
 }
 
-.memoria {
-    height: 5vh;
-    width: 5vh;
-    border-radius: 3vh;
-    margin-left: 4vh;
-    margin-right: 1vh;
+.cpu:active {
+    transform: scale(0.85);
+    box-shadow: 0 5px #666;
+    
 }
 
-.rede {
+.armazenamento{
+    margin-top: 3vh;
     height: 5vh;
-    width: 5vh;
-    border-radius: 3vh;
-    margin-left: 4vh;
-    margin-right: 1vh;
+    width: 2.5vw;
+    background-color: #195e63;
+    border: none;
+    box-shadow: 0 9px #999;
+    font-weight: bold;
+    font-size: 2.5vh;
+    color: #ECE1C3;
+    border-radius: .7vh;
+}
 
+.armazenamento:hover{
+    background-color: #47949a;
+}
+
+.armazenamento:active {
+    transform: scale(0.85);
+    box-shadow: 0 5px #666;
+    
+}
+
+.memoria{
+    margin-top: 3vh;
+    height: 5vh;
+    width: 2.5vw;
+    background-color: #195e63;
+    border: none;
+    box-shadow: 0 9px #999;
+    font-weight: bold;
+    font-size: 2.5vh;
+    color: #ECE1C3;
+    border-radius: .7vh;
+}
+
+.memoria:hover{
+    background-color: #47949a;
+}
+
+.memoria:active {
+    transform: scale(0.85);
+    box-shadow: 0 5px #666;
+    
+}
+
+.rede{
+    margin-top: 3vh;
+    height: 5vh;
+    width: 2.5vw;
+    background-color: #195e63;
+    border: none;
+    box-shadow: 0 9px #999;
+    font-weight: bold;
+    font-size: 2.5vh;
+    color: #ECE1C3;
+    border-radius: .7vh;
+}
+
+.rede:hover{
+    background-color: #47949a;
+}
+
+.rede:active {
+    transform: scale(0.85);
+    box-shadow: 0 5px #666;
+    
 }
 
 .butt {
     display: flex;
     flex-direction: column;
+    margin-left: 2vh;
+}
+
+.butt p{
+    margin-top: 3vh;
+    margin-left: 0.5vw;
+    font-weight: bold;
+    font-size: 2.5vh;
 }
 
 button:hover {
@@ -433,4 +535,36 @@ select {
 
 .botao p {
     font-size: 2vh;
+}
+
+#grafic{
+    margin-top: 7vh;
+}
+
+.limite{
+    display: flex;
+    flex-direction: row;
+}
+
+.limite button{
+    margin-left: 1vh;
+    height: 5vh;
+    width: 6vw;
+    background-color: #195e63;
+    border: none;
+    box-shadow: 0 9px #999;
+    font-weight: bold;
+    font-size: 2.5vh;
+    color: #ECE1C3;
+    border-radius: .7vh;
+}
+
+.limite button:hover{
+    background-color: #47949a;
+}
+
+.limite button:active {
+    transform: scale(0.85);
+    box-shadow: 0 5px #666;
+    
 }
