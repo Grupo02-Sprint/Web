@@ -77,51 +77,12 @@ function editarLoja(req, res) {
 
 }
 
-function salvarCpu(req, res) {
-    var cpu = req.body.cpu;
-    var idLoja =req.body.idLoja
-
-    perfilModel.salvarCpu(cpu, idLoja)
-        .then(
-            function (resultado) {
-                res.json(resultado);
-            }
-        )
-        .catch(
-            function (erro) {
-                console.log(erro);
-                console.log("Houve um erro ao realizar o post: ", erro.sqlMessage);
-                res.status(500).json(erro.sqlMessage);
-            }
-        );
-
-}
-
 function salvarMemoria(req, res) {
-    var memoria = req.body.memoria;
+    var atencao = req.body.atencao;
+    var inovacao = req.body.inovacao;
     var idLoja =req.body.idLoja
 
-    perfilModel.salvarMemoria(memoria, idLoja)
-        .then(
-            function (resultado) {
-                res.json(resultado);
-            }
-        )
-        .catch(
-            function (erro) {
-                console.log(erro);
-                console.log("Houve um erro ao realizar o post: ", erro.sqlMessage);
-                res.status(500).json(erro.sqlMessage);
-            }
-        );
-
-}
-
-function salvarArmazenamento(req, res) {
-    var armazenamento = req.body.armazenamento;
-    var idLoja =req.body.idLoja
-
-    perfilModel.salvarArmazenamento(armazenamento, idLoja)
+    perfilModel.salvarMemoria(atencao, inovacao, idLoja)
         .then(
             function (resultado) {
                 res.json(resultado);
@@ -142,7 +103,5 @@ module.exports = {
     editarUsuario,
     editarLoja,
     listarValores,
-    salvarCpu,
-    salvarMemoria,
-    salvarArmazenamento
+    salvarMemoria
 }

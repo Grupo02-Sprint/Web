@@ -7,7 +7,8 @@ function buscarMaquinas(idLoja) {
     if (process.env.AMBIENTE_PROCESSO == "producao") {
         instrucaoSql = `SELECT 
                             maquina.id_maquina,
-                            ideal.limite_toleravel
+                            ideal.limite_toleravel,
+                            ideal.limiteAtencao
                         FROM maquina 
                         JOIN loja ON
                         loja.id_loja = maquina.fk_loja

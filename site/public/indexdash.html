@@ -210,8 +210,8 @@
               html += `<option value="${item.id_maquina}">Maquina ${item.id_maquina}</option>`;
             });
             document.getElementById('select_maquina').innerHTML = html;
-            ideal1.innerHTML = json[0].limite_toleravel -15
-            ideal2.innerHTML = json[0].limite_toleravel -10
+            ideal1.innerHTML = json[0].limiteAtencao -1
+            ideal2.innerHTML = json[0].limiteAtencao
             ideal3.innerHTML = json[0].limite_toleravel 
             criarGraficoInicial()
           })
@@ -446,6 +446,13 @@
               upload.innerHTML = `<b>Dado mais recente(upload): </b> <span id="dadoRecente2"></span>`
               dadoRecente2.innerHTML = `${dados.datasets[1].data[dados.datasets[1].data.length - 1]}`
 
+              var elementoVerde = document.getElementsByClassName("ver")[0];
+                  var elementoAmarelo = document.getElementsByClassName("amare")[0];
+                  var elementoVermelho = document.getElementsByClassName("verm")[0];
+                  elementoVerde.style.backgroundColor = "rgba(0, 128, 0, 0.4)";
+                  elementoAmarelo.style.backgroundColor = "rgb(255, 255, 0, 0.4)";
+                  elementoVermelho.style.backgroundColor = "rgb(255, 0, 0, 0.4)";
+
             } else {
               dadoRecente1.innerHTML = dados.datasets[0].data[dados.datasets[0].data.length - 1]
               if (tipoGrafico == 'Memoria RAM') {
@@ -477,6 +484,12 @@
                 }
               } else {
                 alerta.innerHTML = ''
+                  var elementoVerde = document.getElementsByClassName("ver")[0];
+                  var elementoAmarelo = document.getElementsByClassName("amare")[0];
+                  var elementoVermelho = document.getElementsByClassName("verm")[0];
+                  elementoVerde.style.backgroundColor = "rgba(0, 128, 0, 0.4)";
+                  elementoAmarelo.style.backgroundColor = "rgb(255, 255, 0, 0.4)";
+                  elementoVermelho.style.backgroundColor = "rgb(255, 0, 0, 0.4)";
               }
               // PRECISA COLOCAR P DAR DISPLAY NONE NO dadoRecente2 AQUI
               upload.innerHTML = ''

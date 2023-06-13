@@ -12,9 +12,7 @@ function listar(idUsuario) {
 function listarValores(fkLoja) {
     console.log("ACESSEI O AVISO  MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listar()", fkLoja);
     var instrucao = `
-    SELECT limite_toleravel as armazenamento FROM ideal WHERE fk_loja = ${fkLoja} AND fk_componente = 1 UNION
-    SELECT limite_toleravel as memoria FROM ideal WHERE fk_loja = ${fkLoja} AND fk_componente = 2 UNION
-    SELECT limite_toleravel as cpu FROM ideal WHERE fk_loja = ${fkLoja} AND fk_componente = 3;
+    SELECT limite_toleravel, limiteAtencao FROM ideal WHERE fk_loja = ${fkLoja} AND fk_componente = 1;
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
@@ -39,28 +37,10 @@ function editarLoja(novoNome, novoTelefone, novoCNPJ, idLoja) {
     return database.executar(instrucao);
 }
 
-function salvarCpu(cpu, idLoja) {
-    console.log("ACESSEI O AVISO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function editar(): ", cpu, idLoja);
-    var instrucao = `
-        UPDATE ideal SET limite_toleravel = ${cpu} WHERE fk_loja = ${idLoja} and fk_componente = 2;
-    `;
-    console.log("Executando a instrução SQL: \n" + instrucao);
-    return database.executar(instrucao);
-}
-
-function salvarMemoria(memoria, idLoja) {
-    console.log("ACESSEI O AVISO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function editar(): ", memoria, idLoja);
-    var instrucao = `
-        UPDATE ideal SET limite_toleravel = ${memoria} WHERE fk_loja = ${idLoja} and fk_componente = 1;
-    `;
-    console.log("Executando a instrução SQL: \n" + instrucao);
-    return database.executar(instrucao);
-}
-
-function salvarArmazenamento(armazenamento, idLoja) {
-    console.log("ACESSEI O AVISO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function editar(): ", armazenamento, idLoja);
-    var instrucao = `
-        UPDATE ideal SET limite_toleravel = ${armazenamento} WHERE fk_loja = ${idLoja} and fk_componente = 3;
+function salvarMemoria(atencao, inovacao, idLoja) {
+    console.log("ACESSEI O AVISO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function editar(): ", atencao, inovacao, idLoja);
+    var instrucao = `'
+        UPDATE ideal SET  limiteAtencao = ${atencao}, limite_toleravel = ${inovacao} WHERE fk_loja = ${idLoja} and fk_componente = 1;
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
@@ -71,7 +51,5 @@ module.exports = {
     editarUsuario,
     editarLoja,
     listarValores,
-    salvarCpu,
-    salvarMemoria,
-    salvarArmazenamento
+    salvarMemoria
 }

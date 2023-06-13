@@ -135,7 +135,7 @@ body {
 
 
 
-    .container2 button {
+    .container3 button {
         height: 35px;
         width: 300px;
         border-radius: 15px;
@@ -192,6 +192,7 @@ body {
         margin-bottom: 0vh;
         font-family: 'Roboto', sans-serif;
         font-size: 5vh;
+        color: #ECE1C3;
     }
 
     .container1 h2 {
@@ -245,19 +246,31 @@ body {
         align-items: flex-start;
         font-family: 'IBM Plex Sans', sans-serif;
         font-size: 2.5vh;
+        color: #ECE1C3;
     }
 
-    .container2 button {
-        height: 4.6vh;
-        width: 46vh;
-        border-radius: 2vh;
-        margin-top: 2vh;
-        margin-bottom: 2vh;
-        font-size: 2.5vh;
-        background-color: white;
-        color: black;
+    .container3 button{
+        margin-left: 1vh;
+        height: 5vh;
+        width: 6vw;
+        background-color: #ECE1C3;
         border: none;
-        cursor: pointer;
+        box-shadow: 0 9px black;
+        font-weight: bold;
+        font-size: 2.5vh;
+        color: #195e63;
+        border-radius: .7vh;
+        margin-bottom: 2vh;
+    }
+    
+    .container3 button:hover{
+        background-color: #47949a;
+    }
+    
+    .container3 button:active {
+        transform: scale(0.85);
+        box-shadow: 0 5px #666;
+        
     }
 
     #jaConta {
