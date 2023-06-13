@@ -19,16 +19,8 @@ router.put("/editarLoja/:idLoja", function (req, res) {
     perfilController.editarLoja(req, res);
 });
 
-router.put("/salvarcpu", function (req, res) {
-    perfilController.salvarCpu(req, res);
-});
-
 router.put("/salvarmemoria", function (req, res) {
     perfilController.salvarMemoria(req, res);
-});
-
-router.put("/salvararmazenamento", function (req, res) {
-    perfilController.salvarArmazenamento(req, res);
 });
 
 module.exports = router;

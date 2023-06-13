@@ -17,20 +17,20 @@
             </div>
             <div class="hello">
         
-              <img src="../assets/WhatsApp Image 2023-01-30 at 23.12.16.jpeg" alt="">
+              <img src="../assets/OIP (2).jpg" alt="">
 
                 <h2><span id="b_usuario">Dionísio</span></h2>
         
               </div>
               <ul>
-                <li>
+                <li style="color: black;">
                   <i class="fa-solid fa-chart-line"></i>
-                  <a href="../indexdash.html "><b>Gráficos</b></a>
+                  <a href="../indexdash.html "><b style="color: black;">Gráficos</b></a>
                 </li>
         
-                <li style="color: black;"> 
+                <li> 
                   <i class="fa-solid fa-user"></i>
-                  <a cla href="../perfil.html"><b style="color: black;">Perfil</b></a>
+                  <a cla href="../perfil.html"><b>Perfil</b></a>
                 </li>
 
                 <li>
@@ -59,17 +59,13 @@
         <div class="ideal">
             <div class="caixa">
                 <div class="form">
-                <h2>Ideal da Loja</h2>
-                <h4>CPU</h4>
-                <input type="text" id="cpu">
-                <button onclick="salvarCpu()">Salvar</button>
-                <h4>Memória</h4>
-                <input type="text" id="memoria">
-                <button onclick="salvarMemoria()">Salvar</button>
-                <h4>Armazenamento</h4>
-                <input type="text" id="armazenamento">
-                <button onclick="salvarArmazenamento()">Salvar</button>
-            </div>
+                <h2>Valores da Memória</h2>
+                <h4>Valor Atenção</h4>
+                <input type="text" id="atencao">
+                <h4>Valor Inovação</h4>
+                <input type="text" id="inovacao">
+              </div>
+              <button onclick="salvarMemoria()">Salvar</button>
             </div>
         </div>
     </div>
@@ -99,9 +95,8 @@
                   console.log("Dados recebidos: ", JSON.stringify(resposta));
 
                   // Preencher os campos com os dados obtidos do banco de dados
-                  cpu.value = resposta[0].armazenamento;
-                  memoria.value = resposta[1].armazenamento;
-                  armazenamento.value = resposta[2].armazenamento;
+                  atencao.value = resposta[0].limiteAtencao;
+                  inovacao.value = resposta[0].limite_toleravel;
                 });
               } else {
                 throw "Houve um erro na API!";
@@ -120,32 +115,6 @@
     });
 }
 
-function salvarCpu() {
-    
-    fetch("/perfis/salvarcpu", {
-        method: "PUT",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-            cpu: cpu.value,
-            idLoja:fkLoja
-        })
-    }).then(function (resposta) {
-
-        if (resposta.ok) {
-            window.alert("Dado atualizado com sucesso");
-            window.location = "../perfil.html"
-        } else if (resposta.status == 404) {
-            window.alert("Deu 404!");
-        } else {
-            throw ("Houve um erro ao tentar realizar a atualizaçõa do dado! Código da resposta: " + resposta.status);
-        }
-    }).catch(function (resposta) {
-        console.log(`#ERRO: ${resposta}`);
-    });
-}
-
 function salvarMemoria() {
     
     fetch("/perfis/salvarmemoria", {
@@ -154,40 +123,15 @@ function salvarMemoria() {
             "Content-Type": "application/json"
         },
         body: JSON.stringify({
-            memoria: memoria.value,
+            atencao: atencao.value,
+            inovacao: inovacao.value,
             idLoja:fkLoja
         })
     }).then(function (resposta) {
 
         if (resposta.ok) {
             window.alert("Dado atualizado com sucesso");
-            window.location = "../perfil.html"
-        } else if (resposta.status == 404) {
-            window.alert("Deu 404!");
-        } else {
-            throw ("Houve um erro ao tentar realizar a atualização do dado! Código da resposta: " + resposta.status);
-        }
-    }).catch(function (resposta) {
-        console.log(`#ERRO: ${resposta}`);
-    });
-}
-
-function salvarArmazenamento() {
-    
-    fetch("/perfis/salvararmazenamento", {
-        method: "PUT",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-            armazenamento: armazenamento.value,
-            idLoja:fkLoja
-        })
-    }).then(function (resposta) {
-
-        if (resposta.ok) {
-            window.alert("Dado atualizado com sucesso");
-            window.location = "../perfil.html"
+            window.location = "../indexdash.html"
         } else if (resposta.status == 404) {
             window.alert("Deu 404!");
         } else {
